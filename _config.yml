@@ -1,0 +1,38 @@
+
+#site settings
+port: 8208
+url: "http://maziey93.github.io"
+title: E. O. Eyo
+brandname: The Cactus
+aboutDescription: Akri di yum
+contactInfoHeader: Contact Me
+contactInfoDescription: 
+twitterHandle: maziey93
+github: maziey93
+googleplus: EyoOkonEyo
+email: maziey93@gmail.com
+copyrightBrandname: The Cactus
+copyrightYear: 2014
+
+#blog settings
+blogName: The Cactus blog
+blogDescription: Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+blogTagLine: Another Jekyll blog
+paginate: 5
+paginate_path: "blog/page:num"
+
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+highlighter: pygments
+
+#defaults
+defaults:
+  -
+    scope:
+      path: "post" # an empty string here means all files in the project
+      type: "post"
+    values:
+      layout: "post"
+
