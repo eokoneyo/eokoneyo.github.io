@@ -32,7 +32,7 @@ highlighter: pygments
 defaults:
   -
     scope:
-      path: "post" # an empty string here means all files in the project
+      path: "_post" # an empty string here means all files in the project
       type: "post"
     values:
       layout: "post"
