@@ -381,3 +381,8 @@ a:hover .fa-twitter{
 .bloghead {
     background: url(/../img/bg.png);
 }
+
+.img-circle {
+    width: 125px;
+    height: 125px;
+}
