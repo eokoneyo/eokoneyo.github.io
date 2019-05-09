@@ -138,7 +138,7 @@ a:focus {
     padding: 100px 0;
     text-align: center;
     color: #fff;
-    background: url(/../img/bg.png) no-repeat bottom center scroll;
+    background: url(/assets/img/bg.png) no-repeat bottom center scroll;
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -379,7 +379,7 @@ a:hover .fa-twitter{
 }
 
 .bloghead {
-    background: url(/../img/bg.png);
+    background: url(/assets/img/bg.png);
 }
 
 .img-circle {

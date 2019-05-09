@@ -84,7 +84,7 @@ a {
     .nav {
         li {
             &.active {
-                outline: nonte;
+                outline: none;
                 background-color: fade(@light, 30%);
             }
             a {
@@ -130,7 +130,7 @@ a {
     padding: 100px 0;
     text-align: center;
     color: @light;
-    background: url(../img/intro-bg.jpg) no-repeat bottom center scroll;
+    background: url(../assets/img/intro-bg.jpg) no-repeat bottom center scroll;
     background-color: @dark;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -246,7 +246,7 @@ a {
     width: 100%;
     padding: 50px 0;
     color: @light;
-    background: url(../img/downloads-bg.jpg) no-repeat center center scroll;
+    background: url(../assets/img/downloads-bg.jpg) no-repeat center center scroll;
     background-color: @dark;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -348,5 +348,5 @@ img::-moz-selection {
 }
 
 body {
-    webkit-tap-highlight-color: fade(@light, 20%);
+    -webkit-tap-highlight-color: fade(@light, 20%);
 }

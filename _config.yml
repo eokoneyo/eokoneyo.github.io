@@ -8,9 +8,7 @@ aboutDescription: Akri di yum
 contactInfoHeader: Contact Me
 contactInfoDescription: 
 twitterHandle: maziey93
-github: maziey93
-googleplus: EyoOkonEyo
-email: maziey93@gmail.com
+github: eokoneyo
 copyrightBrandname: The Cactus
 copyrightYear: 2014
 ownerImageLocation: img/black.jpg 
@@ -33,7 +31,7 @@ defaults:
   -
     scope:
       path: "_post" # an empty string here means all files in the project
-      type: "post"
+      type: "posts"
     values:
       layout: "post"
 
