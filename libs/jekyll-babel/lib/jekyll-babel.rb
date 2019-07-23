@@ -1,5 +1,30 @@
 require 'babel/transpiler'
 
+## Overide write method from here https://github.com/jekyll/jekyll/blob/master/lib/jekyll/static_file.rb#L101
+module Jekyll
+    class TranspiledStaticFile < Jekyll::StaticFile
+        def initialize(site, base, dir, name, dest)
+            super(site, base, dir, name)
+
+            @dest = dest
+        end
+
+        def write(destFromParent)
+            dest_path = @dest
+
+            return false if File.exist?(dest_path) && !modified?
+      
+            self.class.mtimes[path] = mtime
+      
+            FileUtils.mkdir_p(File.dirname(dest_path))
+            # FileUtils.rm(dest_path) if File.exist?(dest_path)
+            copy_file(dest_path)
+
+            true
+        end
+    end
+end
+
 class TranspileES6
     def initialize(site)
         @site = site
@@ -28,8 +53,8 @@ class TranspileES6
             file.write result['code']
         }
 
-        # Jekyll::StaticFile.new(@site, out_dir, File.dirname(relative_path), File.basename(relative_path))
-        @site.static_files << Jekyll::StaticFile.new(@site, @site.source, @cacheDir, fileName)
+        #use overriden method :)
+        @site.static_files << Jekyll::TranspiledStaticFile.new(@site, @site.source, @cacheDir, fileName, File.join(@site.dest, outputPath, fileName))
     end
 end
 

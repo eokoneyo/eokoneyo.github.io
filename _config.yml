@@ -40,5 +40,5 @@ defaults:
 babel:
   entry: 'assets/js/bundle.js'
   output:
-    path: 'assets/es6/'
+    path: 'assets/js/'
     filename: 'bundlerrrd.js'
