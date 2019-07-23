@@ -36,3 +36,6 @@ Icon
 .Spotlight-V100
 .Trashes
 /_site/
+/.vscode/
+/.sass-cache/
+/.jekyll-babel-cache/

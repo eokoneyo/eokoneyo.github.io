@@ -1,44 +1,6 @@
 @import "variables";
+@import "grid";
 @import "globals";
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0 0 35px;
-  text-transform: uppercase;
-  font-family: "Montserrat","Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-p {
-  margin: 0 0 25px;
-  font-size: 18px;
-  line-height: 1.5;
-}
-
-@media(min-width:767px) {
-  p {
-    margin: 0 0 35px;
-    font-size: 20px;
-    line-height: 1.6;
-  }
-}
-
-a {
-  color: $primary;
-  -webkit-transition: all .2s ease-in-out;
-  -moz-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out;
-  &:hover,
-  &:focus {
-    text-decoration: none;
-    color: darken($primary,20%);
-  }
-}
 
 .light {
   font-weight: 400;
@@ -65,9 +27,11 @@ a {
       }
     }
   }
+
   a {
     color: $light;
   }
+
   .nav {
     li {
       &.active {
@@ -89,7 +53,7 @@ a {
   }
 }
 
-@media(min-width:767px) {
+@media #{$bp-medium} {
   .navbar {
     padding: 20px 0;
     border-bottom: none;
@@ -117,12 +81,13 @@ a {
   padding: 100px 0;
   text-align: center;
   color: $light;
-  background: url(../assets/img/intro-bg.jpg) no-repeat bottom center scroll;
+  background: url(/assets/img/intro-bg.jpg) no-repeat bottom center scroll;
   background-color: $dark;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
+
   .intro-body {
     display: table-cell;
     vertical-align: middle;
@@ -136,7 +101,7 @@ a {
   }
 }
 
-@media(min-width:767px) {
+@media #{$bp-medium} {
   .intro {
     height: 100%;
     padding: 0;
@@ -247,7 +212,7 @@ a {
   margin-top: 100px;
 }
 
-@media(min-width:767px) {
+@media #{$bp-medium} {
   .content-section {
     padding-top: 250px;
   }
@@ -285,7 +250,7 @@ a {
 }
 
 ul.banner-social-buttons {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 @media(max-width:1199px) {
@@ -294,7 +259,7 @@ ul.banner-social-buttons {
   }
 }
 
-@media(max-width:767px) {
+@media #{$bp-medium} {
   ul.banner-social-buttons {
     li {
       display: block;

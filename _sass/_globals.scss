@@ -11,6 +11,45 @@ body {
   -webkit-tap-highlight-color: fade($light, 20%);
 }
 
+a {
+  color: $primary;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: darken($primary,20%);
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 35px;
+  text-transform: uppercase;
+  font-family: "Montserrat","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+p {
+  margin: 0 0 25px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+img::selection {
+  background: transparent;
+}
+
+img::-moz-selection {
+  background: transparent;
+}
+
 ::-moz-selection {
   text-shadow: none;
   background: #fcfcfc;
@@ -23,10 +62,10 @@ body {
   background: fade($light, 20%);
 }
 
-img::selection {
-  background: transparent;
-}
-
-img::-moz-selection {
-  background: transparent;
+@media #{$bp-medium} {
+  p {
+    margin: 0 0 35px;
+    font-size: 20px;
+    line-height: 1.6;
+  }
 }
