@@ -1,6 +1,7 @@
 require 'babel/transpiler'
 
-## Overide write method from here https://github.com/jekyll/jekyll/blob/master/lib/jekyll/static_file.rb#L101
+## Overide destination method from here https://github.com/jekyll/jekyll/blob/master/lib/jekyll/static_file.rb#L101 
+## so we can provide our own prefered destination
 module Jekyll
     class TranspiledStaticFile < Jekyll::StaticFile
         def initialize(site, base, dir, name, dest)
@@ -9,18 +10,8 @@ module Jekyll
             @dest = dest
         end
 
-        def write(destFromParent)
-            dest_path = @dest
-
-            return false if File.exist?(dest_path) && !modified?
-      
-            self.class.mtimes[path] = mtime
-      
-            FileUtils.mkdir_p(File.dirname(dest_path))
-            # FileUtils.rm(dest_path) if File.exist?(dest_path)
-            copy_file(dest_path)
-
-            true
+        def destination(destFromParent)
+            @dest
         end
     end
 end
