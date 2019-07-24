@@ -40,3 +40,7 @@ img::-moz-selection {
   background: #fcfcfc;
   background: fade($light, 20%);
 }
+
+.no-scroll {
+  overflow: hidden;
+}
