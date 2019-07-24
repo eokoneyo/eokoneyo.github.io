@@ -1,8 +1,8 @@
 
 #site settings
 port: 8208
-url: "http://maziey93.github.io"
-title: E. O. Eyo
+url: "http://eokoneyo.github.io"
+title: "Eyo O. Eyo"
 brandname: The Cactus
 aboutDescription: Akri di yum
 contactInfoHeader: Contact Me
@@ -20,13 +20,15 @@ blogTagLine: Another Jekyll blog
 paginate: 5
 paginate_path: "blog/page:num"
 
-
 # Build settings
 markdown: kramdown
 permalink: pretty
-highlighter: pygments
+highlighter: rouge
+exclude: ['.idea', '.vscode','node_modules', 'libs']
+plugins:
+  - jekyll-paginate
+  - jekyll-babel
 
-#defaults
 defaults:
   -
     scope:
@@ -35,3 +37,8 @@ defaults:
     values:
       layout: "post"
 
+babel:
+  entry: 'assets/js/bundle.js'
+  output:
+    path: 'assets/js/'
+    filename: 'bundlerrrd.js'
