@@ -22,7 +22,6 @@ highlighter: rouge
 exclude: ['.idea', '.vscode','node_modules', 'libs']
 plugins:
   - jekyll-paginate
-  # - jekyll-babel
 
 defaults:
   -

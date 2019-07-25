@@ -12,5 +12,4 @@ group :jekyll_plugins do
     gem 'jekyll-paginate'
     gem 'jekyll-github-metadata'
     gem 'babel-transpiler', '~> 0.7', '>= 0.7.0'
-    # gem 'jekyll-babel', :path => './libs/jekyll-babel'
 end
