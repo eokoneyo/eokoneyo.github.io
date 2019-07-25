@@ -3,15 +3,10 @@
 port: 8208
 url: "http://eokoneyo.github.io"
 title: "Eyo O. Eyo"
-brandname: The Cactus
-aboutDescription: Akri di yum
-contactInfoHeader: Contact Me
-contactInfoDescription: 
 twitterHandle: maziey93
 github: eokoneyo
 copyrightBrandname: The Cactus
 copyrightYear: 2014
-ownerImageLocation: img/black.jpg 
 
 #blog settings
 blogName: The Cactus blog
