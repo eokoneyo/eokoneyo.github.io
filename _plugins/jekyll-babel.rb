@@ -32,7 +32,7 @@ class TranspileES6
         FileUtils.mkdir_p(@cacheDir) unless File.exists?(@cacheDir)
 
         # Exclude the cache directory from the jekyll watch, to prevent an infinite work loop
-	    @site.exclude << @cacheDir
+        @site.exclude << @cacheDir
 
         outputFileName = File.join(@cacheDir, fileName)
 
