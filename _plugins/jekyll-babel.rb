@@ -27,6 +27,8 @@ class TranspileES6
 
         entryFile = transpilerConfig['entry']
 
+        return Jekyll.logger.info("Jekyll-babel:", "file #{entryFile} was not found ...") unless File.exists?(entryFile)
+
         fileName, outputPath = (transpilerConfig['output']).values_at("filename", "path")
 
         FileUtils.mkdir_p(@cacheDir) unless File.exists?(@cacheDir)
