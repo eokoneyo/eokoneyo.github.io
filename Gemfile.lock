@@ -34,6 +34,8 @@ GEM
       pathutil (~> 0.9)
       rouge (>= 1.7, < 4)
       safe_yaml (~> 1.0)
+    jekyll-babel (1.1.0)
+      babel-transpiler
     jekyll-github-metadata (2.12.1)
       jekyll (~> 3.4)
       octokit (~> 4.0, != 4.4.0)
@@ -76,6 +78,7 @@ PLATFORMS
 DEPENDENCIES
   babel-transpiler (~> 0.7, >= 0.7.0)
   jekyll (~> 3.8.6)
+  jekyll-babel
   jekyll-github-metadata
   jekyll-paginate
 

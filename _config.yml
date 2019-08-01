@@ -22,6 +22,7 @@ highlighter: rouge
 exclude: ['.idea', '.vscode','node_modules', 'libs']
 plugins:
   - jekyll-paginate
+  - jekyll-babel
 
 defaults:
   -
@@ -30,6 +31,8 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+
+babel_js_extensions: 'es6, babel, jsx' # Do not process .js files
 
 babel:
   entry: 'assets/js/bundle.js'
