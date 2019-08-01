@@ -19,7 +19,7 @@ paginate_path: "blog/page:num"
 markdown: kramdown
 permalink: pretty
 highlighter: rouge
-exclude: ['.idea', '.vscode','node_modules', 'libs']
+exclude: ['vendor', '.idea', '.vscode','node_modules', 'libs']
 plugins:
   - jekyll-paginate
 
