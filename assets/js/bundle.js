@@ -1,34 +1,33 @@
----
----
+'use strict';
+
 ;(function (global) {
 
     document.addEventListener('DOMContentLoaded', function () {
-        const ANIMATION_DURATION = 2000;
+        var ANIMATION_DURATION = 2000;
 
-        const DOM = {};
+        var DOM = {};
         DOM.preloader = document.querySelector('.preloader');
         DOM.shape = DOM.preloader.querySelector('svg.shape');
         DOM.path = DOM.shape.querySelector('path');
-        
-        setTimeout(() => {
+
+        setTimeout(function () {
             anime({
                 targets: DOM.preloader,
                 duration: ANIMATION_DURATION,
                 easing: 'easeInOutSine',
-                translateY: '-200vh',
+                translateY: '-200vh'
             });
-      
+
             anime({
                 targets: DOM.path,
                 duration: ANIMATION_DURATION,
                 easing: 'easeOutQuad',
                 d: DOM.path.getAttribute('pathdata:id'),
-                complete: () => {
-                  document.body.style.overflow = 'auto';
-                  DOM.preloader.style.display = 'none'
+                complete: function complete() {
+                    document.body.style.overflow = 'auto';
+                    DOM.preloader.style.display = 'none';
                 }
             });
         }, 1000);
     });
-
 })(window);
