@@ -53,7 +53,6 @@ end
 
 Jekyll::Hooks.register :site, :pre_render do |site, payload|
     # code to call before Jekyll renders the whole site, but before writing any files
-
     es6Transpiler = TranspileES6.new(site)
 
     es6Transpiler.do_work()

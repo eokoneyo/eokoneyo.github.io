@@ -1,5 +1,3 @@
----
----
 ;(function (global) {
 
     document.addEventListener('DOMContentLoaded', function () {
