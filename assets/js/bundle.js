@@ -25,6 +25,15 @@
                 }
             });
         }, 1000);
+
+
+        //Do page view tracking
+        if(global.ga) {
+            global.ga('send', {
+                hitType: 'pageview',
+                page: global.location.pathname
+            });
+        }
     });
 
 })(window);
