@@ -14,8 +14,15 @@
             </div>
             <div class="column-md-6">
                 <h1 class="main-content__title">{{site.title}}</h1>
-                <p>{{site.description}}️</p>
-                <p> - {{ 'now' | date: "%Y" }}</p>
+                
+                <p>
+                    connect with me:
+                    {% for item in site.socials %}
+                    <a class="social-icon--link {{ icon.class }}" href="{{ item.url }}" target="_blank">
+                        <span class="social-icon--title">{{ item.title }}</span>
+                    </a>
+                    {% endfor %}
+                </p>
             </div>
         </div>
     </div>
