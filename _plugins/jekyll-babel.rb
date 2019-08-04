@@ -1,7 +1,7 @@
 require 'babel/transpiler'
 
-## Overide destination method from here https://github.com/jekyll/jekyll/blob/master/lib/jekyll/static_file.rb#L101 
-## so we can provide our own prefered destination
+## Override destination method from here https://github.com/jekyll/jekyll/blob/master/lib/jekyll/static_file.rb#L101
+## so we can provide our own preferred destination
 module Jekyll
     class TranspiledStaticFile < Jekyll::StaticFile
         def initialize(site, base, dir, name, dest)
@@ -46,7 +46,7 @@ class TranspileES6
             file.write result['code']
         }
 
-        #use overriden method :)
+        #use overridden method :)
         @site.static_files << Jekyll::TranspiledStaticFile.new(@site, @site.source, @cacheDir, fileName, File.join(@site.dest, outputPath, fileName))
     end
 end

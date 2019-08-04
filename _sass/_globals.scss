@@ -7,6 +7,9 @@ html, body {
 body, * {
   font-family: $primary-font;
   -webkit-tap-highlight-color: fade($light, 20%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
 a {
