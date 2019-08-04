@@ -7,6 +7,9 @@ html, body {
 body, * {
   font-family: $primary-font;
   -webkit-tap-highlight-color: fade($light, 20%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
 a {
@@ -14,6 +17,7 @@ a {
   -webkit-transition: all .2s ease-in-out;
   -moz-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
+  padding: 0 10px;
   &:hover,
   &:focus {
     text-decoration: none;
@@ -31,14 +35,12 @@ img::-moz-selection {
 
 ::-moz-selection {
   text-shadow: none;
-  background: #fcfcfc;
-  background: fade($light, 20%);
+  background: $yellow;
 }
 
 ::selection {
   text-shadow: none;
-  background: #fcfcfc;
-  background: fade($light, 20%);
+  background: $yellow;
 }
 
 .no-scroll {

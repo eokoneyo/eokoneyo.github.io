@@ -27,8 +27,15 @@
     src: local('SpaceMono'), url('../fonts/Space_Mono/SpaceMono-BoldItalic.ttf') format('truetype');
 }
 
-$primary-font: 'SpaceMono', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-  
+@font-face {
+  font-family: 'Ovo';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Ovo'), url('../fonts/ovo/Ovo-Regular.ttf') format('truetype');
+}
+
+$primary-font: 'Ovo', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+
 // Font weights
 $normal-font-weight: 400;
 $medium-font-weight: 500;
