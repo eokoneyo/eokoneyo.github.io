@@ -3,15 +3,13 @@
 port: 8208
 url: "http://eokoneyo.github.io"
 title: "Eyo O. Eyo"
+tagline: "Frontend Engineer, with a passion for building performant web experiences that scales."
+description: "Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur."
 twitterHandle: maziey93
 github: eokoneyo
-copyrightBrandname: The Cactus
-copyrightYear: 2014
 
 #blog settings
 blogName: The Cactus blog
-blogDescription: Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-blogTagLine: Another Jekyll blog
 paginate: 5
 paginate_path: "blog/page:num"
 

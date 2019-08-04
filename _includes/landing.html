@@ -7,9 +7,15 @@
     </div>
     <div class="container">
         <div class="row main-content">
-            <div class="column">
-                <h1>Welcome 😏 ...</h1>
-                <h2>I'm {{site.title}} 🙎🏾‍♂️</h2>
+            <div class="column-md-6 main-content__side-photo">
+                <div class="main-content__side-photo--inner">
+                    {% include vectors/horse-rider.svg %}
+                </div>
+            </div>
+            <div class="column-md-6">
+                <h1 class="main-content__title">{{site.title}}</h1>
+                <p>{{site.description}}️</p>
+                <p> - {{ 'now' | date: "%Y" }}</p>
             </div>
         </div>
     </div>

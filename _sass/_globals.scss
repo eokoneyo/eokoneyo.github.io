@@ -34,14 +34,12 @@ img::-moz-selection {
 
 ::-moz-selection {
   text-shadow: none;
-  background: #fcfcfc;
-  background: fade($light, 20%);
+  background: $yellow;
 }
 
 ::selection {
   text-shadow: none;
-  background: #fcfcfc;
-  background: fade($light, 20%);
+  background: $yellow;
 }
 
 .no-scroll {
