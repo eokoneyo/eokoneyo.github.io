@@ -1,6 +1,5 @@
 
 #site settings
-port: 8208
 url: "http://eokoneyo.github.io"
 title: "Eyo O. Eyo"
 tagline: "Frontend Engineer, with a passion for building performant web experiences that scales."
