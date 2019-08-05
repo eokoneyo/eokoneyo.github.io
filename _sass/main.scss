@@ -4,11 +4,11 @@
 @import "grid";
 @import "globals";
 
-//code highlighter stylesheet
-@import "components/code_highlighter";
-
 //navigation
 @import "components/nav";
+
+// code highlighter stylesheet
+@import "code_highlighter";
 
 //pages
 @import "pages/landing_page";
