@@ -1,34 +1,21 @@
 <!-- Navigation -->
-<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                <i class="fa fa-bars"></i>
-            </button>
-            <a class="navbar-brand page-scroll" href="#page-top">
-                <i class="fa fa-play-circle"></i> {{site.brandname}}
+<header class="ns-header">
+    <div class="header container">
+        {% unless page.layout == "home" %}
+        <div class="header__left">
+            <a href="/" class="header__brand-image-wrapper">
+              <span class="header__brand-image">{{site.title}}</span>
             </a>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-            <ul class="nav navbar-nav">
-                <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                <li class="hidden">
-                    <a href="#page-top"></a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#about">About</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#contact">Contact</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="/blog">Blog</a>
-                </li>
+        {% endunless %}
+        <div class="header__right">
+            <ul class="menu-list">
+                {% for link in site.headerLinks %}
+                    <li class="menu-list-items {% if page.url contains link.path %}active{% endif %}">
+                        <a href={{link.path}}>{{link.title}}</a>
+                    </li>
+                {% endfor %}
             </ul>
         </div>
-        <!-- /.navbar-collapse -->
     </div>
-    <!-- /.container -->
-</nav>
+</header>

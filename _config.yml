@@ -1,9 +1,22 @@
-
 #site settings
-url: "http://eokoneyo.github.io"
 title: "Eyo O. Eyo"
-tagline: "Frontend Engineer, with a passion for building performant web experiences that scales."
-description: "<em>Faber est Suae Quisque Fortunae.</em>"
+seo_description: "Frontend Engineer, with a passion for building performant web experiences that scale."
+tagline: "<em>Faber est Suae Quisque Fortunae.</em>"
+description: >
+  Frontend Engineer, with a strong focus in building performant web experiences that scale.
+  Originally from Nigeria, I currently live in Berlin and work at HelloFresh.
+
+headerLinks:
+  - title: Blog
+    path: "/blog"
+
+socials:
+  - title: LinkedIn
+    url: "https://www.linkedin.com/in/eyo-eyo-9a027a96/"
+  - title: GitHub
+    url: "https://github.com/eokoneyo"
+
+google_analytics: "UA-103572320-2"
 
 #blog settings
 blogName: The Cactus blog
@@ -18,6 +31,12 @@ exclude: ['vendor', '.idea', '.vscode','node_modules', 'libs']
 plugins:
   - jekyll-paginate
 
+babel:
+  entry: 'assets/js/bundle.js'
+  output:
+    path: 'assets/js/'
+    filename: 'bundle.js'
+
 defaults:
   -
     scope:
@@ -25,17 +44,3 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-
-google_analytics: "UA-103572320-2"
-
-socials:
-  - title: LinkedIn
-    url: "https://www.linkedin.com/in/eyo-eyo-9a027a96/"
-  - title: GitHub
-    url: "https://github.com/eokoneyo"
-
-babel:
-  entry: 'assets/js/bundle.js'
-  output:
-    path: 'assets/js/'
-    filename: 'bundle.js'
