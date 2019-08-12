@@ -1,7 +1,7 @@
 #site settings
 title: "Eyo O. Eyo"
-seo_description: "Frontend Engineer, with a passion for building performant web experiences that scale."
-tagline: "<em>Faber est Suae Quisque Fortunae.</em>"
+seo_description: "Eyo O. Eyo is a Frontend Engineer, currently based in Berlin."
+tagline: "Faber est Suae Quisque Fortunae"
 description: >
   Frontend Engineer, with a strong focus in building performant web experiences that scale.
   Originally from Nigeria, I currently live in Berlin and work at HelloFresh.
@@ -25,7 +25,7 @@ paginate_path: "blog/page:num"
 
 # Build settings
 markdown: kramdown
-permalink: pretty
+permalink: /blog/:categories/:year/:month/:day/:title/
 highlighter: rouge
 exclude: ['vendor', '.idea', '.vscode','node_modules', 'libs']
 plugins:
