@@ -1,0 +1,22 @@
+{% assign projects = include.projects %}
+
+<h1>{{page.title}}</h1>
+
+<ul>
+    {% for project in projects.items %}
+        <li class="fa fa-edit fa-2x">
+            <a class="blog-post-title" href="{{ project.url | prepend: site.baseurl }}">
+                <h2>{{ project.title }}</h2>
+            </a>
+            <span class="blog-post-meta">{{ project.date | date: "%b %-d, %Y" }}</span>
+            <p>{{ project.excerpt }}</p>
+        </li>
+    {% endfor %}
+</ul>
+
+{% if projects.size > 5 %}
+    <ul class="pager">
+        <li><a href="#">Previous</a></li>
+        <li><a href="#">Next</a></li>
+    </ul>
+{% endif %}
