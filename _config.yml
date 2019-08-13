@@ -9,6 +9,8 @@ description: >
 headerLinks:
   - title: Blog
     path: "/blog"
+  - title: Projects
+    path: "/projects"
 
 socials:
   - title: LinkedIn
@@ -25,7 +27,7 @@ paginate_path: "blog/page:num"
 
 # Build settings
 markdown: kramdown
-permalink: /blog/:categories/:year/:month/:day/:title/
+permalink: pretty
 highlighter: rouge
 exclude: ['vendor', '.idea', '.vscode','node_modules', 'libs']
 plugins:

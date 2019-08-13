@@ -2,21 +2,3 @@
 layout: blog
 title: Blog
 ---
-<h1>Posts</h1>
-
-<ul class="blog-post fa-ul">
-  {% for post in site.posts %}
-    <li class="fa fa-edit fa-2x">
-      <a class="blog-post-title" href="{{ post.url | prepend: site.baseurl }}">
-        <h2>{{ post.title }}</h2>
-      </a>
-      <span class="blog-post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-      <p>{{ post.excerpt }}</p>
-    </li>
-  {% endfor %}
-</ul>
-
-<ul class="pager">
-  <li><a href="#">Previous</a></li>
-  <li><a href="#">Next</a></li>
-</ul>

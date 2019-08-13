@@ -1,7 +1,7 @@
 ---
 layout: post
 title: First real post on jekyll
-category: test
+category: blog
 author: E. O. Eyo
 ---
 
@@ -11,7 +11,7 @@ author: E. O. Eyo
  then one e-commerce project which i made use of said php made me realise i need to actually learn HTML
  and so swallowing pride and all i learnt HTML; video tutorials and all. but thats not what this post is about is it?
 
- just testing jekyll, heard abbout jekyll two days ago.. and ive made up my mind to create my own jekyll website template :)
+ just testing jekyll, heard about jekyll two days ago.. and ive made up my mind to create my own jekyll website template :)
 
 {% highlight php linenos %}
 

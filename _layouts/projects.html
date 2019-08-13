@@ -8,8 +8,8 @@ layout: default
         {% assign categories = site.posts | group_by: 'category' %}
 
         {% for category in categories %}
-            {% if category.name == "blog" %}
-                {% include blog-list.html blog_posts=category %}
+            {% if category.name == "projects" %}
+                {% include project-list.html projects=category %}
             {% endif %}
         {% endfor %}
     </div>
