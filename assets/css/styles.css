@@ -294,6 +294,22 @@ a {
   a:hover, a:focus {
     text-decoration: none;
     color: #11505d; }
+  a[target="_blank"] {
+    position: relative;
+    display: inline-block; }
+    a[target="_blank"]:after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      position: absolute;
+      top: 0;
+      right: 0;
+      border-style: solid;
+      border-width: 0 8px 8px 0;
+      border-color: transparent #219AB3 transparent transparent; }
+    a[target="_blank"]:hover:after {
+      border-color: transparent #11505d transparent transparent; }
 
 img::selection {
   background: transparent; }
