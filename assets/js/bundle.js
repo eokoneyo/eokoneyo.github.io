@@ -12,11 +12,12 @@
         const [, value] = cookieString.match(searchRegex);
 
         return value;
-    }
+    };
     
     document.addEventListener('DOMContentLoaded', function () {
         const ANIMATION_DURATION = 2000;
         const HAS_SEEN_PRELOADER_COOKIE = 'eoe_has_seen_preloader';
+        const HTML_PRELOADER_ATTRIBUTE = 'data-preloader-displayed';
 
         const DOM = {};
         DOM.preloader = global.document.querySelector('.preloader');
@@ -38,15 +39,17 @@
                 d: DOM.path.getAttribute('pathdata:id'),
                 complete: () => {
                     global.document.body.style.overflow = 'auto';
+                    global.document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
                     // mark preloader as seen for the session
                     setCookie(HAS_SEEN_PRELOADER_COOKIE, true);
                 }
             });
-        }
+        };
 
         if(getCookieValue(HAS_SEEN_PRELOADER_COOKIE) === 'true') {
             DOM.preloader.style.display = 'none';
             global.document.body.style.overflow = 'auto';
+            global.document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
         } else {
             setTimeout(() => removePreloader(ANIMATION_DURATION), 1000);
         }
