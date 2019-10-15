@@ -1,0 +1,13 @@
+<div class="preloader">
+    <noscript>
+        <!-- This ensures that user's with javascript turned off aren't incapacitated by our preloader -->
+        <style>
+            .preloader { display: none; }
+            body:not([data-preloader-displayed=true]) { overflow: initial; }
+        </style>
+    </noscript>
+    <div class="content-wrapper">
+        <h1 class="white-text">Loading...</h1>
+    </div>
+    {% include vectors/preloader-mask.svg %}
+</div>
