@@ -27,6 +27,7 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
     document.addEventListener('DOMContentLoaded', function () {
         var ANIMATION_DURATION = 2000;
         var HAS_SEEN_PRELOADER_COOKIE = 'eoe_has_seen_preloader';
+        var HTML_PRELOADER_ATTRIBUTE = 'data-preloader-displayed';
 
         var DOM = {};
         DOM.preloader = global.document.querySelector('.preloader');
@@ -48,6 +49,7 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
                 d: DOM.path.getAttribute('pathdata:id'),
                 complete: function complete() {
                     global.document.body.style.overflow = 'auto';
+                    global.document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
                     // mark preloader as seen for the session
                     setCookie(HAS_SEEN_PRELOADER_COOKIE, true);
                 }
@@ -57,6 +59,7 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
         if (getCookieValue(HAS_SEEN_PRELOADER_COOKIE) === 'true') {
             DOM.preloader.style.display = 'none';
             global.document.body.style.overflow = 'auto';
+            global.document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
         } else {
             setTimeout(function () {
                 return removePreloader(ANIMATION_DURATION);
