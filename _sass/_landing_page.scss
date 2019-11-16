@@ -38,6 +38,10 @@
         }
       }
 
+      &__tagline, &__socials {
+        font-family: $secondary-font;
+      }
+
       &__side-photo {
         &--inner {
           width: inherit;
