@@ -39,3 +39,5 @@ Icon
 /.vscode/
 /.sass-cache/
 /.jekyll-babel-cache/
+/.bundle/
+/vendor/

@@ -8,11 +8,11 @@
                 </div>
             </div>
             <div class="column-md-6">
-                <h1 class="main-content__title">{{site.title}}</h1>
-                <p>{{site.tagline}}</p>
-                <p>
+                <h1 class="main-content__title">{{site.data.setup.title}}</h1>
+                <p class="main-content__tagline">{{site.data.setup.tagline}}</p>
+                <p class="main-content__socials">
                     <span>connect with me:</span>
-                    {% for item in site.socials %}
+                    {% for item in site.data.setup.socials %}
                     <a class="social-icon--link {{ icon.class }}" href="{{ item.url }}" target="_blank">
                         <span class="social-icon--title">{{ item.title }}</span>
                     </a>

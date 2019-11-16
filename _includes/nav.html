@@ -10,7 +10,7 @@
         {% endunless %}
         <div class="header__right">
             <ul class="menu-list">
-                {% for link in site.headerLinks %}
+                {% for link in site.data.setup.headerLinks %}
                     <li class="menu-list-items {% if page.url contains link.path %}active{% endif %}">
                         <a href={{link.path}}>{{link.title}}</a>
                     </li>
