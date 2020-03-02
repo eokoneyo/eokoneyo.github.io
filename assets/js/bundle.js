@@ -1,53 +1,45 @@
-'use strict';
+import anime from 'animejs';
 
-var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }; })();
+((global) => {
 
-;(function (global) {
+    const setCookie = (name, value) => global.document.cookie = `${name}=${value}`;
 
-    var setCookie = function setCookie(name, value) {
-        return global.document.cookie = name + '=' + value;
-    };
+    const getCookieValue = name => {
+        const cookieString = String(global.document.cookie);
 
-    var getCookieValue = function getCookieValue(name) {
-        var cookieString = String(global.document.cookie);
+        if(cookieString.indexOf(name) < 0) return null;
 
-        if (cookieString.indexOf(name) < 0) return null;
+        const searchRegex = new RegExp(`${name}=(\\w*);?`);
 
-        var searchRegex = new RegExp(name + '=(\\w*);?');
-
-        var _cookieString$match = cookieString.match(searchRegex);
-
-        var _cookieString$match2 = _slicedToArray(_cookieString$match, 2);
-
-        var value = _cookieString$match2[1];
+        const [, value] = cookieString.match(searchRegex);
 
         return value;
     };
-
+    
     document.addEventListener('DOMContentLoaded', function () {
-        var ANIMATION_DURATION = 2000;
-        var HAS_SEEN_PRELOADER_COOKIE = 'eoe_has_seen_preloader';
-        var HTML_PRELOADER_ATTRIBUTE = 'data-preloader-displayed';
+        const ANIMATION_DURATION = 2000;
+        const HAS_SEEN_PRELOADER_COOKIE = 'eoe_has_seen_preloader';
+        const HTML_PRELOADER_ATTRIBUTE = 'data-preloader-displayed';
 
-        var DOM = {};
+        const DOM = {};
         DOM.preloader = global.document.querySelector('.preloader');
         DOM.shape = DOM.preloader.querySelector('svg.shape');
         DOM.path = DOM.shape.querySelector('path');
 
-        var removePreloader = function removePreloader(animationDuration) {
+        const removePreloader = (animationDuration) => {
             anime({
                 targets: DOM.preloader,
                 duration: animationDuration,
                 easing: 'easeInOutSine',
-                translateY: '-200vh'
+                translateY: '-200vh',
             });
-
+      
             anime({
                 targets: DOM.path,
                 duration: animationDuration,
                 easing: 'easeOutQuad',
                 d: DOM.path.getAttribute('pathdata:id'),
-                complete: function complete() {
+                complete: () => {
                     global.document.body.style.overflow = 'auto';
                     global.document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
                     // mark preloader as seen for the session
@@ -56,22 +48,50 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
             });
         };
 
-        if (getCookieValue(HAS_SEEN_PRELOADER_COOKIE) === 'true') {
+        if(getCookieValue(HAS_SEEN_PRELOADER_COOKIE) === 'true') {
             DOM.preloader.style.display = 'none';
             global.document.body.style.overflow = 'auto';
             global.document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
         } else {
-            setTimeout(function () {
-                return removePreloader(ANIMATION_DURATION);
-            }, 1000);
+            setTimeout(() => removePreloader(ANIMATION_DURATION), 1000);
         }
 
         //Do page view tracking
-        if (global.ga) {
+        if(global.ga) {
             global.ga('send', {
                 hitType: 'pageview',
                 page: global.location.pathname
             });
         }
     });
+
+
+    document.querySelector('#illustration').addEventListener('click', (evt) => {
+
+        const delay = 100;
+        const duration = 1300;
+        const easing = 'cubicBezier(0.64, 0.04, 0.35, 1)';
+
+        anime({
+            targets: '#illustration',
+            duration,
+            easing,
+            translateX: [0, -834],
+            translateY: [0, -162],
+            width: [239, 50.37],
+            height: [427, 90],
+            delay: 100
+        });
+
+        anime({
+            targets: '#info-cta',
+            duration,
+            easing,
+            delay,
+            translateX: [0, 2.5],
+            translateY: [0, -980.5]
+        });
+
+    });
+
 })(window);
