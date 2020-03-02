@@ -1,43 +1,22 @@
-#site settings
-title: "Eyo O. Eyo"
-seo_description: "Eyo O. Eyo is a Frontend Engineer, currently based in Berlin."
-tagline: "Faber est Suae Quisque Fortunae"
-description: >
-  Frontend Engineer, with a strong focus in building performant web experiences that scale.
-  Originally from Nigeria, I currently live in Berlin and work at HelloFresh.
-
-headerLinks:
-  - title: Blog
-    path: "/blog"
-  - title: Projects
-    path: "/projects"
-
-socials:
-  - title: LinkedIn
-    url: "https://www.linkedin.com/in/eyo-eyo-9a027a96/"
-  - title: GitHub
-    url: "https://github.com/eokoneyo"
-
-google_analytics: "UA-103572320-2"
-
-#blog settings
-blogName: The Cactus blog
-paginate: 5
-paginate_path: "blog/page:num"
 
 # Build settings
 markdown: kramdown
-permalink: pretty
 highlighter: rouge
-exclude: ['vendor', '.idea', '.vscode','node_modules', 'libs']
+exclude: ['Gemfile*', 'vendor', '.idea', '.vscode', 'node_modules', 'package*', 'libs', 'webpack.config.js', 'babel.config.json']
 plugins:
-  - jekyll-paginate
+  - jekyll-paginate-v2
 
-babel:
-  entry: 'assets/js/bundle.js'
+webpack:
+  entry: "assets/js/bundle.js"
+  cache_directory: '.jekyll-webpack'
   output:
-    path: 'assets/js/'
-    filename: 'bundle.js'
+    path: "assets/js/"
+
+permalink: pretty
+
+pagination:
+  enabled: true
+  per_page: 5
 
 defaults:
   -

@@ -1,2 +1,3 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
-<script src="/assets/js/bundle.js"></script>
+{% for item in site.data.webpack-manifest %}
+    <script src="/assets/js/{{item[1]}}"></script>
+{% endfor %}

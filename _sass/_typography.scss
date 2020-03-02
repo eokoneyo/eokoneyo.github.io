@@ -1,30 +1,18 @@
+@import "modularscale";
+
 // Font-faces
 @font-face {
-    font-family: 'SpaceMono';
+    font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
-    src: local('SpaceMono'), url('../fonts/Space_Mono/SpaceMono-Regular.ttf') format('truetype');
+    src: local('Poppins'), url('../fonts/poppins/Poppins-Regular.ttf') format('truetype');
 }
   
 @font-face {
-    font-family: 'SpaceMono';
+    font-family: 'Poppins';
     font-style: italic;
     font-weight: 500;
-    src: local('SpaceMono'), url('../fonts/Space_Mono/SpaceMono-Italic.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'SpaceMono';
-    font-style: normal;
-    font-weight: 600;
-    src: local('SpaceMono'), url('../fonts/Space_Mono/SpaceMono-Bold.ttf') format('truetype');
-}
- 
-@font-face {
-    font-family: 'SpaceMono';
-    font-style: italic;
-    font-weight: 600;
-    src: local('SpaceMono'), url('../fonts/Space_Mono/SpaceMono-BoldItalic.ttf') format('truetype');
+    src: local('Poppins'), url('../fonts/poppins/Poppins-Italic.ttf') format('truetype');
 }
 
 @font-face {
@@ -34,37 +22,50 @@
   src: local('Ovo'), url('../fonts/ovo/Ovo-Regular.ttf') format('truetype');
 }
 
-$primary-font: 'Ovo', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+$primary-font: 'Poppins', 'Helevetica Neue';
+$secondary-font: 'Ovo', 'Helvetica Neue', Arial, sans-serif;
 
 // Font weights
 $normal-font-weight: 400;
 $medium-font-weight: 500;
 $bold-font-weight: 600;
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0 0 35px;
+
+// set type scale here
+$modularscale: (base: 1em, ratio: 1.3);
+$headings: 6;
+$scaleToCountDownFrom: 6;
+
+body {
   font-family: $primary-font;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 35px;
+  font-family: $secondary-font;
   font-size: 40px;
   font-weight: $medium-font-weight;
   letter-spacing: 1px;
 }
 
+@for $i from 1 through $headings {
+  h#{$i} {
+    font-size: ms($scaleToCountDownFrom - $i);
+  }
+}
+
 p {
   margin: 0 0 25px;
-  font-size: 18px;
+  font-size: ms(0);
   line-height: 1.5;
 }
 
 @media #{$bp-medium} {
     p {
       margin: 0 0 35px;
-      font-size: 20px;
+      font-size: ms(1);
       line-height: 1.6;
     }
-  }
-  
+}

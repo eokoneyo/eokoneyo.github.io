@@ -39,3 +39,9 @@ Icon
 /.vscode/
 /.sass-cache/
 /.jekyll-babel-cache/
+/.bundle/
+/vendor/
+/.jekyll-webpack/
+/.jekyll-metadata
+/_data/webpack-manifest.json
+/node_modules

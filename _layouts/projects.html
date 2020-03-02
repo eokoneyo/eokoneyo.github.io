@@ -5,12 +5,19 @@ layout: default
 <body>
     {%include nav.html%}
     <div class="container">
-        {% assign categories = site.posts | group_by: 'category' %}
+        <h1>{{page.title}}</h1>
 
-        {% for category in categories %}
-            {% if category.name == "projects" %}
-                {% include project-list.html projects=category %}
-            {% endif %}
-        {% endfor %}
+        {% assign projects = paginator.posts %}
+        <ul>
+            {% for project in projects %}
+            <li class="fa fa-edit fa-2x">
+                <a class="blog-post-title" href="{{ project.url }}">
+                    <h2>{{ project.title }}</h2>
+                </a>
+                <span class="blog-post-meta">{{ project.date | date: "%b %-d, %Y" }}</span>
+                <p>{{ project.excerpt }}</p>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 </body>
