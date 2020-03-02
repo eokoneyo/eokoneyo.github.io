@@ -9,6 +9,6 @@ gem "jekyll", "~> 3.8.6"
 # gem 'github-pages'
 
 group :jekyll_plugins do
+    gem 'json'
     gem 'jekyll-paginate-v2'
-    gem 'babel-transpiler', '~> 0.7', '>= 0.7.0'
 end

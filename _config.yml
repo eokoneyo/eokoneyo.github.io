@@ -2,15 +2,15 @@
 # Build settings
 markdown: kramdown
 highlighter: rouge
-exclude: ['vendor', '.idea', '.vscode','node_modules', 'libs']
+exclude: ['Gemfile*', 'vendor', '.idea', '.vscode', 'node_modules', 'package*', 'libs', 'webpack.config.js', 'babel.config.json']
 plugins:
   - jekyll-paginate-v2
 
-babel:
+webpack:
   entry: "assets/js/bundle.js"
+  cache_directory: '.jekyll-webpack'
   output:
     path: "assets/js/"
-    filename: "bundle.js"
 
 permalink: pretty
 
