@@ -26,7 +26,7 @@ class ProcessWebpackOutput
 
         cacheDir = transpilerConfig['cache_directory']
 
-        return Jekyll.logger.info("Jekyll-babel:", "Cache Directory #{cacheDir} was not found ...") unless File.exists?(cacheDir)
+        return Jekyll.logger.info("Jekyll-webpack:", "Cache Directory #{cacheDir} was not found ...") unless File.exists?(cacheDir)
 
         # Exclude the cache directory from the jekyll watch, to prevent an infinite work loop
         @site.exclude << cacheDir
@@ -36,11 +36,11 @@ class ProcessWebpackOutput
         manifestFile = File.join('_data', 'webpack-manifest.json');
         manifestFileData = JSON.parse(File.read(manifestFile))
         manifestFileData.each do |key, fileName|
-          Jekyll.logger.info("Jekyll-babel:", "Processing #{fileName} ...")
-
-          # use overridden method to add processed webpack file :)
-          fileDest = File.join(@site.dest, outputPath, fileName)
-          @site.static_files << Jekyll::TranspiledStaticFile.new(@site, @site.source, cacheDir, fileName, fileDest)
+            Jekyll.logger.info("Jekyll-webpack:", "Processing #{fileName} ...")
+            
+            # use overridden method to add processed webpack file :)
+            fileDest = File.join(@site.dest, outputPath, fileName)
+            @site.static_files << Jekyll::TranspiledStaticFile.new(@site, @site.source, cacheDir, fileName, fileDest)
         end
     end
 end
