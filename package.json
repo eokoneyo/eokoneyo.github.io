@@ -25,6 +25,7 @@
     "babel-loader": "^8.0.6",
     "cpy": "^8.0.1",
     "js-yaml": "^3.13.1",
+    "modularscale-sass": "^3.0.10",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
     "webpack-manifest-plugin": "^2.2.0"
