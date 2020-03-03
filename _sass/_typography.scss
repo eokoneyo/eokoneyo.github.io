@@ -38,6 +38,7 @@ $scaleToCountDownFrom: 6;
 
 body {
   font-family: $primary-font;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
