@@ -25,12 +25,14 @@
     "babel-loader": "^8.0.6",
     "cpy": "^8.0.1",
     "js-yaml": "^3.13.1",
+    "modularscale-sass": "^3.0.10",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
     "webpack-manifest-plugin": "^2.2.0"
   },
   "dependencies": {
     "animejs": "^3.1.0",
+    "normalize.css": "^8.0.1",
     "sal.js": "^0.7.4"
   }
 }
