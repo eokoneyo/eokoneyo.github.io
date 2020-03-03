@@ -3,143 +3,189 @@
 $theme-name: zenburn;
 
 .highlight {
+  margin: 0;
 
-    margin: 0;
+  code,
+  pre {
+    color: #fdce93;
+    background-color: #3f3f3f;
+  }
 
-    code, pre {
-        color:#fdce93;
-        background-color:#3f3f3f;
-    }
+  .hll {
+    background-color: #222;
+  }
 
-    .hll {
-        background-color:#222;
-    }
+  .err /* Error */ {
+    color: #e37170;
+    background-color: #3d3535;
+  }
 
-    .err {
-        color:#e37170;
-        background-color:#3d3535;
-    }
+  .k /* Keyword */ {
+    color: #f0dfaf;
+    font-weight: bold;
+  }
 
-    .k{
-        color:#f0dfaf;
-    }
+  .kc /* Keyword.Constant */ {
+    color: #dca3a3;
+  }
 
-    .p {
-        color:#41706f;
-    }
+  .kd /* Keyword.Declaration */ {
+    color: #ffff86;
+  }
 
-    .cs {
-        color:#cd0000;
-        font-weight:700;
-    }
+  .kn /* Keyword.Namespace */ {
+    color: #dfaf8f;
+    font-weight: 700;
+  }
 
-    .gd {
-        color:#cd0000;
-    }
+  .kp /* Keyword.Pseudo */ {
+    color: #cdcf99;
+  }
 
-    .ge {
-        color:#ccc;
-        font-style:italic;
-    }
+  .kr /* Keyword.Reserved */ {
+    color: #cdcd00;
+  }
 
-    .gr {
-        color:red;
-    }
+  .p {
+    color: #41706f;
+  }
 
-    .go {
-        color:gray;
-    }
+  .cs {
+    color: #cd0000;
+    font-weight: 700;
+  }
 
-    .gs {
-        color:#ccc;
-        font-weight:700;
-    }
+  .gd {
+    color: #cd0000;
+  }
 
-    .gu {
-        color:purple;
-        font-weight:700;
-    }
+  .ge {
+    color: #ccc;
+    font-style: italic;
+  }
 
-    .gt {
-        color:#0040D0;
-    }
+  .gr {
+    color: red;
+  }
 
-    .kc {
-        color:#dca3a3;
-    }
+  .go {
+    color: gray;
+  }
 
-    .kd {
-        color:#ffff86;
-    }
+  .gs /* Generic.Strong */ {
+    color: #ccc;
+    font-weight: 700;
+  }
 
-    .kn {
-        color:#dfaf8f;
-        font-weight:700;
-    }
+  .gu {
+    color: purple;
+    font-weight: 700;
+  }
 
-    .kp {
-        color:#cdcf99;
-    }
+  .gt {
+    color: #0040d0;
+  }
 
-    .kr {
-        color:#cdcd00;
-    }
+  .ni {
+    color: #c28182;
+  }
 
-    .ni {
-        color:#c28182;
-    }
+  .ne {
+    color: #c3bf9f;
+    font-weight: 700;
+  }
 
-    .ne {
-        color:#c3bf9f;
-        font-weight:700;
-    }
+  .nn {
+    color: #8fbede;
+  }
 
-    .nn {
-        color:#8fbede;
-    }
+  .vi {
+    color: #ffffc7;
+  }
 
-    .vi {
-        color:#ffffc7;
-    }
+  .s1 /* Literal.String.Single */,
+  .s2,
+  .nv,
+  .nb /* Name.Builtin */ {
+    color: currentColor;
+  }
 
-    .c, .preview-#{$theme-name} & .g, .preview-#{$theme-name} & .cm, .preview-#{$theme-name} & .cp, .preview-#{$theme-name} & .c1 {
-        color:#7f9f7f;
-    }
+  .c, /* Comment */
+  .preview-#{$theme-name} & .g,
+  .preview-#{$theme-name} & .cm /* Comment.Multiline */,
+  .preview-#{$theme-name} & .cp /* Comment.Preproc */,
+  .preview-#{$theme-name} & .c1 /* Comment.Single */ {
+    color: #7f9f7f;
+  }
 
-    .l, .preview-#{$theme-name} & .x, .preview-#{$theme-name} & .no, .preview-#{$theme-name} & .nd, .preview-#{$theme-name} & .nl, .preview-#{$theme-name} & .nx, .preview-#{$theme-name} & .py, .preview-#{$theme-name} & .w {
-        color:#ccc;
-    }
+  .l,
+  .preview-#{$theme-name} & .x,
+  .preview-#{$theme-name} & .no,
+  .preview-#{$theme-name} & .nd,
+  .preview-#{$theme-name} & .nl,
+  .preview-#{$theme-name} & .nx,
+  .preview-#{$theme-name} & .py,
+  .preview-#{$theme-name} & .w {
+    color: #ccc;
+  }
 
-    .n, .preview-#{$theme-name} & .nv, .preview-#{$theme-name} & .vg {
-        color:#dcdccc;
-    }
+  .n,
+  .preview-#{$theme-name} & .nv,
+  .preview-#{$theme-name} & .vg {
+    color: #dcdccc;
+  }
 
-    .o, .preview-#{$theme-name} & .ow {
-        color:#f0efd0;
-    }
+  .o, /* Operator */
+    .preview-#{$theme-name} & .ow {
+    color: #f0efd0;
+  }
 
-    .gh, .preview-#{$theme-name} & .gp {
-        color:#dcdccc;
-        font-weight:700;
-    }
+  .gh /* Generic.Heading */,
+  .preview-#{$theme-name} & .gp  /* Generic.Prompt */ {
+    color: #dcdccc;
+    font-weight: 700;
+  }
 
-    .gi, .preview-#{$theme-name} & .kt {
-        color:#00cd00;
-    }
+  .gi,
+  .preview-#{$theme-name} & .kt  /* Keyword.Type */ {
+    color: #00cd00;
+  }
 
-    .ld, .preview-#{$theme-name} & .s, .preview-#{$theme-name} & .sb, .preview-#{$theme-name} & .sc, .preview-#{$theme-name} & .sd, .preview-#{$theme-name} & .s2, .preview-#{$theme-name} & .se, .preview-#{$theme-name} & .sh, .preview-#{$theme-name} & .si, .preview-#{$theme-name} & .sx, .preview-#{$theme-name} & .sr, .preview-#{$theme-name} & .s1, .preview-#{$theme-name} & .ss {
-        color:#cc9393;
-    }
+  .ld,
+  .preview-#{$theme-name} & .s /* Literal.String */,
+  .preview-#{$theme-name} & .sb /* Literal.String.Backtick */,
+  .preview-#{$theme-name} & .sc /* Literal.String.Char */,
+  .preview-#{$theme-name} & .sd /* Literal.String.Doc */,
+  .preview-#{$theme-name} & .s2 /* Literal.String.Double */,
+  .preview-#{$theme-name} & .se /* Literal.String.Escape */,
+  .preview-#{$theme-name} & .sh /* Literal.String.Heredoc */,
+  .preview-#{$theme-name} & .si /* Literal.String.Interpol */,
+  .preview-#{$theme-name} & .sx /* Literal.String.Other */,
+  .preview-#{$theme-name} & .sr /* Literal.String.Regex */,
+  .preview-#{$theme-name} & .s1 /* Literal.String.Single */,
+  .preview-#{$theme-name} & .ss /* Literal.String.Symbol */ {
+    color: #cc9393;
+  }
 
-    .m, .preview-#{$theme-name} & .mf, .preview-#{$theme-name} & .mh, .preview-#{$theme-name} & .mi, .preview-#{$theme-name} & .mo, .preview-#{$theme-name} & .il {
-        color:#8cd0d3;
-    }
+  .m /* Literal.Number */,
+  .preview-#{$theme-name} & .mf /* Literal.Number.Float */,
+  .preview-#{$theme-name} & .mh /* Literal.Number.Hex */,
+  .preview-#{$theme-name} & .mi /* Literal.Number.Integer */,
+  .preview-#{$theme-name} & .mo /* Literal.Number.Oct */,
+  .preview-#{$theme-name} & .il /* Literal.Number.Integer.Long */ {
+    color: #8cd0d3;
+  }
 
-    .na, .preview-#{$theme-name} & .nt {
-        color:#9ac39f;
-    }
+  .na,
+  .preview-#{$theme-name} & .nt {
+    color: #9ac39f;
+  }
 
-    .nb, .preview-#{$theme-name} & .nc, .preview-#{$theme-name} & .nf, .preview-#{$theme-name} & .bp, .preview-#{$theme-name} & .vc {
-        color:#efef8f;
-    }
+  .nb /* Name.Builtin */,
+  .preview-#{$theme-name} & .nc /* Name.Class */,
+  .preview-#{$theme-name} & .nf /* Name.Builtin.Function */,
+  .preview-#{$theme-name} & .bp /* Name.Builtin.Pseudo */,
+  .preview-#{$theme-name} & .vc /* Name.Variable.Class */ {
+    color: #efef8f;
+  }
 }
