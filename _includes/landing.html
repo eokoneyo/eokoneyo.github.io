@@ -13,7 +13,7 @@
                 <p class="main-content__socials">
                     <span>connect with me:</span>
                     {% for item in site.data.setup.socials %}
-                    <a class="social-icon--link {{ icon.class }}" href="{{ item.url }}" target="_blank">
+                    <a class="social-icon--link {{ icon.class }}" href="{{ item.url }}" target="_blank" rel="noopener">
                         <span class="social-icon--title">{{ item.title }}</span>
                     </a>
                     {% endfor %}
