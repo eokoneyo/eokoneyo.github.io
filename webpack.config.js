@@ -13,14 +13,14 @@ try {
     process.exit(1);
 }
 
-const { webpack: webpackConfig } = yaml.safeLoad(jekyllConfigFileContents);
+const { webpack: jekyllWebpackConfig } = yaml.safeLoad(jekyllConfigFileContents);
 
 module.exports = {
     mode: process.env.JEKYLL_ENV  === 'production' ? 'production' : 'development',
-    entry: path.join(__dirname, webpackConfig.entry),
+    entry: path.join(__dirname, jekyllWebpackConfig.entry),
     output: {
-        filename: '[name]-bundle.[hash].js',
-        path: path.resolve(__dirname, webpackConfig.cache_directory),
+        filename: '[name]-bundle.[contenthash].js',
+        path: path.resolve(__dirname, jekyllWebpackConfig.cache_directory),
     },
     module: {
         rules: [
@@ -42,6 +42,9 @@ module.exports = {
                     chunks: "all"
                 }
             }
+        },
+        runtimeChunk: {
+            name: 'runtime'
         }
     },
     plugins: [
@@ -50,7 +53,7 @@ module.exports = {
             // This makes the files webpack generated available to jekyll and our jekyll plugin,
             // so the assets might be copied
             this.plugin("done", async () => {
-                await cpy(path.join(webpackConfig.cache_directory, 'manifest.json'), path.join('_data') , {
+                await cpy(path.join(jekyllWebpackConfig.cache_directory, 'manifest.json'), path.join('_data') , {
                     rename: () => 'webpack-manifest.json'
                 })
             });
