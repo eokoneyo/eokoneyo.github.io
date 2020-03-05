@@ -1,14 +1,13 @@
 @import "variables";
 @import "../node_modules/normalize.css/normalize";
-@import "typography";
-@import "grid";
-@import "globals";
+@import "base/typography";
+@import "base/grid";
+@import "base/globals";
 
-//code highlighter stylesheet
-@import "components/code_highlighter";
-
-//navigation
+//components
 @import "components/nav";
+@import "components/article_preview";
+@import "components/code_highlighter";
 
 //pages
 @import "pages/landing_page";

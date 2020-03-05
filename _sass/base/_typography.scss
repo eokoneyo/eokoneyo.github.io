@@ -1,29 +1,16 @@
-@import '../node_modules/modularscale-sass/stylesheets/modularscale';
+@import '../../node_modules/modularscale-sass/stylesheets/modularscale';
 
 // Font-faces
-@font-face {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 500;
-    src: local('Poppins'), url('../fonts/poppins/Poppins-Regular.ttf') format('truetype');
-}
-  
-@font-face {
-    font-family: 'Poppins';
-    font-style: italic;
-    font-weight: 500;
-    src: local('Poppins'), url('../fonts/poppins/Poppins-Italic.ttf') format('truetype');
-}
-
 @font-face {
   font-family: 'Ovo';
   font-style: normal;
   font-weight: 500;
   src: local('Ovo'), url('../fonts/ovo/Ovo-Regular.ttf') format('truetype');
+  font-display: swap;
 }
 
-$primary-font: 'Poppins', 'Helevetica Neue';
-$secondary-font: 'Ovo', 'Helvetica Neue', Arial, sans-serif;
+$primary-font: 'Ovo', 'Helevetica Neue', Arial;
+$secondary-font: 'Ovo', 'Times Roman', sans-serif;
 
 // Font weights
 $normal-font-weight: 400;
@@ -64,9 +51,9 @@ p {
 }
 
 @media #{$bp-medium} {
-    p {
-      margin: 0 0 35px;
-      font-size: ms(1);
-      line-height: 1.6;
-    }
+  p {
+    margin: 0 0 35px;
+    font-size: ms(1);
+    line-height: 1.6;
+  }
 }

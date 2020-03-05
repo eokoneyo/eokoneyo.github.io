@@ -13,7 +13,6 @@ a {
   -webkit-transition: all .2s ease-in-out;
   -moz-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
-  padding: 0 10px;
 
   &:hover, &:focus {
     text-decoration: none;
@@ -47,9 +46,14 @@ img::selection, img::-moz-selection {
   background: transparent;
 }
 
-::selection, ::-moz-selection {
+::selection {
   text-shadow: none;
   background: $yellow;
+}
+
+ul.no-style , ol.no-style {
+  list-style: none;
+  padding: 0;
 }
 
 .no-scroll {
