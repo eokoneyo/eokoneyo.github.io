@@ -20,50 +20,50 @@
                 </p>
             </div>
         </div>
-        <div>
+    </div>
+    <div class="container">
+        <div class="row">
             {% assign categories = site.posts | group_by: 'category' %}
-
             {% for category in categories %}
-            <section>
                 {% if category.name == "projects" %}
-                {% assign projects = category.items %}
-                <h3><span class="section__heading">Projects</span></h3>
-                <ul class="no-style">
-                    {% for project in projects limit:3 %}
-                    <li>
-                        <a class="blog-post-title" href="{{ project.url }}">
-                            <h5>{{ project.title }}</h5>
-                        </a>
-                        <span class="blog-post-meta">{{ project.date | date: "%b %-d, %Y" }}</span>
-                        <p>{{ project.excerpt }}</p>
-                    </li>
-                    {% endfor %}
-                </ul>
-                <a href="/{{category.name}}">see more</a>
+                    <section class="column-sm-12">
+                        {% assign projects = category.items %}
+                        <h3><span class="heading">Projects</span></h3>
+                        <ul class="no-style-list">
+                            {% for project in projects limit:3 %}
+                            <li>
+                                <a class="blog-post-title" href="{{ project.url }}">
+                                    <h5>{{ project.title }}</h5>
+                                </a>
+                                <span class="blog-post-meta">{{ project.date | date: "%b %-d, %Y" }}</span>
+                                <p>{{ project.excerpt }}</p>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <a class="view-more-link" href="/{{category.name}}">see more</a>
+                     </section>
                 {% endif %}
-            </section>
-
-            <section>
                 {% if category.name == "blog" %}
-                {% assign posts = category.items %}
-                <h3><span class="section__heading">Writings</span></h3>
-                <ul class="no-style">
-                    {% for post in posts limit:3 %}
-                    <li>
-                        <article class="article-preview">
-                            <h5 class="article-preview__headline">
-                                <a href="{{ post.url}}">{{ post.title }}</a>
-                                <span role="separator"></span>
-                                <time datetime="{{ post.date | date: '%Y-%-d-%m' }}">{{ post.date | date: "%b %-d, %Y" }}</time>
-                            </h5>
-                            <p class="article-preview__excerpt">{{ post.excerpt }}</p>
-                        </article>
-                    </li>
-                    {% endfor %}
-                </ul>
-                <a href="/{{category.name}}">see more</a>
+                    <section class="column-sm-12">
+                        {% assign posts = category.items %}
+                        <h3><span class="heading">Writings</span></h3>
+                        <ul class="no-style-list">
+                            {% for post in posts limit:3 %}
+                            <li>
+                                <article class="article-preview">
+                                    <h5 class="article-preview__headline">
+                                        <a href="{{ post.url}}">{{ post.title }}</a>
+                                        <span role="separator"></span>
+                                        <time datetime="{{ post.date | date: '%Y-%-d-%m' }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+                                    </h5>
+                                    <p class="article-preview__excerpt">{{ post.excerpt }}</p>
+                                </article>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <a class="view-more-link" href="/{{category.name}}">see more</a>
+                    </section>
                 {% endif %}
-            </section>
             {% endfor %}
         </div>
     </div>

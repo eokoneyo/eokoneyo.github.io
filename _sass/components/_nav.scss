@@ -7,24 +7,27 @@
       &__left, &__right {
         height: inherit;
       }
-  
-      &__left {
-        display: flex;
-      }
 
       &__right {
         margin-left: auto;
       }
-  
-      @at-root {
-        .header__left + .header__right {
-          margin-left: 0;
-        }  
-      }
 
-      &__brand-image-wrapper {
-        display: block;
-        margin: auto;
+      &__brand-image {
+        &-wrapper {
+          display: block;
+          width: 60px;
+          height: 100%;
+          padding: 10px;
+        }
+        
+        color: $light;
+        height: inherit;
+        width: 100%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        background: map_get($gray-pallet, dark);
       }
     }
   
@@ -32,16 +35,16 @@
       display: inline-flex;
       margin: 0;
       height: 100%;
-      &-items {
+      &-item {
         list-style: none;
         padding: 15px;
-        margin: auto;
+        margin: auto 5px;
         font-size: 15px;
         font-weight: $bold-font-weight;
         text-transform: capitalize;
 
-        &.active {
-          color: darken($color: $blue, $amount: 50%);
+        &:focus, &:hover, &.active {
+          color: map_get($gray-pallet, dark);
         }
       }
     }

@@ -1,4 +1,5 @@
 import anime from 'animejs';
+import throttle from 'lodash.throttle';
 
 ((global) => {
 
@@ -16,7 +17,7 @@ import anime from 'animejs';
         return value;
     };
     
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', () => {
         const ANIMATION_DURATION = 2000;
         const HAS_SEEN_PRELOADER_COOKIE = 'eoe_has_seen_preloader';
         const HTML_PRELOADER_ATTRIBUTE = 'data-preloader-displayed';
@@ -65,29 +66,31 @@ import anime from 'animejs';
         }
     });
 
-    document.querySelector('#illustration').addEventListener('click', (evt) => {
-        const delay = 100;
-        const duration = 1300;
-        const easing = 'cubicBezier(0.64, 0.04, 0.35, 1)';
+    global.addEventListener('scroll', throttle(evt => {
 
-        anime({
-            targets: '#illustration',
-            duration,
-            easing,
-            translateX: [0, -834],
-            translateY: [0, -162],
-            width: [239, 50.37],
-            height: [427, 90],
-            delay: 100
-        });
+        // const delay = 100;
+        // const duration = 1300;
+        // const easing = 'cubicBezier(0.64, 0.04, 0.35, 1)';
+        //
+        // anime({
+        //         targets: '#illustration',
+        //         duration,
+        //         easing,
+        //         translateX: [0, -834],
+        //         translateY: [0, -162],
+        //         width: [239, 50.37],
+        //         height: [427, 90],
+        //         delay: 100
+        // });
+        //
+        // anime({
+        //         targets: '#info-cta',
+        //         duration,
+        //         easing,
+        //         delay,
+        //         translateX: [0, 2.5],
+        //         translateY: [0, -980.5]
+        // });
 
-        anime({
-            targets: '#info-cta',
-            duration,
-            easing,
-            delay,
-            translateX: [0, 2.5],
-            translateY: [0, -980.5]
-        });
-    });
+    }, 250));
 })(window);

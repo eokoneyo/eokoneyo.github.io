@@ -6,8 +6,11 @@
 
 //components
 @import "components/nav";
+@import "components/footer";
 @import "components/article_preview";
 @import "components/code_highlighter";
 
 //pages
 @import "pages/landing_page";
+@import "pages/projects_page";
+@import "pages/posts_page";

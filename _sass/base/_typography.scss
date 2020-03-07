@@ -9,8 +9,8 @@
   font-display: swap;
 }
 
-$primary-font: 'Ovo', 'Helevetica Neue', Arial;
-$secondary-font: 'Ovo', 'Times Roman', sans-serif;
+$primary-font: 'Ovo', 'Times New Roman', 'Times';
+$secondary-font: $primary-font;
 
 // Font weights
 $normal-font-weight: 400;

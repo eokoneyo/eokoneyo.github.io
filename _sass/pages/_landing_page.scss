@@ -58,20 +58,17 @@
   .social-icon{
     &--link {
       padding: 0 10px;
+
+      &:hover, &:focus {
+        text-decoration: underline;
+      }
     }
   }
 
-    .section {
-      &__heading {
-        color: map_get($gray-pallet, dark);
-        background-repeat: no-repeat;
-        background-image: linear-gradient(transparent 55%, rgba(map_get($gray-pallet, mid), 0.2) 45%);
-        background-size: 100% 100%;
-      }
-    }
+    .section {}
 
-    section + section {
-      margin-top: 50px;
+    section {
+      margin-bottom: 50px;
     }
 
     @media #{$bp-medium} {
