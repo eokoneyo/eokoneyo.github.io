@@ -1,11 +1,11 @@
-@import '../../node_modules/modularscale-sass/stylesheets/modularscale';
+@import '../../../node_modules/modularscale-sass/stylesheets/modularscale';
 
 // Font-faces
 @font-face {
   font-family: 'Ovo';
   font-style: normal;
   font-weight: 500;
-  src: local('Ovo'), url('../fonts/ovo/Ovo-Regular.ttf') format('truetype');
+  src: local('Ovo'), url('../_fonts/ovo/Ovo-Regular.ttf') format('truetype');
   font-display: swap;
 }
 

@@ -7,10 +7,12 @@ plugins:
   - jekyll-paginate-v2
 
 webpack:
-  entry: "assets/js/bundle.js"
+  entry:
+    - "assets/_js/bundle.js"
+    - "assets/_scss/main.scss"
   cache_directory: '.jekyll-webpack'
   output:
-    path: "assets/js/"
+    path: "assets/"
 
 permalink: pretty
 
