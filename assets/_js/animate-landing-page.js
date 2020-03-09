@@ -2,65 +2,44 @@ import anime from 'animejs';
 import throttle from 'lodash.throttle';
 
 /**
- *
- * @param global {Window}
- * @param illustrationWrapperDOM {import('./index').DOM.illustrationWrapper}
+ * @param {Window} global
+ * @param {import('./index').DOM.illustrationScroll} illustrationScrollDOM
  */
-const handleLandingAnimation = (global, illustrationWrapperDOM) => {
-    let frame;
-    let lastScrollY = 0;
-    let wrapperBounds;
+const handleLandingAnimation = (global, illustrationScrollDOM) => {
 
-    const delay = 100;
-    const elasticity = 200;
-    const duration = 1300;
-    const easing = 'cubicBezier(0.64, 0.04, 0.35, 1)';
-
-    // TODO: device a method to determine where to scroll the user to, also handle resize
-    const animation1 = anime({
-        duration,
-        easing,
-        delay,
-        elasticity,
+    // TODO: device a method to determine the appropriate position to animate our assets to
+    const animation = anime.timeline({
+        duration: 1200,
+        easing: 'cubicBezier(0.64, 0.04, 0.35, 1)',
+        elasticity: 200,
+        autoplay: false,
+    }).add({
+        delay: 100,
         translateX: -834,
-        translateY: -162,
+        translateY: -368,
         width: 50.37,
         height: 90,
-        autoplay: false,
-        targets: illustrationWrapperDOM.illustration,
-    });
-
-    const animation2 = anime({
-        duration,
-        easing,
-        delay,
-        elasticity,
-        translateX: 2.5,
+        targets: illustrationScrollDOM.illustration,
+    }, 0)
+        .add({
+        delay: 170,
+        translateX: 0.5,
         translateY: -980.5,
-        autoplay: false,
-        targets: illustrationWrapperDOM.aboutCTA,
-    });
-
-    const animateIllustration = () => {
-        // TODO: calculate scroll percent properly
-
-        const wrapperHeight = wrapperBounds.height;
-
-        const scrollPercent = (lastScrollY / wrapperHeight) * 100;
-        animation1.seek((scrollPercent / 100) * animation1.duration);
-        animation2.seek((scrollPercent / 100) * animation2.duration);
-
-        frame = null;
-    };
+        targets: illustrationScrollDOM.aboutCTA,
+    }, 0);
 
     global.addEventListener('scroll', throttle(() => {
-        lastScrollY = global.document.documentElement.scrollTop || global.document.body.scrollTop;
-        wrapperBounds = illustrationWrapperDOM.getBoundingClientRect();
+        const scrollPositionY = global.pageYOffset;
+        const wrapperBounds = illustrationScrollDOM.getBoundingClientRect();
+        const wrapperOffset = scrollPositionY + wrapperBounds.top;
+        const wrapperDistanceFromWindow = wrapperOffset + wrapperBounds.height;
 
-        if (!frame) {
-            frame = requestAnimationFrame(animateIllustration);
+        // only animate while we are the region of the element to be animated
+        if(scrollPositionY <=  wrapperDistanceFromWindow) {
+            const wrapperHeight = wrapperBounds.height;
+
+            animation.seek(animation.duration * ((scrollPositionY - wrapperOffset) / wrapperHeight));
         }
-
     }, 250));
 };
 

@@ -6,13 +6,13 @@ import handleLandingAnimation from './animate-landing-page';
  * @description Stores references to DOM elements
  * @type {{
  *     preloader: {
- *         shape: {HTMLElement}
- *         path: {HTMLElement}
- *
+ *          shape: {HTMLElement}
+ *          path: {HTMLElement}
  *     },
- *     illustrationWrapper: {
- *         illustration: {HTMLElement}
- *         aboutCTA: {HTMLElement}
+ *     illustrationScroll : {
+ *          illustrationWrapper: {HTMLElement}
+ *          illustration: {HTMLElement}
+ *          aboutCTA: {HTMLElement}
  *     }
  * }}
  */
@@ -22,14 +22,15 @@ const DOM = {};
 
     document.addEventListener('DOMContentLoaded', () => {
         DOM.preloader = global.document.querySelector('.preloader');
-        DOM.illustrationWrapper = global.document.querySelector('#illustration-wrapper');
+        DOM.illustrationScroll = global.document.querySelector('#illustration-scroll-interaction');
         DOM.preloader.shape = DOM.preloader.querySelector('svg.shape');
         DOM.preloader.path = DOM.preloader.shape.querySelector('path');
-        DOM.illustrationWrapper.illustration = DOM.illustrationWrapper.querySelector('#illustration');
-        DOM.illustrationWrapper.aboutCTA = DOM.illustrationWrapper.querySelector('#info-cta');
+        DOM.illustrationScroll.illustrationWrapper = DOM.illustrationScroll.querySelector('#illustration-wrapper');
+        DOM.illustrationScroll.illustration = DOM.illustrationScroll.querySelector('#illustration');
+        DOM.illustrationScroll.aboutCTA = DOM.illustrationScroll.querySelector('#info-cta');
 
         initPreloader(global, DOM.preloader);
-        handleLandingAnimation(global, DOM.illustrationWrapper);
+        handleLandingAnimation(global, DOM.illustrationScroll);
 
         //Do page view tracking
         if(global.ga) {
