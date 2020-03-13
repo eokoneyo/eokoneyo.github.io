@@ -46,6 +46,7 @@
     "sass-loader": "^8.0.2",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
+    "webpack-log": "^3.0.1",
     "webpack-manifest-plugin": "^2.2.0"
   },
   "husky": {

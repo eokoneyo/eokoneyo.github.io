@@ -2,16 +2,19 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
 const cpy = require('cpy');
+const getLogger = require('webpack-log');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+const log = getLogger({ name: 'webpack-batman' });
 
 let jekyllConfigFileContents;
 
 try {
     jekyllConfigFileContents = fs.readFileSync('./_config.yml', 'utf-8');
 } catch (e) {
-    console.log(e);
+    log.warn(e);
     process.exit(1);
 }
 
