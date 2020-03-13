@@ -18,6 +18,11 @@
     "url": "https://github.com/eokoneyo/eokoneyo.github.io/issues"
   },
   "homepage": "https://github.com/eokoneyo/eokoneyo.github.io#readme",
+  "dependencies": {
+    "animejs": "^3.1.0",
+    "lodash.throttle": "^4.1.1",
+    "normalize.css": "^8.0.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.10.1",
     "@babel/plugin-proposal-object-rest-spread": "^7.10.1",
@@ -29,19 +34,27 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-prettier": "^3.1.2",
     "file-loader": "^5.1.0",
+    "husky": "^4.2.3",
     "js-yaml": "^3.13.1",
+    "lint-staged": "^10.0.8",
     "mini-css-extract-plugin": "^0.9.0",
     "modularscale-sass": "^3.0.10",
     "node-sass": "^4.13.1",
+    "prettier": "1.19.1",
     "sass-loader": "^8.0.2",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
     "webpack-manifest-plugin": "^2.2.0"
   },
-  "dependencies": {
-    "animejs": "^3.1.0",
-    "lodash.throttle": "^4.1.1",
-    "normalize.css": "^8.0.1"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "assets/*.js": "eslint --cache --fix",
+    "assets/*.{js,css,scss,md}": "prettier --write"
   }
 }
