@@ -1,9 +1,27 @@
+@import '~sass-mq';
+
 .container {
   margin: 0 auto;
   padding-left: 10px;
   padding-right: 10px;
   position: relative;
   width: 100%;
+
+  @include mq($from: small) {
+    max-width: 540px;
+  }
+
+  @include mq($from: medium) {
+    max-width: 720px;
+  }
+
+  @include mq($from: large) {
+    max-width: 960px;
+  }
+
+  @include mq($from: xlarge) {
+    max-width: 1140px;
+  }
 }
 
 .row {
@@ -17,66 +35,48 @@
   }
 }
 
-[class*='column-'] {
-  padding-left: $grid-gutter-size;
-  padding-right: $grid-gutter-size;
-  width: 100%;
-  min-height: 1px;
-}
-
 .column {
-  flex: 0 0 100%;
-  max-width: 100%;
-}
 
-@media #{$bp-small} {
-  .container {
-    max-width: 540px;
+  @at-root [class*='column-'] {
+    padding-left: $grid-gutter-size;
+    padding-right: $grid-gutter-size;
+    width: 100%;
+    min-height: 1px;
   }
 
-  @for $i from 1 through $grid-columns {
-    .column-sm-#{$i} {
-      flex: 0 0 100% / $grid-columns * $i;
-      max-width: 100% / $grid-columns * $i;
+  @include mq($from: small) {
+    @for $i from 1 through $grid-columns {
+      &-sm-#{$i} {
+        flex: 0 0 100% / $grid-columns * $i;
+        max-width: 100% / $grid-columns * $i;
+      }
     }
   }
-}
 
-@media #{$bp-medium} {
-  .container {
-    max-width: 720px;
-  }
-
-  @for $i from 1 through $grid-columns {
-    .column-md-#{$i} {
-      flex: 0 0 100% / $grid-columns * $i;
-      max-width: 100% / $grid-columns * $i;
+  @include mq($from: medium) {
+    @for $i from 1 through $grid-columns {
+      &-md-#{$i} {
+        flex: 0 0 100% / $grid-columns * $i;
+        max-width: 100% / $grid-columns * $i;
+      }
     }
   }
-}
 
-@media #{$bp-large} {
-  .container {
-    max-width: 960px;
-  }
-
-  @for $i from 1 through $grid-columns {
-    .column-lg-#{$i} {
-      flex: 0 0 100% / $grid-columns * $i;
-      max-width: 100% / $grid-columns * $i;
+  @include mq($from: large) {
+    @for $i from 1 through $grid-columns {
+      &-lg-#{$i} {
+        flex: 0 0 100% / $grid-columns * $i;
+        max-width: 100% / $grid-columns * $i;
+      }
     }
   }
-}
 
-@media #{$bp-xlarge} {
-  .container {
-    max-width: 90%;
-  }
-
-  @for $i from 1 through $grid-columns {
-    .column-xl-#{$i} {
-      flex: 0 0 100% / $grid-columns * $i;
-      max-width: 100% / $grid-columns * $i;
+  @include mq($from: xlarge) {
+    @for $i from 1 through $grid-columns {
+      &-xl-#{$i} {
+        flex: 0 0 100% / $grid-columns * $i;
+        max-width: 100% / $grid-columns * $i;
+      }
     }
   }
 }

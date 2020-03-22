@@ -1,14 +1,13 @@
-
 // Colors
 $dark: #000000;
 $light: #ffffff;
 $yellow: #f0fc61;
-$blue: #219AB3;
-$gray-pallet : (
-        light: #747474,
-        mid: #A1A1A1,
-        tint: #747474,
-        dark: #373737,
+$blue: #219ab3;
+$gray-pallet: (
+  light: #747474,
+  mid: #a1a1a1,
+  tint: #747474,
+  dark: #373737,
 );
 
 $primary: map_get($gray-pallet, dark);
@@ -18,10 +17,12 @@ $grid-columns: 12;
 $grid-gutter-size: 15px;
 
 // Breakpoints
-$bp-small: '(min-width: 576px)';
-$bp-medium: '(min-width: 768px)';
-$bp-large: '(min-width: 992px)';
-$bp-xlarge: '(min-width: 1200px)';
+$mq-breakpoints: (
+  small: 576px,
+  medium: 768px,
+  large: 992px,
+  xlarge: 1200px,
+);
 
 // header
 $header-height: 60px;

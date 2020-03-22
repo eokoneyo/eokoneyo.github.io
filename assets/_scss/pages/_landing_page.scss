@@ -1,3 +1,5 @@
+@import '~sass-mq';
+
 .ns-landing-screen {
   .preloader {
     z-index: 100;
@@ -53,6 +55,20 @@
         }
       }
     }
+
+    @include mq($from: medium) {
+      &__side-photo {
+        order: 2;
+
+        &--inner {
+          height: 400px;
+          width: 600px;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+    }
   }
 
   .social-icon {
@@ -71,7 +87,7 @@
     margin-bottom: 50px;
   }
 
-  @at-root [data-preloader-displayed="true"] {
+  @at-root [data-preloader-displayed='true'] {
     #illustration-scroll-interaction {
       position: relative;
       height: calc(2 * 100vh);
@@ -79,30 +95,12 @@
 
     .main-content#illustration-wrapper {
       @extend .container;
-      position: fixed;
-    }
-  }
 
-  @media #{$bp-medium} {
-    .main-content {
-
-      &__side-photo {
-        order: 2;
-
-        &--inner {
-          height: 400px;
-          width: 600px;
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-        }
+      @include mq($until: medium) {
+        left: 0;
       }
-    }
-  }
 
-  @media #{$bp-large} {
-    .main-content {
-      //height: 500px;
+      position: fixed;
     }
   }
 }

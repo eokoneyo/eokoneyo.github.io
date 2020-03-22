@@ -1,11 +1,21 @@
-body, * {
-  box-sizing: border-box;
-  color: map_get($gray-pallet, dark);
-  -webkit-tap-highlight-color: fade($light, 20%);
+:root {
+  font-size: 62.5%;
 
-  &::selection {
-    text-shadow: none;
-    background: $yellow;
+  body {
+    margin: 0;
+
+    // Body font size 16px
+    font-size: 1.6rem;
+
+    &, * {
+      box-sizing: border-box;
+      color: map_get($gray-pallet, dark);
+
+      &::selection {
+        text-shadow: none;
+        background: $yellow;
+      }
+    }
   }
 }
 
@@ -58,7 +68,18 @@ a {
   }
 }
 
-.heading {
+img::selection, img::-moz-selection {
+  background: transparent;
+}
+
+ul , ol {
+  &.no-style-list{
+    list-style: none;
+    padding: 0;
+  }
+}
+
+.display-heading {
   color: map_get($gray-pallet, dark);
   background-repeat: no-repeat;
   background-image: linear-gradient(transparent 55%, rgba(map_get($gray-pallet, mid), 0.2) 45%);
@@ -71,15 +92,4 @@ a {
 
 .white-text {
   color: $light;
-}
-
-img::selection, img::-moz-selection {
-  background: transparent;
-}
-
-ul , ol {
-  &.no-style-list{
-    list-style: none;
-    padding: 0;
-  }
 }
