@@ -1,51 +1,54 @@
 .ns-header {
-    .header {
-      display: flex;
-      justify-content: space-between;
-      height: $header-height;
-  
-      &__left, &__right {
-        height: inherit;
-      }
+  position: sticky;
 
-      &__right {
-        margin-left: auto;
-      }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    height: $header-height;
 
-      &__brand-image {
-        &-wrapper {
-          display: block;
-          width: 60px;
-          height: 100%;
-          padding: 10px;
-        }
-
-        color: $light;
-        height: inherit;
-        width: 100%;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 5px;
-        background: map_get($gray-pallet, dark);
-      }
+    &__left, &__right {
+      height: inherit;
     }
-  
-    .menu-list {
+
+    &__right {
+      margin-left: auto;
+    }
+
+    &__brand-image {
+      &-wrapper {
+        display: block;
+        width: 60px;
+        height: 100%;
+        padding: 10px;
+      }
+
+      color: $light;
+      height: inherit;
+      width: 100%;
       display: inline-flex;
-      margin: 0;
-      height: 100%;
-      &-item {
-        list-style: none;
-        padding: 15px;
-        margin: auto 5px;
-        font-size: 15px;
-        font-weight: $bold-font-weight;
-        text-transform: capitalize;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      background: map_get($gray-pallet, dark);
+    }
+  }
 
-        &:focus, &:hover, &.active {
-          color: map_get($gray-pallet, dark);
-        }
+  .menu-list {
+    display: inline-flex;
+    margin: 0;
+    height: 100%;
+
+    &-item {
+      list-style: none;
+      padding: 15px;
+      margin: auto 5px;
+      font-size: 15px;
+      font-weight: $bold-font-weight;
+      text-transform: capitalize;
+
+      &:focus, &:hover, &.active {
+        color: map_get($gray-pallet, dark);
       }
     }
+  }
 }

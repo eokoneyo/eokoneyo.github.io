@@ -91,6 +91,10 @@
 
         &--inner {
           height: 400px;
+          width: 600px;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
         }
       }
     }

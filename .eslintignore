@@ -1,4 +1,5 @@
 # Dependency directories
-node_modules/
+/node_modules/
 /.jekyll-webpack/
-_site/
+/_site/
+/vendor/

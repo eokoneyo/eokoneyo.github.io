@@ -78,7 +78,7 @@ module.exports = {
             filename: '[name].[contenthash].css',
         }),
         new CleanWebpackPlugin(),
-        function() {
+        function provideManifestToJekyll() {
             // This makes the files webpack generated available to jekyll and our jekyll plugin,
             // so the assets might be copied
             this.plugin('done', async () => {

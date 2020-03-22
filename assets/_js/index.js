@@ -9,6 +9,7 @@ import handleLandingAnimation from './animate-landing-page';
  *          shape: {HTMLElement}
  *          path: {HTMLElement}
  *     },
+ *     header: {HTMLElement},
  *     illustrationScroll : {
  *          illustrationWrapper: {HTMLElement}
  *          illustration: {HTMLElement}
@@ -23,6 +24,7 @@ const DOM = {};
     document.addEventListener('DOMContentLoaded', () => {
         DOM.preloader = global.document.querySelector('.preloader');
         DOM.illustrationScroll = global.document.querySelector('#illustration-scroll-interaction');
+        DOM.header = global.document.querySelector('#header');
         DOM.preloader.shape = DOM.preloader.querySelector('svg.shape');
         DOM.preloader.path = DOM.preloader.shape.querySelector('path');
         DOM.illustrationScroll.illustrationWrapper = DOM.illustrationScroll.querySelector('#illustration-wrapper');
@@ -30,9 +32,9 @@ const DOM = {};
         DOM.illustrationScroll.aboutCTA = DOM.illustrationScroll.querySelector('#info-cta');
 
         initPreloader(global, DOM.preloader);
-        handleLandingAnimation(global, DOM.illustrationScroll);
+        handleLandingAnimation(global, DOM.header, DOM.illustrationScroll);
 
-        //Do page view tracking
+        // Do page view tracking
         if(global.ga) {
             global.ga('send', {
                 hitType: 'pageview',

@@ -10,12 +10,16 @@ const initPreloader = (global, preloaderDOM) => {
     const HAS_SEEN_PRELOADER_COOKIE = 'eoe_has_seen_preloader';
     const HTML_PRELOADER_ATTRIBUTE = 'data-preloader-displayed';
 
+    const { document } = global;
+
     /**
      * @param name {string}
      * @param value {boolean}
      * @returns {string}
      */
-    const setCookie = (name, value) => global.document.cookie = `${name}=${value}`;
+    const setCookie = (name, value) => {
+        document.cookie = `${name}=${value}`
+    };
 
     /**
      * @description Helper for getting cookie value of a named cookie
@@ -23,7 +27,7 @@ const initPreloader = (global, preloaderDOM) => {
      * @returns {null|boolean}
      */
     const getCookieValue = name => {
-        const cookieString = String(global.document.cookie);
+        const cookieString = String(document.cookie);
 
         if (cookieString.indexOf(name) < 0) return null;
 
@@ -35,7 +39,6 @@ const initPreloader = (global, preloaderDOM) => {
     };
 
     const removePreloader = (animationDuration) => {
-
         anime.timeline({
             duration: animationDuration,
         })
@@ -49,8 +52,8 @@ const initPreloader = (global, preloaderDOM) => {
                 easing: 'easeOutQuad',
                 d: preloaderDOM.path.getAttribute('pathdata:id'),
                 complete: () => {
-                    global.document.body.style.overflow = 'auto';
-                    global.document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
+                    document.body.style.overflow = 'auto';
+                    document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
                     // mark preloader as seen for the session
                     setCookie(HAS_SEEN_PRELOADER_COOKIE, true);
                 }
@@ -58,9 +61,10 @@ const initPreloader = (global, preloaderDOM) => {
     };
 
     if (getCookieValue(HAS_SEEN_PRELOADER_COOKIE)) {
+        // eslint-disable-next-line no-param-reassign
         preloaderDOM.style.display = 'none';
-        global.document.body.style.overflow = 'auto';
-        global.document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
+        document.body.style.overflow = 'auto';
+        document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
     } else {
         // Hide preloader .5s after so the effect is visible
         setTimeout(() => removePreloader(ANIMATION_DURATION), 500);
