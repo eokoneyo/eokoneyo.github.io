@@ -7,20 +7,12 @@ module.exports = {
     'airbnb-base',
     'prettier',
   ],
-  plugins: [
-    'import',
-  ],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
   },
   parserOptions: {
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
     sourceType: 'module',
-  },
-  rules: {
-    'import/dynamic-import-chunkname': [2, {
-      importFunctions: ['dynamicImport'],
-    }],
-  },
+  }
 };
