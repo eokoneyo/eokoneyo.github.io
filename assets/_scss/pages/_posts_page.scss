@@ -1,4 +1,18 @@
 .ns-posts {
   max-width: 768px;
   margin: 0 auto;
+
+  .post {
+
+    &-list-item {
+      &:not(:last-of-type) {
+        border-bottom: 2px solid map_get($gray-pallet, mid)
+      }
+    }
+
+    &-meta, &-content {
+
+    }
+
+  }
 }

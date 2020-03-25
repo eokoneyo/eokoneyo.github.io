@@ -7,6 +7,10 @@
   position: relative;
   width: 100%;
 
+  &-fluid {
+    width: 100%;
+  }
+
   @include mq($from: small) {
     max-width: 540px;
   }

@@ -1,9 +1,17 @@
 ---
-layout: blog
+layout: default
 ---
 
-<div class="blog-post">
-    <h2 class="blog-post-title">{{page.title}}</h2>
-    <p class="blog-post-meta">{{ page.date | date: "%b %-d, %Y" }} by <a href="#">{{page.author}}</a></p>
-    {{content}}
+<div class="container">
+    <div class="row">
+        <div class="column">
+            <h2 class="blog-post-title"> ⬅️ writing</h2>
+
+            <div>
+                {{page.title}}
+                <p class="blog-post-meta">{{ page.date | date: "%b %-d, %Y" }} by <a href="#">{{page.author}}</a></p>
+                {{content}} hh
+            </div>
+        </div>
+    </div>
 </div>

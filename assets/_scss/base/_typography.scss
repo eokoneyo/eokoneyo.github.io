@@ -25,7 +25,7 @@ $modularscale: (
 );
 
 $headings: 6;
-$scaleToCountDownFrom: 6;
+$modularScaleToCountDownFrom: 6;
 
 body {
   font-family: $primary-font;
@@ -49,7 +49,7 @@ h6 {
 
 @for $i from 1 through $headings {
   h#{$i} {
-    font-size: ms($scaleToCountDownFrom - $i);
+    font-size: ms($modularScaleToCountDownFrom - $i);
   }
 }
 

@@ -2,24 +2,27 @@
 layout: default
 ---
 
-<body>
-    {%include nav.html%}
-    <div class="container">
-        <div class="ns-posts">
-            <h1><span class="display-heading">{{page.title}}</span></h1>
+<div class="container">
+    <div class="ns-posts">
+        <h1 class="page-heading"><span class="display-heading">{{page.title}}</span></h1>
 
-            {% assign blog_posts = paginator.posts %}
-            <ul class="no-style-list">
-                {% for post in blog_posts %}
-                <li class="fa fa-edit fa-2x">
-                    <a class="blog-post-title" href="{{ post.url }}">
-                        <h3>{{ post.title }}</h3>
-                    </a>
-                    <span class="blog-post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-                    <p>{{ post.excerpt }}</p>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
+        {% assign blog_posts = paginator.posts %}
+        <ul class="no-style-list">
+            {% for post in blog_posts %}
+            <li class="post-list-item">
+                <div class="row">
+                    <div class="post-meta column-md-2">
+                        <h6 class="blog-post-meta">{{ post.date | date: "%b %-d, %Y" }}</h6>
+                    </div>
+                    <div class="post-content column-md-10">
+                        <a class="blog-post-title" href="{{ post.url }}">
+                            <h3>{{ post.title }}</h3>
+                        </a>
+                        <p>{{ post.excerpt | truncate: 200 }}</p>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
-</body>
+</div>

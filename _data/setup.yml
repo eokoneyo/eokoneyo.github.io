@@ -9,7 +9,7 @@ description: >
 brandText: EOE
 
 headerLinks:
-  - title: Blog
+  - title: Writing
     path: "/blog"
   - title: Projects
     path: "/projects"

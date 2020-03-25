@@ -7,6 +7,9 @@ module.exports = {
     'airbnb-base',
     'prettier',
   ],
+  plugins: [
+    'import',
+  ],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -16,5 +19,8 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'import/dynamic-import-chunkname': [2, {
+      importFunctions: ['dynamicImport'],
+    }],
   },
 };

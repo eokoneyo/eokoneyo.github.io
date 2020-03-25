@@ -4,5 +4,13 @@
     {%include head.html%}
     {% include analytics.html %}
 </head>
-{{content}}
+<body class="no-scroll" data-preloader-displayed="false">
+    {% include preloader-screen.html %}
+    <main>
+        {% include nav.html %}
+
+        {{content}}
+    </main>
+    {%include scripts.html%}
+</body>
 </html>

@@ -1,6 +1,4 @@
 import initPreloader from './preloader';
-import handleLandingAnimation from './animate-landing-page';
-
 
 /**
  * @description Stores references to DOM elements
@@ -25,14 +23,22 @@ const DOM = {};
         DOM.preloader = global.document.querySelector('.preloader');
         DOM.illustrationScroll = global.document.querySelector('#illustration-scroll-interaction');
         DOM.header = global.document.querySelector('#header');
+
         DOM.preloader.shape = DOM.preloader.querySelector('svg.shape');
         DOM.preloader.path = DOM.preloader.shape.querySelector('path');
-        DOM.illustrationScroll.illustrationWrapper = DOM.illustrationScroll.querySelector('#illustration-wrapper');
-        DOM.illustrationScroll.illustration = DOM.illustrationScroll.querySelector('#illustration');
-        DOM.illustrationScroll.aboutCTA = DOM.illustrationScroll.querySelector('#info-cta');
-
         initPreloader(global, DOM.preloader);
-        handleLandingAnimation(global, DOM.header, DOM.illustrationScroll);
+
+        if(DOM.illustrationScroll) {
+            (async () => {
+                DOM.illustrationScroll.illustrationWrapper = DOM.illustrationScroll.querySelector('#illustration-wrapper');
+                DOM.illustrationScroll.illustration = DOM.illustrationScroll.querySelector('#illustration');
+                DOM.illustrationScroll.aboutCTA = DOM.illustrationScroll.querySelector('#info-cta');
+
+                const { default: handleLandingAnimation } = await import(/* webpackChunkName: "handleLandingAnimation" */ './animate-landing-page');
+
+                handleLandingAnimation(global, DOM.header, DOM.illustrationScroll);
+            })();
+        }
 
         // Do page view tracking
         if(global.ga) {

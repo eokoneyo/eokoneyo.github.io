@@ -8,15 +8,17 @@
     font-size: 1.6rem;
 
     &, * {
-      box-sizing: border-box;
-      color: map_get($gray-pallet, dark);
-
       &::selection {
         text-shadow: none;
         background: $yellow;
       }
     }
   }
+}
+
+body, * {
+  box-sizing: border-box;
+  color: map_get($gray-pallet, dark);
 }
 
 a {
@@ -77,6 +79,11 @@ ul , ol {
     list-style: none;
     padding: 0;
   }
+}
+
+.page-heading {
+  margin-top: mq-px2em(30px);
+  margin-bottom: mq-px2em(30px);
 }
 
 .display-heading {

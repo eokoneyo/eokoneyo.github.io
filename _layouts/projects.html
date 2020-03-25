@@ -2,24 +2,21 @@
 layout: default
 ---
 
-<body>
-    {%include nav.html%}
-    <div class="container">
-        <div class="ns-projects">
-            <h1><span class="display-heading">{{page.title}}</span></h1>
+<div class="container">
+    <div class="ns-projects">
+        <h1 class="page-heading"><span class="display-heading">{{page.title}}</span></h1>
 
-            {% assign projects = paginator.posts %}
-            <ul class="no-style-list">
-                {% for project in projects %}
-                <li class="fa fa-edit fa-2x">
-                    <a class="blog-post-title" href="{{ project.url }}">
-                        <h2>{{ project.title }}</h2>
-                    </a>
-                    <span class="blog-post-meta">{{ project.date | date: "%b %-d, %Y" }}</span>
-                    <p>{{ project.excerpt }}</p>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
+        {% assign projects = paginator.posts %}
+        <ul class="no-style-list">
+            {% for project in projects %}
+            <li class="">
+                <a class="blog-post-title" href="{{ project.url }}">
+                    <h4>{{ project.title }}</h4>
+                </a>
+                <span class="blog-post-meta">{{ project.date | date: "%b %-d, %Y" }}</span>
+                <p>{{ project.excerpt }}</p>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
-</body>
+</div>
