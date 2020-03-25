@@ -57,6 +57,7 @@ module.exports = {
             }
         ]
     },
+    devtool: process.env.JEKYLL_ENV  === 'production' ?  false : 'source-map',
     optimization: {
         noEmitOnErrors: true,
         splitChunks: {
