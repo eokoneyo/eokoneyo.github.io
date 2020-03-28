@@ -4,14 +4,12 @@ layout: default
 
 <div class="container">
     <div class="row">
-        <div class="column">
-            <h2 class="blog-post-title"> ⬅️ writing</h2>
-
-            <div>
-                {{page.title}}
-                <p class="blog-post-meta">{{ page.date | date: "%b %-d, %Y" }} by <a href="#">{{page.author}}</a></p>
-                {{content}} hh
-            </div>
+        <div class="column-sm-12">
+            <article class="article">
+                <h2 class="page-heading"><span class="display-heading">{{page.title}}</span></h2>
+                <p class="blog-post-meta">{{ page.date | date: "%b %-d, %Y" }}</a></p>
+                {{content}}
+            </article>
         </div>
     </div>
 </div>

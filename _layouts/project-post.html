@@ -2,8 +2,29 @@
 layout: default
 ---
 
-<div class="project-post">
-    <h2 class="project-post-title">{{page.title}}</h2>
-    <p class="project-post-meta">{{ page.date | date: "%b %-d, %Y" }} by <a href="#">{{page.author}}</a></p>
-    {{content}}
+<div class="container">
+    <div class="project-post article">
+        <h2 class="page-heading"><span class="display-heading">{{page.title}}</span></h2>
+        <p class="project-post-meta">{{ page.date | date: "%b %-d, %Y" }} by <a href="#">{{page.author}}</a></p>
+        {{content}}
+
+        {% unless page.category == null %}
+            {% assign pageCategory = page.category %}
+            {% assign pageCategoryPosts = site.categories[pageCategory] %}
+            {% unless pageCategoryPosts.size == 1 %}
+                <div class="more-projects">
+                    <h4 class="page-heading"><span class="display-heading">See More</span></h4>
+                    <ul>
+                        {% for post in pageCategoryPosts %}
+                        {% unless post.title == page.title %}
+                        <li>
+                            <a href="{{post.url}}">{{post.title}}</a>
+                        </li>
+                        {% endunless %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endunless %}
+        {% endunless %}
+    </div>
 </div>

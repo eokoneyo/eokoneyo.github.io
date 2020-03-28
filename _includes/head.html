@@ -14,7 +14,9 @@
 {% for item in site.data.webpack-manifest %}
     {% assign assetLink = item[1] %}
     {% if assetLink contains ".css" %}
+    {% unless assetLink contains ".map" %}
     <link href="/assets/{{assetLink}}" rel="stylesheet">
+    {% endunless %}
     {% endif %}
 {% endfor %}
 

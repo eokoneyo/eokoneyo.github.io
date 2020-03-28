@@ -18,7 +18,10 @@
 
 body, * {
   box-sizing: border-box;
-  color: map_get($gray-pallet, dark);
+
+  &:not(code, pre) {
+    color: map_get($gray-pallet, dark);
+  }
 }
 
 a {
@@ -79,6 +82,11 @@ ul , ol {
     list-style: none;
     padding: 0;
   }
+}
+
+.article {
+  max-width: 768px;
+  margin: 0 auto;
 }
 
 .page-heading {
