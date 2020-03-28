@@ -1,7 +1,7 @@
 {% for item in site.data.webpack-manifest %}
     {% assign assetLink = item[1] %}
     {% if assetLink contains ".js" %}
-        {% unless assetLink contains ".map" %}
+        {% unless assetLink contains ".map" or assetLink contains "sw" %}
             <script src="/assets/{{assetLink}}"></script>
         {% endunless %}
     {% endif %}

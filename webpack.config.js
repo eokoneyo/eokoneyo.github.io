@@ -6,6 +6,7 @@ const getLogger = require('webpack-log');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { InjectManifest } = require('workbox-webpack-plugin');
 
 const log = getLogger({ name: 'webpack-batman' });
 
@@ -75,11 +76,30 @@ module.exports = {
         }
     },
     plugins: [
-        new ManifestPlugin(),
+        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css',
         }),
-        new CleanWebpackPlugin(),
+        new ManifestPlugin(),
+        new InjectManifest({
+            swSrc: path.join(__dirname, 'assets', '_js/sw.js'),
+            exclude: [
+                /\.map$/,
+            ],
+            manifestTransforms: [
+                manifestEntries => {
+                    const manifest = [];
+                    const assetsPrefix = jekyllWebpackConfig.output.path;
+
+                    manifestEntries.reduce((acc, entry) => {
+                        const modifiedEntry = {...entry, url: assetsPrefix + entry.url};
+                        return acc.concat(modifiedEntry);
+                    }, manifest);
+
+                    return { manifest, warnings: [] };
+                },
+            ],
+        }),
         function provideManifestToJekyll() {
             // This makes the files webpack generated available to jekyll and our jekyll plugin,
             // so the assets might be copied

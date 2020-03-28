@@ -13,6 +13,7 @@ webpack:
   cache_directory: '.jekyll-webpack'
   output:
     path: "assets/"
+    service_worker: true
 
 permalink: pretty
 

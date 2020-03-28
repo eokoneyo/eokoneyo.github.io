@@ -31,15 +31,20 @@ class ProcessWebpackOutput
         # Exclude the cache directory from the jekyll watch, to prevent an infinite work loop
         @site.exclude << cacheDir
 
-        outputPath = (transpilerConfig['output']).values_at("path")
+        outputPath, hasServiceWorker = (transpilerConfig['output']).values_at("path", "service_worker")
 
         manifestFile = File.join('_data', 'webpack-manifest.json');
         manifestFileData = JSON.parse(File.read(manifestFile))
         manifestFileData.each do |key, fileName|
             Jekyll.logger.info("Jekyll-webpack:", "Processing #{fileName} ...")
-            
+
+            if hasServiceWorker && fileName.match(/sw|service_worker/)
+                fileDest = File.join(@site.dest, fileName)
+            else
+                fileDest = File.join(@site.dest, outputPath, fileName)
+            end
+
             # use overridden method to add processed webpack file :)
-            fileDest = File.join(@site.dest, outputPath, fileName)
             @site.static_files << Jekyll::TranspiledStaticFile.new(@site, @site.source, cacheDir, fileName, fileDest)
         end
     end
