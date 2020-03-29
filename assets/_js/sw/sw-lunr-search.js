@@ -14,8 +14,8 @@ export const precacheSearchData = (versionNumber) =>
 
 /**
  *
- * @param {string} searchText
- * @returns {Promise<{}|*>}
+ * @param searchText
+ * @returns {Promise<*[]|*>}
  */
 const setupListenerForSearchRequest = async (searchText) => {
   const response = await matchPrecache('/assets/site.json');
@@ -23,7 +23,7 @@ const setupListenerForSearchRequest = async (searchText) => {
   if (response.ok) {
     const data = await response.json();
 
-    const idxr = lunr(function setConfig() {
+    const idxr = lunr(function configureLunr() {
       this.field('id');
       this.field('title', { boost: 10 });
       this.field('category');
@@ -40,7 +40,7 @@ const setupListenerForSearchRequest = async (searchText) => {
     return idxr.search(searchText).map((result) => data[result.ref]);
   }
 
-  return {};
+  return [];
 };
 
 export default setupListenerForSearchRequest;

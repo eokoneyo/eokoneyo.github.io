@@ -5,6 +5,7 @@ import { CacheFirst } from 'workbox-strategies/CacheFirst';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { ExpirationPlugin } from 'workbox-expiration';
 import setupListenerForSearchRequest, { precacheSearchData } from './sw-lunr-search';
+import { SEARCH_REQ } from '../constants';
 
 /**
  * serviceworker for website
@@ -44,7 +45,7 @@ import setupListenerForSearchRequest, { precacheSearchData } from './sw-lunr-sea
     let responseMessage = {};
 
     switch (event.data.command) {
-      case 'search:request':
+      case SEARCH_REQ:
         responseMessage = { ...responseMessage, ...await setupListenerForSearchRequest(event.data.key)};
         break;
       default:

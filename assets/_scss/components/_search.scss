@@ -1,0 +1,107 @@
+:root {
+  --expandable-search-size-compact: 2.2em; // height and width - compact version
+  --expandable-search-size-expanded: 10em; // width - expanded version
+  --expandable-search-icon-size: 1.2em; // lens icon size
+}
+
+.expandable-search {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+}
+
+.expandable-search__input {
+  width: var(--expandable-search-size-compact);
+  height: var(--expandable-search-size-compact);
+  padding: 0;
+  color: transparent;
+  overflow: hidden;
+  border-radius: 50em;
+  transition: width .3s var(--ease-out), box-shadow .3s, background-color .3s;
+
+  &::-webkit-input-placeholder {
+    color: transparent;
+  }
+
+  &::-moz-placeholder {
+    opacity: 0;
+    color: transparent;
+  }
+
+  &:-ms-input-placeholder {
+    color: transparent;
+  }
+
+  &:-moz-placeholder {
+    color: transparent;
+  }
+
+  &:hover {
+    background-color: var(--color-contrast-lower);
+    cursor: pointer;
+  }
+
+  &:focus, &.expandable-search__input--has-content {
+    background-color: var(--color-bg);
+    width: var(--expandable-search-size-expanded);
+    padding: 0 calc(4px + var(--expandable-search-size-compact)) 0 var(--space-sm);
+    outline: none;
+    box-shadow: var(--shadow-md), 0 0 0 2px var(--color-primary);
+    color: var(--color-contrast-higher);
+    cursor: auto;
+    user-select: auto;
+
+    &::-webkit-input-placeholder {
+      color: var(--color-contrast-medium);
+    }
+
+    &::-moz-placeholder {
+      opacity: 1;
+      color: var(--color-contrast-medium);
+    }
+
+    &:-ms-input-placeholder {
+      color: var(--color-contrast-medium);
+    }
+
+    &:-moz-placeholder {
+      color: var(--color-contrast-medium);
+    }
+  }
+
+  &:focus + .expandable-search__btn {
+    pointer-events: auto;
+  }
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+  }
+}
+
+.expandable-search__btn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: calc(var(--expandable-search-size-compact) - 4px);
+  height: calc(var(--expandable-search-size-compact) - 4px);
+  border-radius: 50em;
+  z-index: 1;
+  pointer-events: none;
+  transition: background-color .3s;
+
+  .icon {
+    font-size: var(--expandable-search-icon-size); // icon size
+  }
+
+  &:hover {
+    background-color: var(--color-contrast-lower);
+  }
+
+  &:focus {
+    outline: none;
+    background-color: rgba($primary, 0.15);
+  }
+}

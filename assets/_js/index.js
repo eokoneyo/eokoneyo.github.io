@@ -1,12 +1,12 @@
 import initPreloader from './preloader';
-import './search';
+import initSearch from './search';
 
 /**
  * @description Stores references to DOM elements
  * @type {{
  *     preloader: {
- *          shape: {HTMLElement}
- *          path: {HTMLElement}
+ *          shape: {SVGElement}
+ *          path: {SVGPathElement}
  *     },
  *     header: {HTMLElement},
  *     illustrationScroll : {
@@ -28,6 +28,8 @@ const DOM = {};
         DOM.preloader.shape = DOM.preloader.querySelector('svg.shape');
         DOM.preloader.path = DOM.preloader.shape.querySelector('path');
         initPreloader(global, DOM.preloader);
+
+        initSearch(global);
 
         if (DOM.illustrationScroll) {
             (async () => {
