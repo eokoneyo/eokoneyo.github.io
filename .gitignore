@@ -43,5 +43,6 @@ Icon
 /vendor/
 /.jekyll-webpack/
 /.jekyll-metadata
-/_data/webpack-manifest.json
 /node_modules
+_data/webpack-manifest.json
+_data/version.yml

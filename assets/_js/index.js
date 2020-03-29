@@ -1,4 +1,5 @@
 import initPreloader from './preloader';
+import './search';
 
 /**
  * @description Stores references to DOM elements

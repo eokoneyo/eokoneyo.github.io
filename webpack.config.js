@@ -82,7 +82,8 @@ module.exports = {
         }),
         new ManifestPlugin(),
         new InjectManifest({
-            swSrc: path.join(__dirname, 'assets', '_js/sw.js'),
+            swDest: 'sw.js',
+            swSrc: path.join(__dirname, 'assets', '_js/sw/index.js'),
             exclude: [
                 /\.map$/,
             ],
@@ -100,13 +101,16 @@ module.exports = {
                 },
             ],
         }),
-        function provideManifestToJekyll() {
-            // This makes the files webpack generated available to jekyll and our jekyll plugin,
-            // so the assets might be copied
-            this.plugin('done', async () => {
+        function provideMetaForJekyll() {
+            this.plugin('done', async ({ hash: buildHash }) => {
+                // Save build hash for use within the app
+                fs.writeFileSync(path.join(__dirname, "_data", "version.yml"), `hash: "${buildHash}"`);
+
+                // This makes the files webpack generated available to jekyll and our jekyll plugin,
+                // so the assets might be copied
                 await cpy(path.join(jekyllWebpackConfig.cache_directory, 'manifest.json'), path.join('_data') , {
                     rename: () => 'webpack-manifest.json'
-                })
+                });
             });
         }
     ]
