@@ -1,5 +1,6 @@
 import initPreloader from './preloader';
 import initSearch from './search';
+import initModals from './modal';
 
 /**
  * @description Stores references to DOM elements
@@ -19,7 +20,6 @@ import initSearch from './search';
 const DOM = {};
 
 ((global) => {
-
     document.addEventListener('DOMContentLoaded', () => {
         DOM.preloader = global.document.querySelector('.preloader');
         DOM.illustrationScroll = global.document.querySelector('#illustration-scroll-interaction');
@@ -28,8 +28,6 @@ const DOM = {};
         DOM.preloader.shape = DOM.preloader.querySelector('svg.shape');
         DOM.preloader.path = DOM.preloader.shape.querySelector('path');
         initPreloader(global, DOM.preloader);
-
-        initSearch(global);
 
         if (DOM.illustrationScroll) {
             (async () => {
@@ -42,6 +40,10 @@ const DOM = {};
                 handleLandingAnimation(global, DOM.header, DOM.illustrationScroll);
             })();
         }
+
+        initModals(global);
+
+        initSearch(global);
 
         // Do page view tracking
         if (global.ga) {

@@ -8,7 +8,7 @@ plugins:
 
 webpack:
   entry:
-    - "assets/_js/index.js"
+    - "assets/_js/client/index.js"
     - "assets/_scss/main.scss"
   cache_directory: '.jekyll-webpack'
   output:

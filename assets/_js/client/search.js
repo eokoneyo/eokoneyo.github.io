@@ -1,4 +1,4 @@
-import { sendMessage } from './utils';
+import { sendWorkerMessage } from './utils';
 import { SEARCH_REQ } from './constants';
 
 /**
@@ -26,7 +26,7 @@ const initSearch = (global) => {
     evt.preventDefault();
     const searchInputField = searchDOM.form.elements.searchInput;
 
-    return sendMessage({ command: SEARCH_REQ, key: searchInputField.value })
+    return sendWorkerMessage({ command: SEARCH_REQ, key: searchInputField.value })
       .then(displaySearchResult)
       .catch(displaySearchError)
       .finally(() => {
