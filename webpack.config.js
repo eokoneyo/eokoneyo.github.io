@@ -2,7 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
 const cpy = require('cpy');
+const webpack = require('webpack');
 const getLogger = require('webpack-log');
+const TerserPlugin = require('terser-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -25,7 +27,7 @@ module.exports = {
     mode: process.env.JEKYLL_ENV  === 'production' ? 'production' : 'development',
     entry: jekyllWebpackConfig.entry.map(entryItem => path.join(__dirname, entryItem)),
     output: {
-        filename: '[name]-bundle.[contenthash].js',
+        filename: '[name]-bundle.[contenthash:8].js',
         path: path.resolve(__dirname, jekyllWebpackConfig.cache_directory),
     },
     module: {
@@ -73,12 +75,23 @@ module.exports = {
         },
         runtimeChunk: {
             name: 'runtime'
-        }
+        },
+        minimize: process.env.JEKYLL_ENV  === 'production',
+        minimizer: [
+            new TerserPlugin({
+                terserOptions: {
+                    output: {
+                        comments: false,
+                    },
+                },
+                extractComments: false,
+            }),
+        ],
     },
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: '[name].[contenthash].css',
+            filename: '[name].[contenthash:8].css',
         }),
         new ManifestPlugin(),
         new InjectManifest({
@@ -106,8 +119,8 @@ module.exports = {
                 // Save build hash for use within the app
                 fs.writeFileSync(path.join(__dirname, "_data", "version.yml"), `hash: "${buildHash}"`);
 
-                // This makes the files webpack generated available to jekyll and our jekyll plugin,
-                // so the assets might be copied
+                // This makes a list of the files webpack generated available to jekyll
+                // and our jekyll plugin, so the assets might be copied
                 await cpy(path.join(jekyllWebpackConfig.cache_directory, 'manifest.json'), path.join('_data') , {
                     rename: () => 'webpack-manifest.json'
                 });

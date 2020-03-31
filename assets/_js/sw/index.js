@@ -1,4 +1,4 @@
-import { precacheAndRoute, cleanupOutdatedCaches } from 'workbox-precaching';
+import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching';
 import { setCacheNameDetails, skipWaiting, clientsClaim } from 'workbox-core';
 import { registerRoute } from 'workbox-routing/registerRoute';
 import { CacheFirst } from 'workbox-strategies/CacheFirst';
@@ -15,14 +15,19 @@ import { SEARCH_REQ } from '../constants';
   skipWaiting();
   clientsClaim();
 
+  // get version from sw query string
+  const swVersion = new URL(global.location.href).searchParams.get('version');
+
   setCacheNameDetails({
     prefix: 'eoe-website',
   });
 
-  precacheSearchData();
+  precacheSearchData(swVersion);
 
   // eslint-disable-next-line no-restricted-globals,no-underscore-dangle
   precacheAndRoute(self.__WB_MANIFEST);
+
+  cleanupOutdatedCaches();
 
   registerRoute(
     /.*\/assets\/fonts\/.*\.(woff2|ttf)$/,
@@ -39,8 +44,6 @@ import { SEARCH_REQ } from '../constants';
     }),
   );
 
-  cleanupOutdatedCaches();
-
   global.addEventListener('message', async (event) => {
     let responseMessage = {};
 
@@ -53,7 +56,9 @@ import { SEARCH_REQ } from '../constants';
         break;
     }
 
-    event.ports[0].postMessage(responseMessage);
+    if(event.ports && event.ports[0]) {
+      event.ports[0].postMessage(responseMessage);
+    }
   });
 // eslint-disable-next-line no-restricted-globals
 })(self);

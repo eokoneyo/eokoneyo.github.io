@@ -2,19 +2,18 @@ import lunr from 'lunr';
 import { matchPrecache, precacheAndRoute } from 'workbox-precaching';
 
 /**
- *
- * @param {string} [versionNumber]
+ * precaches the site json file, so we can use it to respond to search results
+ * @param {string|null} versionNumber
  */
-export const precacheSearchData = (versionNumber) =>
-  // precache the site json file, so we can use it to respond to search results
+export const precacheSearchData = (versionNumber = null) =>
   precacheAndRoute([{
     url: '/assets/site.json',
-    revision: versionNumber || null,
+    revision: versionNumber,
   }]);
 
 /**
- *
- * @param searchText
+ * handler for responding to search requests
+ * @param {string} searchText
  * @returns {Promise<*[]|*>}
  */
 const setupListenerForSearchRequest = async (searchText) => {

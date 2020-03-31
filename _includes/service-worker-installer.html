@@ -2,8 +2,12 @@
   // Check that service workers are supported
   if ('serviceWorker' in navigator) {
     // Use the window load event to keep the page load performant
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js', { scope: '/' });
+    window.addEventListener('load', function () {
+      {%- comment -%}
+        // we pass the app version like this, because the webpack ExtendAPIPlugin doesn't work
+        // when we use chunkhash that we need, see https://github.com/webpack/webpack/issues/5337
+      {%- endcomment -%}
+      navigator.serviceWorker.register('/sw.js?version={{site.data.version.hash}}', { scope: '/' });
     });
   }
 </script>
