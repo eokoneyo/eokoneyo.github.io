@@ -1,5 +1,5 @@
 .ns-posts {
-  max-width: 768px;
+  @extend .article-width;
   margin: 0 auto;
 
   .post {

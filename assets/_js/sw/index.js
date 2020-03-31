@@ -49,10 +49,10 @@ import { SEARCH_REQ } from '../constants';
 
     switch (event.data.command) {
       case SEARCH_REQ:
-        responseMessage = { ...responseMessage, ...await setupListenerForSearchRequest(event.data.key)};
+        responseMessage = { ...responseMessage, data: await setupListenerForSearchRequest(event.data.key) };
         break;
       default:
-        responseMessage = { ...responseMessage, msg: 'nothing to see'};
+        responseMessage = { ...responseMessage, message: 'nothing to see'};
         break;
     }
 

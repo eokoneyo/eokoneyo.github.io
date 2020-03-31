@@ -1,0 +1,8 @@
+<svg class="icon" viewBox="0 0 24 24">
+    <title>Search</title>
+    <g stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" stroke="{% if include.stroke %}{{include.stroke}}{% else %}currentColor{% endif %}" fill="none"
+       stroke-miterlimit="10">
+        <line x1="22" y1="22" x2="15.656" y2="15.656"/>
+        <circle cx="10" cy="10" r="8"/>
+    </g>
+</svg>

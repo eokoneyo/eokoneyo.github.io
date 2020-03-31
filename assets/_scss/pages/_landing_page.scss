@@ -77,12 +77,12 @@
 
     .main-content#illustration-wrapper {
       @extend .container;
-
-      @include mq($until: medium) {
-        left: 0;
-      }
-
+      left: 0;
       position: fixed;
+
+      @include mq($from: medium) {
+       left: initial;
+      }
     }
   }
 }

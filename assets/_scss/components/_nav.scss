@@ -1,5 +1,6 @@
 .ns-header {
   position: sticky;
+  z-index: $zindex-header;
 
   .header {
     display: flex;

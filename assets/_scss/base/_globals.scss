@@ -84,8 +84,12 @@ ul , ol {
   }
 }
 
-.article {
+.article-width {
   max-width: 768px;
+}
+
+.article {
+  @extend .article-width;
   margin: 0 auto;
 }
 

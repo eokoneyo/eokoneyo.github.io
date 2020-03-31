@@ -2,106 +2,239 @@
   --expandable-search-size-compact: 2.2em; // height and width - compact version
   --expandable-search-size-expanded: 10em; // width - expanded version
   --expandable-search-icon-size: 1.2em; // lens icon size
+
+  // close button
+  --modal-close-btn-size: 1.25em;
+  --modal-close-btn-padding: var(--space-sm);
+
+  //spacing
+  --space-unit:  1em;
+  --space-xxxxs: calc(0.125 * var(--space-unit));
+  --space-xxxs:  calc(0.25 * var(--space-unit));
+  --space-xxs:   calc(0.375 * var(--space-unit));
+  --space-xs:    calc(0.5 * var(--space-unit));
+  --space-sm:    calc(0.75 * var(--space-unit));
+  --space-md:    calc(1.25 * var(--space-unit));
+  --space-lg:    calc(2 * var(--space-unit));
+  --space-xl:    calc(3.25 * var(--space-unit));
+  --space-xxl:   calc(5.25 * var(--space-unit));
+  --space-xxxl:  calc(8.5 * var(--space-unit));
+  --space-xxxxl: calc(13.75 * var(--space-unit));
+  --component-padding: var(--space-md);
 }
 
-.expandable-search {
-  position: relative;
-  display: inline-block;
-  user-select: none;
-}
+.ns-search {
+  .search {
+    &__btn {
+      top: 2px;
+      right: 2px;
+      padding: mq-px2em(5px);
+      width: calc(var(--expandable-search-size-compact) - 4px);
+      height: calc(var(--expandable-search-size-compact) - 4px);
+      background: map-get($gray-pallet, dark);
+      border-radius: 50em;
+      border: 0;
+      transition: background-color .3s;
+      cursor: pointer;
 
-.expandable-search__input {
-  width: var(--expandable-search-size-compact);
-  height: var(--expandable-search-size-compact);
-  padding: 0;
-  color: transparent;
-  overflow: hidden;
-  border-radius: 50em;
-  transition: width .3s var(--ease-out), box-shadow .3s, background-color .3s;
+      .icon {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: var(--expandable-search-icon-size); // icon size
+      }
 
-  &::-webkit-input-placeholder {
-    color: transparent;
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &__input {
+      z-index: $zindex-fixed-element;
+      position: relative;
+      height: 60px;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 50em;
+      transition: box-shadow .3s, background-color .3s;
+      padding: var(--space-sm);
+      border: 0;
+      box-shadow: $shadow-md, 0 0 0 2px $primary;
+      cursor: auto;
+      user-select: auto;
+
+      &::-webkit-input-placeholder {
+        color: var(--color-contrast-medium);
+      }
+
+      &::-moz-placeholder {
+        opacity: 1;
+        color: var(--color-contrast-medium);
+      }
+
+      &:-ms-input-placeholder {
+        color: var(--color-contrast-medium);
+      }
+
+      &:-moz-placeholder {
+        color: var(--color-contrast-medium);
+      }
+
+      &:focus {
+        box-shadow: $shadow-md, 0 0 0 2px $primary;
+        outline: none;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &::-webkit-search-decoration,
+      &::-webkit-search-cancel-button,
+      &::-webkit-search-results-button,
+      &::-webkit-search-results-decoration {
+        display: none;
+      }
+    }
+
+    &__results {
+      position: relative;
+      background: $light;
+      border-radius: 0 0 10px 10px;
+
+      //&:before, &:after {
+      //  content: "";
+      //  position: absolute;
+      //  display: block;
+      //  background: $light;
+      //  height: 30px;
+      //  width: 30px;
+      //  top: -30px;
+      //}
+      //
+      //&:after {
+      //  right: 0;
+      //}
+      //
+      //&:before {
+      //  left: 0;
+      //}
+
+      li {
+       a {
+         display: block;
+         padding: mq-px2em(10px);
+       }
+      }
+    }
   }
 
-  &::-moz-placeholder {
+  .modal {
+    position: fixed;
+    z-index: $zindex-overlay;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($primary, 0.75);
+    -webkit-backdrop-filter: blur(mq-px2em(10px));
+    backdrop-filter: blur(mq-px2em(10px));
+    // hide element
     opacity: 0;
-    color: transparent;
-  }
-
-  &:-ms-input-placeholder {
-    color: transparent;
-  }
-
-  &:-moz-placeholder {
-    color: transparent;
-  }
-
-  &:hover {
-    background-color: var(--color-contrast-lower);
-    cursor: pointer;
-  }
-
-  &:focus, &.expandable-search__input--has-content {
-    background-color: var(--color-bg);
-    width: var(--expandable-search-size-expanded);
-    padding: 0 calc(4px + var(--expandable-search-size-compact)) 0 var(--space-sm);
-    outline: none;
-    box-shadow: var(--shadow-md), 0 0 0 2px var(--color-primary);
-    color: var(--color-contrast-higher);
-    cursor: auto;
-    user-select: auto;
-
-    &::-webkit-input-placeholder {
-      color: var(--color-contrast-medium);
-    }
-
-    &::-moz-placeholder {
-      opacity: 1;
-      color: var(--color-contrast-medium);
-    }
-
-    &:-ms-input-placeholder {
-      color: var(--color-contrast-medium);
-    }
-
-    &:-moz-placeholder {
-      color: var(--color-contrast-medium);
-    }
-  }
-
-  &:focus + .expandable-search__btn {
-    pointer-events: auto;
-  }
-
-  &::-webkit-search-decoration,
-  &::-webkit-search-cancel-button,
-  &::-webkit-search-results-button,
-  &::-webkit-search-results-decoration {
+    visibility: hidden;
     display: none;
-  }
-}
+    pointer-events: none;
 
-.expandable-search__btn {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  width: calc(var(--expandable-search-size-compact) - 4px);
-  height: calc(var(--expandable-search-size-compact) - 4px);
-  border-radius: 50em;
-  z-index: 1;
-  pointer-events: none;
-  transition: background-color .3s;
+    &--is-visible {
+      opacity: 1;
+      display: flex;
+      visibility: visible;
+      pointer-events: auto;
+    }
 
-  .icon {
-    font-size: var(--expandable-search-icon-size); // icon size
-  }
+    &__content {
+      top: 10%;
+      width: 90%;
+      margin: auto;
+      max-height: 80%;
+      display: flex;
+      flex-direction: column;
+      position: fixed;
 
-  &:hover {
-    background-color: var(--color-contrast-lower);
-  }
+      @include mq($from: medium) {
+        width: mq-px2em(720px);
+      }
 
-  &:focus {
-    outline: none;
-    background-color: rgba($primary, 0.15);
+      // if close btn is inside content (e.g, inside header)
+      .modal__close-btn { // alt close btn style (if inside modal content)
+        --modal-close-btn-size: 1em;
+        --modal-close-btn-padding: 0.5em;
+        position: static;
+        flex-shrink: 0;
+        background-color: var(--color-bg);
+        box-shadow: var(--shadow-sm);
+        transition: .2s;
+
+        .icon {
+          color: inherit;
+        }
+
+        &:hover {
+          box-shadow: var(--shadow-md);
+
+          .icon {
+            color: var(--color-contrast-higher);
+          }
+        }
+      }
+
+      // close btn sticky within content
+      .modal__close-btn--sticky {
+        position: sticky;
+        float: right;
+        top: 0;
+        right: 0;
+      }
+    }
+
+    &__close-btn {
+      position: fixed;
+      top: var(--space-sm);
+      right: var(--space-sm);
+      z-index: $zindex-fixed-element;
+      padding: var(--modal-close-btn-padding);
+      border-radius: 50%;
+      border: 0;
+      background-color: rgba($light, 0.8);
+      transition: .2s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $light;
+      }
+
+      .icon {
+        display: block;
+        color: var(--color-bg);
+        width: var(--modal-close-btn-size);
+        height: var(--modal-close-btn-size);
+      }
+    }
+
+    // if animation = enabled
+    &[data-animation="on"] {
+      transition: opacity .3s, visibility .3s;
+
+      .modal__content {
+        will-change: transform;
+        transition: transform .3s var(--ease-out);
+        transform: translateY(10%);
+      }
+
+      &.modal--is-visible .modal__content {
+        transform: translateY(0);
+      }
+    }
   }
 }
