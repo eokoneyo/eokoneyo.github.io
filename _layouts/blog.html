@@ -10,16 +10,14 @@ layout: default
         <ul class="no-style-list">
             {% for post in blog_posts %}
             <li class="post-list-item">
-                <div class="row">
-                    <div class="post-meta column-md-2">
-                        <h6 class="blog-post-meta">{{ post.date | date: "%b %-d, %Y" }}</h6>
-                    </div>
-                    <div class="post-content column-md-10">
-                        <a class="blog-post-title" href="{{ post.url }}">
-                            <h3>{{ post.title }}</h3>
-                        </a>
-                        <p>{{ post.excerpt | truncate: 200 }}</p>
-                    </div>
+                <div class="post-list-item__meta">
+                    <span class="post-list-item__meta__publish-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+                </div>
+                <div class="post-content">
+                    <a class="blog-post-title" href="{{ post.url }}">
+                        <h3>{{ post.title }}</h3>
+                    </a>
+                    <p>{{ post.excerpt | truncate: 200 }}</p>
                 </div>
             </li>
             {% endfor %}

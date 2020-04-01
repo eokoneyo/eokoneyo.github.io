@@ -3,16 +3,44 @@
   margin: 0 auto;
 
   .post {
-
     &-list-item {
+      &:not(:first-of-type) {
+        margin-top: mq-px2em(50px)
+      }
+
       &:not(:last-of-type) {
-        border-bottom: 2px solid map_get($gray-pallet, mid)
+        border-bottom: 2px solid lighten(map_get($gray-pallet, light), 40%)
+      }
+
+      &__meta {
+        > * {
+          display: inline-block;
+          margin-bottom: mq-px2em(10px);
+        }
+
+        &__publish-date {
+          text-transform: uppercase;
+          color: map_get($gray-pallet, light);
+        }
       }
     }
 
     &-meta, &-content {
 
     }
+  }
 
+  .article{
+    &__meta {
+      display: flex;
+      flex-direction: column;
+
+      &__publish-date{
+        order: -1;
+        font-size: mq-px2em(5px);
+        text-transform: uppercase;
+        color: map-get($gray-pallet, light);
+      }
+    }
   }
 }

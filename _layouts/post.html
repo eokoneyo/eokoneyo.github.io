@@ -2,12 +2,14 @@
 layout: default
 ---
 
-<div class="container">
+<div class="container ns-posts">
     <div class="row">
         <div class="column-sm-12">
             <article class="article">
-                <h2 class="page-heading"><span class="display-heading">{{page.title}}</span></h2>
-                <p class="blog-post-meta">{{ page.date | date: "%b %-d, %Y" }}</a></p>
+                <h1 class="page-heading article__meta">
+                    <span class="display-heading article__meta__title">{{page.title}}</span>
+                    <span class="article__meta__publish-date">{{ page.date | date: "%b %-d, %Y" }}</span>
+                </h1>
                 {{content}}
             </article>
         </div>
