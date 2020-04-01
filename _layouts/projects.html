@@ -9,11 +9,13 @@ layout: default
         {% assign projects = paginator.posts %}
         <ul class="no-style-list">
             {% for project in projects %}
-            <li class="">
-                <a class="blog-post-title" href="{{ project.url }}">
-                    <h4>{{ project.title }}</h4>
-                </a>
-                <span class="blog-post-meta">{{ project.date | date: "%b %-d, %Y" }}</span>
+            <li class="project-card">
+                <h4>
+                    <span class="blog-post-meta">{{ project.date | date: "%Y" }}</span>
+                    <a class="blog-post-title" href="{{ project.url }}">
+                        <span>{{ project.title }}</span>
+                    </a>
+                </h4>
                 <p>{{ project.excerpt }}</p>
             </li>
             {% endfor %}

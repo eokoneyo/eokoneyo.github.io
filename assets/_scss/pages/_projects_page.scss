@@ -1,4 +1,14 @@
 .ns-projects {
   @extend .article-width;
   margin: 0 auto;
+
+
+  .project-card{
+    height: 400px;
+    background: $dark;
+
+    > * {
+      color: #fff;
+    }
+  }
 }
