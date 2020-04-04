@@ -46,3 +46,4 @@ Icon
 /node_modules
 _data/webpack-manifest.json
 _data/version.yml
+/.jekyll-cache/

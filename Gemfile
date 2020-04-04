@@ -4,11 +4,13 @@ source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
-# gem "rails"
-gem "jekyll", "~> 3.8.6"
+gem 'json'
+gem 'rmagick'
+gem 'jekyll'
+
 # gem 'github-pages'
+# gem 'rails'
 
 group :jekyll_plugins do
-    gem 'json'
     gem 'jekyll-paginate-v2'
 end

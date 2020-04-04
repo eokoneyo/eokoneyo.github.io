@@ -7,7 +7,7 @@
     "lint": "eslint --fix .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack && bundle exec jekyll build",
-    "start:dev": "webpack && webpack --watch | bundle exec jekyll serve --livereload"
+    "start:dev": "webpack && webpack --watch | bundle exec jekyll serve --livereload --trace"
   },
   "repository": {
     "type": "git",

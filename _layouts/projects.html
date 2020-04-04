@@ -5,18 +5,27 @@ layout: default
 <div class="container">
     <div class="ns-projects">
         <h1 class="page-heading"><span class="display-heading">{{page.title}}</span></h1>
-
-        {% assign projects = paginator.posts %}
+        {% assign projectsByYear = paginator.posts | group_by_exp:"post", "post.commission_year" %}
         <ul class="no-style-list">
-            {% for project in projects %}
-            <li class="project-card">
-                <h4>
-                    <span class="blog-post-meta">{{ project.date | date: "%Y" }}</span>
-                    <a class="blog-post-title" href="{{ project.url }}">
-                        <span>{{ project.title }}</span>
-                    </a>
-                </h4>
-                <p>{{ project.excerpt }}</p>
+            {% for projectsInYear in projectsByYear %}
+            <li><h3>{{projectsInYear.name}}</h3></li>
+            <li>
+                <ul class="no-style-list">
+                    {% for project in projectsInYear.items %}
+                    <li class="project-card container-fluid" style="color: {{project.dominantColor}};">
+                        <a class="project-card__inner row" href="{{ project.url }}">
+                            <div class="column-sm-6 project-card__excerpt">
+                                <p>{{ project.excerpt }}</p>
+                            </div>
+                            <div class="column-sm-6 project-card__meta">
+                                <h4>
+                                    <span class="blog-post-title display-heading white-text" href="">{{ project.title }}</span>
+                                </h4>
+                            </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
             </li>
             {% endfor %}
         </ul>

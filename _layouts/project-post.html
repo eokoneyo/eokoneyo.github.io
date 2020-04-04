@@ -2,10 +2,12 @@
 layout: default
 ---
 
-<div class="container">
+<div class="container ns-projects">
     <div class="project-post article">
-        <h2 class="page-heading"><span class="display-heading">{{page.title}}</span></h2>
-        <p class="project-post-meta">{{ page.date | date: "%b %-d, %Y" }} by <a href="#">{{page.author}}</a></p>
+        <h1 class="page-heading article__meta">
+            <span class="display-heading article__meta__title">{{page.title}}</span>
+            <span class="article__meta__publish-date">{{ page.date | date: "%b %-d, %Y" }}</span>
+        </h1>
         {{content}}
 
         {% unless page.category == null %}

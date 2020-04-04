@@ -4,11 +4,43 @@
 
 
   .project-card{
-    height: 400px;
-    background: $dark;
+    background-color: map-get($gray-pallet, mid);
+    transition: background-color .2s;
+
+    &:hover, &:focus, &:active {
+      background-color: currentColor;
+    }
+
+    &__inner {
+      display: flex;
+      min-height: mq-px2em(400px);
+    }
+
+    &__excerpt {
+      background: map_get($gray-pallet, dark);
+    }
+
+    &__meta{
+      align-self: flex-end;
+      text-align: right;
+    }
 
     > * {
       color: #fff;
+    }
+  }
+
+  .article {
+    &__meta {
+      display: flex;
+      flex-direction: column;
+
+      &__publish-date{
+        order: -1;
+        font-size: mq-px2em(5px);
+        text-transform: uppercase;
+        color: map-get($gray-pallet, light);
+      }
     }
   }
 }
