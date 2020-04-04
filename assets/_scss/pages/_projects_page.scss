@@ -2,10 +2,12 @@
   @extend .article-width;
   margin: 0 auto;
 
-
   .project-card{
-    background-color: map-get($gray-pallet, mid);
     transition: background-color .2s;
+
+    &:not(:last-of-type) {
+      margin-bottom: mq-px2em(50px);
+    }
 
     &:hover, &:focus, &:active {
       background-color: currentColor;
@@ -13,20 +15,53 @@
 
     &__inner {
       display: flex;
-      min-height: mq-px2em(400px);
+      min-height: mq-px2em(250px);
+
+      @include mq($from: medium) {
+        min-height: mq-px2em(400px);
+      }
     }
 
     &__excerpt {
-      background: map_get($gray-pallet, dark);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: baseline;
+      justify-content: space-around;
+      margin: mq-px2em(15px) 0;
+      @at-root .project-card:hover .project-card__excerpt {
+        > * {
+          color: $light;
+        }
+      }
+    }
+
+    &__stack {
+      li {
+        height: 30px;
+        width: 30px;
+        display: inline-block;
+
+        > svg {
+          height: 100%;
+          width: auto;
+        }
+      }
+    }
+
+    &__heading {
+      @extend .display-heading;
+      background-image: linear-gradient(transparent 55%, $light 45%);
+      text-shadow: -0.5px -0.5px 0 $light, 0.5px -0.5px 0 $light, -0.5px 0.5px 0 $light, 0.5px 0.5px 0 $light;
+
+      @at-root .project-card:not(:hover) .project-card__heading  {
+        background-image: linear-gradient(transparent 55%, currentColor 45%);
+      }
     }
 
     &__meta{
       align-self: flex-end;
       text-align: right;
-    }
-
-    > * {
-      color: #fff;
     }
   }
 
