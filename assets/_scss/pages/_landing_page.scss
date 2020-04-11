@@ -69,7 +69,8 @@
   .main-content {
     @include parallax-child(0);
     min-height: 100vh;
-    background: $antiquewhite;
+    box-shadow: rgba($primary, 0.15) 0 0 100px 0;
+    background: $light;
   }
 
   .social-icon {

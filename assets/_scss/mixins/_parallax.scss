@@ -24,7 +24,8 @@ $parallax-perspective: 1;
 
 @mixin parallax-child($z-distance: 0) {
   transform-origin: 100%;
+  position: sticky;
   position: -webkit-sticky;
-  top: 0px;
+  top: 0;
   transform: translateZ(#{$z-distance}px) scale(parallax-scale-factor($z-distance));
 }
