@@ -1,15 +1,18 @@
-$parallax-perspective: 1px;
+//@link https://keithclark.co.uk/articles/pure-css-parallax-websites/
+//@link https://developers.google.com/web/updates/2016/12/performant-parallaxing
+
+$parallax-perspective: 1;
 
 @function parallax-scale-factor($z-distance) {
-  @return ($parallax-perspective - $z-distance) / $parallax-perspective;
+  @return 1 + ($z-distance * -1) / $parallax-perspective;
 }
 
 @mixin parallax-init($perspective: $parallax-perspective) {
-  perspective: $perspective;
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-  overflow-scrolling: touch;
+  perspective: #{$perspective}px;
+  perspective-origin: 100%;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -19,6 +22,9 @@ $parallax-perspective: 1px;
   transform-style: preserve-3d;
 }
 
-@mixin parallax($z-distance: 0) {
+@mixin parallax-child($z-distance: 0) {
+  transform-origin: 100%;
+  position: -webkit-sticky;
+  top: 0px;
   transform: translateZ(#{$z-distance}px) scale(parallax-scale-factor($z-distance));
 }

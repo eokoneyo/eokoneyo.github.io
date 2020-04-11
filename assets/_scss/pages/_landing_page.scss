@@ -5,8 +5,13 @@
   @include parallax-init();
 
   .jumbotron {
-    @include parallax(-2);
-    height: calc(100vh - #{$header-height});
+    @include parallax-child(0);
+
+    @include mq($from: medium) {
+      @include parallax-child(-3);
+    }
+
+    height: 100vh;
 
     > .container {
       height: inherit;
@@ -56,18 +61,15 @@
         &--inner {
           height: 400px;
           width: 600px;
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
         }
       }
     }
   }
 
   .main-content {
-    @include parallax(0);
+    @include parallax-child(0);
     min-height: 100vh;
-    background: antiquewhite;
+    background: $antiquewhite;
   }
 
   .social-icon {

@@ -7,7 +7,9 @@
 <body class="no-scroll" data-preloader-displayed="false">
     {% include preloader-screen.html %}
     <main>
-        {% include nav.html %}
+        {% unless page.layout == "home" %}
+            {% include nav.html %}
+        {% endunless %}
         {{content}}
     </main>
     {% include scripts.html %}

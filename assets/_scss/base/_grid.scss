@@ -43,6 +43,8 @@
 }
 
 .column {
+  flex: 0 0 100%;
+  max-width: 100%;
 
   @at-root [class*='column-'] {
     padding-left: $grid-gutter-size;
