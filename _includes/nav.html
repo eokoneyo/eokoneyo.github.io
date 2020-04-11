@@ -1,7 +1,6 @@
 <!-- Navigation -->
-<header class="ns-header" id="header">
+<header class="ns-header {% if include.hide == 'true' %}ns-header--hidden{% endif %}" id="header">
     <div class="header container">
-        {% unless page.layout == "home" %}
         <div class="header__left">
             <a href="/" class="header__brand-image-wrapper">
               <span class="header__brand-image">
@@ -9,7 +8,6 @@
               </span>
             </a>
         </div>
-        {% endunless %}
         <div class="header__right">
             <ul class="menu-list">
                 {% for link in site.data.setup.headerLinks %}

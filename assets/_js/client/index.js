@@ -10,21 +10,19 @@ import initModals from './modal';
  *          path: SVGPathElement
  *     },
  *     header: HTMLElement,
- *     illustrationScroll : {
- *          illustrationWrapper: HTMLElement
- *          illustration: HTMLElement
- *          aboutCTA: HTMLElement
- *     }
+ *     landingPage: HTMLElement,
+ *     landingPageContent: HTMLElement
  * }}
  */
 const DOM = {};
 
 ((global) => {
+    const { document } = global;
+
     document.addEventListener('DOMContentLoaded', () => {
         DOM.preloader = global.document.querySelector('.preloader');
-        DOM.illustrationScroll = global.document.querySelector('#illustration-scroll-interaction');
         DOM.header = global.document.querySelector('#header');
-
+        DOM.landingPage = global.document.querySelector('.ns-landing-screen');
         DOM.preloader.shape = DOM.preloader.querySelector('svg.shape');
         DOM.preloader.path = DOM.preloader.shape.querySelector('path');
         initPreloader(global, DOM.preloader);
@@ -32,6 +30,14 @@ const DOM = {};
         initModals(global);
 
         initSearch(global);
+
+        // function to handle header transition on landing page
+        if (DOM.landingPage) {
+            (async () => {
+                const { default: animateHeader } = await import(/* webpackChunkName: "animate-landing-header" */ './animate-header');
+                animateHeader(global, DOM);
+            })();
+        }
 
         // Do page view tracking
         if (global.ga) {

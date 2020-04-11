@@ -23,6 +23,7 @@
     "@babel/runtime": "^7.9.2",
     "animejs": "^3.2.0",
     "core-js": "^3.6.5",
+    "lodash.throttle": "^4.1.1",
     "lunr": "^2.3.8",
     "normalize.css": "^8.0.1",
     "workbox-cacheable-response": "^5.1.2",
