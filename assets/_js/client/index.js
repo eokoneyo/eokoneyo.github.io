@@ -6,14 +6,14 @@ import initModals from './modal';
  * @description Stores references to DOM elements
  * @type {{
  *     preloader: {
- *          shape: {SVGElement}
- *          path: {SVGPathElement}
+ *          shape: SVGElement
+ *          path: SVGPathElement
  *     },
- *     header: {HTMLElement},
+ *     header: HTMLElement,
  *     illustrationScroll : {
- *          illustrationWrapper: {HTMLElement}
- *          illustration: {HTMLElement}
- *          aboutCTA: {HTMLElement}
+ *          illustrationWrapper: HTMLElement
+ *          illustration: HTMLElement
+ *          aboutCTA: HTMLElement
  *     }
  * }}
  */
@@ -28,18 +28,6 @@ const DOM = {};
         DOM.preloader.shape = DOM.preloader.querySelector('svg.shape');
         DOM.preloader.path = DOM.preloader.shape.querySelector('path');
         initPreloader(global, DOM.preloader);
-
-        if (DOM.illustrationScroll) {
-            (async () => {
-                DOM.illustrationScroll.illustrationWrapper = DOM.illustrationScroll.querySelector('#illustration-wrapper');
-                DOM.illustrationScroll.illustration = DOM.illustrationScroll.querySelector('#illustration');
-                DOM.illustrationScroll.aboutCTA = DOM.illustrationScroll.querySelector('#info-cta');
-
-                const { default: handleLandingAnimation } = await import(/* webpackChunkName: "animate-landing-page" */ './animate-landing-page');
-
-                handleLandingAnimation(global, DOM.header, DOM.illustrationScroll);
-            })();
-        }
 
         initModals(global);
 

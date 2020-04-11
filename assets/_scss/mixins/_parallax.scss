@@ -1,0 +1,24 @@
+$parallax-perspective: 1px;
+
+@function parallax-scale-factor($z-distance) {
+  @return ($parallax-perspective - $z-distance) / $parallax-perspective;
+}
+
+@mixin parallax-init($perspective: $parallax-perspective) {
+  perspective: $perspective;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;
+}
+
+@mixin parallax-group() {
+  position: relative;
+  height: 100vh;
+  transform-style: preserve-3d;
+}
+
+@mixin parallax($z-distance: 0) {
+  transform: translateZ(#{$z-distance}px) scale(parallax-scale-factor($z-distance));
+}

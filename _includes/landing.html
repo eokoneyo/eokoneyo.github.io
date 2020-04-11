@@ -1,69 +1,73 @@
 <div class="ns-landing-screen">
-    <div class="container" id="illustration-scroll-interaction">
-        <div class="row main-content" id="illustration-wrapper">
-            <div class="column-md-6 main-content__side-photo">
-                <div class="main-content__side-photo--inner" id="illustration">
-                    {% include vectors/horse-rider.svg %}
+    <div class="jumbotron">
+        <div class="container" id="illustration-scroll-interaction">
+            <div class="row jumbotron__inner" id="illustration-wrapper">
+                <div class="column-md-6 jumbotron__side-photo">
+                    <div class="jumbotron__side-photo--inner" id="illustration">
+                        {% include vectors/horse-rider.svg %}
+                    </div>
                 </div>
-            </div>
-            <div class="column-md-6" id="info-cta">
-                <h1 class="main-content__title">{{site.data.setup.title}}</h1>
-                <p class="main-content__tagline">{{site.data.setup.tagline}}</p>
-                <p class="main-content__socials">
-                    <span>connect with me:</span>
-                    {% for item in site.data.setup.socials %}
-                    <a class="social-icon--link {{ icon.class }}" href="{{ item.url }}" target="_blank" rel="noopener">
-                        <span class="social-icon--title">{{ item.title }}</span>
-                    </a>
-                    {% endfor %}
-                </p>
+                <div class="column-md-6" id="info-cta">
+                    <h1 class="jumbotron__title">{{site.data.setup.title}}</h1>
+                    <p class="jumbotron__tagline">{{site.data.setup.tagline}}</p>
+                    <p class="jumbotron__socials">
+                        <span>connect with me:</span>
+                        {% for item in site.data.setup.socials %}
+                        <a class="social-icon--link {{ icon.class }}" href="{{ item.url }}" target="_blank" rel="noopener">
+                            <span class="social-icon--title">{{ item.title }}</span>
+                        </a>
+                        {% endfor %}
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            {% assign categories = site.posts | group_by: 'category' %}
-            {% for category in categories %}
+    <div class="main-content">
+        <div class="container">
+            <div class="row">
+                {% assign categories = site.posts | group_by: 'category' %}
+                {% for category in categories %}
                 {% if category.name == "projects" %}
-                    <section class="column-sm-12">
-                        {% assign projects = category.items %}
-                        <h2 class="page-heading"><span class="display-heading">Projects</span></h2>
-                        <ul class="no-style-list">
-                            {% for project in projects limit:3 %}
-                            <li>
-                                <a class="blog-post-title" href="{{ project.url }}">
-                                    <h5>{{ project.title }}</h5>
-                                </a>
-                                <span class="blog-post-meta">{{ project.date | date: "%b %-d, %Y" }}</span>
-                                <p>{{ project.excerpt }}</p>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                        <a class="view-more-link" href="/{{category.name}}">see more</a>
-                     </section>
+                <section class="column-sm-12">
+                    {% assign projects = category.items %}
+                    <h2 class="page-heading"><span class="display-heading">Projects</span></h2>
+                    <ul class="no-style-list">
+                        {% for project in projects limit:3 %}
+                        <li>
+                            <a class="blog-post-title" href="{{ project.url }}">
+                                <h5>{{ project.title }}</h5>
+                            </a>
+                            <span class="blog-post-meta">{{ project.date | date: "%b %-d, %Y" }}</span>
+                            <p>{{ project.excerpt }}</p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <a class="view-more-link" href="/{{category.name}}">see more</a>
+                </section>
                 {% endif %}
                 {% if category.name == "blog" %}
-                    <section class="column-sm-12 article-width">
-                        {% assign posts = category.items %}
-                        <h2 class="page-heading"><span class="display-heading">Writings</span></h2>
-                        <ul class="no-style-list">
-                            {% for post in posts limit:3 %}
-                            <li>
-                                <article class="article-preview">
-                                    <h5 class="article-preview__headline">
-                                        <a href="{{ post.url}}">{{ post.title }}</a>
-                                        <span role="separator"></span>
-                                        <time datetime="{{ post.date | date: '%Y-%-d-%m' }}">{{ post.date | date: "%b %-d, %Y" }}</time>
-                                    </h5>
-                                    <p class="article-preview__excerpt">{{ post.excerpt }}</p>
-                                </article>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                        <a class="view-more-link" href="/{{category.name}}">see more</a>
-                    </section>
+                <section class="column-sm-12 article-width">
+                    {% assign posts = category.items %}
+                    <h2 class="page-heading"><span class="display-heading">Writings</span></h2>
+                    <ul class="no-style-list">
+                        {% for post in posts limit:3 %}
+                        <li>
+                            <article class="article-preview">
+                                <h5 class="article-preview__headline">
+                                    <a href="{{ post.url}}">{{ post.title }}</a>
+                                    <span role="separator"></span>
+                                    <time datetime="{{ post.date | date: '%Y-%-d-%m' }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+                                </h5>
+                                <p class="article-preview__excerpt">{{ post.excerpt }}</p>
+                            </article>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <a class="view-more-link" href="/{{category.name}}">see more</a>
+                </section>
                 {% endif %}
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>

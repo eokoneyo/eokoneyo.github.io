@@ -1,11 +1,22 @@
 @import '~sass-mq';
+@import '../mixins/parallax';
 
 .ns-landing-screen {
+  @include parallax-init();
 
-  .main-content {
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+  .jumbotron {
+    @include parallax(-2);
+    height: calc(100vh - #{$header-height});
+
+    > .container {
+      height: inherit;
+    }
+
+    &__inner {
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
 
     &__title {
       position: relative;
@@ -53,6 +64,12 @@
     }
   }
 
+  .main-content {
+    @include parallax(0);
+    min-height: 100vh;
+    background: antiquewhite;
+  }
+
   .social-icon {
     &--link {
       padding: 0 10px;
@@ -67,22 +84,5 @@
 
   section {
     margin-bottom: 50px;
-  }
-
-  @at-root [data-preloader-displayed='true'] {
-    #illustration-scroll-interaction {
-      position: relative;
-      height: calc(2 * 100vh);
-    }
-
-    .main-content#illustration-wrapper {
-      @extend .container;
-      left: 0;
-      position: fixed;
-
-      @include mq($from: medium) {
-       left: initial;
-      }
-    }
   }
 }
