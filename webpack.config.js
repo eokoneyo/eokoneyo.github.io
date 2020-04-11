@@ -10,17 +10,26 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { InjectManifest } = require('workbox-webpack-plugin');
 
-const log = getLogger({ name: 'webpack-batman' });
+const logger = getLogger({ name: 'webpack-batman' });
 
 let jekyllConfigFileContents;
 
 try {
     jekyllConfigFileContents = fs.readFileSync('./_config.yml', 'utf-8');
 } catch (e) {
-    log.warn(e);
+    logger.warn(e);
     process.exit(1);
 }
 
+/**
+ * @type {{
+ *   entry: string[]
+ *   cache_directory: string
+ *   output: {
+ *     path: string
+ *   }
+ * }}
+ */
 const { webpack: jekyllWebpackConfig } = yaml.safeLoad(jekyllConfigFileContents);
 
 module.exports = {
@@ -124,6 +133,8 @@ module.exports = {
                 await cpy(path.join(jekyllWebpackConfig.cache_directory, 'manifest.json'), path.join('_data') , {
                     rename: () => 'webpack-manifest.json'
                 });
+
+                logger.debug('Jekyll injected with build meta...');
             });
         }
     ]
