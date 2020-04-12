@@ -7,7 +7,7 @@
   opacity: 1;
   transition: opacity .2s;
   background: rgba($light, 90%);
-  box-shadow: $shadow-sm;
+  box-shadow: $shadow-xs;
   transform: translateZ(0);
 
   &--hidden {

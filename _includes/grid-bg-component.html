@@ -1,0 +1,11 @@
+{% assign rowsDisplayed = include.rowsDisplayed %}
+<div class="grid-bg-fx" aria-hidden="true">
+    <div class="{% if include.fluid %} container-fluid {% else %} container  {% endif %}">
+        <div class="grid-bg-fx__grid">
+            {% for i in (1..rowsDisplayed) %}
+                <div class="column-{{ 12 | divided_by: rowsDisplayed }} gap-sm"></div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+

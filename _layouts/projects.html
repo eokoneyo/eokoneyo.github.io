@@ -5,9 +5,9 @@ layout: default
 <div class="container">
     <div class="ns-projects">
         {% assign projectsByYear = paginator.posts | group_by_exp:"post", "post.commission_year" %}
-        <h2 class="page-heading">
+        <h1 class="page-heading">
             <span class="display-heading">{{page.title}}</span>
-        </h2>
+        </h1>
         <ul class="no-style-list">
             <li></li>
             {% for projectsInYear in projectsByYear %}
@@ -41,3 +41,4 @@ layout: default
         </ul>
     </div>
 </div>
+{% include grid-bg-component.html rowsDisplayed=6 %}

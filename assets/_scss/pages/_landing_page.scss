@@ -18,9 +18,13 @@
     }
 
     &__inner {
-      align-items: center;
+      align-content: center;
       justify-content: center;
       height: 100%;
+
+       > * {
+         align-self: center;
+       }
     }
 
     &__title {
@@ -43,24 +47,33 @@
     }
 
     &__side-photo {
+      @include mq($from: medium) {
+        order: 2;
+      }
+
       &--inner {
         width: inherit;
         height: 200px;
 
-        > svg {
-          width: 100%;
-          height: 100%;
-        }
-      }
-    }
-
-    @include mq($from: medium) {
-      &__side-photo {
-        order: 2;
-
-        &--inner {
+        @include mq($from: medium) {
           height: 400px;
           width: 600px;
+        }
+
+        @include mq($from: large) {
+          height: 450px;
+        }
+
+        @include mq($from: xlarge) {
+          height: 500px;
+        }
+
+        > svg {
+          height: 100%;
+
+          @include mq($from: medium) {
+            width: 100%;
+          }
         }
       }
     }
