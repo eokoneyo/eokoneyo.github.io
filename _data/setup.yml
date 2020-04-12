@@ -1,12 +1,12 @@
 #site settings
 title: "Eyo O. Eyo"
-seo_description: "Eyo O. Eyo is a Frontend Engineer, currently based in Berlin."
+seo_description: "I'm Eyo O. Eyo a Frontend Engineer born in Nigeria, currently living in Berlin."
 tagline: "Faber est Suae Quisque Fortunae"
 description: >
   Frontend Engineer, with a strong focus in building performant web experiences that scale.
   Originally from Nigeria, I currently live in Berlin and work at HelloFresh.
 
-brandText: EOE
+brandText: E.O.E.
 
 headerLinks:
   - title: Writing

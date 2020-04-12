@@ -2,10 +2,8 @@
 <header class="ns-header {% if include.hide == 'true' %}ns-header--hidden{% endif %}" id="header">
     <div class="header container">
         <div class="header__left">
-            <a href="/" class="header__brand-image-wrapper">
-              <span class="header__brand-image">
-                  {% include vectors/horse-rider.svg %}
-              </span>
+            <a href="/" class="header__brand-wrapper">
+              <span class="header__brand-text">{{site.data.setup.brandText}}</span>
             </a>
         </div>
         <div class="header__right">

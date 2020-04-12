@@ -27,20 +27,28 @@
       margin-left: auto;
     }
 
-    &__brand-image {
+    &__brand {
       &-wrapper {
         display: block;
-        width: 60px;
         height: 100%;
         padding: 10px;
       }
 
-      color: $light;
-      height: inherit;
-      width: 100%;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
+      &-image, &-text {
+        height: inherit;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &-image{
+        color: $light;
+        width: 60px;
+      }
+
+      &-text {
+        color: $primary;
+      }
     }
   }
 

@@ -68,6 +68,7 @@
 
   .main-content {
     @include parallax-child(0);
+    padding-top: mq-px2em($header-height);
     min-height: 100vh;
     box-shadow: rgba($primary, 0.15) 0 0 100px 0;
     background: $light;
