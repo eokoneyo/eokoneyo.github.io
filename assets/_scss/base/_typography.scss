@@ -13,6 +13,13 @@
 $primary-font: 'Ovo', Georgia,"Times New Roman",Times,serif;
 $secondary-font: $primary-font;
 
+body {
+  font-family: $primary-font;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 // Font weights
 $normal-font-weight: 400;
 $medium-font-weight: 500;
@@ -26,13 +33,6 @@ $modularscale: (
 
 $headings: 6;
 $modularScaleToCountDownFrom: 6;
-
-body {
-  font-family: $primary-font;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
 h1,
 h2,

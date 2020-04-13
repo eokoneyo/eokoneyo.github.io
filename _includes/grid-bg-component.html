@@ -1,9 +1,14 @@
-{% assign rowsDisplayed = include.rowsDisplayed %}
+{% if include.lg-rows > include.md-rows %}
+{% assign rowsDisplayed = include.lg-rows %}
+{% assign smHideFrom = include.md-rows %}
+{% elsif include.rows %}
+{% assign rowsDisplayed = include.rows %}
+{% endif %}
 <div class="grid-bg-fx" aria-hidden="true">
-    <div class="{% if include.fluid %} container-fluid {% else %} container  {% endif %}">
+    <div class="{% if include.fluid %}grid-bg-fx__container-fluid{% else %}grid-bg-fx__container{% endif %}">
         <div class="grid-bg-fx__grid">
             {% for i in (1..rowsDisplayed) %}
-                <div class="column-{{ 12 | divided_by: rowsDisplayed }} gap-sm"></div>
+                <div class="column-{{ 12 | divided_by: rowsDisplayed }} {% if i > smHideFrom %}hide-md-down{% endif %}"></div>
             {% endfor %}
         </div>
     </div>
