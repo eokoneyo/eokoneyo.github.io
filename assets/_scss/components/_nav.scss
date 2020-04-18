@@ -5,16 +5,15 @@
   top: 0;
   z-index: $zindex-header;
   opacity: 1;
+  visibility: visible;
   pointer-events: all;
   transition: opacity .2s;
-  background: rgba($light, 90%);
-  box-shadow: $shadow-xs;
+  background: rgba($light, 0.6);
   transform: translateZ(0);
 
   &--hidden {
     opacity: 0;
-    pointer-events: none;
-    display: none;
+    visibility: hidden;
   }
 
   .header {

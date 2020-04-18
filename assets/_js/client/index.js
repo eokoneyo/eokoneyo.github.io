@@ -10,8 +10,7 @@ import initModals from './modal';
  *          path: SVGPathElement
  *     },
  *     header: HTMLElement,
- *     landingPage: HTMLElement,
- *     landingPageContent: HTMLElement
+ *     landingPage: HTMLElement
  * }}
  */
 const DOM = {};
@@ -35,7 +34,7 @@ const DOM = {};
         if (DOM.landingPage) {
             (async () => {
                 const { default: animateHeader } = await import(/* webpackChunkName: "animate-landing-header" */ './animate-header');
-                animateHeader(global, DOM);
+                animateHeader(global, { header: DOM.header, landingPage: DOM.landingPage });
             })();
         }
 
