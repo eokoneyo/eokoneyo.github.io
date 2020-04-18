@@ -5,6 +5,7 @@
   top: 0;
   z-index: $zindex-header;
   opacity: 1;
+  pointer-events: all;
   transition: opacity .2s;
   background: rgba($light, 90%);
   box-shadow: $shadow-xs;
@@ -12,6 +13,7 @@
 
   &--hidden {
     opacity: 0;
+    pointer-events: none;
     display: none;
   }
 

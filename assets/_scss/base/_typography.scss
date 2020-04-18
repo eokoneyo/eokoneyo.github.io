@@ -1,5 +1,40 @@
 @import '~modularscale-sass';
 @import '~sass-mq';
+@import '../utils/fibonacci';
+
+// Font weights
+$normal-font-weight: 400;
+$medium-font-weight: 500;
+$bold-font-weight: 600;
+
+/* Base Vertical Spacing */
+$space: 1.6;
+
+/* Vertical Spacing - multiplier */
+$vspace: calc(#{$space} * 1rem);
+$vspace-0: calc(#{3 * $space} * 1rem);
+$vspace-1: calc(#{2 * $space} * 1rem);
+$vspace-2: calc(#{1.5 * $space} * 1rem);
+$vspace-3: calc(#{0.5 * $space} * 1rem);
+
+// set type scale here
+$modularscale: (
+        base: 16px,
+        map_get($grid-breakpoints, small) : (
+                ratio: 1.05,
+        ),
+        map_get($grid-breakpoints, medium) : (
+                ratio: 1.1,
+        ),
+        map_get($grid-breakpoints, xlarge) : (
+                ratio: 1.25,
+        )
+);
+
+$headings: 6;
+
+// used for typography scale, see https://www.layoutgridcalculator.com/typographic-scale/
+$modularScaleToCountDownFrom: fibonacci($headings);
 
 // Font-faces
 @font-face {
@@ -10,8 +45,12 @@
   font-display: swap;
 }
 
-$primary-font: 'Ovo', Georgia,"Times New Roman",Times,serif;
+$primary-font: 'Ovo', Georgia, "Times New Roman", Times, serif;
 $secondary-font: $primary-font;
+
+html {
+  font-size: 16px;
+}
 
 body {
   font-family: $primary-font;
@@ -20,46 +59,58 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-// Font weights
-$normal-font-weight: 400;
-$medium-font-weight: 500;
-$bold-font-weight: 600;
-
-// set type scale here
-$modularscale: (
-  base: 1em,
-  ratio: 1.3,
-);
-
-$headings: 6;
-$modularScaleToCountDownFrom: 6;
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0 0 35px;
-  font-family: $secondary-font;
-  font-weight: $medium-font-weight;
-  letter-spacing: 1px;
-}
-
 @for $i from 1 through $headings {
   h#{$i} {
-    font-size: ms($modularScaleToCountDownFrom - $i);
+    @include ms-respond(font-size, nth($modularScaleToCountDownFrom, length($modularScaleToCountDownFrom) - $i));
+    font-family: $secondary-font;
+    font-weight: $medium-font-weight;
+    letter-spacing: mq-px2em(1px);
   }
+}
+
+body, p {
+  @include ms-respond(font-size, 0);
+}
+
+h1 {
+  margin: $vspace-1 0 $vspace-1 0;
+  line-height: 1em;
+}
+
+h2 {
+  margin: $vspace-2 0 $vspace-3 0;
+  line-height: 1em;
+}
+
+h3 {
+  margin: $vspace-1 0 $vspace-3 0;
+  line-height: 1em;
+}
+
+h4, h5, h6 {
+  margin: $vspace-2 0 $vspace-3 0;
+  line-height: $vspace;
 }
 
 p {
   margin: 0 0 25px;
-  font-size: ms(0);
-  line-height: 1.5;
+  line-height: $vspace;
+}
 
-  @include mq($from: medium) {
-    margin: 0 0 35px;
-    font-size: ms(1);
-    line-height: 1.6;
-  }
+blockquote {
+  @include ms-respond(font-size, 1);
+  font-style: italic;
+}
+
+.caption_ts {
+  @include ms-respond(font-size, -1);
+  font-style: italic;
+}
+
+.endnote_ts {
+  @include ms-respond(font-size, -1);
+}
+
+.footnote_ts {
+  @include ms-respond(font-size, -2);
 }
