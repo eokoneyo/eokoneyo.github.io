@@ -30,7 +30,7 @@ try {
  *   }
  * }}
  */
-const { webpack: jekyllWebpackConfig } = yaml.safeLoad(jekyllConfigFileContents);
+const { webpack: jekyllWebpackConfig, search_data: searchData } = yaml.safeLoad(jekyllConfigFileContents);
 
 module.exports = {
     mode: process.env.JEKYLL_ENV  === 'production' ? 'production' : 'development',
@@ -122,6 +122,10 @@ module.exports = {
                     return { manifest, warnings: [] };
                 },
             ],
+        }),
+        new webpack.DefinePlugin({
+            // define value of path to search data from _config.yml for use in serviceworker
+            __SEARCH_DATA_PATH__ : JSON.stringify(path.join(`/${searchData.output_path}`, searchData.filename))
         }),
         function provideMetaForJekyll() {
             this.plugin('done', async ({ hash: buildHash }) => {

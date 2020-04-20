@@ -16,6 +16,10 @@ webpack:
     path: "assets/"
     service_worker: true
 
+search_data:
+  filename: "search-data.json"
+  output_path: "assets/"
+
 permalink: pretty
 
 pagination:

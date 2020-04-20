@@ -1,3 +1,4 @@
+/* global __SEARCH_DATA_PATH__ */
 import lunr from 'lunr';
 import { matchPrecache, precacheAndRoute } from 'workbox-precaching';
 
@@ -7,7 +8,7 @@ import { matchPrecache, precacheAndRoute } from 'workbox-precaching';
  */
 export const precacheSearchData = (versionNumber = null) =>
   precacheAndRoute([{
-    url: '/assets/site.json',
+    url: __SEARCH_DATA_PATH__,
     revision: versionNumber,
   }]);
 
@@ -17,7 +18,7 @@ export const precacheSearchData = (versionNumber = null) =>
  * @returns {Promise<*[]|*>}
  */
 const setupListenerForSearchRequest = async (searchText) => {
-  const response = await matchPrecache('/assets/site.json');
+  const response = await matchPrecache(__SEARCH_DATA_PATH__);
 
   if (response.ok) {
     const data = await response.json();
