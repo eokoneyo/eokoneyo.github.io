@@ -7,7 +7,7 @@ class GenerateSearchData
       self.write_search_data(site)
     end
 
-    Jekyll::Hooks.register :site, :post_write do |site|
+    Jekyll::Hooks.register :site, :post_write do
       self.unlink_tempfile
     end
   end

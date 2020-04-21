@@ -12,25 +12,31 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 
 const logger = getLogger({ name: 'webpack-batman' });
 
+/**
+ * @type {{
+ *   webpack: {
+ *      entry: string[]
+ *      cache_directory: string
+ *      output: {
+ *          path: string
+ *      }
+ *   },
+ *   searchData: {
+ *      filename: string
+ *      output_path: string
+ *   }
+ * }}
+ */
 let jekyllConfigFileContents;
 
 try {
-    jekyllConfigFileContents = fs.readFileSync('./_config.yml', 'utf-8');
+    jekyllConfigFileContents = yaml.safeLoad(fs.readFileSync('./_config.yml', 'utf-8'));
 } catch (e) {
     logger.warn(e);
     process.exit(1);
 }
 
-/**
- * @type {{
- *   entry: string[]
- *   cache_directory: string
- *   output: {
- *     path: string
- *   }
- * }}
- */
-const { webpack: jekyllWebpackConfig, search_data: searchData } = yaml.safeLoad(jekyllConfigFileContents);
+const { webpack: jekyllWebpackConfig, search_data: searchData } = jekyllConfigFileContents;
 
 module.exports = {
     mode: process.env.JEKYLL_ENV  === 'production' ? 'production' : 'development',
@@ -72,6 +78,7 @@ module.exports = {
     devtool: process.env.JEKYLL_ENV  === 'production' ?  false : 'source-map',
     optimization: {
         noEmitOnErrors: true,
+        usedExports: true,
         splitChunks: {
             cacheGroups: {
                 commons: {
@@ -115,8 +122,9 @@ module.exports = {
                     const assetsPrefix = jekyllWebpackConfig.output.path;
 
                     manifestEntries.reduce((acc, entry) => {
-                        const modifiedEntry = {...entry, url: assetsPrefix + entry.url};
-                        return acc.concat(modifiedEntry);
+                        const modifiedEntry = {...entry, url: path.join(assetsPrefix, entry.url)};
+                        acc.push(modifiedEntry);
+                        return acc;
                     }, manifest);
 
                     return { manifest, warnings: [] };
@@ -125,10 +133,10 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             // define value of path to search data from _config.yml for use in serviceworker
-            __SEARCH_DATA_PATH__ : JSON.stringify(path.join(`/${searchData.output_path}`, searchData.filename))
+            __SEARCH_DATA_PATH__ : JSON.stringify(path.join('/', searchData.output_path, searchData.filename))
         }),
         function provideMetaForJekyll() {
-            this.plugin('done', async ({ hash: buildHash }) => {
+            this.hooks.done.tap('provide-meta-for-jekyll', async ({ hash: buildHash }) => {
                 // Save build hash for use within the app
                 fs.writeFileSync(path.join(__dirname, "_data", "version.yml"), `hash: "${buildHash}"`);
 
