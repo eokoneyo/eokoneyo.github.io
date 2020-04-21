@@ -41,7 +41,7 @@ class GenerateSearchData
 
     file_dest = File.join(site.dest, output_path, filename)
 
-    site.static_files << Jekyll::TranspiledStaticFile.new(site, '', File.dirname(@f.path), File.basename(@f.path), file_dest)
+    site.static_files << Jekyll::ControlledStaticFile.new(site, "", File.dirname(@f.path), File.basename(@f.path), file_dest)
   end
 
   def unlink_tempfile
