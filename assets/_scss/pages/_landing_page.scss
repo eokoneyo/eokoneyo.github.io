@@ -1,5 +1,6 @@
 @import '~sass-mq';
 @import '../mixins/parallax';
+@import '../mixins/distort-filter-effect';
 
 .ns-landing-screen {
   @include parallax-init();
@@ -73,6 +74,14 @@
 
           @include mq($from: medium) {
             width: 100%;
+          }
+        }
+      }
+
+      #horse-rider {
+        > g  {
+          @include mq($from: large) {
+            @include distort-filter-effect($animateInfinitely: true);
           }
         }
       }
