@@ -7,6 +7,7 @@ import { SEARCH_REQ } from '../constants';
  *   form: {HTMLElement}
  *   searchInputField: {HTMLElement}
  *   searchResultsContainer: {HTMLElement}
+ *   loadingIndicator: {HTMLElement}
  * }}
  */
 const searchDOM = {};
@@ -35,20 +36,43 @@ const searchResultItem = (result) => `
  */
 const searchRequest = (searchText) => sendWorkerMessage({ command: SEARCH_REQ, key: searchText });
 
+const setLoadingIndicator = () => {
+
+  if(searchDOM.loadingIndicator.length) return null;
+
+  const loadingIndicator = document.createElement('div');
+  loadingIndicator.className = 'js-loading-indicator';
+  loadingIndicator.textContent = 'Loading...';
+  searchDOM.searchResultsContainer.appendChild(loadingIndicator);
+
+  // make a reference for the just created loading indicator
+  searchDOM.loadingIndicator = searchDOM.searchResultsContainer.querySelector('.js-loading-indicator');
+};
+
 /**
  *
- * @param searchResult
+ * @param {array} searchResult
  */
 const displaySearchResult = ({ data: searchResult }) => {
   if(!searchResult.length) {
     throw new Error('no results!');
   }
 
-  searchDOM.searchResultsContainer.innerHTML =  searchResult.map(result => {
-    return `<li>${searchResultItem(result)}</li>`
-  }).join(' ');
+  const fragment = document.createDocumentFragment();
+
+  searchResult.forEach(result => {
+    const li = document.createElement('li');
+    li.innerHTML = searchResultItem(result);
+    fragment.appendChild(li);
+  });
+
+  searchDOM.searchResultsContainer.replaceChild(fragment, searchDOM.loadingIndicator);
 };
 
+/**
+ *
+ * @param args
+ */
 const displaySearchError = (...args) => console.log(...args);
 
 /**
@@ -66,7 +90,10 @@ const initSearch = (global) => {
     evt.preventDefault();
     const searchText = searchDOM.searchInputField.value;
 
-    if(!searchText) return null;
+    if(!searchText || searchText.length < 3) return null;
+
+    // Set loading visual cue
+    setLoadingIndicator();
 
     return searchRequest(searchText)
       .then(displaySearchResult)
@@ -74,7 +101,7 @@ const initSearch = (global) => {
   };
 
   searchDOM.form.addEventListener('submit', handleSearch);
-  searchDOM.searchInputField.addEventListener('blur', handleSearch);
+  searchDOM.searchInputField.addEventListener('input', handleSearch);
 };
 
 export default initSearch;

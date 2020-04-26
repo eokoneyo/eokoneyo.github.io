@@ -37,10 +37,6 @@
       vertical-align: middle;
       font-size: var(--expandable-search-icon-size); // icon size
     }
-
-    &:focus {
-      outline: none;
-    }
   }
 
   &__input {
