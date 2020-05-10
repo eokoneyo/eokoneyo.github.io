@@ -101,14 +101,14 @@
     }
 
     .selected-categories {
-      margin-bottom: mq-px2em(100px);
+      &:last-of-type {
+        margin-bottom: mq-px2em(150px);
+      }
     }
 
     .selected-category {
 
-      &--blog {
-
-      }
+      &--blog {}
 
       &--projects {
         position: relative;
@@ -117,7 +117,7 @@
           display: flex;
           position: relative;
           margin-bottom: 20px;
-          height: 350px;
+          height: mq-px2em(300px);
 
           figure{
             margin: 0;

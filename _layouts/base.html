@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include head.html %}
+    {% include analytics.html %}
+</head>
+<body class="no-scroll" data-preloader-displayed="false">
+    {% include preloader-screen.html %}
+    <main>
+        {% unless page.layout == "home" %}
+            {% include nav.html %}
+        {% endunless %}
+        {{content}}
+    </main>
+    {% include modals-index.html %}
+    {% include scripts.html %}
+    {% include service-worker-installer.html %}
+</body>
+</html>

@@ -6,15 +6,14 @@
                 <h5>say hi elsewhere!</h5>
                 <ul class="footer-socials">
                     {% for item in site.data.setup.socials %}
-                    <li>
-                        <a class="social-icon--link {{ icon.class }}" href="{{ item.url }}" target="_blank" rel="noopener">
+                    <li class="social-icon--link {{ icon.class }}">
+                        <a class="" href="{{ item.url }}" target="_blank" rel="noopener">
                             <span class="social-icon--title">{{ item.title }}</span>
                         </a>
                     </li>
                     {% endfor %}
                 </ul>
             </div>
-            <div class="column-sm-6"></div>
         </div>
     </div>
     <div class="blog-footer">
@@ -27,9 +26,9 @@
                     </div>
                 </div>
                 <div class="column-sm-6">
-                    <p>
+                    <div>
                         <a class="page-scroll" href="#page-top">Back to top</a>
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>

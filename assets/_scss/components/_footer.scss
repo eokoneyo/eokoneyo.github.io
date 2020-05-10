@@ -12,22 +12,32 @@
     @extend .container;
   }
 
-  .socials {
+  .footer-socials {
     @extend .no-style-list;
 
-    li {
-      margin: 10px 0;
+    margin: 10px 0;
 
-      .social-icon--link{
-        padding-left: 0;
-      }
+    .social-icon {
+      &--link {
+        padding: 0 0 mq-px2em(10px) 0;
 
-      @include mq($from: large) {
-        display: inline-block;
-        margin: 0 10px 0 0;
+        &:hover, &:focus {
+          text-decoration: underline;
+        }
+
+        a {
+          padding: 0 8px 0 0;
+        }
+
+        @include mq($from: large) {
+          padding: 0 mq-px2em(10px) 0 0;
+          display: inline-block;
+          margin: 0 10px 0 0;
+        }
       }
     }
   }
+
 
   .blog-footer {
     padding: mq-px2em(20px) 0;
