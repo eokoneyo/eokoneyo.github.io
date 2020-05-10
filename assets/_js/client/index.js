@@ -5,10 +5,6 @@ import initModals from './modal';
 /**
  * @description Stores references to DOM elements
  * @type {{
- *     preloader: {
- *          shape: SVGElement
- *          path: SVGPathElement
- *     },
  *     header: HTMLElement,
  *     landingPage: HTMLElement
  * }}
@@ -19,16 +15,15 @@ const DOM = {};
     const { document } = global;
 
     document.addEventListener('DOMContentLoaded', () => {
-        DOM.preloader = global.document.querySelector('.preloader');
-        DOM.header = global.document.querySelector('#header');
-        DOM.landingPage = global.document.querySelector('.ns-landing-screen');
-        DOM.preloader.shape = DOM.preloader.querySelector('svg.shape');
-        DOM.preloader.path = DOM.preloader.shape.querySelector('path');
-        initPreloader(global, DOM.preloader);
+
+        initPreloader(global);
 
         initModals(global);
 
         initSearch(global);
+
+        DOM.header = global.document.querySelector('#header');
+        DOM.landingPage = global.document.querySelector('.ns-landing-screen');
 
         // function to handle header transition on landing page
         if (DOM.landingPage) {

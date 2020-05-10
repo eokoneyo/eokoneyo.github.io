@@ -17,7 +17,15 @@ headerLinks:
 socials:
   - title: LinkedIn
     url: "https://www.linkedin.com/in/eyo-eyo-9a027a96/"
+    featured: true
   - title: GitHub
     url: "https://github.com/eokoneyo"
+    featured: true
+  - title: StackOverflow
+    url: "https://stackoverflow.com/users/4398075/eyo-okon-eyo?tab=profile"
+    featured: false
+  - title: Twitter
+    url: "https://twitter.com/Maziey93"
+    featured: false
 
 google_analytics: "UA-103572320-2"

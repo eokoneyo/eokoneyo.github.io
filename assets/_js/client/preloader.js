@@ -1,16 +1,30 @@
 import anime from 'animejs';
 
+
+/**
+ *
+ * @type {{
+ *   preloader: HTMLElement,
+ *   shape: SVGElement,
+ *   path:SVGElement,
+ * }}
+ */
+const preloaderDOM = {};
+
 /**
  *
  * @param global {Window}
- * @param preloaderDOM {import('./index').DOM.preloader}
  */
-const initPreloader = (global, preloaderDOM) => {
+const initPreloader = (global) => {
     const ANIMATION_DURATION = 2000;
     const HAS_SEEN_PRELOADER_COOKIE = 'eoe_has_seen_preloader';
     const HTML_PRELOADER_ATTRIBUTE = 'data-preloader-displayed';
 
     const { document } = global;
+
+    preloaderDOM.preloader = document.querySelector('.preloader');
+    preloaderDOM.shape = preloaderDOM.preloader.querySelector('svg.shape');
+    preloaderDOM.path = preloaderDOM.shape.querySelector('path');
 
     /**
      * @param name {string}
@@ -43,7 +57,7 @@ const initPreloader = (global, preloaderDOM) => {
             duration: animationDuration,
         })
             .add({
-                targets: preloaderDOM,
+                targets: preloaderDOM.preloader,
                 easing: 'easeInOutSine',
                 translateY: '-200vh',
             }, 0)
@@ -62,7 +76,7 @@ const initPreloader = (global, preloaderDOM) => {
 
     if (getCookieValue(HAS_SEEN_PRELOADER_COOKIE)) {
         // eslint-disable-next-line no-param-reassign
-        preloaderDOM.style.display = 'none';
+        preloaderDOM.preloader.style.display = 'none';
         document.body.style.overflow = 'auto';
         document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
     } else {

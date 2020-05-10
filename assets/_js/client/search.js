@@ -47,6 +47,8 @@ const setLoadingIndicator = () => {
 
   // make a reference for the just created loading indicator
   searchDOM.loadingIndicator = searchDOM.searchResultsContainer.querySelector('.js-loading-indicator');
+
+  return null;
 };
 
 /**

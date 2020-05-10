@@ -1,3 +1,45 @@
 .ns-footer {
-  background: map_get($gray-pallet, dark);
+  &:before {
+    content: '';
+    border-bottom: 1px solid map_get($gray-pallet, light);
+    border-top: 3px solid map_get($gray-pallet, light);
+    display: block;
+    height: 1px;
+    margin-top: 0;
+  }
+
+  &--short {
+    @extend .container;
+  }
+
+  .socials {
+    @extend .no-style-list;
+
+    li {
+      margin: 10px 0;
+
+      .social-icon--link{
+        padding-left: 0;
+      }
+
+      @include mq($from: large) {
+        display: inline-block;
+        margin: 0 10px 0 0;
+      }
+    }
+  }
+
+  .blog-footer {
+    padding: mq-px2em(20px) 0;
+    margin-top: mq-px2em(20px);
+    border-top: 1px solid lighten(map_get($gray-pallet, light), 30%);
+  }
+
+  .page-scroll {
+    display: block;
+
+    @include mq($from: large) {
+      text-align: right;
+    }
+  }
 }

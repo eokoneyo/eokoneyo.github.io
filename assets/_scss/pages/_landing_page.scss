@@ -43,10 +43,6 @@
       }
     }
 
-    &__tagline, &__socials {
-      font-family: $secondary-font;
-    }
-
     &__side-photo {
       @include mq($from: medium) {
         order: 2;
@@ -58,10 +54,10 @@
 
         @include mq($from: medium) {
           height: 400px;
-          width: 600px;
         }
 
         @include mq($from: large) {
+          width: 600px;
           height: 450px;
         }
 
@@ -90,10 +86,92 @@
 
   .main-content {
     @include parallax-child(0);
-    padding-top: mq-px2em($header-height);
-    min-height: 100vh;
     box-shadow: rgba($primary, 0.15) 0 0 100px 0;
     background: $light;
+    display: flex;
+    flex-direction: column;
+
+    @include mq($from: large) {
+      min-height: 100vh;
+    }
+
+    &__inner {
+      flex: 1 0 auto;
+      margin-top: mq-px2em($header-height);
+    }
+
+    .selected-categories {
+      margin-bottom: mq-px2em(100px);
+    }
+
+    .selected-category {
+
+      &--blog {
+
+      }
+
+      &--projects {
+        position: relative;
+
+        &__item {
+          display: flex;
+          position: relative;
+          margin-bottom: 20px;
+          height: 350px;
+
+          figure{
+            margin: 0;
+            align-self: center;
+            padding: mq-px2em(30px);
+
+            .media {
+              top: 0;
+              left: 0;
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              filter: url("#noise-1");
+              background: currentColor;
+              z-index: -1;
+            }
+          }
+
+          figcaption {
+            .title {
+              position: relative;
+              &:after {
+                content: '';
+                position: absolute;
+                width: mq-px2em(14px);
+                height: 1px;
+                background: currentColor;
+                top: 100%;
+                left: 0;
+                margin: 1rem 0 0 0;
+              }
+            }
+          }
+
+          @include mq($from: medium) {
+            margin-bottom: 0;
+            margin-right: 10px;
+          }
+
+          @include mq($from: large) {
+            margin-right: 20px;
+            min-height: mq-px2em(400px);
+
+            figure {
+              align-self: flex-end;
+            }
+          }
+
+          @include mq($from: xlarge) {
+            min-height: mq-px2em(500px);
+          }
+        }
+      }
+    }
   }
 
   .social-icon {

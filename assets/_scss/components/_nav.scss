@@ -1,6 +1,5 @@
 .ns-header {
-  position: sticky;
-  position: -webkit-sticky;
+  position: fixed;
   width: 100%;
   top: 0;
   z-index: $zindex-header;
@@ -19,7 +18,7 @@
   .header {
     display: flex;
     justify-content: space-between;
-    height: $header-height;
+    height: mq-px2em($header-height);
 
     &__left, &__right {
       height: inherit;
