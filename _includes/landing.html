@@ -34,34 +34,29 @@
                     {% for category in categories %}
                     {% if category.name == "projects" %}
                     <section class="column-sm-12 selected-categories selected-category--{{category.name}}">
-                        {% assign projects = category.items %}
-                        <h2 class="page-heading"><span class="display-heading">Projects</span></h2>
+                        {% assign projects = category.items | sort_natural: "commission_year" | reverse %}
+                        <h2 class="page-heading page-heading--with-action">
+                            <span class="display-heading">Projects</span>
+                            <a class="page-heading--with-action__action-item view-more-link" href="/{{category.name}}">see more</a>
+                        </h2>
                         <div class="container">
                             <ul class="no-style-list row">
                                 {% for project in projects limit:3 %}
                                 <li class="column-sm-12 column-md-4 selected-category--{{category.name}}__item">
-                                    <figure>
-                                        <div class="media" style="color: {{project.dominantColor}}">
-                                            <img src="" alt="">
-                                        </div>
-                                        <figcaption>
-                                            <a href="{{project.url}}">
-                                                <h4 class="title">{{project.title}}</h4>
-                                                <h5 class="footnote_ts">{{project.excerpt}}</h5>
-                                            </a>
-                                        </figcaption>
-                                    </figure>
+                                    {% include project-tile-component.html project=project fixed-width=true %}
                                 </li>
                                 {% endfor %}
                             </ul>
                         </div>
-                        <a class="view-more-link" href="/{{category.name}}">see more</a>
                     </section>
                     {% endif %}
                     {% if category.name == "blog" %}
                     <section class="column-sm-12 selected-categories selected-categories--{{category.name}}">
                         {% assign posts = category.items %}
-                        <h2 class="page-heading"><span class="display-heading">Writings</span></h2>
+                        <h2 class="page-heading page-heading--with-action">
+                            <span class="display-heading">Writings</span>
+                            <a class="page-heading--with-action__action-item view-more-link" href="/{{category.name}}">see more</a>
+                        </h2>
                         <ul class="no-style-list">
                             {% for post in posts limit:3 %}
                             <li>
@@ -76,7 +71,6 @@
                             </li>
                             {% endfor %}
                         </ul>
-                        <a class="view-more-link" href="/{{category.name}}">see more</a>
                     </section>
                     {% endif %}
                     {% endfor %}

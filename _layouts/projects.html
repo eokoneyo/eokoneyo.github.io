@@ -4,44 +4,19 @@ layout: default
 
 <div class="container">
     <div class="ns-projects">
-        {% assign projectsByYear = paginator.posts | group_by_exp:"post", "post.commission_year" %}
         <h1 class="page-heading">
             <span class="display-heading">{{page.title}}</span>
             <span class="display-heading__subtitle">{{page.subtitle}}</span>
         </h1>
-        <ul class="no-style-list">
-            {% for projectsInYear in projectsByYear %}
-            <li class>
-                <a name="{{projectsInYear.name}}" href="#{{projectsInYear.name}}">
-                    <h5>{{projectsInYear.name}}</h5>
-                </a>
-            </li>
-            <li class="article">
-                <ul class="no-style-list">
-                    {% for project in projectsInYear.items %}
-                    <li class="project-card container-fluid" style="color: {{project.dominantColor}};">
-                        <a class="project-card__inner row" href="{{ project.url }}">
-                            <div class="column-sm-6">
-                                <div class="project-card__excerpt">
-                                    <h5>{{ project.excerpt }}</h5>
-                                    <ul class="no-style-list project-card__stack">
-                                        {% for stack in project.stack %}
-                                            <li title="{{stack}}">{% include vectors/{{stack}}-logo.svg%}</li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="column-sm-6 project-card__meta">
-                                <h2 style="color:{{project.dominantColor}}" class="project-card__heading white-text">{{ project.title }}</h2>
-                                <div style="background:{{project.dominantColor}}"></div>
-                            </div>
-                        </a>
-                    </li>
-                    {% endfor %}
-                </ul>
+        {% assign projectsByYear = paginator.posts | sort_natural: "commission_year" | reverse %}
+        <ul class="no-style-list projects">
+            {% for project in projectsByYear %}
+            <li class="projects__item">
+                {% include project-tile-component.html project=project %}
             </li>
             {% endfor %}
         </ul>
     </div>
 </div>
 {% include grid-bg-component.html lg-rows=6 md-rows=3 %}
+{% include vectors/distort-filter-definition.svg %}

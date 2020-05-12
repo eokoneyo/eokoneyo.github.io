@@ -1,79 +1,35 @@
 .ns-projects {
-  margin: 0 auto;
 
-  .project-card{
-    transition: background-color .2s;
+  .projects {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    counter-reset: figure;
 
-    &:not(:last-of-type) {
-      margin-bottom: mq-px2em(50px);
-    }
+    &__item {
+      margin: 10vh auto;
+      max-width: 100%;
+      position: relative;
+      will-change: transform;
 
-    &:hover, &:focus, &:active {
-      background-color: currentColor;
-    }
-
-    &__inner {
-      display: flex;
-      min-height: mq-px2em(250px);
-
-      @include mq($from: medium) {
-        min-height: mq-px2em(400px);
+      &:before {
+        counter-increment: figure;
+        content: counter(figure, decimal-leading-zero);
+        position: absolute;
+        font-size: 10rem;
+        color: lighten(map_get($gray-pallet, dark), 70%);
+        bottom: calc(100% - 3rem);
+        text-shadow: -0.5px -0.5px 0 $light, 0.5px -0.5px 0 $light, -0.5px 0.5px 0 $light, 0.5px 0.5px 0 $light;
+        transition: color .2s;
       }
-    }
 
-    &__excerpt {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: baseline;
-      justify-content: space-around;
-      margin: mq-px2em(15px) 0;
-      @at-root .project-card:hover .project-card__excerpt {
-        > * {
-          color: $light;
-        }
+      &:hover:before {
+        color: lighten(map_get($gray-pallet, dark), 40%);
       }
-    }
 
-    &__stack {
-      li {
-        height: 30px;
-        width: 30px;
-        display: inline-block;
-
-        > svg {
-          height: 100%;
-          width: auto;
-        }
-      }
-    }
-
-    &__heading {
-      @extend .display-heading;
-      background-image: linear-gradient(transparent 55%, $light 45%);
-      text-shadow: -0.5px -0.5px 0 $light, 0.5px -0.5px 0 $light, -0.5px 0.5px 0 $light, 0.5px 0.5px 0 $light;
-
-      @at-root .project-card:not(:hover) .project-card__heading  {
-        background-image: linear-gradient(transparent 55%, currentColor 45%);
-      }
-    }
-
-    &__meta{
-      align-self: flex-end;
-      text-align: right;
-    }
-  }
-
-  .article {
-    &__meta {
-      display: flex;
-      flex-direction: column;
-
-      &__publish-date{
-        order: -1;
-        font-size: mq-px2em(5px);
-        text-transform: uppercase;
-        color: map-get($gray-pallet, light);
+      &:nth-child(even)::before {
+        right: 0;
       }
     }
   }

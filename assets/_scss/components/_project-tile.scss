@@ -1,0 +1,62 @@
+.project-tile {
+  display: flex;
+  position: relative;
+  margin-bottom: 20px;
+  height: mq-px2em(300px);
+  width: 100%;
+
+
+  figure{
+    margin: 0;
+    align-self: center;
+    padding: mq-px2em(30px);
+
+    .media {
+      top: 0;
+      left: 0;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      filter: url("#noise-1");
+      background: currentColor;
+      z-index: -1;
+    }
+  }
+
+  figcaption {
+    .title {
+      position: relative;
+      &:after {
+        content: '';
+        position: absolute;
+        width: mq-px2em(14px);
+        height: 1px;
+        background: currentColor;
+        top: 100%;
+        left: 0;
+        margin: 1rem 0 0 0;
+      }
+    }
+  }
+
+  @include mq($from: medium) {
+    margin-bottom: 0;
+  }
+
+  @include mq($from: large) {
+    min-height: mq-px2em(400px);
+
+    &:not(.project-tile--fixed-width) {
+      min-width: mq-px2em(400px);
+      max-width: mq-px2em(700px);
+    }
+
+    figure {
+      align-self: flex-end;
+    }
+  }
+
+  @include mq($from: xlarge) {
+    min-height: mq-px2em(500px);
+  }
+}

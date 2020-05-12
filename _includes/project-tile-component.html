@@ -1,0 +1,14 @@
+{% assign project = include.project %}
+<div class="project-tile {% if include.fixed-width %}project-tile--fixed-width{% endif %}">
+    <figure>
+        <div class="media" style="color: {{project.dominantColor}}">
+            <img src="" alt="">
+        </div>
+        <figcaption>
+            <a href="{{project.url}}">
+                <h4 class="title">{{project.title}}</h4>
+                <h5 class="caption_ts">{{project.excerpt}}</h5>
+            </a>
+        </figcaption>
+    </figure>
+</div>
