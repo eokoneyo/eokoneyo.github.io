@@ -1,6 +1,5 @@
 import anime from 'animejs';
 
-
 /**
  *
  * @type {{
@@ -27,18 +26,21 @@ const initPreloader = (global) => {
     preloaderDOM.path = preloaderDOM.shape.querySelector('path');
 
     /**
-     * @param name {string}
-     * @param value {boolean}
-     * @returns {string}
+     *
+     * @param name
+     * @param value
      */
     const setCookie = (name, value) => {
-        document.cookie = `${name}=${value}`
+        const cookieDesc = Object.getOwnPropertyDescriptor(global.Document.prototype, 'cookie') ||
+          Object.getOwnPropertyDescriptor(global.HTMLDocument.prototype, 'cookie');
+
+        cookieDesc.set.call(document, `${name}=${value}`);
     };
 
     /**
-     * @description Helper for getting cookie value of a named cookie
+     * @description Helper for getting value of a named cookie
      * @param name
-     * @returns {null|boolean}
+     * @returns {null|string}
      */
     const getCookieValue = name => {
         const cookieString = String(document.cookie);
@@ -49,7 +51,7 @@ const initPreloader = (global) => {
 
         const [, value] = cookieString.match(searchRegex);
 
-        return Boolean(value);
+        return value;
     };
 
     const removePreloader = (animationDuration) => {
@@ -74,8 +76,7 @@ const initPreloader = (global) => {
             }, 0);
     };
 
-    if (getCookieValue(HAS_SEEN_PRELOADER_COOKIE)) {
-        // eslint-disable-next-line no-param-reassign
+    if (getCookieValue(HAS_SEEN_PRELOADER_COOKIE) === 'true') {
         preloaderDOM.preloader.style.display = 'none';
         document.body.style.overflow = 'auto';
         document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
