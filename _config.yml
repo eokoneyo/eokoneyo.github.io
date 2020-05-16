@@ -2,7 +2,18 @@
 # Build settings
 markdown: kramdown
 highlighter: rouge
-exclude: ['Gemfile*', 'vendor', '.idea', '.vscode', 'node_modules', 'package*', 'libs', 'webpack.config.js', 'babel.config.json']
+exclude:
+  - 'Gemfile*'
+  - 'vendor'
+  - '.idea'
+  - '.vscode'
+  - 'node_modules'
+  - 'package*'
+  - 'libs'
+  - 'webpack.config.js'
+  - 'babel.config.json'
+  - 'README.md'
+
 plugins:
   - jekyll-paginate-v2
   - jekyll-sitemap
