@@ -10,17 +10,7 @@
                 </div>
                 <div class="column column-md-6" id="info-cta">
                     <h1 class="jumbotron__title">{{site.data.setup.title}}</h1>
-                    <h5 class="jumbotron__tagline">{{site.data.setup.tagline}}</h5>
-                    <h5 class="jumbotron__socials">
-                        <span>connect with me:</span>
-                        {% for item in site.data.setup.socials %}
-                        {% if item.featured%}
-                        <a class="social-icon--link {{ icon.class }}" href="{{ item.url }}" target="_blank" rel="noopener">
-                            <span class="social-icon--title">{{ item.title }}</span>
-                        </a>
-                        {% endif %}
-                        {% endfor %}
-                    </h5>
+                    <h4 class="jumbotron__tagline">„{{site.data.setup.tagline}}“</h4>
                 </div>
             </div>
         </div>
