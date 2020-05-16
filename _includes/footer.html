@@ -2,17 +2,8 @@
 <footer class="ns-footer {% if include.short %} ns-footer--short{% endif %}">
     <div class="container text-center">
         <div class="row">
-            <div class="column-sm-12">
-                <h5>say hi elsewhere!</h5>
-                <ul class="footer-socials">
-                    {% for item in site.data.setup.socials %}
-                    <li class="social-icon--link {{ icon.class }}">
-                        <a class="" href="{{ item.url }}" target="_blank" rel="noopener">
-                            <span class="social-icon--title">{{ item.title }}</span>
-                        </a>
-                    </li>
-                    {% endfor %}
-                </ul>
+            <div class="column-sm-12 column-md-6">
+                <h6 class="">Content &copy {{ 'now' | date: "%Y" }}, {{site.data.setup.title}}.</h6>
             </div>
         </div>
     </div>
@@ -20,9 +11,13 @@
         <div class="container">
             <div class="row">
                 <div class="column-sm-6">
-                    <div class="endnote_ts">
-                        <span class="">Content &copy {{site.data.setup.title}}, {{ 'now' | date: "%Y" }}.</span>
-                        <span class="">Build version: <em class="caption_ts">{{site.data.version.hash}}</em></span>
+                    <div class="dev-details">
+                        <p class="endnote_ts">
+                            This site was composed together using
+                            <a href="https://jekyllrb.com/" target="_blank" rel="noopener"><em>Jekyll</em></a> and
+                            <a href="https://webpack.js.org/" target="_blank" rel="noopener"><em>Webpack</em></a>
+                        </p>
+                        <p class="endnote_ts">Build version: <span class="caption_ts">{{site.data.version.hash}}</span></p>
                     </div>
                 </div>
                 <div class="column-sm-6">
