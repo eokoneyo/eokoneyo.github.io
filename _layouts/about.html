@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+<div class="container ns-about">
+    <div class="row">
+        <div class="column-sm-12">
+            <div class="photo-block">
+                <img class="photo-block__image" src="/assets/img/eokoneyo_about_photo.JPG" alt="Portrait of Eyo against a wall">
+                <span class="footnote_ts">Berlin Photo Week 2019, Photo Credit; <a href="https://github.com/kingsleyadio" target="_blank">Kingsley Adio</a></span>
+            </div>
+        </div>
+        <div class="column-sm-12">
+            <div class="about-content">
+                <h5>{{site.data.setup.description}}</h5>
+                <h5>Say Hi elsewhere!</h5>
+                <ul class="footer-socials">
+                    {% for item in site.data.setup.socials %}
+                    <li class="social-icon--link {{ icon.class }}">
+                        <a class="" href="{{ item.url }}" target="_blank" rel="noopener">
+                            <span class="social-icon--title">{{ item.title }}</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

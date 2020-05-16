@@ -13,6 +13,8 @@ headerLinks:
     path: "/blog"
   - title: Projects
     path: "/projects"
+  - title: About
+    path: "/about"
 
 socials:
   - title: LinkedIn
