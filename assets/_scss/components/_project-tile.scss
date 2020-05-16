@@ -1,14 +1,13 @@
 .project-tile {
-  display: flex;
   position: relative;
   margin-bottom: 20px;
   height: mq-px2em(300px);
   width: 100%;
 
-
-  figure{
+  figure {
     margin: 0;
-    align-self: center;
+    height: 100%;
+    display: flex;
     padding: mq-px2em(30px);
 
     .media {
@@ -17,13 +16,30 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      filter: url("#noise-1");
-      background: currentColor;
-      z-index: -1;
+
+      &:before {
+        content: '';
+        height: 100%;
+        width: 100%;
+        display: block;
+        position: absolute;
+        z-index: -1;
+        background: currentColor;
+        filter: url("#noise-1");
+      }
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+      }
     }
   }
 
   figcaption {
+    align-self: center;
+    position: relative;
+
     .title {
       position: relative;
       &:after {
@@ -52,7 +68,15 @@
     }
 
     figure {
-      align-self: flex-end;
+      .media {
+        img {
+          padding-right: mq-px2em(20px);
+        }
+      }
+
+      figcaption {
+        align-self: flex-end;
+      }
     }
   }
 

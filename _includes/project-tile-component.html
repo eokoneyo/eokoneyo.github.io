@@ -1,8 +1,10 @@
 {% assign project = include.project %}
 <div class="project-tile {% if include.fixed-width %}project-tile--fixed-width{% endif %}">
-    <figure>
+    <figure data-commission-year="{{project.commission_year}}">
         <div class="media" style="color: {{project.dominantColor}}">
-            <img src="" alt="">
+            {% if project.featured_image %}
+            <img src="{{project.featured_image}}" alt="featured image for {{project.title}} project">
+            {% endif %}
         </div>
         <figcaption>
             <a href="{{project.url}}">
