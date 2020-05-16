@@ -21,10 +21,10 @@ $vspace-3: calc(#{0.5 * $space} * 1rem);
 $modularscale: (
         base: 16px,
         map_get($grid-breakpoints, small) : (
-                ratio: 1.05,
+                ratio: 1.1,
         ),
         map_get($grid-breakpoints, medium) : (
-                ratio: 1.1,
+                ratio: 1.15,
         ),
         map_get($grid-breakpoints, xlarge) : (
                 ratio: 1.25,
