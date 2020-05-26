@@ -1,6 +1,7 @@
 import initPreloader from './preloader';
 import initSearch from './search';
 import initModals from './modal';
+import toggleHeaderMobileMenu from './header-mobile-menu-toggle';
 
 /**
  * @description Stores references to DOM elements
@@ -17,6 +18,8 @@ const DOM = {};
     document.addEventListener('DOMContentLoaded', () => {
 
         initPreloader(global);
+
+        toggleHeaderMobileMenu(global);
 
         initModals(global);
 

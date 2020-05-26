@@ -7,6 +7,13 @@
             </a>
         </div>
         <div class="header__right">
+            <div class="mobile-toggle js-mobile-menu-toggle">
+                <div class="mobile-toggle__icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
             <ul class="menu-list">
                 {% for link in site.data.setup.headerLinks %}
                     <li class="menu-list-item {% if page.url contains link.path %}active{% endif %}">
