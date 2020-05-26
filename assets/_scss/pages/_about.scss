@@ -18,32 +18,6 @@
     }
   }
 
-  .footer-socials {
-    @extend .no-style-list;
-
-    margin: 10px 0;
-
-    .social-icon {
-      &--link {
-        padding: 0 0 mq-px2em(10px) 0;
-
-        &:hover, &:focus {
-          text-decoration: underline;
-        }
-
-        a {
-          padding: 0 8px 0 0;
-        }
-
-        @include mq($from: large) {
-          padding: 0 mq-px2em(10px) 0 0;
-          display: inline-block;
-          margin: 0 10px 0 0;
-        }
-      }
-    }
-  }
-
   .about-content {
     @extend .article-width;
     margin-bottom: mq-px2em(50px);
