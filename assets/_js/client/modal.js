@@ -1,4 +1,4 @@
-import * as Util from '../utils';
+import * as Util from './utils';
 
 class Modal {
   constructor(element) {

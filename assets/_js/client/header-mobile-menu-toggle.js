@@ -1,4 +1,4 @@
-import { hasClass, toggleClass } from '../utils';
+import { hasClass, toggleClass } from './utils';
 
 const toggleHeaderMobileMenu = (global) => {
   const { document } = global;

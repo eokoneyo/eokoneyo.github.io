@@ -1,5 +1,5 @@
 import throttle from 'lodash.throttle';
-import { hasClass, toggleClass } from '../utils';
+import { hasClass, toggleClass } from './utils';
 
 /**
  *

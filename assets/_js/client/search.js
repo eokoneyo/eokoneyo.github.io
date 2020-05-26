@@ -1,4 +1,4 @@
-import { sendWorkerMessage } from '../utils';
+import { sendWorkerMessage } from './utils';
 import { SEARCH_REQ } from '../constants';
 
 /**
