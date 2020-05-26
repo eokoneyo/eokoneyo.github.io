@@ -65,17 +65,13 @@
           height: 500px;
         }
 
-        > svg {
+        #illustration {
           height: 100%;
 
           @include mq($from: medium) {
             width: 100%;
           }
-        }
-      }
 
-      #horse-rider {
-        > g  {
           @include mq($from: large) {
             @include distort-filter-effect($animateInfinitely: true);
           }
