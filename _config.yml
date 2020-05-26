@@ -17,6 +17,7 @@ exclude:
 plugins:
   - jekyll-paginate-v2
   - jekyll-sitemap
+  - jekyll-cloudinary
 
 webpack:
   entry:
@@ -26,6 +27,16 @@ webpack:
   output:
     path: "assets/"
     service_worker: true
+
+
+cloudinary:
+  cloud_name: 'dzd5dpyjo'
+  only_prod: true
+  verbose: true
+  presets:
+    profile_photo:
+      attributes:
+        class: 'photo-block__image'
 
 search_data:
   filename: "search-data.json"

@@ -8,10 +8,8 @@ gem 'json'
 gem 'rmagick'
 gem 'jekyll'
 
-# gem 'github-pages'
-# gem 'rails'
-
 group :jekyll_plugins do
     gem 'jekyll-paginate-v2'
     gem 'jekyll-sitemap'
+    gem 'jekyll-cloudinary'
 end

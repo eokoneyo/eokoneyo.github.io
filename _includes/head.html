@@ -13,6 +13,9 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
 <link rel="manifest" href="/assets/favicon/site.webmanifest">
+{% if jekyll.environment == 'production' %}
+<link rel="preconnect" href="https://res.cloudinary.com/{{site.cloudinary.cloud_name}}">
+{% endif %}
 <!-- CSS -->
 {% for item in site.data.webpack-manifest %}
     {% assign assetLink = item[1] %}
