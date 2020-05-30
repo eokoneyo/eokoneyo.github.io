@@ -13,6 +13,7 @@ exclude:
   - 'webpack.config.js'
   - 'babel.config.json'
   - 'README.md'
+  - 'CNAME'
 
 plugins:
   - jekyll-paginate-v2
