@@ -1,3 +1,4 @@
+import logdown from 'logdown';
 import initPreloader from './preloader';
 import initSearch from './search';
 import initModals from './modal';
@@ -12,7 +13,7 @@ import toggleHeaderMobileMenu from './header-mobile-menu-toggle';
  */
 const DOM = {};
 
-((global) => {
+((global, logger) => {
     const { document } = global;
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -23,7 +24,7 @@ const DOM = {};
 
         initModals(global);
 
-        initSearch(global);
+        initSearch(global, logger);
 
         DOM.header = global.document.querySelector('#header');
         DOM.landingPage = global.document.querySelector('.ns-landing-screen');
@@ -44,4 +45,4 @@ const DOM = {};
             });
         }
     });
-})(window);
+})(window, logdown('eoe'));

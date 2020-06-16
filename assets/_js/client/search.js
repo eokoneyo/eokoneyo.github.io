@@ -7,7 +7,7 @@ import { SEARCH_REQ } from '../constants';
  *   form: {HTMLElement}
  *   searchInputField: {HTMLElement}
  *   searchResultsContainer: {HTMLElement}
- *   loadingIndicator: {HTMLElement}
+ *   loadingIndicator: {null|HTMLElement}
  * }}
  */
 const searchDOM = {};
@@ -38,7 +38,7 @@ const searchRequest = (searchText) => sendWorkerMessage({ command: SEARCH_REQ, k
 
 const setLoadingIndicator = () => {
 
-  if(searchDOM.loadingIndicator.length) return null;
+  if(searchDOM.loadingIndicator) return null;
 
   const loadingIndicator = document.createElement('div');
   loadingIndicator.className = 'js-loading-indicator';
@@ -61,32 +61,40 @@ const displaySearchResult = ({ data: searchResult }) => {
   }
 
   const fragment = document.createDocumentFragment();
+  const searchItemsWrapper = document.createElement('ul');
+  searchItemsWrapper.className = 'js-search-result-list no-style-list';
 
   searchResult.forEach(result => {
     const li = document.createElement('li');
     li.innerHTML = searchResultItem(result);
-    fragment.appendChild(li);
+    searchItemsWrapper.appendChild(li);
   });
 
-  searchDOM.searchResultsContainer.replaceChild(fragment, searchDOM.loadingIndicator);
+  fragment.appendChild(searchItemsWrapper);
+
+  searchDOM.searchResultsContainer.replaceChild(fragment, searchDOM.searchResultsContainer.firstChild);
 };
 
 /**
  *
+ * @param logger
  * @param args
+ * @returns {*}
  */
-const displaySearchError = (...args) => console.log(...args);
+const displaySearchError = (logger,...args) => logger.warn(...args);
 
 /**
  *
  * @param {Window} global
+ * @param logger
  */
-const initSearch = (global) => {
+const initSearch = (global, logger) => {
   const { document } = global;
 
   searchDOM.form = document.querySelector('.js-search-form');
   searchDOM.searchResultsContainer = document.querySelector('.js-search-result');
   searchDOM.searchInputField = searchDOM.form.elements.searchInput;
+  searchDOM.loadingIndicator = null;
 
   const handleSearch = (evt) => {
     evt.preventDefault();
@@ -99,7 +107,7 @@ const initSearch = (global) => {
 
     return searchRequest(searchText)
       .then(displaySearchResult)
-      .catch(displaySearchError);
+      .catch(err => displaySearchError(logger, err));
   };
 
   searchDOM.form.addEventListener('submit', handleSearch);
