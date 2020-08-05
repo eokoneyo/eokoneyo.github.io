@@ -13,18 +13,22 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 const logger = getLogger({ name: 'webpack-batman' });
 
 /**
+ * @typedef jekyllWebpackConfig
+ * @property entry {string}
+ * @property cache_directory {string}
+ * @property output {{ path: string}}
+ */
+
+/**
+ * @typedef jekyllSearchDataConfig
+ * @property filename {string}
+ * @property output_path {string}
+ */
+
+/**
  * @type {{
- *   webpack: {
- *      entry: string[]
- *      cache_directory: string
- *      output: {
- *          path: string
- *      }
- *   },
- *   searchData: {
- *      filename: string
- *      output_path: string
- *   }
+ *   webpack: jekyllWebpackConfig,
+ *   search_data: jekyllSearchDataConfig
  * }}
  */
 let jekyllConfigFileContents;

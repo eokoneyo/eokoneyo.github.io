@@ -1,5 +1,10 @@
 body {
   margin: 0;
+  background: $dark;
+
+  > main{
+    background: $light;
+  }
 
   &, * {
     box-sizing: border-box;
@@ -12,6 +17,12 @@ body {
     &:not(code, pre) {
       color: map_get($gray-pallet, dark);
     }
+  }
+
+  // PWA mode specific styles
+  @media all and (display-mode: standalone) {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
   }
 }
 
@@ -96,13 +107,16 @@ ul , ol {
 
 .display-heading {
   color: map_get($gray-pallet, dark);
-  background-repeat: no-repeat;
-  background-image: linear-gradient(transparent 55%, rgba(map_get($gray-pallet, mid), 0.2) 45%);
-  background-size: 100% 100%;
+
+  &--decorated {
+    background-repeat: no-repeat;
+    background-image: linear-gradient(transparent 55%, rgba(map_get($gray-pallet, mid), 0.2) 45%);
+    background-size: 100% 100%;
+  }
 
   &__subtitle {
     display: block;
-    @include ms-respond(font-size, 1);
+    font-size: 1.0rem;
     font-style: italic;
   }
 }
@@ -113,4 +127,7 @@ ul , ol {
 
 .white-text {
   color: $light;
+}
+.no-margin {
+  margin: 0;
 }

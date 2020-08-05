@@ -97,6 +97,7 @@
     }
 
     .selected-categories {
+      margin-bottom: mq-px2em(50px);
 
       .page-heading--with-action{
         display: flex;
@@ -109,7 +110,7 @@
       }
 
       &:last-of-type {
-        margin-bottom: mq-px2em(150px);
+        margin-bottom: mq-px2em(100px);
       }
     }
 

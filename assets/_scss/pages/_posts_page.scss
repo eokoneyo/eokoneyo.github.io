@@ -1,8 +1,11 @@
 .ns-posts {
-  @extend .article-width;
   margin: 0 auto;
 
   .post {
+    &-list{
+      @extend .article-width;
+    }
+
     &-list-item {
       &:not(:first-of-type) {
         margin-top: mq-px2em(50px)
@@ -12,21 +15,10 @@
         border-bottom: 2px solid lighten(map_get($gray-pallet, light), 40%)
       }
 
-      &__meta {
-        > * {
-          display: inline-block;
-          margin-bottom: mq-px2em(10px);
-        }
-
-        &__publish-date {
-          text-transform: uppercase;
-          color: map_get($gray-pallet, light);
-        }
+      &__publish-date {
+        text-transform: uppercase;
+        color: map_get($gray-pallet, light);
       }
-    }
-
-    &-meta, &-content {
-
     }
   }
 

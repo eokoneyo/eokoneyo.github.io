@@ -19,7 +19,7 @@
         position: absolute;
         font-size: 10rem;
         color: lighten(map_get($gray-pallet, dark), 70%);
-        bottom: calc(100% - 3rem);
+        bottom: calc(100% - 4rem);
         text-shadow: -0.5px -0.5px 0 $light, 0.5px -0.5px 0 $light, -0.5px 0.5px 0 $light, 0.5px 0.5px 0 $light;
         transition: color .2s;
       }

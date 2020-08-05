@@ -13,7 +13,14 @@ $parallax-perspective: 1;
   overflow-y: auto;
   perspective: #{$perspective}px;
   perspective-origin: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   -webkit-overflow-scrolling: touch;
+
+  @media (prefers-reduced-motion) {
+    /* adjust motion of 'transition' or 'animation' properties */
+    -webkit-overflow-scrolling: initial;
+  }
 }
 
 @mixin parallax-group() {
