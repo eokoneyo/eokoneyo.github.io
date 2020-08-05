@@ -4,23 +4,25 @@ layout: default
 
 <div class="container">
     <div class="ns-posts">
-        <h2 class="page-heading"><span class="display-heading">{{page.title}}</span></h2>
-
+        <h1 class="page-heading">
+            <span class="display-heading display-heading--decorated">{{page.title}}</span>
+            <span class="display-heading__subtitle">{{page.subtitle}}</span>
+        </h1>
         {% assign blog_posts = paginator.posts %}
-        <ul class="no-style-list">
+        <ul class="no-style-list post-list">
             {% for post in blog_posts %}
             <li class="post-list-item">
-                <div class="post-list-item__meta">
-                    <span class="post-list-item__meta__publish-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-                </div>
-                <div class="post-content">
-                    <a class="blog-post-title" href="{{ post.url }}">
-                        <h3>{{ post.title }}</h3>
-                    </a>
-                    <p>{{ post.excerpt | truncate: 200 }}</p>
-                </div>
+                <a href="{{post.url}}">
+                    <h3 class="page-heading">
+                        <span class="display-heading__subtitle post-list-item__publish-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+                        <span class="display-heading">{{ post.title }}</span>
+                    </h3>
+                </a>
+                <p>{{ post.excerpt | truncate: 200 }}</p>
             </li>
             {% endfor %}
         </ul>
+
+        {% include paginator.html %}
     </div>
 </div>

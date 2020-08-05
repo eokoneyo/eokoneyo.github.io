@@ -5,10 +5,10 @@ layout: default
 <div class="container">
     <div class="ns-projects">
         <h1 class="page-heading">
-            <span class="display-heading">{{page.title}}</span>
+            <span class="display-heading display-heading--decorated">{{page.title}}</span>
             <span class="display-heading__subtitle">{{page.subtitle}}</span>
         </h1>
-        {% assign projectsByYear = paginator.posts | sort_natural: "commission_year" | reverse %}
+        {% assign projectsByYear = paginator.posts %}
         <ul class="no-style-list projects">
             {% for project in projectsByYear %}
             <li class="projects__item">
@@ -16,6 +16,8 @@ layout: default
             </li>
             {% endfor %}
         </ul>
+
+        {% include paginator.html %}
     </div>
 </div>
 {% include grid-bg-component.html lg-rows=6 md-rows=3 %}
