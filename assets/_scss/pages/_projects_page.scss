@@ -18,8 +18,9 @@
         content: counter(figure, decimal-leading-zero);
         position: absolute;
         font-size: 10rem;
-        color: lighten(map_get($gray-pallet, dark), 70%);
-        bottom: calc(100% - 4rem);
+        //color: lighten(map_get($gray-pallet, dark), 70%);
+        color: map_get($gray-pallet, dark);
+        bottom: calc(100% - 5rem);
         text-shadow: -0.5px -0.5px 0 $light, 0.5px -0.5px 0 $light, -0.5px 0.5px 0 $light, 0.5px 0.5px 0 $light;
         transition: color .2s;
       }

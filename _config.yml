@@ -34,6 +34,9 @@ cloudinary:
   only_prod: true
   verbose: true
   presets:
+    post_photo:
+      attributes:
+        class: 'post_photo'
     profile_photo:
       attributes:
         class: 'photo-block__image'

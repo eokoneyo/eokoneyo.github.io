@@ -41,7 +41,7 @@
 
   .blog-footer {
     padding: mq-px2em(20px) 0;
-    border-top: 1px solid lighten(map_get($gray-pallet, light), 40%);
+    //border-top: 1px solid lighten(map_get($gray-pallet, light), 40%);
 
     .dev-details {
       > * {

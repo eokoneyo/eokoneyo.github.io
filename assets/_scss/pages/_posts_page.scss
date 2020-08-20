@@ -1,5 +1,4 @@
 .ns-posts {
-  margin: 0 auto;
 
   .post {
     &-list{
@@ -23,6 +22,10 @@
   }
 
   .article{
+    &-wrapper {
+      @extend .article-width;
+    }
+
     &__meta {
       display: flex;
       flex-direction: column;

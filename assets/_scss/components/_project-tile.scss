@@ -28,23 +28,23 @@
       left: 0;
       position: absolute;
       z-index: -1;
-      background: currentColor;
+      background: $dark; //currentColor;
     }
 
     .media {
       svg {
         height: mq-px2em(50px);
         width: mq-px2em(50px);
-
-        path{
-          fill: currentColor;
-        }
       }
     }
   }
 
   figcaption {
     position: relative;
+
+    > * {
+      color: $light;
+    }
 
     .title {
       position: relative;
@@ -79,6 +79,10 @@
           padding-right: mq-px2em(20px);
         }
       }
+    }
+
+    figcaption{
+      height: mq-px2em(200px);
     }
   }
 

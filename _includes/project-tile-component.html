@@ -3,7 +3,7 @@
     <a href="{{project.url}}">
         <figure data-commission-year="{{project.commission_year}}" style="color: {{project.dominantColor}}">
             <div class="media">
-                {% include vectors/knot.svg %}
+                {% include vectors/knot.svg fill=project.dominantColor %}
             </div>
             <figcaption>
                 <h4 class="title">{{project.title}}</h4>
