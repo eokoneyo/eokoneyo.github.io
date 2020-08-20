@@ -1,0 +1,21 @@
+.pagination {
+  display: flex;
+  justify-content: space-between;
+
+  &--next {
+    margin-left: auto;
+    .display-heading:after {
+      content: '\002192';
+      display: inline-block;
+      margin-left: mq-px2em(5px);
+    }
+  }
+
+  &--prev {
+    .display-heading:before {
+      content: '\002190';
+      display: inline-block;
+      margin-right: mq-px2em(5px);
+    }
+  }
+}
