@@ -2,50 +2,24 @@
 layout: default
 ---
 
-<div class="container ns-projects">
-    <div class="project-post article">
-        <h1 class="page-heading article__meta">
-            <span class="display-heading article__meta__title">{{page.title}}</span>
-            <span class="article__meta__publish-date">{{ page.date | date: "%b %-d, %Y" }}</span>
-        </h1>
-        {{content}}
-
-        {% unless page.category == null %}
-            {% assign pageCategory = page.category %}
-            {% assign pageCategoryPosts = site.categories[pageCategory] %}
-            {% unless pageCategoryPosts.size == 1 %}
-                {% for post in pageCategoryPosts %}
-                    {% if page.title == post.title %}
-                        {% assign position = forloop.index0 %}
-                        {% break %}
-                    {% endif %}
-                {% endfor %}
-                {% assign nextItemIndex = position | plus: 1 %}
-                {% assign previousItemIndex = position | minus: 1 %}
-                <ul class="no-style-list pagination">
-                    {% if pageCategoryPosts[previousItemIndex] and previousItemIndex > -1 %}
-                    {% assign previousPost = pageCategoryPosts[previousItemIndex] %}
-                    <li class="pagination--prev">
-                        <a href="{{previousPost.url}}">
-                            <h3 class="page-heading">
-                                <span class="display-heading">Previous</span>
-                            </h3>
-                        </a>
-                    </li>
-                    {% endif %}
-
-                    {% if pageCategoryPosts[nextItemIndex] %}
-                    {% assign nextPost = pageCategoryPosts[nextItemIndex] %}
-                    <li class="pagination--next">
-                        <a href="{{nextPost.url}}">
-                            <h3 class="page-heading">
-                                <span class="display-heading">Next</span>
-                            </h3>
-                        </a>
-                    </li>
-                    {% endif %}
-                </ul>
-            {% endunless %}
-        {% endunless %}
+<div class="ns-project-post">
+    <div class="project-hero">
+        <div class="project-hero__content">
+            <h1 class="page-heading">
+                <span class="display-heading display-heading--decorated">{{page.title}}</span>
+                <span class="display-heading__subtitle">
+                    <span class="article__meta__publish-date">Platform: {{page.tag}}</span>,
+                    <span class="article__meta__publish-date">Year: {{page.commission_year}}</span>
+                </span>
+            </h1>
+            <div class="project-hero__decoration">
+                {% include vectors/knot.svg fill=page.dominantColor %}
+            </div>
+        </div>
+    </div>
+    <div class="container post-wrapper">
+        {{page}}
+        <div class="article">{{content}}</div>
+        {% include paginator.html type="page" %}
     </div>
 </div>

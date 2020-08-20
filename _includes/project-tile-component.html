@@ -1,16 +1,14 @@
 {% assign project = include.project %}
 <div class="project-tile {% if include.fixed-width %}project-tile--fixed-width{% endif %}">
-    <figure data-commission-year="{{project.commission_year}}">
-        <div class="media" style="color: {{project.dominantColor}}">
-            {% if project.featured_image %}
-            <img src="{{project.featured_image}}" alt="featured image for {{project.title}} project">
-            {% endif %}
-        </div>
-        <figcaption>
-            <a href="{{project.url}}">
+    <a href="{{project.url}}">
+        <figure data-commission-year="{{project.commission_year}}" style="color: {{project.dominantColor}}">
+            <div class="media">
+                {% include vectors/knot.svg %}
+            </div>
+            <figcaption>
                 <h4 class="title">{{project.title}}</h4>
                 <h5 class="caption_ts">{{project.excerpt}}</h5>
-            </a>
-        </figcaption>
-    </figure>
+            </figcaption>
+        </figure>
+    </a>
 </div>
