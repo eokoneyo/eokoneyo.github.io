@@ -1,5 +1,9 @@
 @use "sass:selector";
 
+$expandable-search-size-compact: mq-px2em(35px); // height and width - compact version
+$search-animation-duration: 0.5s;
+$ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+
 .ns-header {
   position: fixed;
   width: 100%;
@@ -19,7 +23,6 @@
 
   .header {
     display: flex;
-    justify-content: space-between;
     height: mq-px2em($header-height);
 
     &__left, &__right {
@@ -27,7 +30,9 @@
     }
 
     &__right {
-      margin-left: auto;
+      display: flex;
+      flex-grow: 1;
+      justify-content: flex-end;
     }
 
     &__brand {
@@ -51,6 +56,12 @@
 
       &-text {
         color: $primary;
+      }
+    }
+
+    @include mq($from: medium) {
+      &__right{
+        position: relative;
       }
     }
   }
@@ -143,8 +154,172 @@
     @include mq($from: medium) {
       margin: 0;
       height: 100%;
+      width: auto;
       position: static;
       background: none;
+    }
+  }
+
+  .search {
+    order: -1;
+    padding: mq-px2em(12px) 0;
+    margin: 0 mq-px2em(10px);
+    flex: 0 0 $expandable-search-size-compact;
+    transition: flex .1s;
+
+    &-form {
+      width: 100%;
+      position: relative;
+      display: inline-block;
+      user-select: none;
+
+      &__input{
+        width: 100%;
+        height: $expandable-search-size-compact;
+        padding: 0;
+        color: transparent;
+        background-color: transparent;
+        overflow: hidden;
+        border-radius: 50em;
+        border: 0;
+        transition: width $search-animation-duration $ease-out, box-shadow $search-animation-duration, background-color $search-animation-duration;
+
+        &::placeholder {
+          opacity: 0;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &::-webkit-search-decoration,
+        &::-webkit-search-cancel-button,
+        &::-webkit-search-results-button,
+        &::-webkit-search-results-decoration {
+          display: none;
+        }
+      }
+
+      &__btn {
+        position: absolute;
+        display: flex;
+        top: 2px;
+        right: 2px;
+        padding: mq-px2em(5px);
+        width: mq-px2em(30px);
+        height: mq-px2em(30px);
+        z-index: 1;
+        pointer-events: none;
+        border-radius: 50%;
+        border: 0;
+        transition: background-color $search-animation-duration;
+        background-color: rgba(map_get($gray-pallet, mid), 0.2);
+
+        .icon {
+          display: block;
+          margin: auto;
+          height: mq-px2em(20px); // icon size
+          width: mq-px2em(20px); // icon size
+        }
+
+        &:hover {
+          background-color: rgba(map_get($gray-pallet, mid), 0.5);
+        }
+
+        &:focus {
+          outline: none;
+          background-color: rgba(map_get($gray-pallet, mid), 0.5);
+        }
+      }
+    }
+
+    &__results {
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: calc(100% + #{mq-px2em(5px)});
+      border: 1px solid rgba(map_get($gray-pallet, mid), 0.2);
+      background: $light;
+
+      &:empty{
+        display: none;
+      }
+
+      .search-result-list {
+        @extend .no-style-list;
+        margin: 0
+      }
+
+      li {
+        &:hover, &:focus {
+          background: map-get($gray-pallet, light)
+        }
+
+        &:focus {
+          outline: none
+        }
+      }
+
+      &__item {
+        display: block;
+        padding: mq-px2em(10px);
+
+        &__title, &__category {
+          margin: 0;
+        }
+
+        &__title {
+
+        }
+
+        &__category {
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    @include mq($from: medium) {
+      order: initial;
+    }
+  }
+
+  &[search-expanded] {
+    .menu-list{
+      display: none;
+    }
+
+    .search {
+      flex-grow: 1;
+      justify-content: flex-end;
+
+      &-form {
+
+        &__input {
+          padding: 0 mq-px2em(30px + 10px) 0 mq-px2em(10px);
+          outline: none;
+          border-radius: 0;
+          background-color: map_get($gray-pallet, light);
+          box-shadow: $shadow-md, 0 0 0 1px rgba(map_get($gray-pallet, light), 0.2);
+          cursor: auto;
+          user-select: auto;
+
+          &--suggestions-active {
+            border-radius: mq-px2em(5px) mq-px2em(5px) 0 0;
+          }
+
+          &, &::placeholder {
+            color: map-get($gray-pallet, dark);
+          }
+
+          &::placeholder {
+            opacity: 1;
+          }
+
+          & + .search-form__btn {
+            pointer-events: auto;
+          }
+        }
+      }
     }
   }
 }

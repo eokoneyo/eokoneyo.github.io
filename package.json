@@ -24,6 +24,7 @@
     "@babel/runtime": "^7.11.2",
     "animejs": "^3.2.0",
     "core-js": "^3.6.5",
+    "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "logdown": "^3.3.1",
     "lunr": "^2.3.9",
@@ -75,7 +76,7 @@
     }
   },
   "lint-staged": {
-    "assets/*.js": "eslint --cache --fix",
+    "assets/*.js": "eslint --cache --fix --max-warnings 0",
     "assets/*.{js,css,scss,md}": "prettier --write",
     "_plugins/*.rb": "prettier --write"
   }

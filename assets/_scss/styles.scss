@@ -7,6 +7,7 @@
 @import "base/grid-bg";
 
 // layout
+@import "layouts/base";
 @import "layouts/default";
 
 //components
@@ -15,8 +16,6 @@
 @import "components/article_preview";
 @import "components/code_highlighter";
 @import "components/image_zoom";
-@import "components/modals";
-@import "components/search";
 @import "components/project-tile";
 @import "components/paginator";
 

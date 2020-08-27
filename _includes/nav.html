@@ -20,12 +20,17 @@
                         <a class="" href={{link.path}}>{{link.title}}</a>
                     </li>
                 {% endfor %}
-                <li class="menu-list-item">
-                    <button class="search__btn" aria-controls="search-modal" aria-labelledby="searchbtn">
-                        {% include vectors/search-icon.svg stroke="#ffffff" %}
-                    </button>
-                </li>
             </ul>
+            <div class="search js-search" id="search-field" data-animation="on">
+                <form class="search-form js-search-form">
+                    <label class="sr-only" for="searchInput">Search</label>
+                    <input class= "search-form__input" autocomplete="off" type="search" name="searchInput" id="searchInput" placeholder="Search...">
+                    <button class="reset search-form__btn">
+                        {% include vectors/search-icon.svg %}
+                    </button>
+                    <div class="search__results js-search-result"></div>
+                </form>
+            </div>
         </div>
     </div>
 </header>
