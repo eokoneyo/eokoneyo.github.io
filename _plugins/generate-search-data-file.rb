@@ -22,7 +22,7 @@ class GenerateSearchData
           url: doc.url,
           category: doc.data['category'],
           date: doc.data['date'].strftime('%B %d, %Y'),
-          content: doc.data['excerpt']
+          content: doc.data['excerpt'].to_s.gsub(%r{<\/?[^>]*>}, '')
         }
       )
     end
