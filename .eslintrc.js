@@ -4,10 +4,7 @@ module.exports = {
     es6: true,
     jest: true,
   },
-  extends: [
-    'airbnb-base',
-    'prettier',
-  ],
+  extends: ['airbnb-base', 'prettier'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -15,5 +12,6 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: 'module',
-  }
+  },
+  plugins: ['jest'],
 };
