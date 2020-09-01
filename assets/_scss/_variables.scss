@@ -5,8 +5,8 @@ $yellow: #f0fc61;
 $blue: #219ab3;
 $antiquewhite: #faebd7;
 $gray-pallet: (
-        light: #747474,
-        mid: #a1a1a1,
+        light: #a1a1a1,
+        mid: #747474,
         tint: #747474,
         dark: #373737,
 );
@@ -18,9 +18,9 @@ $grid-columns: 12;
 $grid-gutter-size: 15px;
 
 $grid-breakpoints: (
-        small: 576px,
+        small: 320px,
         medium: 768px,
-        large: 992px,
+        large: 1024px,
         xlarge: 1200px,
 );
 

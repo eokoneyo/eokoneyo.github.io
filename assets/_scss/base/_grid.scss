@@ -2,8 +2,8 @@
 
 .container {
   margin: 0 auto;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: mq-px2em(10px);
+  padding-right: mq-px2em(10px);
   position: relative;
   width: 100%;
 
@@ -11,20 +11,16 @@
     width: 100%;
   }
 
-  @include mq($from: small) {
-    max-width: 540px;
-  }
-
   @include mq($from: medium) {
-    max-width: 720px;
+    max-width: 95%;
   }
 
   @include mq($from: large) {
-    max-width: 960px;
+    max-width: mq-px2em(960px);
   }
 
   @include mq($from: xlarge) {
-    max-width: 1140px;
+    max-width: mq-px2em(1144px);
   }
 }
 
