@@ -1,8 +1,7 @@
 import logdown from 'logdown';
 import initPreloader from './preloader';
 import initHeaderNav from './header';
-import toggleHeaderMobileMenu from './header-mobile-menu-toggle';
-
+import toggleHeaderMobileMenu from './header-mobile-menu-toggle'
 
 ((global, logger) => {
     const { document } = global;
@@ -14,6 +13,9 @@ import toggleHeaderMobileMenu from './header-mobile-menu-toggle';
         initHeaderNav(global, logger);
 
         toggleHeaderMobileMenu(global);
+
+        // lazy load image zoom feature
+        import(/* webpackChunkName: "image-zoom" */ './image-zoom');
 
         // Do page view tracking
         if (global.ga) {

@@ -49,6 +49,15 @@ export const toggleClass = (el, className, bool) => {
 
 /**
  *
+ * @param {HTMLElement} el
+ * @param {Object} attrs
+ */
+export const setAttributes = (el, attrs) => {
+  Object.keys(attrs).forEach(key => el.setAttribute(key, attrs[key]));
+};
+
+/**
+ *
  * @returns {boolean}
  */
 export const osHasReducedMotion = () => {

@@ -35,9 +35,11 @@ cloudinary:
   only_prod: true
   verbose: true
   presets:
-    post_photo:
+    image_zoom:
+      figure: never
       attributes:
-        class: 'post_photo'
+        class: 'image-zoom__preview js-image-zoom__preview'
+        loading: lazy
     profile_photo:
       attributes:
         class: 'photo-block__image'
