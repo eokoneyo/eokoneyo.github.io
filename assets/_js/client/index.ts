@@ -3,10 +3,10 @@ import initPreloader from './preloader';
 import initHeaderNav from './header';
 import toggleHeaderMobileMenu from './header-mobile-menu-toggle'
 
-((global, logger) => {
+((global, logger): void => {
     const { document } = global;
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', (): void => {
 
         initPreloader(global);
 

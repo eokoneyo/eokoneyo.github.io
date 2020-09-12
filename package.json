@@ -40,7 +40,10 @@
     "@babel/core": "^7.11.4",
     "@babel/plugin-transform-runtime": "^7.11.0",
     "@babel/preset-env": "^7.11.0",
+    "@babel/preset-typescript": "^7.10.4",
     "@prettier/plugin-ruby": "^0.19.1",
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
     "babel-jest": "^26.3.0",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -64,6 +67,7 @@
     "sass-loader": "^10.0.1",
     "sass-mq": "^5.0.1",
     "terser-webpack-plugin": "^4.1.0",
+    "typescript": "^4.0.2",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-log": "^3.0.1",
@@ -76,7 +80,8 @@
     }
   },
   "lint-staged": {
-    "assets/*.js": "eslint --cache --fix --max-warnings 0",
+    "assets/*.{ts,js}": "eslint --cache --fix --ext .js,.ts --max-warnings 0",
+    "assets/*.ts": "tsc -p tsconfig.json --noEmit",
     "assets/*.{js,css,scss,md}": "prettier --write",
     "_plugins/*.rb": "prettier --write"
   }

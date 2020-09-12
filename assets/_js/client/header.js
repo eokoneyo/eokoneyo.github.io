@@ -1,5 +1,5 @@
 import throttle from 'lodash.throttle';
-import { sendWorkerMessage, addClass, hasClass, toggleClass } from './utils';
+import { sendWorkerMessage, hasClass, toggleClass } from './utils';
 import { SEARCH_REQ } from '../constants';
 
 /**

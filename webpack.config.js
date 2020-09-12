@@ -82,7 +82,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.m?js$/,
+        test: /\.(t|(m?j))s$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',

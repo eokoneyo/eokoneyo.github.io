@@ -12,6 +12,7 @@ exclude:
   - 'libs'
   - 'webpack.config.js'
   - 'babel.config.json'
+  - 'tsconfig.json'
   - 'README.md'
   - 'CNAME'
   - 'coverage'
@@ -23,7 +24,7 @@ plugins:
 
 webpack:
   entry:
-    - "assets/_js/client/index.js"
+    - "assets/_js/client/index.ts"
     - "assets/_scss/styles.scss"
   cache_directory: '.jekyll-webpack'
   output:
