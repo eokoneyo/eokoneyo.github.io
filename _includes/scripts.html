@@ -2,7 +2,7 @@
     {% assign assetLink = item[1] %}
     {% if assetLink contains ".js" %}
         {% unless assetLink contains ".map" or assetLink contains "sw" %}
-            <script src="/assets/{{assetLink}}"></script>
+            <script src="{{assetLink}}"></script>
         {% endunless %}
     {% endif %}
 {% endfor %}
