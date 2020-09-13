@@ -21,6 +21,7 @@ plugins:
   - jekyll-paginate-v2
   - jekyll-sitemap
   - jekyll-cloudinary
+  - octopress-minify-html
 
 webpack:
   entry:
