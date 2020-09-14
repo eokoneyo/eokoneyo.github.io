@@ -17,7 +17,7 @@
             <ul class="menu-list">
                 {% for link in site.data.setup.headerLinks %}
                     <li class="menu-list-item {% if page.url contains link.path %}active{% endif %}">
-                        <a class="" href={{link.path}}>{{link.title}}</a>
+                        <a class="" href="{{link.path}}">{{link.title}}</a>
                     </li>
                 {% endfor %}
             </ul>
