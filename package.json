@@ -8,7 +8,7 @@
     "lint": "eslint --fix .",
     "test": "jest --config jest.json",
     "build": "webpack && bundle exec jekyll build",
-    "start:dev": "webpack && webpack --watch | bundle exec jekyll serve --livereload --trace"
+    "start:dev": "webpack && webpack --watch | bundle exec jekyll serve --livereload --trace --incremental"
   },
   "repository": {
     "type": "git",
@@ -42,6 +42,7 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-typescript": "^7.10.4",
     "@prettier/plugin-ruby": "^0.20.1",
+    "@types/lunr": "^2.3.3",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
     "@typescript-eslint/parser": "^4.1.0",
     "babel-jest": "^26.3.0",
@@ -82,7 +83,7 @@
   "lint-staged": {
     "assets/*.{ts,js}": "eslint --cache --fix --ext .js,.ts --max-warnings 0",
     "assets/*.ts": "tsc -p tsconfig.json --noEmit",
-    "assets/*.{js,css,scss,md}": "prettier --write",
+    "assets/*.{js,ts,css,scss,md}": "prettier --write",
     "_plugins/*.rb": "prettier --write"
   }
 }

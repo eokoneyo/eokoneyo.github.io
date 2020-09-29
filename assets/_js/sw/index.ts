@@ -1,11 +1,15 @@
+/// <reference lib="webworker" />
+
 import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching';
 import { setCacheNameDetails, skipWaiting, clientsClaim } from 'workbox-core';
 import { registerRoute } from 'workbox-routing/registerRoute';
 import { CacheFirst } from 'workbox-strategies/CacheFirst';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { ExpirationPlugin } from 'workbox-expiration';
-import setupListenerForSearchRequest, { precacheSearchData } from './sw-lunr-search';
+import {setupListenerForSearchRequest, precacheSearchData } from './sw-lunr-search';
 import { SEARCH_REQ } from '../constants';
+
+declare let self: ServiceWorkerGlobalScope;
 
 /**
  * serviceworker for website
@@ -22,7 +26,7 @@ import { SEARCH_REQ } from '../constants';
     prefix: 'eoe-website',
   });
 
-  precacheSearchData(swVersion);
+  precacheSearchData(swVersion ?? '');
 
   // eslint-disable-next-line no-restricted-globals,no-underscore-dangle
   precacheAndRoute(self.__WB_MANIFEST);

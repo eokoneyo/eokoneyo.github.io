@@ -17,6 +17,13 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['jest'],
+  settings: {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
   overrides: [
     {
       files: ['**/*.ts'],

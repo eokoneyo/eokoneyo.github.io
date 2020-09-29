@@ -1,4 +1,6 @@
-# The ProcessWebpackOutput class helps us mark the processed webpack files as static files for jekyll build process.
+# The ProcessWebpackOutput class helps us mark the processed webpack files
+# as static files for jekyll build process.
+
 class ProcessWebpackOutput
   def initialize(site)
     @site = site
@@ -16,27 +18,31 @@ class ProcessWebpackOutput
           fileName
         )
       else
-        # place serviceworker file in root because of issues with scope, especially since we can't set headers in Jekyll
+        # place serviceworker file in root because of issues with scope,
+        # especially since we can't set headers in Jekyll
         if processServiceWorker && fileName.match(/sw|service_worker/)
           fileDest = File.join(@site.dest, fileName)
         else
           fileDest = File.join(@site.dest, outputPath, sub_directory, fileName)
         end
 
-        Jekyll.logger.debug(
-          'Jekyll-webpack:',
-          "Processing #{fileName} -> #{fileDest} ..."
-        )
-
-        # use overridden method to place processed webpack files exactly where we wan them :)
-        @site.static_files <<
-          Jekyll::ControlledStaticFile.new(
-            @site,
-            @site.source,
-            dir_path,
-            fileName,
-            fileDest
+        # if file matches dest, skip processing
+        if !File.exist?(fileDest)
+          Jekyll.logger.debug(
+            'Jekyll-webpack:',
+            "Processing #{fileName} -> #{fileDest} ..."
           )
+
+          # use overridden method to place processed webpack files exactly where we want them :)
+          @site.static_files <<
+            Jekyll::ControlledStaticFile.new(
+              @site,
+              @site.source,
+              dir_path,
+              fileName,
+              fileDest
+            )
+        end
       end
     end
   end

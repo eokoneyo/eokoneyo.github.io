@@ -1,27 +1,34 @@
-/* global __SEARCH_DATA_PATH__ */
 import lunr from 'lunr';
 import { matchPrecache, precacheAndRoute } from 'workbox-precaching';
 
+// eslint-disable-next-line no-underscore-dangle
+declare let __SEARCH_DATA_PATH__: string;
+
+type SearchResultItem = {
+  url: string;
+  date: string;
+  title: string;
+  content: string;
+  category: string;
+}
+
 /**
  * precaches the site json file, so we can use it to respond to search results
- * @param {string|null} versionNumber
  */
-export const precacheSearchData = (versionNumber = null) =>
+export const precacheSearchData = (versionNumber?: string): void =>
   precacheAndRoute([{
     url: __SEARCH_DATA_PATH__,
     revision: versionNumber,
   }]);
 
 /**
- * handler for responding to search requests
- * @param {string} searchText
- * @returns {Promise<*[]|*>}
+ * handler for responding to search request
  */
-const setupListenerForSearchRequest = async (searchText) => {
+export const setupListenerForSearchRequest = async (searchText: string): Promise<SearchResultItem[]> => {
   const response = await matchPrecache(__SEARCH_DATA_PATH__);
 
-  if (response.ok) {
-    const data = await response.json();
+  if (response?.ok) {
+    const data = await response.json() as SearchResultItem[];
 
     const idxr = lunr(function configureLunr() {
       this.field('id');
@@ -32,15 +39,14 @@ const setupListenerForSearchRequest = async (searchText) => {
       data.forEach((datum, index) => this.add({
         id: index,
         title: datum.title,
-        category: datum.category,
         content: datum.content,
+        category: datum.category,
       }));
     });
 
-    return idxr.search(searchText).map((result) => data[result.ref]);
+    return idxr.search(searchText).map((result) => data[Number(result.ref)]);
   }
 
   return [];
 };
 
-export default setupListenerForSearchRequest;

@@ -57,6 +57,9 @@ module.exports = {
     path: path.resolve(__dirname, jekyllWebpackConfig.cache_directory),
     publicPath: path.join('/', jekyllWebpackConfig.output.path),
   },
+  resolve: {
+    extensions: ['.ts', '.js']
+  },
   module: {
     rules: [
       {
@@ -126,7 +129,7 @@ module.exports = {
       filename: '[name].[contenthash:8].css',
     }),
     new ManifestPlugin({
-      // Only list main chunks and assets and exclude dynamic imports,
+      // Only list main chunks and assets, allowing us to exclude dynamic imports,
       // since we use the generated list to add scripts to our app
       filter: ({ isInitial, isAsset }) => {
         return isAsset || isInitial;
@@ -134,7 +137,7 @@ module.exports = {
     }),
     new InjectManifest({
       swDest: 'sw.js',
-      swSrc: path.join(__dirname, 'assets', '_js/sw/index.js'),
+      swSrc: path.join(__dirname, 'assets', '_js/sw/index.ts'),
       exclude: [/\.map$/],
     }),
     new webpack.DefinePlugin({
