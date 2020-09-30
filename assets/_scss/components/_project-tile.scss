@@ -28,7 +28,8 @@
       left: 0;
       position: absolute;
       z-index: -1;
-      background: $dark; //currentColor;
+      //background: $dark; //currentColor;
+      border: 1px solid $dark;
     }
 
     .media {
@@ -43,7 +44,7 @@
     position: relative;
 
     > * {
-      color: $light;
+      color: $dark;
     }
 
     .title {

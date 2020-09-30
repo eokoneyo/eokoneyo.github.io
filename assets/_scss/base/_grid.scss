@@ -1,13 +1,11 @@
 @import '~sass-mq';
 
 .container {
-  margin: 0 auto;
-  padding-left: mq-px2em(10px);
-  padding-right: mq-px2em(10px);
-  position: relative;
-  width: 100%;
-
-  &-fluid {
+  &, &-fluid {
+    margin: 0 auto;
+    padding-left: mq-px2em(10px);
+    padding-right: mq-px2em(10px);
+    position: relative;
     width: 100%;
   }
 

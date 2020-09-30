@@ -56,15 +56,6 @@
           height: mq-px2em(400px);
         }
 
-        @include mq($from: large) {
-          width: mq-px2em(600px);
-          //height: mq-px2em(450px);
-        }
-
-        @include mq($from: xlarge) {
-          //height: 500px;
-        }
-
         #illustration {
           height: 100%;
 

@@ -22,6 +22,7 @@ $grid-breakpoints: (
         medium: 768px,
         large: 1024px,
         xlarge: 1200px,
+        xxlarge: 1440px
 );
 
 // Register Breakpoints with media query helper
@@ -30,6 +31,7 @@ $mq-breakpoints: (
         medium: map_get($grid-breakpoints, medium),
         large: map_get($grid-breakpoints, large),
         xlarge: map_get($grid-breakpoints, xlarge),
+        xxlarge: map_get($grid-breakpoints, xxlarge),
 );
 
 // header

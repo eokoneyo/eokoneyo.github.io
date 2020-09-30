@@ -45,4 +45,27 @@
     flex-direction: column;
     justify-content: space-between;
   }
+
+  .image-zoom {
+    margin-top: mq-px2em(50px);
+    margin-bottom: mq-px2em(50px);
+
+    @include mq($from: medium) {
+      display: flex;
+      justify-content: center;
+
+      &__preview {
+        flex: 1 1 70%;
+        width: inherit;
+      }
+
+      figcaption {
+        flex: 1 0 30%;
+        align-self: center;
+        text-align: right;
+        @include ms-respond(font-size, 5);
+        font-style: italic;
+      }
+    }
+  }
 }
