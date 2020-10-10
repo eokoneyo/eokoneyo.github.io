@@ -1,18 +1,17 @@
-import logdown from 'logdown';
+import { loadComponents } from 'gia';
 import initPreloader from './preloader';
-import initHeaderNav from './header';
-import toggleHeaderMobileMenu from './header-mobile-menu-toggle'
+import NavigationComponent from './navigation-component';
 
-((global, logger): void => {
+((global): void => {
     const { document } = global;
 
-    document.addEventListener('DOMContentLoaded', (): void => {
+    document.addEventListener('DOMContentLoaded', () => {
 
         initPreloader(global);
 
-        initHeaderNav(global, logger);
-
-        toggleHeaderMobileMenu(global);
+        loadComponents({
+            NavigationComponent
+        })
 
         // lazy load image zoom feature as progressive enhancement
         import(/* webpackChunkName: "image-zoom" */ './image-zoom');
@@ -25,4 +24,4 @@ import toggleHeaderMobileMenu from './header-mobile-menu-toggle'
             });
         }
     });
-})(window, logdown('eoe'));
+})(window);

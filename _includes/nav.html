@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<header class="ns-header {% if include.hide == 'true' %}ns-header--hidden{% endif %}" id="header">
+<header class="ns-header {% if include.hide == 'true' %}ns-header--hidden{% endif %}" id="header" g-component="NavigationComponent">
     <div class="header container">
         <div class="header__left">
             <a href="/" class="header__brand-wrapper">
@@ -7,7 +7,7 @@
             </a>
         </div>
         <div class="header__right">
-            <div class="mobile-toggle js-mobile-menu-toggle">
+            <div class="mobile-toggle js-mobile-menu-toggle" g-ref="mobileMenuToggle">
                 <div class="mobile-toggle__icon">
                     <span></span>
                     <span></span>
@@ -22,14 +22,14 @@
                 {% endfor %}
             </ul>
             <div class="search js-search" id="search-field" data-animation="on">
-                <form class="search-form js-search-form">
+                <form class="search-form js-search-form" g-ref="searchForm">
                     <label class="sr-only" for="searchInput">Search</label>
                     <input class= "search-form__input" autocomplete="off" type="search" name="searchInput" id="searchInput" placeholder="Search...">
                     <button class="reset search-form__btn">
                         {% include vectors/search-icon.svg %}
                     </button>
-                    <div class="search__results js-search-result"></div>
                 </form>
+                <div class="search__results js-search-result" g-ref="searchResultContainer"></div>
             </div>
         </div>
     </div>
