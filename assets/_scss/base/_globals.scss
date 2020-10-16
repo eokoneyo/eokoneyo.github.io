@@ -37,6 +37,7 @@ a {
     color: darken($primary,20%);
   }
 
+  // Styles for external links
   &[target="_blank"] {
     position: relative;
     display: inline-block;

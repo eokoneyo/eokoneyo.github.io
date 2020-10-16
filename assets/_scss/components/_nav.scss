@@ -161,6 +161,8 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
     flex: 0 0 $expandable-search-size-compact;
     transition: flex .1s;
 
+
+
     &-form {
       width: 100%;
       position: relative;
@@ -241,6 +243,11 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
         display: initial;
       }
 
+      .loading-indicator {
+        text-align: center;
+        padding: mq-px2em(50px) 0;
+      }
+
       .search-result-list {
         @extend .no-style-list;
         margin-bottom: mq-px2em(20px);
@@ -281,6 +288,40 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
 
     @include mq($from: medium) {
       order: initial;
+    }
+  }
+
+  // handles the backdrop for the search modal
+  @at-root #page-top {
+    header {
+      & + [class^="ns-"][class$="layout"], & + [class="ns-landing-screen"] .main-content {
+        &:before {
+          content: '';
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba($primary, 0.75);
+          -webkit-backdrop-filter: blur(mq-px2em(10px));
+          backdrop-filter: blur(mq-px2em(10px));
+          visibility: hidden;
+          opacity: 0;
+          z-index: #{$zindex-header - 1};
+          transition: visibility 0.3s linear, opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+      }
+
+      &[search-expanded] {
+        background: $light;
+
+        & + [class^="ns-"][class$="layout"], & + [class="ns-landing-screen"] .main-content {
+          &:before {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+      }
     }
   }
 
