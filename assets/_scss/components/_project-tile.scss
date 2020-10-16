@@ -18,6 +18,7 @@
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
+    filter: contrast(7);
 
     &:before {
       content: '';
@@ -28,8 +29,21 @@
       left: 0;
       position: absolute;
       z-index: -1;
-      //background: $dark; //currentColor;
-      border: 1px solid $dark;
+      background-color: rgba(map_get($gray-pallet, mid), 0.2);
+      background-image: linear-gradient(to left, currentColor 30%, transparent 50%), url("/assets/img/texture_bg.png");
+    }
+
+    &:after {
+      content: '';
+      width: 100%;
+      position: absolute;
+      left: 0;
+      bottom: mq-px2em(15px);
+      border-top: 1px solid $light;
+      border-bottom: 3px solid $light;
+      display: block;
+      height: 1px;
+      margin-top: 3px;
     }
 
     .media {

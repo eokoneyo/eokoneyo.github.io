@@ -73,6 +73,16 @@ module.exports = {
         ],
       },
       {
+        test: /\.((sv|pn|jpe?)g|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          // special config to ensure img assets are process as the original path
+          // since jekyll handles copying files in our assets directory already
+          name: '[folder]/[name].[ext]',
+          emitFile: false,
+        }
+      },
+      {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
           {
