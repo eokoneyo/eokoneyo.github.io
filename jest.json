@@ -4,13 +4,13 @@
     "color": "yellow"
   },
   "setupFiles": [
-    "<rootDir>/assets/_js/__tests__/setup.js"
+    "<rootDir>/assets/_scripts/__tests__/setup.js"
   ],
   "testURL": "http://localhost",
   "testPathIgnorePatterns": [
-    "<rootDir>/assets/_js/__tests__/setup.js",
-    "<rootDir>/assets/_js/__tests__/__mocks__",
-    "<rootDir>/assets/_js/__tests__/helpers"
+    "<rootDir>/assets/_scripts/__tests__/setup.js",
+    "<rootDir>/assets/_scripts/__tests__/__mocks__",
+    "<rootDir>/assets/_scripts/__tests__/helpers"
   ],
   "transform": {
     "^.+\\.[t|j]sx?$": "babel-jest"

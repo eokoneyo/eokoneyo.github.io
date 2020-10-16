@@ -147,7 +147,7 @@ module.exports = {
     }),
     new InjectManifest({
       swDest: 'sw.js',
-      swSrc: path.join(__dirname, 'assets', '_js/sw/index.ts'),
+      swSrc: path.join(__dirname, 'assets', '_scripts/sw/index.ts'),
       exclude: [/\.map$/],
     }),
     new webpack.DefinePlugin({

@@ -16,6 +16,7 @@ const headerDOM = {} as {
 };
 
 type NavigationState = {
+  searchText: string;
   searchResult: SearchResultItem[] | null;
   searchResultLoading: boolean;
 };
@@ -72,13 +73,11 @@ export default class NavigationComponent extends Component<NavigationState, Navi
 
   setLoadingIndicator(): void {
     const [ searchResultsContainer ] = this.ref.searchResultContainer;
-
-    // checks if the reference to our loading indicator is still in the DOM
-    if (headerDOM.loadingIndicator?.parentElement) return;
+    const { searchText } = this.state;
 
     const loadingIndicator = document.createElement('div');
-    loadingIndicator.className = 'container js-loading-indicator';
-    loadingIndicator.textContent = 'Loading...';
+    loadingIndicator.className = 'container loading-indicator js-loading-indicator';
+    loadingIndicator.textContent = searchText!.length < 3 ? 'more input required' : `searching matches for ${this.state.searchText}...`;
 
     // replace search results with loader if they exist
     this.insertContentInSearchContainer(loadingIndicator);
@@ -125,6 +124,7 @@ export default class NavigationComponent extends Component<NavigationState, Navi
 
     // Set loading visual cue
     this.setState({
+      searchText,
       searchResultLoading: true,
     })
 
