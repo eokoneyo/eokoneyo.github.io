@@ -136,34 +136,61 @@ export default class NavigationComponent extends Component<NavigationState, Navi
       .catch(this.displaySearchError);
   }, 250);
 
-  animateLandingPageHeader = (landingPage: Element): void => {
+  animateLandingPageHeader = (): void => {
     const toggleBoundary = 10;
     const classToToggle = 'ns-header--hidden';
+    const headerOpacityClassName = 'ns-header--scrolled';
 
-    const landingPageContent = landingPage.querySelector(
+    const landingPage = document.querySelector('.ns-landing-screen');
+    const landingPageContent = landingPage?.querySelector(
       '.main-content'
     ) as Element;
 
-    landingPage.addEventListener(
-      'scroll',
-      throttle(() => {
-        const contentRect = landingPageContent.getBoundingClientRect();
-        const classIsSet = hasClass(this.element, classToToggle);
+    document.addEventListener('scroll', throttle(() => {
+      const isOpacityClassNameSet = hasClass(this.element, headerOpacityClassName);
+      const pageScrollOffset = window.scrollY;
+      const headerTransparencyBoundaryShift = 80;
 
-        requestAnimationFrame(() => {
-          if (classIsSet && contentRect.y < toggleBoundary) {
-            toggleClass(this.element, classToToggle, false);
-          }
+      requestAnimationFrame(() => {
+        if (isOpacityClassNameSet && pageScrollOffset < headerTransparencyBoundaryShift) {
+          toggleClass(this.element, headerOpacityClassName, false);
+        }
 
-          if (!classIsSet && contentRect.y > toggleBoundary) {
-            if (this.headerSearchActive()) {
-              this.setHeaderSearchDisabled();
+        if (!isOpacityClassNameSet && pageScrollOffset > headerTransparencyBoundaryShift) {
+          toggleClass(this.element, headerOpacityClassName, true);
+        }
+      });
+    }, 250))
+
+    if(landingPage) {
+      landingPage.addEventListener(
+        'scroll',
+        throttle(() => {
+          const contentRect = landingPageContent.getBoundingClientRect();
+          const classIsSet = hasClass(this.element, classToToggle);
+          const isOpacityClassNameSet = hasClass(this.element, headerOpacityClassName);
+
+          requestAnimationFrame(() => {
+            if (classIsSet && contentRect.y < toggleBoundary) {
+              toggleClass(this.element, classToToggle, false); }
+
+            if (!classIsSet && contentRect.y > toggleBoundary) {
+              if (this.headerSearchActive()) {
+                this.setHeaderSearchDisabled();
+              }
+              toggleClass(this.element, classToToggle, true);
             }
-            toggleClass(this.element, classToToggle, true);
-          }
-        });
-      }, 250)
-    );
+
+            if (isOpacityClassNameSet && contentRect.y < toggleBoundary) {
+              toggleClass(this.element, headerOpacityClassName, false);
+            }
+
+            if (isOpacityClassNameSet && contentRect.y < toggleBoundary) {
+              toggleClass(this.element, headerOpacityClassName, true);
+            }
+          });
+        }, 250));
+    }
   };
 
   stateChange(stateChanges: Partial<NavigationState>): void {
@@ -179,16 +206,14 @@ export default class NavigationComponent extends Component<NavigationState, Navi
   mount(): void {
     const [ searchForm ] = this.ref.searchForm;
     const [ searchResultsContainer ] = this.ref.searchResultContainer;
-    const landingPage = document.querySelector('.ns-landing-screen');
 
+    // Store references to some DOM elements we'll be needing
     headerDOM.searchInputField = searchForm.elements.namedItem('searchInput') as Element;
     headerDOM.loadingIndicator = null;
 
     const [ MOBILE_TOGGLE ] = this.ref?.mobileMenuToggle;
 
-    if (landingPage) {
-      this.animateLandingPageHeader(landingPage);
-    }
+    this.animateLandingPageHeader();
 
     searchForm.addEventListener('click', () => {
       if (!this.headerSearchActive()) {

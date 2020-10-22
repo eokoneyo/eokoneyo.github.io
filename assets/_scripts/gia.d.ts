@@ -36,8 +36,10 @@ declare module 'gia' {
     _load(): void;
   }
 
+  export type GiaComponentsRecord = Record<string, new (...args: never[]) => Component>
+
   export function loadComponents(
-    components: Record<string, new (...args: never[]) => Component>,
+    components: GiaComponentsRecord,
     context?: HTMLElement
   ): void;
 }
