@@ -1,6 +1,6 @@
 describe('entry script', () => {
-  let registeredEvents ={};
-  let eventListenerSpy;
+  let registeredEvents: Record<string, EventListener> = {};
+  let eventListenerSpy: jest.SpyInstance
 
   beforeEach(() => {
     eventListenerSpy = jest.spyOn(document, 'addEventListener');
