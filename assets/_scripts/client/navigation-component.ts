@@ -1,5 +1,5 @@
-import throttle from 'lodash.throttle';
 import { Component } from 'gia';
+import throttle from 'lodash.throttle';
 import logger from './utils/logger';
 import { SEARCH_REQ } from '../constants';
 import { hasClass, toggleClass, sendWorkerMessage } from './utils';
@@ -146,21 +146,23 @@ export default class NavigationComponent extends Component<NavigationState, Navi
       '.main-content'
     ) as Element;
 
-    document.addEventListener('scroll', throttle(() => {
-      const isOpacityClassNameSet = hasClass(this.element, headerOpacityClassName);
-      const pageScrollOffset = window.scrollY;
-      const headerTransparencyBoundaryShift = 80;
+    if(!landingPage) {
+      document.addEventListener('scroll', throttle(() => {
+        const isOpacityClassNameSet = hasClass(this.element, headerOpacityClassName);
+        const pageScrollOffset = window.scrollY;
+        const headerTransparencyBoundaryShift = 50;
 
-      requestAnimationFrame(() => {
-        if (isOpacityClassNameSet && pageScrollOffset < headerTransparencyBoundaryShift) {
-          toggleClass(this.element, headerOpacityClassName, false);
-        }
+        requestAnimationFrame(() => {
+          if (isOpacityClassNameSet && pageScrollOffset < headerTransparencyBoundaryShift) {
+            toggleClass(this.element, headerOpacityClassName, false);
+          }
 
-        if (!isOpacityClassNameSet && pageScrollOffset > headerTransparencyBoundaryShift) {
-          toggleClass(this.element, headerOpacityClassName, true);
-        }
-      });
-    }, 250))
+          if (!isOpacityClassNameSet && pageScrollOffset > headerTransparencyBoundaryShift) {
+            toggleClass(this.element, headerOpacityClassName, true);
+          }
+        });
+      }, 250))
+    }
 
     if(landingPage) {
       landingPage.addEventListener(
@@ -172,7 +174,8 @@ export default class NavigationComponent extends Component<NavigationState, Navi
 
           requestAnimationFrame(() => {
             if (classIsSet && contentRect.y < toggleBoundary) {
-              toggleClass(this.element, classToToggle, false); }
+              toggleClass(this.element, classToToggle, false);
+            }
 
             if (!classIsSet && contentRect.y > toggleBoundary) {
               if (this.headerSearchActive()) {
@@ -181,11 +184,11 @@ export default class NavigationComponent extends Component<NavigationState, Navi
               toggleClass(this.element, classToToggle, true);
             }
 
-            if (isOpacityClassNameSet && contentRect.y < toggleBoundary) {
+            if (isOpacityClassNameSet && contentRect.y > toggleBoundary) {
               toggleClass(this.element, headerOpacityClassName, false);
             }
 
-            if (isOpacityClassNameSet && contentRect.y < toggleBoundary) {
+            if (!isOpacityClassNameSet && contentRect.y < toggleBoundary) {
               toggleClass(this.element, headerOpacityClassName, true);
             }
           });

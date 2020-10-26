@@ -3,16 +3,21 @@
   display: flex;
   flex-direction: column;
 
+  // move page up
+  @at-root #page-top & {
+    position: relative;
+    margin-top: -#{mq-px2em($header-height)};
+  }
+
   .project-hero {
     display: flex;
     align-items: center;
     height: mq-px2em(400px);
-    overflow: auto;
     position: relative;
+    background: currentColor;
 
     &__content{
       @extend .container;
-      overflow: hidden;
     }
 
     &__decoration {
@@ -20,52 +25,90 @@
       right: 0;
       bottom: 0;
       height: 100%;
-      width: mq-px2em(400px);
-      transform: translate(50%, 50%);
+      transform: translate(0%, 120%);
 
       > svg {
         width: 100%;
         height: 100%;
+
+        path {
+          fill: rgba(map_get($gray-pallet, mid), 0.2);
+        }
       }
     }
 
     & + * {
-      //z-index: 1;
+      display: flex;
       flex: 1 0 auto;
+      justify-content: space-between;
+      flex-direction: column;
       position: relative;
     }
 
     @include mq($from: medium) {
-      height: mq-px2em(500px);
+      height: mq-px2em(550px);
+
+      &__decoration {
+        width: mq-px2em(300px);
+        transform: translate(25%, 75%);
+      }
+    }
+
+    @include mq($from: xxlarge) {
+      height: mq-px2em(650px);
     }
   }
 
   .post-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    @extend .article-width;
+    padding-top: mq-px2em(50px);
+
+    .footnotes[role='doc-endnotes'] {
+      ol, ul {
+        padding: 0;
+        list-style: decimal-leading-zero inside;
+      }
+
+      li[role="doc-endnote"] {
+        > * {
+          display: inline-block;
+        }
+      }
+    }
+
+    @include mq($from: medium) {
+      p {
+        text-align: justify;
+      }
+    }
   }
 
   .image-zoom {
-    margin-top: mq-px2em(50px);
-    margin-bottom: mq-px2em(50px);
+    margin: mq-px2em(50px) 0;
+    padding: mq-px2em(25px) mq-px2em(20px);
+    background: rgba(map-get($gray-pallet, light), 0.1);
+
+    figcaption {
+      padding: mq-px2em(5px) 0;
+      position: absolute;
+      left: 0;
+      bottom: -#{mq-px2em(35px)};
+    }
 
     @include mq($from: medium) {
-      display: flex;
-      justify-content: center;
-
-      &__preview {
-        flex: 1 1 70%;
-        width: inherit;
-      }
+      padding: mq-px2em(35px) mq-px2em(20px);
 
       figcaption {
-        flex: 1 0 30%;
-        align-self: center;
         text-align: right;
-        @include ms-respond(font-size, 5);
-        font-style: italic;
+        padding: mq-px2em(10px) 0;
+        left: unset;
+        right: 0;
       }
+    }
+
+    @include mq($from: large) {
+      max-width: mq-px2em(1144px);
+      margin-right: calc(50% - 50vw);
     }
   }
 }

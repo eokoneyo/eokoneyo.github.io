@@ -29,8 +29,7 @@
       left: 0;
       position: absolute;
       z-index: -1;
-      background-color: rgba(map_get($gray-pallet, mid), 0.2);
-      background-image: linear-gradient(to left, currentColor 30%, transparent 50%), url("/assets/img/texture_bg.png");
+      background: rgba(map_get($gray-pallet, mid), 0.2);
     }
 
     &:after {

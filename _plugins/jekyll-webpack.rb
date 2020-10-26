@@ -26,23 +26,20 @@ class ProcessWebpackOutput
           fileDest = File.join(@site.dest, outputPath, sub_directory, fileName)
         end
 
-        # if file matches dest, skip processing
-        if !File.exist?(fileDest)
-          Jekyll.logger.debug(
-            'Jekyll-webpack:',
-            "Processing #{fileName} -> #{fileDest} ..."
-          )
+        Jekyll.logger.debug(
+          'Jekyll-webpack:',
+          "Processing #{fileName} -> #{fileDest} ..."
+        )
 
-          # use overridden method to place processed webpack files exactly where we want them :)
-          @site.static_files <<
-            Jekyll::ControlledStaticFile.new(
-              @site,
-              @site.source,
-              dir_path,
-              fileName,
-              fileDest
-            )
-        end
+        # use overridden method to place processed webpack files exactly where we want them :)
+        @site.static_files <<
+          Jekyll::ControlledStaticFile.new(
+            @site,
+            @site.source,
+            dir_path,
+            fileName,
+            fileDest
+          )
       end
     end
   end

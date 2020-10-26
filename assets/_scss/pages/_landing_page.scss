@@ -106,10 +106,27 @@
     }
 
     .selected-category {
-      &--blog {}
+      &--blog {
+        &__item {
+          .display-heading__subtitle{
+            font-style: normal;
+            letter-spacing: mq-px2em(3px);
+            font-weight: $bold-font-weight;
+
+            > * {
+              color: rgba(map_get($gray-pallet, mid), 0.9)
+            }
+          }
+        }
+      }
 
       &--projects {
         position: relative;
+
+        &__inner {
+          padding-left: 0;
+          padding-right: 0;
+        }
 
         @include mq($until: medium) {
           &__item {

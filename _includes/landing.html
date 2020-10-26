@@ -27,7 +27,7 @@
                                 <span class="display-heading display-heading--decorated">Projects</span>
                                 <a class="page-heading--with-action__action-item view-more-link" href="/projects">see more</a>
                             </h2>
-                            <div class="container">
+                            <div class="container-fluid selected-category--projects__inner">
                                 <ul class="no-style-list row">
                                     {% for project in projects limit:3 %}
                                     <li class="column-sm-12 column-md-4 selected-category--projects__item">
@@ -41,18 +41,18 @@
 
                     {% assign posts = site.posts | where: 'category', 'blog' %}
                     {% if posts.size > 0 %}
-                        <section class="column-sm-12 selected-categories selected-categories--blog">
+                        <section class="column-sm-12 selected-categories selected-category--blog">
                             <h2 class="page-heading page-heading--with-action">
                                 <span class="display-heading display-heading--decorated">Writings</span>
                                 <a class="page-heading--with-action__action-item view-more-link" href="/blog">see more</a>
                             </h2>
                             <ul class="no-style-list">
                                 {% for post in posts limit:3 %}
-                                <li>
+                                <li class="selected-category--blog__item">
                                     <a href="{{ post.url}}">
                                         <h5 class="page-heading">
                                             <span class="display-heading__subtitle">
-                                                <time datetime="{{ post.date | date: '%Y-%-d-%m' }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+                                                <time datetime="{{ post.date | date: '%Y-%-d-%m' }}">{{ post.date | date: "%d.%m.%Y" }}</time>
                                             </span>
                                             <span class="display-heading">{{ post.title }}</span>
                                         </h5>

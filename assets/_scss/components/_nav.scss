@@ -1,7 +1,7 @@
 @use "sass:selector";
 
 $expandable-search-size-compact: mq-px2em(35px); // height and width - compact version
-$search-animation-duration: 0.5s;
+$search-animation-duration: 500ms;
 $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
 
 .ns-header {
@@ -12,13 +12,17 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
   opacity: 1;
   visibility: visible;
   pointer-events: all;
-  transition: opacity .2s;
-  background: rgba($light, 0.9);
+  transition: opacity 200ms, background 50ms;
+  background: rgba($light, 0);
   transform: translateZ(0);
 
   &--hidden {
     opacity: 0;
     visibility: hidden;
+  }
+
+  &--scrolled {
+    background: rgba($light, 0.9);
   }
 
   .header {
@@ -89,21 +93,26 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
         }
       }
 
-      @at-root .mobile-toggle--open .mobile-toggle__icon {
-        span {
-          &:nth-child(1) {
-            top: 30px;
-            transform: rotate(135deg);
-          }
+      @at-root .mobile-toggle--open  {
 
-          &:nth-child(2) {
-            opacity: 0;
-            left: -60px;
-          }
+        //@at-root header
 
-          &:nth-child(3) {
-            top: 30px;
-            transform: rotate(-135deg);
+        .mobile-toggle__icon {
+          span {
+            &:nth-child(1) {
+              top: 30px;
+              transform: rotate(135deg);
+            }
+
+            &:nth-child(2) {
+              opacity: 0;
+              left: -60px;
+            }
+
+            &:nth-child(3) {
+              top: 30px;
+              transform: rotate(-135deg);
+            }
           }
         }
       }

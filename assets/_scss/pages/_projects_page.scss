@@ -17,6 +17,7 @@
         counter-increment: figure;
         content: counter(figure, decimal-leading-zero);
         position: absolute;
+        z-index: +1;
         font-size: 10rem;
         color: $light;
         bottom: calc(100% - 5rem);
