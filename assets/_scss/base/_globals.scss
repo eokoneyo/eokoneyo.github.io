@@ -9,7 +9,7 @@ body {
   &, * {
     box-sizing: border-box;
 
-    &::selection {
+    &::selection, &:target {
       text-shadow: none;
       background: $yellow;
     }

@@ -132,10 +132,10 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
   .menu-list {
     display: inline-flex;
     position: absolute;
-    width: 100%;
-    height: calc(100vh - #{mq-px2em($header-height)});
     left: 0;
-    top: 100%;
+    z-index: -1;
+    width: 100%;
+    height: calc(100vh);
     padding: 0;
     margin: 0;
     justify-content: space-evenly;
@@ -160,6 +160,7 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
       width: auto;
       position: static;
       background: none;
+      z-index: unset;
     }
   }
 
