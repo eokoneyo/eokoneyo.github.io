@@ -46,7 +46,7 @@ export default class NavigationComponent extends Component<NavigationState, Navi
     this.element.removeAttribute('search-expanded');
 
   searchRequest = (searchText: string): Promise<SearchRequestResponse> =>
-    sendWorkerMessage({
+    sendWorkerMessage<SearchRequestResponse>({
       command: SEARCH_REQ,
       key: searchText,
     });
