@@ -13,7 +13,7 @@ export const addClass = (el: HTMLElement, className: string): void=> {
   if (el.classList) el.classList.add(classList[0]);
   else if (!hasClass(el, classList[0])) {
     setAttributes(el, {
-      className: `${el.className} ${classList[0]}`
+      class: `${el.className} ${classList[0]}`
     })
   }
   if (classList.length > 1) addClass(el, classList.slice(1).join(' '));
@@ -25,7 +25,7 @@ export const removeClass = (el: HTMLElement, className: string): void => {
   else if (hasClass(el, classList[0])) {
     const reg = new RegExp(`(\\s|^)${classList[0]}(\\s|$)`);
     setAttributes(el, {
-      className: el.className.replace(reg, ' ')
+      class: el.className.replace(reg, ' ')
     })
   }
   if (classList.length > 1) removeClass(el, classList.slice(1).join(' '));
