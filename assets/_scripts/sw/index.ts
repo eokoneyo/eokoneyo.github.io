@@ -2,14 +2,17 @@
 
 import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching';
 import { setCacheNameDetails, skipWaiting, clientsClaim } from 'workbox-core';
-import { registerRoute } from 'workbox-routing/registerRoute';
-import { CacheFirst } from 'workbox-strategies/CacheFirst';
+import { registerRoute, NavigationRoute } from 'workbox-routing';
+import { CacheFirst, NetworkOnly } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { ExpirationPlugin } from 'workbox-expiration';
-import {setupListenerForSearchRequest, precacheSearchData } from './sw-lunr-search';
+import {
+  setupListenerForSearchRequest,
+  precacheSearchData,
+} from './sw-lunr-search';
 import { SEARCH_REQ } from '../constants';
 
-declare let self: ServiceWorkerGlobalScope;
+declare const self: ServiceWorkerGlobalScope;
 
 /**
  * serviceworker for website
@@ -45,7 +48,22 @@ declare let self: ServiceWorkerGlobalScope;
           maxAgeSeconds: 60 * 60 * 24 * 365, // cache fonts for a year
         }),
       ],
-    }),
+    })
+  );
+
+  // TODO: improve site's offline experience
+  const networkOnly = new NetworkOnly();
+  registerRoute(
+    new NavigationRoute(async function navigationHandler(params) {
+      try {
+        return await networkOnly.handle(params);
+      } catch (err) {
+        return new Response(
+          new Blob(['<p>You are offline</p>'], { type: 'text/html' }),
+          { status: 200 }
+        );
+      }
+    })
   );
 
   global.addEventListener('message', async (event) => {
@@ -53,16 +71,20 @@ declare let self: ServiceWorkerGlobalScope;
 
     switch (event.data.command) {
       case SEARCH_REQ:
-        responseMessage = { ...responseMessage, data: await setupListenerForSearchRequest(event.data.key) };
+        responseMessage = {
+          ...responseMessage,
+          data: await setupListenerForSearchRequest(event.data.key),
+        };
         break;
       default:
-        responseMessage = { ...responseMessage, message: 'nothing to see'};
+        responseMessage = { ...responseMessage, message: 'nothing to see' };
         break;
     }
 
-    if(event.ports && event.ports[0]) {
+    if (event.ports && event.ports[0]) {
       event.ports[0].postMessage(responseMessage);
     }
   });
-// eslint-disable-next-line no-restricted-globals
+
+  // eslint-disable-next-line no-restricted-globals
 })(self);
