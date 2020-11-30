@@ -10,7 +10,7 @@
     "noImplicitReturns": true,
     "resolveJsonModule": true,
     "strict": true,
-    "module": "CommonJS",
+    "module": "es2020",
     "target": "esnext"
   },
   "types": ["node"]

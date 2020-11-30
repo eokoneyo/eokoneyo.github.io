@@ -155,6 +155,7 @@ module.exports = {
       __SEARCH_DATA_PATH__: JSON.stringify(
         path.join('/', searchData.output_path, searchData.filename)
       ),
+      'process.env.NODE_ENV': JSON.stringify(process.env.JEKYLL_ENV)
     }),
     function provideMetaForJekyll() {
       this.hooks.done.tap(

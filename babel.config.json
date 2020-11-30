@@ -4,7 +4,10 @@
       "@babel/preset-env",
       {
         "corejs": 3,
-        "useBuiltIns": "usage"
+        "useBuiltIns": "usage",
+        "targets": {
+          "browsers": ["last 2 versions", "ie >= 11"]
+        }
       }
     ],
     "@babel/preset-typescript"
