@@ -1,10 +1,8 @@
 import anime from 'animejs';
 
-type Maybe<T> = {
-  [P in keyof T]: T[P] | null;
-};
+type Nullable<T> = { [P in keyof T]: T[P] | null };
 
-const preloaderDOM: Maybe<{
+const preloaderDOM: Nullable<{
   preloader: HTMLElement;
   shape: SVGElement;
   path: SVGElement;

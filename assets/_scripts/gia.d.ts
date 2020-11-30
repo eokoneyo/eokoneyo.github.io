@@ -1,9 +1,12 @@
 /* eslint no-useless-constructor: "off" */
 
 declare module 'gia' {
-
   // eslint-disable-next-line @typescript-eslint/ban-types
-  export abstract class Component<S = {}, R extends Record<string, unknown> = {}, O extends Record<string, unknown> = {}> {
+  export abstract class Component<
+    S = Record<string, unknown>,
+    R = Record<string, unknown>,
+    O = Record<string, unknown>
+  > {
     readonly element: HTMLElement;
 
     protected constructor(element: HTMLElement, opts?: O);
@@ -20,8 +23,6 @@ declare module 'gia' {
 
     set options(opts: O);
 
-    require(): Promise<void>;
-
     abstract mount(): void;
 
     unmount(): void;
@@ -36,10 +37,19 @@ declare module 'gia' {
     _load(): void;
   }
 
-  export type GiaComponentsRecord = Record<string, new (...args: never[]) => Component>
+  type GiaComponent = new (...args: never[]) => Component;
+
+  export type GiaComponentsRecord = Record<string, GiaComponent>;
 
   export function loadComponents(
     components: GiaComponentsRecord,
     context?: HTMLElement
   ): void;
+
+  export function createInstance<T>(
+    element: HTMLElement,
+    componentName: string,
+    component: T extends Component ? new (...args : never[]) => T : never,
+    options?: Record<string, unknown>,
+  ): T
 }
