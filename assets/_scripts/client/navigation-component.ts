@@ -99,11 +99,11 @@ export default class NavigationComponent extends Component<NavigationState, Navi
     searchItemsWrapper.className =
       'container js-search-result-list search-result-list';
 
-    searchResult.reduce((acc, cur) => {
+    searchResult.reduce((wrapper, cur) => {
       const li = document.createElement('li');
       li.innerHTML = this.renderSearchResultItem(cur);
-      searchItemsWrapper.appendChild(li);
-      return searchItemsWrapper;
+      wrapper.appendChild(li);
+      return wrapper;
     }, searchItemsWrapper);
 
     fragment.appendChild(searchItemsWrapper);

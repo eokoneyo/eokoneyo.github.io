@@ -13,12 +13,42 @@ import NavigationComponent from './navigation-component';
             NavigationComponent
         })
 
-        // lazy load image zoom feature as progressive enhancement
-        import(/* webpackChunkName: "image-zoom" */ './image-zoom');
-
         const playlists = document.querySelector('#Playlists')
+        const imageZoom = document.getElementsByClassName('js-image-zoom');
 
-        // request spotify playlist only when user is on the playlist page
+        // lazy load image zoom feature when page has an image zoom component
+        if (imageZoom.length > 0) {
+            import(/* webpackChunkName: "image-zoom" */ './image-zoom').then(({ default: ImageZoomComponent }) => {
+                const imageZoomArray: InstanceType<typeof ImageZoomComponent>[] = [];
+
+                Array.prototype.forEach.call(imageZoom, (imageZoomElm, i) => {
+                    const instance = createInstance(
+                      imageZoomElm,
+                      `imagezoom-${i}`,
+                      ImageZoomComponent,
+                      { key: i }
+                    );
+                    // eslint-disable-next-line no-underscore-dangle
+                    instance._load();
+                    imageZoomArray.push(instance);
+                });
+
+                // close Zoom Image lightbox on Esc
+                global.addEventListener('keydown', (event) => {
+                    if (
+                      (event.keyCode && event.keyCode === 27) ||
+                      (event.key && event.key.toLowerCase() === 'esc')
+                    ) {
+                        imageZoomArray.forEach((imageZoomComp) => {
+                            imageZoomComp.input.removeAttribute('checked');
+                            ImageZoomComponent.shouldToggle(imageZoomComp)
+                        });
+                    }
+                });
+            });
+        }
+
+        // lazy load spotify playlist only when user is on the playlist page
         if(playlists) {
             import(/* webpackChunkName: "playlist" */ './playlists')
               .then(({ default: PlaylistComponent }) => {

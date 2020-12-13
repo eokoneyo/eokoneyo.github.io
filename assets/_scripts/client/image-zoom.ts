@@ -1,4 +1,4 @@
-import { Component, createInstance } from 'gia';
+import { Component } from 'gia';
 import * as Util from './utils';
 
 /**
@@ -43,7 +43,7 @@ class ImageZoomComponent extends Component {
   animationSupported =
     window.requestAnimationFrame && !Util.osHasReducedMotion();
 
-  initImageZoomHtml() {
+  initImageZoomHtml(): void {
     // get zoomed image url
     let url = this.element.getAttribute('data-img');
     if (!url) url = this.imgPreview.getAttribute('src');
@@ -62,7 +62,7 @@ class ImageZoomComponent extends Component {
     this.element.insertAdjacentHTML('afterbegin', keyboardInput);
   }
 
-  toggleFullWidth = (bool: boolean) => {
+  toggleFullWidth = (bool: boolean): void => {
     if (this.animationSupported && this.animate) {
       // start expanding animation
       window.requestAnimationFrame(() => {
@@ -74,7 +74,7 @@ class ImageZoomComponent extends Component {
     }
   };
 
-  animateZoomImage = (bool: boolean) => {
+  animateZoomImage = (bool: boolean): void => {
     // get img preview position and dimension for the morphing effect
     const rect = this.imgPreview.getBoundingClientRect();
     const finalWidth = this.lightbox.getBoundingClientRect().width;
@@ -116,7 +116,18 @@ class ImageZoomComponent extends Component {
     Util.toggleClass(this.lightbox, 'image-zoom__lightbox--animate-bg', bool);
   };
 
-  initImageZoomEvents() {
+  static shouldToggle(instance: InstanceType<typeof ImageZoomComponent>): void {
+    if (
+      Util.hasClass(
+        instance.lightbox,
+        'image-zoom__lightbox--is-visible'
+      )
+    ) {
+      instance.toggleFullWidth(false);
+    }
+  }
+
+  initImageZoomEvents(): void {
     // toggle lightbox on click
     this.imgPreview.addEventListener('click', () => {
       this.toggleFullWidth(true);
@@ -146,41 +157,4 @@ class ImageZoomComponent extends Component {
   }
 }
 
-// init ImageZoom object
-const imageZoom = document.getElementsByClassName('js-image-zoom');
-
-if (imageZoom.length > 0) {
-  const imageZoomArray: InstanceType<typeof ImageZoomComponent>[] = [];
-
-  Array.prototype.forEach.call(imageZoom, (imageZoomElm, i) => {
-    const instance = createInstance(
-      imageZoomElm,
-      `imagezoom-${i}`,
-      ImageZoomComponent,
-      { key: i }
-    );
-    // eslint-disable-next-line no-underscore-dangle
-    instance._load();
-    imageZoomArray.push(instance);
-  });
-
-  // close Zoom Image lightbox on Esc
-  window.addEventListener('keydown', (event) => {
-    if (
-      (event.keyCode && event.keyCode === 27) ||
-      (event.key && event.key.toLowerCase() === 'esc')
-    ) {
-      imageZoomArray.forEach((imageZoomComp) => {
-        imageZoomComp.input.removeAttribute('checked');
-        if (
-          Util.hasClass(
-            imageZoomComp.lightbox,
-            'image-zoom__lightbox--is-visible'
-          )
-        ) {
-          imageZoomComp.toggleFullWidth(false);
-        }
-      });
-    }
-  });
-}
+export default ImageZoomComponent;
