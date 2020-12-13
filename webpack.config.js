@@ -4,6 +4,7 @@ const yaml = require('js-yaml');
 const cpy = require('cpy');
 const webpack = require('webpack');
 const getLogger = require('webpack-log');
+const Dotenv = require('dotenv-webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -134,6 +135,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new Dotenv(),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash:8].css',

@@ -24,6 +24,7 @@
     "@babel/runtime": "^7.12.5",
     "animejs": "^3.2.1",
     "core-js": "^3.6.5",
+    "dotenv-webpack": "^6.0.0",
     "gia": "^1.0.1",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
@@ -91,7 +92,6 @@
   "lint-staged": {
     "assets/*.{js,ts}": "eslint --cache --fix --max-warnings 0",
     "assets/*.ts": "tsc -p tsconfig.json --noEmit",
-    "assets/*.scss": "stylelint",
     "assets/*.{js,ts,css,scss,md}": "prettier --write",
     "_plugins/*.rb": "prettier --write"
   }

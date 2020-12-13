@@ -1,4 +1,5 @@
 import { Component } from 'gia';
+import { setAttributes, addClass } from './utils';
 import logger from './utils/logger';
 import requestClient from './utils/requestClient';
 
@@ -15,13 +16,18 @@ type SpotifyPlaylist = {
     total: number;
     href: string;
   };
+  // eslint-disable-next-line camelcase
+  external_urls: Record<'spotify', string>;
   public: boolean;
   description: string;
+  owner: {
+    id: string;
+  };
 };
 
 type SpotifyPlaylistsResponse = {
   href: string;
-  items: Array<SpotifyPlaylist>;
+  items: SpotifyPlaylist[];
 };
 
 const getAuthorizationToken = (clientId: string, clientSecret: string) =>
@@ -47,27 +53,50 @@ const fetchSpotifyUserPlaylists = (userId: string, requestToken: string) =>
     },
   });
 
-class Playlists extends Component<{
+type PlaylistsState = {
   error: string;
   fetching: boolean;
   playlists: Array<SpotifyPlaylist>;
-}> {
+};
+
+type PlaylistsRef = {
+  playlistLoader: HTMLElement[];
+  playlistContainer: HTMLElement[];
+};
+
+class Playlists extends Component<PlaylistsState, PlaylistsRef> {
+  private readonly userId: string;
+
+  constructor(element: HTMLElement) {
+    super(element);
+
+    this.userId = process.env.SPOTIFY_USERNAME;
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    this.ref = {};
+  }
+
   async handlePlaylistFetch(): Promise<void> {
     try {
       this.setState({
         fetching: true,
       });
 
-      // eslint-disable-next-line camelcase
       const { access_token: token } = await getAuthorizationToken(
-        ':troll:',
-        ':troll:'
+        process.env.SPOTIFY_CLIENT_ID,
+        process.env.SPOTIFY_CLIENT_SECRET
       );
 
-      const { items: playlists } = await fetchSpotifyUserPlaylists('maziey93', token);
+      const { items: playlists } = await fetchSpotifyUserPlaylists(
+        this.userId,
+        token
+      );
 
       this.setState({
-        playlists: playlists.filter((item) => item.public),
+        playlists: playlists.filter(
+          (item) => item.public && item.owner.id === this.userId
+        ),
       });
     } catch (e) {
       logger.error(e);
@@ -81,7 +110,66 @@ class Playlists extends Component<{
     }
   }
 
+  renderPlaylists(): void {
+    const [loader] = this.ref.playlistLoader;
+    const [playlistContainer] = this.ref.playlistContainer;
+    const fragment = document.createDocumentFragment();
+    const playlistsItemsWrapper = document.createElement('ul');
+
+    addClass(playlistsItemsWrapper, 'no-style-list playlist-wrapper row');
+
+    this.state.playlists?.reduce((wrapper, playlist) => {
+      const li = document.createElement('li');
+      addClass(li, 'playlist-item column-12 column-md-4');
+      li.innerHTML = `
+        <figure>
+          <a href="${playlist.external_urls.spotify}" target="_blank">
+              <picture>
+                ${playlist.images
+                  .reduce((result, image) => {
+                    if (image.width) {
+                      result.push(
+                        `<source srcset="${image.url} ${image.width}w">`
+                      );
+                    }
+                    return result;
+                  }, [] as string[])
+                  .concat(
+                    `<img src="${playlist.images[0].url}" alt="cover art for ${playlist.name}"/>`
+                  )
+                  .join('')}
+              </picture>
+              <figcaption>${playlist.name}</figcaption>
+          </a>
+        </figure>
+      `;
+      wrapper.append(li);
+      return wrapper;
+    }, playlistsItemsWrapper);
+
+    setAttributes(loader, { hidden: '' });
+
+    fragment.appendChild(playlistsItemsWrapper);
+    playlistContainer.appendChild(fragment);
+  }
+
+  stateChange(
+    stateChanges: Partial<{
+      error: string;
+      fetching: boolean;
+      playlists: Array<SpotifyPlaylist>;
+    }>
+  ): void {
+    if ('playlists' in stateChanges) {
+      setAttributes(this.element, { 'data-loaded': 'true' });
+    }
+  }
+
   mount(): void {
+    const [loader] = this.ref.playlistLoader;
+
+    loader.addEventListener('animationend', this.renderPlaylists.bind(this));
+
     this.handlePlaylistFetch();
   }
 }

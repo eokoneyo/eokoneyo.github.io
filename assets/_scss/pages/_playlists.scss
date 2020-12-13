@@ -1,0 +1,90 @@
+.ns-playlists {
+
+  #Playlists {
+    .loader{
+      display: flex;
+      margin: mq-px2em(20px) 0;
+      min-height: mq-px2em(200px);
+      flex-direction: column;
+      align-items: center;
+
+      &[hidden] {
+        display: none;
+      }
+
+      .knot__svg {
+        transform: rotate(45deg);
+        transform-origin: center;
+
+        .knot-progress {
+          fill: none;
+          stroke: $dark;
+
+          &--path {}
+          &--fill {
+            stroke-width: 6;
+            stroke-dasharray: 70;
+            stroke-dashoffset: 400;
+            animation: dash 3s linear infinite;
+          }
+        }
+
+        @keyframes dash {
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+      }
+    }
+
+    .content {
+      opacity: 0;
+
+      .playlist {
+        &-wrapper {}
+
+        &-item {
+          a {
+            width: inherit;
+            display: block;
+          }
+
+          picture, img {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+    }
+
+    &[data-loaded='true'] {
+      .loader {
+        animation: 500ms linear 0ms forwards fadeOut;
+      }
+
+      .content {
+        animation: 500ms linear 500ms forwards fadeIn;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+
+        to {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}
