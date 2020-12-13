@@ -49,7 +49,8 @@ declare module 'gia' {
   export function createInstance<T>(
     element: HTMLElement,
     componentName: string,
-    component: T extends Component ? new (...args : never[]) => T : never,
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    component: T extends Component ? Function & { prototype: T } : never,
     options?: Record<string, unknown>,
   ): T
 }
