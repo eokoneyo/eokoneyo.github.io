@@ -1,4 +1,5 @@
 import anime from 'animejs';
+import { setCookie, getCookieValue } from './utils';
 
 type Nullable<T> = { [P in keyof T]: T[P] | null };
 
@@ -20,28 +21,9 @@ const initPreloader = (global: Window): void => {
   const { document } = global;
 
   preloaderDOM.preloader = document.querySelector('.preloader');
-  preloaderDOM.shape = preloaderDOM.preloader?.querySelector('svg.shape') ?? null;
+  preloaderDOM.shape =
+    preloaderDOM.preloader?.querySelector('svg.shape') ?? null;
   preloaderDOM.path = preloaderDOM.shape?.querySelector('path') ?? null;
-
-  const setCookie = (name: string, value: string): void => {
-    const cookieDesc =
-      Object.getOwnPropertyDescriptor(global.Document.prototype, 'cookie') ||
-      Object.getOwnPropertyDescriptor(global.HTMLDocument.prototype, 'cookie');
-
-    cookieDesc!.set?.call(document, `${name}=${value}`);
-  };
-
-  const getCookieValue = (name: string): string | null => {
-    const cookieString = String(document.cookie);
-
-    if (cookieString.indexOf(name) < 0) return null;
-
-    const searchRegex = new RegExp(`${name}=(\\w*);?`);
-
-    const [, value] = cookieString.match(searchRegex)!;
-
-    return value;
-  };
 
   const removePreloader = (animationDuration: number): void => {
     anime
@@ -50,6 +32,18 @@ const initPreloader = (global: Window): void => {
       })
       .add(
         {
+          targets: Array.prototype.slice.call(
+            preloaderDOM.preloader?.querySelector('.content-wrapper')?.children,
+            0
+          ),
+          opacity: '0',
+          easing: 'easeInOutExpo',
+        },
+        0
+      )
+      .add(
+        {
+          delay: 1000,
           targets: preloaderDOM.preloader,
           easing: 'easeInOutSine',
           translateY: '-200vh',
@@ -58,6 +52,7 @@ const initPreloader = (global: Window): void => {
       )
       .add(
         {
+          delay: 1000,
           targets: preloaderDOM.path,
           easing: 'easeOutQuad',
           d: preloaderDOM.path?.getAttribute('pathdata:id'),

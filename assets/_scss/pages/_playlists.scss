@@ -13,26 +13,8 @@
       }
 
       .knot__svg {
-        transform: rotate(45deg);
-        transform-origin: center;
-
         .knot-progress {
-          fill: none;
           stroke: $dark;
-
-          &--path {}
-          &--fill {
-            stroke-width: 6;
-            stroke-dasharray: 70;
-            stroke-dashoffset: 400;
-            animation: dash 3s linear infinite;
-          }
-        }
-
-        @keyframes dash {
-          to {
-            stroke-dashoffset: 0;
-          }
         }
       }
     }
@@ -44,9 +26,18 @@
         &-wrapper {}
 
         &-item {
+          margin-bottom: mq-px2em(20px);
+
+          figure{
+            position: relative;
+            margin: 0;
+          }
+
           a {
             width: inherit;
             display: block;
+            position: initial;
+            padding: 0;
           }
 
           picture, img {

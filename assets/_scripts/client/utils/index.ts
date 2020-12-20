@@ -42,6 +42,26 @@ export const osHasReducedMotion = (): boolean => {
   return false; // return false if not supported
 };
 
+export const setCookie = (name: string, value: string): void => {
+  const cookieDesc =
+    Object.getOwnPropertyDescriptor(window.Document.prototype, 'cookie') ||
+    Object.getOwnPropertyDescriptor(window.HTMLDocument.prototype, 'cookie');
+
+  cookieDesc?.set?.call(document, `${name}=${value}`);
+};
+
+export const getCookieValue = (name: string): string | null => {
+  const cookieString = String(document.cookie);
+
+  if (cookieString.indexOf(name) < 0) return null;
+
+  const searchRegex = new RegExp(`${name}=(\\w*);?`);
+
+  const [, value] = cookieString.match(searchRegex)!;
+
+  return value;
+};
+
 /**
  * @link https://googlechrome.github.io/samples/service-worker/post-message/
  */
