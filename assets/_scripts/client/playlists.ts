@@ -110,15 +110,20 @@ class Playlists extends Component<PlaylistsState, PlaylistsRef> {
     }
   }
 
-  renderPlaylists(): void {
-    const [loader] = this.ref.playlistLoader;
-    const [playlistContainer] = this.ref.playlistContainer;
-    const fragment = document.createDocumentFragment();
+  renderErrorFetchingPlaylists = (): HTMLElement => {
+    const error = document.createElement('div');
+
+    error.innerHTML = `Error fetching playlist data...`;
+
+    return error;
+  };
+
+  renderPlaylists = (playlists: PlaylistsState['playlists']): HTMLElement => {
     const playlistsItemsWrapper = document.createElement('ul');
 
     addClass(playlistsItemsWrapper, 'no-style-list playlist-wrapper row');
 
-    this.state.playlists?.reduce((wrapper, playlist) => {
+    playlists?.reduce((wrapper, playlist) => {
       const li = document.createElement('li');
       addClass(li, 'playlist-item column-12 column-md-4');
       li.innerHTML = `
@@ -147,9 +152,23 @@ class Playlists extends Component<PlaylistsState, PlaylistsRef> {
       return wrapper;
     }, playlistsItemsWrapper);
 
+    return playlistsItemsWrapper;
+  };
+
+  renderFetchOutcome(): void {
+    const [loader] = this.ref.playlistLoader;
+    const [playlistContainer] = this.ref.playlistContainer;
+    const fragment = document.createDocumentFragment();
+
+    const { error, playlists } = this.state;
+
+    const fetchOutcome = error
+      ? this.renderErrorFetchingPlaylists()
+      : this.renderPlaylists(playlists ?? []);
+
     setAttributes(loader, { hidden: '' });
 
-    fragment.appendChild(playlistsItemsWrapper);
+    fragment.appendChild(fetchOutcome);
     playlistContainer.appendChild(fragment);
   }
 
@@ -160,7 +179,7 @@ class Playlists extends Component<PlaylistsState, PlaylistsRef> {
       playlists: Array<SpotifyPlaylist>;
     }>
   ): void {
-    if ('playlists' in stateChanges) {
+    if ('playlists' in stateChanges || 'error' in stateChanges) {
       setAttributes(this.element, { 'data-loaded': 'true' });
     }
   }
@@ -168,9 +187,11 @@ class Playlists extends Component<PlaylistsState, PlaylistsRef> {
   mount(): void {
     const [loader] = this.ref.playlistLoader;
 
-    loader.addEventListener('animationend', this.renderPlaylists.bind(this));
+    loader.addEventListener('animationend', this.renderFetchOutcome.bind(this));
 
-    this.handlePlaylistFetch();
+    this.handlePlaylistFetch().finally(() =>
+      logger.debug('playlist fetch done')
+    );
   }
 }
 

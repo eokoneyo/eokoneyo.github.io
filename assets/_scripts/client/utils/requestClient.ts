@@ -22,7 +22,7 @@ const requestClient = <T>({
         if (status === 0 || (status >= 200 && status < 400)) {
           resolve(JSON.parse(responseText));
         } else {
-          reject(new Error(responseText));
+          reject(new Error(JSON.parse(responseText)));
         }
       }
     });
