@@ -16,6 +16,11 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
   background: rgba($light, 0);
   transform: translateZ(0);
 
+  // styling specific for iPhones with notch
+  @supports (padding-top: env(safe-area-inset-top)) {
+    padding-top: env(safe-area-inset-top);
+  }
+
   &--hidden {
     opacity: 0;
     visibility: hidden;
