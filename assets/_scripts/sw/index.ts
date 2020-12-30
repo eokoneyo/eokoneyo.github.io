@@ -50,8 +50,7 @@ declare const self: ServiceWorkerGlobalScope;
       ],
     })
   );
-
-  // TODO: improve site's offline experience
+  
   const networkOnly = new NetworkOnly();
   registerRoute(
     new NavigationRoute(async function navigationHandler(params) {
@@ -59,7 +58,12 @@ declare const self: ServiceWorkerGlobalScope;
         return await networkOnly.handle(params);
       } catch (err) {
         return new Response(
-          new Blob(['<p>You are offline</p>'], { type: 'text/html' }),
+          new Blob([`
+            <div style="height: 100vh;display: flex;flex-direction:column;justify-content:center;text-align:center;">
+              <img src="/assets/img/horse-rider.svg" alt="illustration of a horse rider">
+              <p>You are offline</p>
+            </div>
+          `], { type: 'text/html' }),
           { status: 200 }
         );
       }
