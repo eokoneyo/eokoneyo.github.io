@@ -1,9 +1,21 @@
 ---
-layout: project
+layout: default
 ---
 
-<div class="project-post">
-    <h2 class="project-post-title">{{page.title}}</h2>
-    <p class="project-post-meta">{{ page.date | date: "%b %-d, %Y" }} by <a href="#">{{page.author}}</a></p>
-    {{content}}
+<div class="ns-project-post">
+    <div class="project-hero" style="color: {{page.dominantColor}}">
+        <div class="project-hero__content">
+            <h1 class="page-heading">
+                <span class="display-heading">{{page.title}}</span>
+                <span class="display-heading__subtitle">
+                    <span class="article__meta__publish-date">Platform: {{page.tag}}</span>,
+                    <span class="article__meta__publish-date">Year: {{page.commission_year}}</span>
+                </span>
+            </h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="post-wrapper">{{content}}</div>
+        {% include paginator.html type="page" %}
+    </div>
 </div>

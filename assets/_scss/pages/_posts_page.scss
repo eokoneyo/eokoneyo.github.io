@@ -1,0 +1,54 @@
+.ns-posts {
+
+  .post {
+    &-list{
+      @extend .article-width;
+    }
+
+    &-list-item {
+      &:not(:first-of-type) {
+        margin-top: mq-px2em(50px)
+      }
+
+      &:not(:last-of-type) {
+        border-bottom: mq-px2em(2px) solid map_get($gray-pallet, light)
+      }
+
+      &__publish-date {
+        text-transform: uppercase;
+        color: map_get($gray-pallet, light);
+      }
+    }
+  }
+
+  .article{
+    &-wrapper {
+      @extend .article-width;
+
+      & > *:not(.page-heading) {
+        text-align: justify;
+      }
+
+      ul {
+        padding: 0;
+        list-style: disc inside;
+
+        li {
+          @extend p
+        }
+      }
+    }
+
+    &__meta {
+      display: flex;
+      flex-direction: column;
+
+      &__publish-date{
+        order: -1;
+        font-size: mq-px2em(5px);
+        text-transform: uppercase;
+        color: map-get($gray-pallet, light);
+      }
+    }
+  }
+}

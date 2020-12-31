@@ -2,17 +2,56 @@
 # Build settings
 markdown: kramdown
 highlighter: rouge
-exclude: ['Gemfile*', 'vendor', '.idea', '.vscode', 'node_modules', 'package*', 'libs', 'webpack.config.js', 'babel.config.json']
+exclude:
+  - 'Gemfile*'
+  - 'vendor'
+  - '.idea'
+  - '.vscode'
+  - '.jekyll-cache'
+  - 'node_modules'
+  - 'package*'
+  - 'libs'
+  - 'webpack.config.js'
+  - 'babel.config.json'
+  - 'tsconfig.json'
+  - 'README.md'
+  - 'CNAME'
+  - 'coverage'
+
 plugins:
   - jekyll-paginate-v2
+  - jekyll-sitemap
+  - jekyll-cloudinary
+  - octopress-minify-html
 
 webpack:
-  entry: "assets/js/bundle.js"
+  entry:
+    - "assets/_scripts/client/index.ts"
+    - "assets/_scss/styles.scss"
   cache_directory: '.jekyll-webpack'
   output:
-    path: "assets/js/"
+    path: "assets/"
+    service_worker: true
 
-permalink: pretty
+cloudinary:
+  cloud_name: 'dzd5dpyjo'
+  only_prod: true
+  verbose: true
+  presets:
+    image_zoom:
+      figure: never
+      attributes:
+        class: 'image-zoom__preview js-image-zoom__preview'
+        loading: lazy
+    profile_photo:
+      attributes:
+        class: 'photo-block__image'
+
+search_data:
+  filename: "search-data.json"
+  output_path: "assets/"
+
+permalink: /:categories/:title
 
 pagination:
   enabled: true

@@ -1,0 +1,11 @@
+.ns-default-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  &__content {
+    flex: 1 0 auto;
+    position: relative;
+    padding-top: mq-px2em($header-height);
+  }
+}

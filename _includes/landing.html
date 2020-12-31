@@ -1,24 +1,75 @@
+{% include nav.html hide="true" %}
 <div class="ns-landing-screen">
-    {% include preloader-screen.html %}
-    <div class="container">
-        <div class="row main-content">
-            <div class="column-md-6 main-content__side-photo">
-                <div class="main-content__side-photo--inner" id="illustration">
-                    {% include vectors/horse-rider.svg %}
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row jumbotron__inner">
+                <div class="column column-md-5 column-lg-6 jumbotron__side-photo">
+                    <div class="jumbotron__side-photo--inner">
+                        <object aria-labelledby="Image of horse rider" data="/assets/img/horse-rider.svg" type="image/svg+xml" id="illustration"></object>
+                    </div>
+                </div>
+                <div class="column column-md-7 column-lg-6" id="info-cta">
+                    <h1 class="jumbotron__title">{{site.data.setup.title}}</h1>
+                    <h4 class="jumbotron__tagline">„{{site.data.setup.tagline}}“</h4>
                 </div>
             </div>
-            <div class="column-md-6" id="info-cta">
-                <h1 class="main-content__title">{{site.data.setup.title}}</h1>
-                <p class="main-content__tagline">{{site.data.setup.tagline}}</p>
-                <p class="main-content__socials">
-                    <span>connect with me:</span>
-                    {% for item in site.data.setup.socials %}
-                    <a class="social-icon--link {{ icon.class }}" href="{{ item.url }}" target="_blank">
-                        <span class="social-icon--title">{{ item.title }}</span>
-                    </a>
-                    {% endfor %}
-                </p>
+        </div>
+        <div class="scroll-cta">
+            <a class="scroll-cta__text">There's more</a>
+        </div>
+        {% include grid-bg-component.html md-rows=6 lg-rows=12 fluid=true %}
+    </div>
+    <div class="main-content">
+        <div class="main-content__inner">
+            <div class="container">
+                <div class="row" style="height: 100%">
+                    {% assign projects = site.posts | where: 'category', 'projects' | sort_natural: "commission_year" | reverse %}
+                    {% if projects.size > 0 %}
+                        <section class="column-sm-12 selected-categories selected-category--projects">
+                            <h2 class="page-heading page-heading--with-action">
+                                <span class="display-heading display-heading--decorated">Projects</span>
+                                <a class="page-heading--with-action__action-item view-more-link" href="/projects">see more</a>
+                            </h2>
+                            <div class="container-fluid selected-category--projects__inner">
+                                <ul class="no-style-list row">
+                                    {% for project in projects limit:3 %}
+                                    <li class="column-sm-12 column-md-4 selected-category--projects__item">
+                                        {% include project-tile-component.html project=project fixed-width=true %}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </section>
+                    {% endif %}
+
+                    {% assign posts = site.posts | where: 'category', 'blog' %}
+                    {% if posts.size > 0 %}
+                        <section class="column-sm-12 selected-categories selected-category--blog">
+                            <h2 class="page-heading page-heading--with-action">
+                                <span class="display-heading display-heading--decorated">Writings</span>
+                                <a class="page-heading--with-action__action-item view-more-link" href="/blog">see more</a>
+                            </h2>
+                            <ul class="no-style-list">
+                                {% for post in posts limit:3 %}
+                                <li class="selected-category--blog__item">
+                                    <a href="{{ post.url}}">
+                                        <h5 class="page-heading">
+                                            <span class="display-heading__subtitle">
+                                                <time datetime="{{ post.date | date: '%Y-%-d-%m' }}">{{ post.date | date: "%d.%m.%Y" }}</time>
+                                            </span>
+                                            <span class="display-heading">{{ post.title }}</span>
+                                        </h5>
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </section>
+                    {% endif %}
+                </div>
             </div>
         </div>
+        {%include footer.html%}
     </div>
 </div>
+
+{% include vectors/distort-filter-definition.svg %}

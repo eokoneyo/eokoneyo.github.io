@@ -1,0 +1,14 @@
+/**
+ * Similar to list functions, `fibonacci()` returns a list, containing fibonacci numbers for a given number N.
+ *
+ * @example
+ * fibonacci(6) => 0 1
+*/
+@function fibonacci($n) {
+  $fib: 0 1;
+  @for $i from 1 through $n {
+    $new: nth($fib, length($fib)) + nth($fib, length($fib) - 1);
+    $fib: append($fib, $new);
+  }
+  @return $fib;
+}

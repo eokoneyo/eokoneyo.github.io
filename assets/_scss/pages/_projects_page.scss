@@ -1,0 +1,53 @@
+.ns-projects {
+
+  .projects {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    counter-reset: figure;
+
+    &__item {
+      margin: 10vh auto;
+      max-width: 100%;
+      position: relative;
+      will-change: transform;
+
+      &:before {
+        counter-increment: figure;
+        content: counter(figure, decimal-leading-zero);
+        position: absolute;
+        z-index: +1;
+        font-size: 10rem;
+        color: $light;
+        bottom: calc(100% - 5rem);
+        text-shadow: -1px -1px 0 $dark, 1px -1px 0 $dark, -1px 1px 0 $dark, 1px 1px 0 $dark;
+        transition: color .2s;
+        right: 5%;
+      }
+
+      .media {
+        @include mq($until: medium) {
+          display: none;
+        }
+      }
+
+      &:nth-child(odd) {
+        .media {
+          text-align: initial;
+        }
+      }
+
+      &:nth-child(even) {
+        &::before {
+          right: unset;
+          left: 5%;
+        }
+
+        .media {
+          text-align: right;
+        }
+      }
+    }
+  }
+}

@@ -1,21 +1,33 @@
 #site settings
 title: "Eyo O. Eyo"
-seo_description: "Eyo O. Eyo is a Frontend Engineer, currently based in Berlin."
+seo_description: "I'm Eyo O. Eyo a Frontend Engineer born in Nigeria, currently living in Berlin."
 tagline: "Faber est Suae Quisque Fortunae"
 description: >
-  Frontend Engineer, with a strong focus in building performant web experiences that scale.
-  Originally from Nigeria, I currently live in Berlin and work at HelloFresh.
+  Frontend Engineer, very passionate about building performant web experiences that scales.
+  Originally from Nigeria; I currently live in Berlin now I'm exploring the construction software industry at Tenera, previously I helped drive referrals at HelloFresh.
+
+brandText: E.O.E.
 
 headerLinks:
-  - title: Blog
+  - title: Writing
     path: "/blog"
   - title: Projects
     path: "/projects"
+  - title: About
+    path: "/about"
 
 socials:
   - title: LinkedIn
     url: "https://www.linkedin.com/in/eyo-eyo-9a027a96/"
+    featured: true
   - title: GitHub
     url: "https://github.com/eokoneyo"
+    featured: true
+  - title: StackOverflow
+    url: "https://stackoverflow.com/users/4398075/eyo-okon-eyo?tab=profile"
+    featured: false
+  - title: Twitter
+    url: "https://twitter.com/eokoneyo"
+    featured: false
 
 google_analytics: "UA-103572320-2"

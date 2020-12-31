@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+<div class="container">
+  <div class="ns-playlists">
+    <h1 class="page-heading">
+      <span class="display-heading display-heading--decorated">{{page.title}}</span>
+      <span class="display-heading__subtitle">{{page.subtitle}}</span>
+    </h1>
+
+    <div id="Playlists">
+      <div class="loader" g-ref="playlistLoader">
+        <svg class="knot__svg" width="100pt" height="100pt" viewBox="0 0 100 100">
+          <use class="knot-progress knot-progress--path" xlink:href="#preloader-knot" />
+          <use class="knot-progress knot-progress--fill" xlink:href="#preloader-knot" />
+        </svg>
+        Loading...
+      </div>
+      <div class="content" g-ref="playlistContainer"></div>
+    </div>
+  </div>
+</div>

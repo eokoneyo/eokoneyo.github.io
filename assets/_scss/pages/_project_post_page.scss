@@ -1,0 +1,56 @@
+.ns-project-post {
+  min-height: calc(100vh - #{mq-px2em($header-height)});
+  display: flex;
+  flex-direction: column;
+
+  // move page up
+  @at-root #page-top & {
+    position: relative;
+    margin-top: -#{mq-px2em($header-height)};
+  }
+
+  .project-hero {
+    display: flex;
+    align-items: center;
+    height: mq-px2em(400px);
+    position: relative;
+    background: currentColor;
+
+    &__content{
+      @extend .container;
+    }
+
+    // make element below hero fill available space
+    & + * {
+      display: flex;
+      flex: 1 0 auto;
+      justify-content: space-between;
+      flex-direction: column;
+      position: relative;
+    }
+
+    @include mq($from: medium) {
+      height: mq-px2em(550px);
+
+      &__decoration {
+        width: mq-px2em(300px);
+        transform: translate(25%, 75%);
+      }
+    }
+
+    @include mq($from: xxlarge) {
+      height: mq-px2em(650px);
+    }
+  }
+
+  .post-wrapper {
+    @extend .article-width;
+    padding-top: mq-px2em(50px);
+
+    @include mq($from: medium) {
+      p {
+        text-align: justify;
+      }
+    }
+  }
+}

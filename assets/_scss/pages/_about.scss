@@ -1,0 +1,28 @@
+.ns-about {
+
+  .photo-block {
+    margin-top: mq-px2em(50px);
+
+    &__image {
+      width: 100%;
+      height: 400px;
+      display: block;
+      object-fit: cover;
+      object-position: 25% 100%;
+      background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+    }
+
+    @include mq($from: large) {
+      &__image {
+        height: 500px;
+        object-position: 0 25%;
+      }
+    }
+  }
+
+  .about-content {
+    @extend .article-width;
+    margin: mq-px2em(50px) 0;
+    overflow: auto;
+  }
+}

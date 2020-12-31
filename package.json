@@ -1,12 +1,14 @@
 {
   "name": "eokoneyo.github.io",
   "version": "1.1.0",
+  "sideEffects": false,
   "description": "Source code for my website",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --fix .",
+    "test": "jest --config jest.json",
     "build": "webpack && bundle exec jekyll build",
-    "start:dev": "webpack && webpack --watch | bundle exec jekyll serve --livereload"
+    "start:dev": "webpack && webpack --watch | bundle exec jekyll serve --livereload --trace"
   },
   "repository": {
     "type": "git",
@@ -18,21 +20,79 @@
     "url": "https://github.com/eokoneyo/eokoneyo.github.io/issues"
   },
   "homepage": "https://github.com/eokoneyo/eokoneyo.github.io#readme",
-  "devDependencies": {
-    "@babel/core": "^7.10.1",
-    "@babel/plugin-proposal-object-rest-spread": "^7.10.1",
-    "@babel/preset-env": "^7.10.1",
-    "babel-loader": "^8.0.6",
-    "cpy": "^8.0.1",
-    "js-yaml": "^3.14.0",
-    "modularscale-sass": "^3.0.10",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11",
-    "webpack-manifest-plugin": "^2.2.0"
-  },
   "dependencies": {
-    "animejs": "^3.1.0",
+    "@babel/runtime": "^7.12.5",
+    "animejs": "^3.2.1",
+    "core-js": "^3.6.5",
+    "dotenv-webpack": "^6.0.0",
+    "gia": "^1.0.1",
+    "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1",
+    "logdown": "^3.3.1",
+    "lunr": "^2.3.9",
     "normalize.css": "^8.0.1",
-    "sal.js": "^0.7.4"
+    "workbox-cacheable-response": "^5.1.4",
+    "workbox-core": "^5.1.4",
+    "workbox-expiration": "^5.1.4",
+    "workbox-precaching": "^5.1.4",
+    "workbox-routing": "^5.1.4",
+    "workbox-strategies": "^5.1.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-typescript": "^7.12.1",
+    "@prettier/plugin-ruby": "^0.20.1",
+    "@testing-library/dom": "^7.26.5",
+    "@types/animejs": "^3.1.2",
+    "@types/jest": "^26.0.15",
+    "@types/jsdom": "^16.2.5",
+    "@types/lodash.throttle": "^4.1.6",
+    "@types/lunr": "^2.3.3",
+    "@typescript-eslint/eslint-plugin": "^4.6.1",
+    "@typescript-eslint/parser": "^4.6.1",
+    "babel-jest": "^26.6.3",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "cpy": "^8.1.1",
+    "css-loader": "^5.0.1",
+    "eslint": "^7.12.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "file-loader": "^6.2.0",
+    "husky": "^4.3.0",
+    "jest": "^26.6.3",
+    "js-yaml": "^3.14.0",
+    "jsdom": "^16.4.0",
+    "lint-staged": "^10.5.1",
+    "mini-css-extract-plugin": "^1.2.1",
+    "modularscale-sass": "^3.0.10",
+    "node-sass": "^5.0.0",
+    "prettier": "2.1.2",
+    "sass-loader": "^10.0.5",
+    "sass-mq": "^5.0.1",
+    "terser-webpack-plugin": "^4.2.3",
+    "typescript": "^4.0.5",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^4.2.0",
+    "webpack-log": "^3.0.1",
+    "webpack-manifest-plugin": "^2.2.0",
+    "workbox-webpack-plugin": "^5.1.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "assets/*.{js,ts}": "eslint --cache --fix --max-warnings 0",
+    "assets/*.ts": "tsc -p tsconfig.json --noEmit",
+    "assets/*.{js,ts,css,scss,md}": "prettier --write",
+    "_plugins/*.rb": "prettier --write"
   }
 }

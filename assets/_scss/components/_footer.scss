@@ -1,0 +1,82 @@
+.ns-footer {
+  margin-top: mq-px2em(50px);
+  background: map_get($gray-pallet, dark);
+
+  & * {
+    color: $light;
+  }
+
+  & a {
+    &:hover, &:focus {
+      color: unset;
+    }
+  }
+
+  &:before {
+    content: '';
+    border-top: 1px solid $light;
+    border-bottom: 3px solid $light;
+    display: block;
+    height: 1px;
+    margin-top: 3px;
+  }
+
+  &--short {
+    @extend .container;
+  }
+
+  .footer-socials {
+    @extend .no-style-list;
+    margin: $vspace-3 0;
+    line-height: $vspace;
+
+    .social-icon {
+      &--link {
+        padding: 0 0 mq-px2em(10px) 0;
+
+        &:hover, &:focus {
+          text-decoration: underline;
+        }
+
+        a {
+          padding: 0 8px 0 0;
+        }
+
+        @include mq($from: large) {
+          padding: 0 mq-px2em(10px) 0 0;
+          display: inline-block;
+          margin: 0 10px 0 0;
+        }
+      }
+    }
+  }
+
+  .blog-footer {
+    padding: mq-px2em(20px) 0;
+
+    .dev-details {
+      > * {
+        margin: 0
+      }
+    }
+  }
+
+  .page-scroll {
+    height: 100%; display: flex; align-items: flex-end;
+
+    &--link {
+      display: block;
+      text-decoration-line: underline;
+
+      &:after {
+        content: '\00005E';
+        padding: mq-px2em(5px);
+        font-size: inherit;
+      }
+    }
+
+    @include mq($from: large) {
+      justify-content: flex-end;
+    }
+  }
+}

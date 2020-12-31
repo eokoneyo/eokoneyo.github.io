@@ -1,0 +1,26 @@
+
+@mixin distort-filter-effect($animateInfinitely: false, $animationDuration: 5) {
+  animation: noise #{$animationDuration}s linear;
+  will-change: -webkit-filter, filter;
+
+  @if $animateInfinitely {
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes noise {
+    0%, 4% {
+      -webkit-filter: url("#noise-1");
+      filter: url("#noise-1");
+    }
+
+    2%, 6% {
+      -webkit-filter: url("#noise-0");
+      filter: url("#noise-0");
+    }
+
+    100% {
+      -webkit-filter: none;
+      filter: none;
+    }
+  }
+}

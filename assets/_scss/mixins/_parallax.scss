@@ -1,0 +1,38 @@
+//@link https://keithclark.co.uk/articles/pure-css-parallax-websites/
+//@link https://developers.google.com/web/updates/2016/12/performant-parallaxing
+
+$parallax-perspective: 1;
+
+@function parallax-scale-factor($z-distance) {
+  @return 1 + ($z-distance * -1) / $parallax-perspective;
+}
+
+@mixin parallax-init($perspective: $parallax-perspective) {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective: #{$perspective}px;
+  perspective-origin: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  @media (prefers-reduced-motion) {
+    /* adjust motion of 'transition' or 'animation' properties */
+    -webkit-overflow-scrolling: initial;
+  }
+}
+
+@mixin parallax-group() {
+  position: relative;
+  height: 100vh;
+  transform-style: preserve-3d;
+}
+
+@mixin parallax-child($z-distance: 0) {
+  transform-origin: 100%;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  transform: translateZ(#{$z-distance}px) scale(parallax-scale-factor($z-distance));
+}

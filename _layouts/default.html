@@ -1,7 +1,10 @@
-<html lang="en">
-<head>
-    {%include head.html%}
-    {% include analytics.html %}
-</head>
-{{content}}
-</html>
+---
+layout: base
+---
+
+<div class="ns-default-layout">
+    <section class="ns-default-layout__content">
+        {{content}}
+    </section>
+    {%include footer.html%}
+</div>

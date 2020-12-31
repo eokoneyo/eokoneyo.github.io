@@ -1,0 +1,85 @@
+@import '~sass-mq';
+
+.container {
+  &, &-fluid {
+    margin: 0 auto;
+    padding-left: mq-px2em(10px);
+    padding-right: mq-px2em(10px);
+    position: relative;
+    width: 100%;
+  }
+
+  @include mq($from: medium) {
+    max-width: 95%;
+  }
+
+  @include mq($from: large) {
+    max-width: mq-px2em(960px);
+  }
+
+  @include mq($from: xlarge) {
+    max-width: mq-px2em(1144px);
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+
+ .container > & {
+   margin-right: -10px;
+   margin-left: -10px;
+ }
+
+  & + & {
+    margin-top: 10px;
+  }
+}
+
+.column {
+  flex: 0 0 100%;
+  max-width: 100%;
+
+  @at-root [class*='column-'] {
+    padding-left: $grid-gutter-size;
+    padding-right: $grid-gutter-size;
+    width: 100%;
+    min-height: 1px;
+  }
+
+  @include mq($from: small) {
+    @for $i from 1 through $grid-columns {
+      &-sm-#{$i} {
+        flex: 0 0 100% / $grid-columns * $i;
+        max-width: 100% / $grid-columns * $i;
+      }
+    }
+  }
+
+  @include mq($from: medium) {
+    @for $i from 1 through $grid-columns {
+      &-md-#{$i} {
+        flex: 0 0 100% / $grid-columns * $i;
+        max-width: 100% / $grid-columns * $i;
+      }
+    }
+  }
+
+  @include mq($from: large) {
+    @for $i from 1 through $grid-columns {
+      &-lg-#{$i} {
+        flex: 0 0 100% / $grid-columns * $i;
+        max-width: 100% / $grid-columns * $i;
+      }
+    }
+  }
+
+  @include mq($from: xlarge) {
+    @for $i from 1 through $grid-columns {
+      &-xl-#{$i} {
+        flex: 0 0 100% / $grid-columns * $i;
+        max-width: 100% / $grid-columns * $i;
+      }
+    }
+  }
+}
