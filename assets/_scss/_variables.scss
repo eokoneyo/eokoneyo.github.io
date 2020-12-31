@@ -1,37 +1,36 @@
 // Colors
-$dark: #000000;
 $light: #ffffff;
 $yellow: #f0fc61;
-$blue: #219ab3;
-$antiquewhite: #faebd7;
 $gray-pallet: (
-        light: #a1a1a1,
-        mid: #747474,
-        tint: #747474,
-        dark: #373737,
+  light: #d1d1d1,
+  mid: #8d8d8d,
+  tint: #5f5f5f,
+  dark: #1b1b1b,
 );
 
-$primary: map_get($gray-pallet, dark);
+$dark: map_get($gray-pallet, dark);
+
+$primary: $dark;
 
 // grid variables
 $grid-columns: 12;
 $grid-gutter-size: 15px;
 
 $grid-breakpoints: (
-        small: 320px,
-        medium: 768px,
-        large: 1024px,
-        xlarge: 1200px,
-        xxlarge: 1440px
+  small: 320px,
+  medium: 768px,
+  large: 1024px,
+  xlarge: 1200px,
+  xxlarge: 1440px,
 );
 
 // Register Breakpoints with media query helper
 $mq-breakpoints: (
-        small: map_get($grid-breakpoints, small),
-        medium: map_get($grid-breakpoints, medium),
-        large: map_get($grid-breakpoints, large),
-        xlarge: map_get($grid-breakpoints, xlarge),
-        xxlarge: map_get($grid-breakpoints, xxlarge),
+  small: map_get($grid-breakpoints, small),
+  medium: map_get($grid-breakpoints, medium),
+  large: map_get($grid-breakpoints, large),
+  xlarge: map_get($grid-breakpoints, xlarge),
+  xxlarge: map_get($grid-breakpoints, xxlarge),
 );
 
 // header
@@ -45,7 +44,14 @@ $zindex-overlay: 15; // e.g., modals and dialogs
 
 // box shadow
 $shadow-xs: 0 0.1px 0.3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
-$shadow-sm: 0 0.3px 0.4px rgba(0, 0, 0, 0.025), 0 0.9px 1.5px rgba(0, 0, 0, 0.05), 0 3.5px 6px rgba(0, 0, 0, 0.1);
-$shadow-md: 0 0.9px 1.5px rgba(0, 0, 0, 0.03), 0 3.1px 5.5px rgba(0, 0, 0, 0.08), 0 14px 25px rgba(0, 0, 0, 0.12);
-$shadow-lg: 0 1.2px 1.9px -1px rgba(0, 0, 0, 0.014), 0 3.3px 5.3px -1px rgba(0, 0, 0, 0.038), 0 8.5px 12.7px -1px rgba(0, 0, 0, 0.085), 0 30px 42px -1px rgba(0, 0, 0, 0.15);
-$shadow-xl: 0 1.5px 2.1px -6px rgba(0, 0, 0, 0.012), 0 3.6px 5.2px -6px rgba(0, 0, 0, 0.035), 0 7.3px 10.6px -6px rgba(0, 0, 0, 0.07), 0 16.2px 21.9px -6px rgba(0, 0, 0, 0.117), 0 46px 60px -6px rgba(0, 0, 0, 0.2);
+$shadow-sm: 0 0.3px 0.4px rgba(0, 0, 0, 0.025),
+  0 0.9px 1.5px rgba(0, 0, 0, 0.05), 0 3.5px 6px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 0.9px 1.5px rgba(0, 0, 0, 0.03), 0 3.1px 5.5px rgba(0, 0, 0, 0.08),
+  0 14px 25px rgba(0, 0, 0, 0.12);
+$shadow-lg: 0 1.2px 1.9px -1px rgba(0, 0, 0, 0.014),
+  0 3.3px 5.3px -1px rgba(0, 0, 0, 0.038),
+  0 8.5px 12.7px -1px rgba(0, 0, 0, 0.085), 0 30px 42px -1px rgba(0, 0, 0, 0.15);
+$shadow-xl: 0 1.5px 2.1px -6px rgba(0, 0, 0, 0.012),
+  0 3.6px 5.2px -6px rgba(0, 0, 0, 0.035),
+  0 7.3px 10.6px -6px rgba(0, 0, 0, 0.07),
+  0 16.2px 21.9px -6px rgba(0, 0, 0, 0.117), 0 46px 60px -6px rgba(0, 0, 0, 0.2);

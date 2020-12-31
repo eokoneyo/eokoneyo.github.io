@@ -43,7 +43,7 @@
   }
 
   > * {
-    color: lighten($primary, 75%);
+    color: lighten(map_get($gray-pallet, tint), 60%);
     position: relative;
     margin-bottom: 0 !important;
   }

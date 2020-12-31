@@ -1,6 +1,7 @@
 
 @mixin distort-filter-effect($animateInfinitely: false, $animationDuration: 5) {
-  animation: #{$animationDuration}s linear noise;
+  animation: noise #{$animationDuration}s linear;
+  will-change: -webkit-filter, filter;
 
   @if $animateInfinitely {
     animation-iteration-count: infinite;

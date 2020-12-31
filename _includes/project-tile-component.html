@@ -2,9 +2,6 @@
 <div class="project-tile {% if include.fixed-width %}project-tile--fixed-width{% endif %}">
     <a href="{{project.url}}">
         <figure data-commission-year="{{project.commission_year}}" style="color: {{project.dominantColor}}">
-            <div class="media">
-                {% include vectors/knot.svg fill=project.dominantColor %}
-            </div>
             <figcaption>
                 <h4 class="title">{{project.title}}</h4>
                 <h5 class="caption_ts">{{project.excerpt}}</h5>

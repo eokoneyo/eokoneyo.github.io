@@ -1,6 +1,5 @@
 body {
   margin: 0;
-  background: $dark;
 
   > main{
     background: $light;
@@ -9,13 +8,27 @@ body {
   &, * {
     box-sizing: border-box;
 
-    &::selection, &:target {
+    &::selection {
       text-shadow: none;
       background: $yellow;
     }
 
+    &:target {
+      animation: highlight 750ms ease-out;
+    }
+
     &:not(code, pre) {
       color: map_get($gray-pallet, dark);
+    }
+  }
+
+  @keyframes highlight {
+    from {
+      background: $yellow;
+    }
+
+    to {
+      background: $light;
     }
   }
 
@@ -43,6 +56,10 @@ a {
     display: inline-block;
     padding-right: mq-px2em(8px);
 
+    @at-root [role="doc-endnote"] & {
+      display: initial;
+    }
+
     & ~ & {
       padding: 0 mq-px2em(8px);
     }
@@ -58,6 +75,10 @@ a {
       border-style: solid;
       border-width: 0 mq-px2em(8px) mq-px2em(8px) 0;
       border-color: transparent currentColor transparent transparent;
+
+      @at-root [role="doc-endnote"] & {
+        content: none;
+      }
     }
 
     &:hover:after {
@@ -76,7 +97,25 @@ a {
 
     &:after {
       content: '\002192';
-      padding-left: 5px;
+      padding-left: mq-px2em(5px);
+    }
+  }
+}
+
+.footnotes[role='doc-endnotes'] {
+  ol, ul {
+    padding: 0;
+    list-style: decimal-leading-zero inside;
+  }
+
+  li[role="doc-endnote"] {
+    margin-bottom: mq-px2em(10px);
+    > * {
+      display: inline;
+    }
+
+    .reversefootnote {
+      visibility: hidden;
     }
   }
 }
@@ -90,7 +129,7 @@ img::selection, img::-moz-selection {
 }
 
 ul , ol {
-  &.no-style-list{
+  &.no-style-list {
     list-style: none;
     padding: 0;
   }

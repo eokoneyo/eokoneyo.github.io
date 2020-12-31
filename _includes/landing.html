@@ -3,16 +3,19 @@
     <div class="jumbotron">
         <div class="container">
             <div class="row jumbotron__inner">
-                <div class="column column-md-6 jumbotron__side-photo">
+                <div class="column column-md-5 column-lg-6 jumbotron__side-photo">
                     <div class="jumbotron__side-photo--inner">
                         <object aria-labelledby="Image of horse rider" data="/assets/img/horse-rider.svg" type="image/svg+xml" id="illustration"></object>
                     </div>
                 </div>
-                <div class="column column-md-6" id="info-cta">
+                <div class="column column-md-7 column-lg-6" id="info-cta">
                     <h1 class="jumbotron__title">{{site.data.setup.title}}</h1>
                     <h4 class="jumbotron__tagline">„{{site.data.setup.tagline}}“</h4>
                 </div>
             </div>
+        </div>
+        <div class="scroll-cta">
+            <a class="scroll-cta__text">There's more</a>
         </div>
         {% include grid-bg-component.html md-rows=6 lg-rows=12 fluid=true %}
     </div>

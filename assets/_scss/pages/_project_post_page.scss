@@ -20,23 +20,7 @@
       @extend .container;
     }
 
-    &__decoration {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      height: 100%;
-      transform: translate(0%, 120%);
-
-      > svg {
-        width: 100%;
-        height: 100%;
-
-        path {
-          fill: rgba(map_get($gray-pallet, mid), 0.2);
-        }
-      }
-    }
-
+    // make element below hero fill available space
     & + * {
       display: flex;
       flex: 1 0 auto;
@@ -63,52 +47,10 @@
     @extend .article-width;
     padding-top: mq-px2em(50px);
 
-    .footnotes[role='doc-endnotes'] {
-      ol, ul {
-        padding: 0;
-        list-style: decimal-leading-zero inside;
-      }
-
-      li[role="doc-endnote"] {
-        > * {
-          display: inline-block;
-        }
-      }
-    }
-
     @include mq($from: medium) {
       p {
         text-align: justify;
       }
-    }
-  }
-
-  .image-zoom {
-    margin: mq-px2em(50px) 0;
-    padding: mq-px2em(25px) mq-px2em(20px);
-    background: rgba(map-get($gray-pallet, light), 0.1);
-
-    figcaption {
-      padding: mq-px2em(5px) 0;
-      position: absolute;
-      left: 0;
-      bottom: -#{mq-px2em(35px)};
-    }
-
-    @include mq($from: medium) {
-      padding: mq-px2em(35px) mq-px2em(20px);
-
-      figcaption {
-        text-align: right;
-        padding: mq-px2em(10px) 0;
-        left: unset;
-        right: 0;
-      }
-    }
-
-    @include mq($from: large) {
-      max-width: mq-px2em(1144px);
-      margin-right: calc(50% - 50vw);
     }
   }
 }

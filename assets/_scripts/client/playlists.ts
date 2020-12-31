@@ -70,6 +70,8 @@ class Playlists extends Component<PlaylistsState, PlaylistsRef> {
   constructor(element: HTMLElement) {
     super(element);
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     this.userId = process.env.SPOTIFY_USERNAME;
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment

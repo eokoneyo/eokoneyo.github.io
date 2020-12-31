@@ -10,9 +10,19 @@ Usage: codyhouse.co/license
 
 .image-zoom {
   height: mq-px2em(500px);
+  margin: mq-px2em(50px) 0;
+  padding: mq-px2em(25px) mq-px2em(20px);
+  background: rgba(map-get($gray-pallet, light), 0.1);
 
   .js & {
     position: relative;
+  }
+
+  figcaption {
+    padding: mq-px2em(5px) 0;
+    position: absolute;
+    left: 0;
+    bottom: -#{mq-px2em(35px)};
   }
 
   &__preview {
@@ -99,5 +109,21 @@ Usage: codyhouse.co/license
     &:focus ~ .image-zoom__preview {
       box-shadow: 0 0 0 2px hsl(0, 0%, 100%), 0 0 0 5px rgba($primary, 0.25);
     }
+  }
+
+  @include mq($from: medium) {
+    padding: mq-px2em(35px) mq-px2em(20px);
+
+    figcaption {
+      text-align: right;
+      padding: mq-px2em(10px) 0;
+      left: unset;
+      right: 0;
+    }
+  }
+
+  @include mq($from: large) {
+    max-width: mq-px2em(1144px);
+    margin-right: calc(50% - 50vw);
   }
 }

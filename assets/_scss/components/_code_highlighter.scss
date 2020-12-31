@@ -5,6 +5,12 @@ $theme-name: zenburn;
 .highlight {
   margin: 0;
 
+  code {
+    display: block;
+    overflow-y: scroll;
+    padding: mq-px2em(20px);
+  }
+
   code,
   pre {
     color: #fdce93;

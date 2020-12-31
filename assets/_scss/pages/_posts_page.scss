@@ -11,7 +11,7 @@
       }
 
       &:not(:last-of-type) {
-        border-bottom: 2px solid lighten(map_get($gray-pallet, light), 40%)
+        border-bottom: mq-px2em(2px) solid map_get($gray-pallet, light)
       }
 
       &__publish-date {
@@ -24,6 +24,19 @@
   .article{
     &-wrapper {
       @extend .article-width;
+
+      & > *:not(.page-heading) {
+        text-align: justify;
+      }
+
+      ul {
+        padding: 0;
+        list-style: disc inside;
+
+        li {
+          @extend p
+        }
+      }
     }
 
     &__meta {

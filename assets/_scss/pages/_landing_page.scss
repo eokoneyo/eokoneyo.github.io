@@ -1,4 +1,4 @@
-@import '~sass-mq';
+//@import '~sass-mq';
 @import '../mixins/parallax';
 @import '../mixins/distort-filter-effect';
 
@@ -67,6 +67,28 @@
             @include distort-filter-effect($animateInfinitely: true);
           }
         }
+      }
+    }
+
+    .scroll-cta {
+      display: none;
+      position: absolute;
+      bottom: 2%;
+      right: 1%;
+      padding: mq-px2em(5px) mq-px2em(10px);
+      writing-mode: vertical-rl;
+
+      &__text {
+        display: inline-block;
+
+        &:after {
+          content: '\002192';
+          padding-top: mq-px2em(5px);
+        }
+      }
+
+      @include mq($from: medium) {
+        display: initial;
       }
     }
   }
