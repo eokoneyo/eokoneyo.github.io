@@ -15,8 +15,8 @@ exclude:
   - 'babel.config.json'
   - 'tsconfig.json'
   - 'README.md'
-  - 'CNAME'
   - 'coverage'
+  - 'jest.json'
 
 plugins:
   - jekyll-paginate-v2
