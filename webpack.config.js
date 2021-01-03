@@ -6,7 +6,7 @@ const webpack = require('webpack');
 const getLogger = require('webpack-log');
 const Dotenv = require('dotenv-webpack');
 const TerserPlugin = require('terser-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { InjectManifest } = require('workbox-webpack-plugin');
@@ -35,7 +35,7 @@ const logger = getLogger({ name: 'webpack-batman' });
 let jekyllConfigFileContents;
 
 try {
-  jekyllConfigFileContents = yaml.safeLoad(
+  jekyllConfigFileContents = yaml.load(
     fs.readFileSync('./_config.yml', 'utf-8')
   );
 } catch (e) {
@@ -106,8 +106,8 @@ module.exports = {
   },
   devtool: process.env.JEKYLL_ENV === 'production' ? false : 'source-map',
   optimization: {
-    moduleIds: 'hashed',
-    noEmitOnErrors: true,
+    moduleIds: 'deterministic',
+    emitOnErrors: false,
     usedExports: true,
     splitChunks: {
       cacheGroups: {
@@ -140,12 +140,10 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash:8].css',
     }),
-    new ManifestPlugin({
+    new WebpackManifestPlugin({
       // Only list main chunks and assets, allowing us to exclude dynamic imports,
       // since we use the generated list to add scripts to our app
-      filter: ({ isInitial, isAsset }) => {
-        return isAsset || isInitial;
-      },
+      filter: ({ isInitial, isAsset }) => isAsset || isInitial,
     }),
     new InjectManifest({
       swDest: 'sw.js',
