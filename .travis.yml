@@ -17,6 +17,7 @@ install:
 script:
   - JEKYLL_ENV=production ./node_modules/webpack-cli/bin/cli.js && bundle exec jekyll build --destination site
 deploy:
+  edge: true
   provider: pages
   local_dir: ./site
   target_branch: master
