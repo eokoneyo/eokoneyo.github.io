@@ -34,7 +34,7 @@ module.exports = {
         "ts": "never",
         "tsx": "never"
       }
-    ]
+    ],
   },
   overrides: [
     {
@@ -44,6 +44,9 @@ module.exports = {
       extends: [
         'plugin:@typescript-eslint/recommended',
       ],
+      rules: {
+        '@typescript-eslint/no-non-null-assertion': 'off'
+      }
     }
   ]
 };

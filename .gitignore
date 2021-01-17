@@ -48,3 +48,4 @@ _data/webpack-manifest.json
 _data/version.yml
 /.jekyll-cache/
 .env
+.eslintcache

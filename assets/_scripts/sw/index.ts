@@ -50,20 +50,25 @@ declare const self: ServiceWorkerGlobalScope;
       ],
     })
   );
-  
+
   const networkOnly = new NetworkOnly();
   registerRoute(
-    new NavigationRoute(async function navigationHandler(params) {
+    new NavigationRoute(async (params) => {
       try {
         return await networkOnly.handle(params);
       } catch (err) {
         return new Response(
-          new Blob([`
+          new Blob(
+            [
+              `
             <div style="height: 100vh;display: flex;flex-direction:column;justify-content:center;text-align:center;">
               <img src="/assets/img/horse-rider.svg" alt="illustration of a horse rider">
               <p>You are offline</p>
             </div>
-          `], { type: 'text/html' }),
+          `,
+            ],
+            { type: 'text/html' }
+          ),
           { status: 200 }
         );
       }
