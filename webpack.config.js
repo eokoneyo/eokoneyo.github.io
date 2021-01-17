@@ -59,7 +59,7 @@ module.exports = {
     publicPath: path.join('/', jekyllWebpackConfig.output.path),
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js'],
   },
   module: {
     rules: [
@@ -81,7 +81,7 @@ module.exports = {
           // since jekyll handles copying files in our assets directory already
           name: '[folder]/[name].[ext]',
           emitFile: false,
-        }
+        },
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -155,7 +155,7 @@ module.exports = {
       __SEARCH_DATA_PATH__: JSON.stringify(
         path.join('/', searchData.output_path, searchData.filename)
       ),
-      'process.env.NODE_ENV': JSON.stringify(process.env.JEKYLL_ENV)
+      'process.env.NODE_ENV': JSON.stringify(process.env.JEKYLL_ENV),
     }),
     function provideMetaForJekyll() {
       this.hooks.done.tap(
