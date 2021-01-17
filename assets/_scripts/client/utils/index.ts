@@ -4,17 +4,20 @@ export const hasClass = (el: HTMLElement, className: string): boolean => {
   return !!el.className.match(new RegExp(`(\\s|^)${className}(\\s|$)`));
 };
 
-export const setAttributes = (el: HTMLElement, attrs: Record<string, string>): void => {
-  Object.keys(attrs).forEach(key => el.setAttribute(key, attrs[key]));
+export const setAttributes = (
+  el: HTMLElement,
+  attrs: Record<string, string>
+): void => {
+  Object.keys(attrs).forEach((key) => el.setAttribute(key, attrs[key]));
 };
 
-export const addClass = (el: HTMLElement, className: string): void=> {
+export const addClass = (el: HTMLElement, className: string): void => {
   const classList = className.split(' ');
   if (el.classList) el.classList.add(classList[0]);
   else if (!hasClass(el, classList[0])) {
     setAttributes(el, {
-      class: `${el.className} ${classList[0]}`
-    })
+      class: `${el.className} ${classList[0]}`,
+    });
   }
   if (classList.length > 1) addClass(el, classList.slice(1).join(' '));
 };
@@ -25,20 +28,22 @@ export const removeClass = (el: HTMLElement, className: string): void => {
   else if (hasClass(el, classList[0])) {
     const reg = new RegExp(`(\\s|^)${classList[0]}(\\s|$)`);
     setAttributes(el, {
-      class: el.className.replace(reg, ' ')
-    })
+      class: el.className.replace(reg, ' '),
+    });
   }
   if (classList.length > 1) removeClass(el, classList.slice(1).join(' '));
 };
 
-export const toggleClass = (el: HTMLElement, className: string, bool: boolean): void => {
-  return (bool) ?  addClass(el, className) : removeClass(el, className);
-};
+export const toggleClass = (
+  el: HTMLElement,
+  className: string,
+  bool: boolean
+): void => (bool ? addClass(el, className) : removeClass(el, className));
 
 export const osHasReducedMotion = (): boolean => {
-  if(!window.matchMedia) return false;
+  if (!window.matchMedia) return false;
   const matchMediaObj = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if(matchMediaObj) return matchMediaObj.matches;
+  if (matchMediaObj) return matchMediaObj.matches;
   return false; // return false if not supported
 };
 
@@ -65,9 +70,12 @@ export const getCookieValue = (name: string): string | null => {
 /**
  * @link https://googlechrome.github.io/samples/service-worker/post-message/
  */
-export const sendWorkerMessage = <T>(message: { command: string, key: string }): Promise<T> => {
+export const sendWorkerMessage = <T>(message: {
+  command: string;
+  key: string;
+}): Promise<T> =>
   // eslint-disable-next-line consistent-return
-  return new Promise((resolve, reject) => {
+  new Promise((resolve, reject) => {
     if (!navigator.serviceWorker || !navigator.serviceWorker.controller) {
       return reject(new Error('no service worker!!'));
     }
@@ -86,6 +94,7 @@ export const sendWorkerMessage = <T>(message: { command: string, key: string }):
     // The service worker can then use the transferred port to reply via postMessage(), which
     // will in turn trigger the onmessage handler on messageChannel.port1.
     // See https://html.spec.whatwg.org/multipage/workers.html#dom-worker-postmessage
-    navigator.serviceWorker.controller.postMessage(message, [messageChannel.port2]);
+    navigator.serviceWorker.controller.postMessage(message, [
+      messageChannel.port2,
+    ]);
   });
-};

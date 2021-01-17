@@ -1,5 +1,4 @@
 {
-  "exclude": ["_site"],
   "compilerOptions": {
     "noEmit": true,
     "allowJs": true,
@@ -11,7 +10,10 @@
     "resolveJsonModule": true,
     "strict": true,
     "module": "es2020",
-    "target": "esnext"
+    "target": "esnext",
+    "lib": ["DOM", "WebWorker"],
   },
+  "exclude": ["node_modules", "_site"],
+  "include": ["assets/_scripts/**/*.ts"],
   "types": ["node"]
 }
