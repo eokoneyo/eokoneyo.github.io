@@ -21,15 +21,15 @@
                     </li>
                 {% endfor %}
             </ul>
-            <div class="search js-search" id="search-field" data-animation="on">
-                <form class="search-form js-search-form" g-ref="searchForm">
+            <div class="search js-search" id="search-field" data-animation="on" g-component="SearchComponent">
+                <form class="search-form js-search-form" g-ref="SearchComponent:searchForm">
                     <label class="sr-only" for="searchInput">Search</label>
                     <input class= "search-form__input" autocomplete="off" type="search" name="searchInput" id="searchInput" placeholder="Search...">
                     <button class="reset search-form__btn">
                         {% include vectors/search-icon.svg %}
                     </button>
                 </form>
-                <div class="search__results js-search-result" g-ref="searchResultContainer"></div>
+                <div class="search__results js-search-result" g-ref="SearchComponent:searchResultContainer"></div>
             </div>
         </div>
     </div>
