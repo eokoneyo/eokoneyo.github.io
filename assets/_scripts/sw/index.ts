@@ -1,7 +1,7 @@
 /// <reference lib="webworker" />
 
 import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching';
-import { setCacheNameDetails, skipWaiting, clientsClaim } from 'workbox-core';
+import { setCacheNameDetails, clientsClaim } from 'workbox-core';
 import { registerRoute, NavigationRoute } from 'workbox-routing';
 import { CacheFirst, NetworkOnly } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
@@ -18,8 +18,8 @@ declare const self: ServiceWorkerGlobalScope;
  * serviceworker for website
  * @module sw
  */
-((global) => {
-  skipWaiting();
+(async (global) => {
+  await self.skipWaiting();
   clientsClaim();
 
   // get version from sw query string
