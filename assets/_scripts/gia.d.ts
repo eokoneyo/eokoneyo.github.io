@@ -3,8 +3,8 @@
 declare module 'gia' {
   // eslint-disable-next-line @typescript-eslint/ban-types
   export abstract class Component<
-    S = Record<string, unknown>,
     R = Record<string, unknown>,
+    S = Record<string, unknown>,
     O = Record<string, unknown>
   > {
     readonly element: HTMLElement;
@@ -51,6 +51,14 @@ declare module 'gia' {
     componentName: string,
     // eslint-disable-next-line @typescript-eslint/ban-types
     component: T extends Component ? Function & { prototype: T } : never,
-    options?: Record<string, unknown>,
-  ): T
+    options?: Record<string, unknown>
+  ): T;
+
+  interface EventBus {
+    emit(evt: string, eventObject?: Record<string, unknown>): void;
+
+    on(evt: string, handler: () => void, once?: boolean): void;
+  }
+
+  export const eventbus: EventBus;
 }
