@@ -1,9 +1,9 @@
 {
   "main.css": "/assets/main.d98cab50.css",
-  "main.js": "/assets/main-bundle.c2d49fbf.js",
+  "main.js": "/assets/main-bundle.ca359adf.js",
   "main.ttf": "/assets/fonts/Ovo-Regular.ttf",
-  "runtime.js": "/assets/runtime-bundle.83c3291c.js",
-  "vendors.js": "/assets/vendors-bundle.cca3a995.js",
+  "runtime.js": "/assets/runtime-bundle.38361885.js",
+  "vendors.js": "/assets/vendors-bundle.56f55bce.js",
   "sw.js": "/assets/sw.js",
   "fonts/Ovo-Regular.ttf": "/assets/fonts/Ovo-Regular.ttf"
 }
