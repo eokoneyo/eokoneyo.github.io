@@ -64,15 +64,13 @@ type PlaylistsRef = {
   playlistContainer: HTMLElement[];
 };
 
-class Playlists extends Component<PlaylistsState, PlaylistsRef> {
+class Playlists extends Component<PlaylistsRef, PlaylistsState> {
   private readonly userId: string;
 
   constructor(element: HTMLElement) {
     super(element);
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    this.userId = process.env.SPOTIFY_USERNAME;
+    this.userId = process.env.SPOTIFY_USERNAME!;
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -86,8 +84,8 @@ class Playlists extends Component<PlaylistsState, PlaylistsRef> {
       });
 
       const { access_token: token } = await getAuthorizationToken(
-        process.env.SPOTIFY_CLIENT_ID,
-        process.env.SPOTIFY_CLIENT_SECRET
+        process.env.SPOTIFY_CLIENT_ID!,
+        process.env.SPOTIFY_CLIENT_SECRET!
       );
 
       const { items: playlists } = await fetchSpotifyUserPlaylists(
