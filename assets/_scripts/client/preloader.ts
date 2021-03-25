@@ -60,14 +60,14 @@ const initPreloader = (global: Window): void => {
             document.body.style.overflow = 'auto';
             document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
             // mark preloader as seen for the session
-            setCookie(HAS_SEEN_PRELOADER_COOKIE, String(true));
+            setCookie(HAS_SEEN_PRELOADER_COOKIE, true);
           },
         },
         0
       );
   };
 
-  if (getCookieValue(HAS_SEEN_PRELOADER_COOKIE) === 'true') {
+  if (getCookieValue(HAS_SEEN_PRELOADER_COOKIE)) {
     preloaderDOM.preloader?.setAttribute('style', 'display: none');
     document.body.style.overflow = 'auto';
     document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));

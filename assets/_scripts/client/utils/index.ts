@@ -47,12 +47,12 @@ export const osHasReducedMotion = (): boolean => {
   return false; // return false if not supported
 };
 
-export const setCookie = (name: string, value: string): void => {
+export const setCookie = (name: string, value: unknown): void => {
   const cookieDesc =
     Object.getOwnPropertyDescriptor(window.Document.prototype, 'cookie') ||
     Object.getOwnPropertyDescriptor(window.HTMLDocument.prototype, 'cookie');
 
-  cookieDesc?.set?.call(document, `${name}=${value}`);
+  cookieDesc?.set?.call(document, [name, '=', value].join(''));
 };
 
 export const getCookieValue = (name: string): string | null => {
@@ -64,7 +64,7 @@ export const getCookieValue = (name: string): string | null => {
 
   const [, value] = cookieString.match(searchRegex)!;
 
-  return value;
+  return JSON.parse(value);
 };
 
 /**
