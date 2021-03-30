@@ -11,7 +11,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { InjectManifest } = require('workbox-webpack-plugin');
 
-const logger = getLogger({ name: 'webpack-batman' });
+const webpackLogger = getLogger({ name: 'webpack-batman' });
 
 /**
  * @typedef jekyllWebpackConfig
@@ -39,7 +39,7 @@ try {
     fs.readFileSync('./_config.yml', 'utf-8')
   );
 } catch (e) {
-  logger.warn(e);
+  webpackLogger.warn(e);
   process.exit(1);
 }
 
@@ -111,7 +111,7 @@ module.exports = {
     usedExports: true,
     splitChunks: {
       cacheGroups: {
-        vendor: {
+        defaultVendors: {
           // only create vendors for file that is not a stylesheet
           test: /node_modules\/(?!(.*\.(sa|sc|c)ss$))/,
           name: 'vendors',
@@ -135,7 +135,9 @@ module.exports = {
     ],
   },
   plugins: [
-    new Dotenv(),
+    new Dotenv({
+      systemvars: process.env.JEKYLL_ENV === 'production'
+    }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash:8].css',
@@ -155,7 +157,7 @@ module.exports = {
       __SEARCH_DATA_PATH__: JSON.stringify(
         path.join('/', searchData.output_path, searchData.filename)
       ),
-      'process.env.NODE_ENV': JSON.stringify(process.env.JEKYLL_ENV),
+      'process.env.NODE_ENV': JSON.stringify(process.env.JEKYLL_ENV || 'development'),
     }),
     function provideMetaForJekyll() {
       this.hooks.done.tap(
@@ -177,7 +179,7 @@ module.exports = {
             }
           );
 
-          logger.debug('Jekyll injected with build meta...');
+          webpackLogger.debug('Jekyll injected with build meta...');
         }
       );
     },
