@@ -11,9 +11,9 @@ declare module 'gia' {
 
     protected constructor(element: HTMLElement, opts?: O);
 
-    get ref(): R;
+    get ref(): Partial<R>;
 
-    set ref(items: R);
+    set ref(items: Partial<R>);
 
     get state(): Partial<S>;
 

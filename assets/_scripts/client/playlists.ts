@@ -72,8 +72,6 @@ class Playlists extends Component<PlaylistsRef, PlaylistsState> {
 
     this.userId = process.env.SPOTIFY_USERNAME!;
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     this.ref = {};
   }
 
@@ -110,7 +108,7 @@ class Playlists extends Component<PlaylistsRef, PlaylistsState> {
     }
   }
 
-  renderErrorFetchingPlaylists = (): HTMLElement => {
+  static renderErrorFetchingPlaylists = (): HTMLElement => {
     const error = document.createElement('div');
 
     error.innerHTML = `Error fetching playlist data...`;
@@ -118,7 +116,9 @@ class Playlists extends Component<PlaylistsRef, PlaylistsState> {
     return error;
   };
 
-  renderPlaylists = (playlists: PlaylistsState['playlists']): HTMLElement => {
+  renderPlaylists = (): HTMLElement => {
+    const { playlists } = this.state;
+
     const playlistsItemsWrapper = document.createElement('ul');
 
     addClass(playlistsItemsWrapper, 'no-style-list playlist-wrapper row');
@@ -156,15 +156,15 @@ class Playlists extends Component<PlaylistsRef, PlaylistsState> {
   };
 
   renderFetchOutcome(): void {
-    const [loader] = this.ref.playlistLoader;
-    const [playlistContainer] = this.ref.playlistContainer;
+    const [loader] = this.ref.playlistLoader ?? [];
+    const [playlistContainer] = this.ref.playlistContainer ?? [];
     const fragment = document.createDocumentFragment();
 
-    const { error, playlists } = this.state;
+    const { error } = this.state;
 
     const fetchOutcome = error
-      ? this.renderErrorFetchingPlaylists()
-      : this.renderPlaylists(playlists ?? []);
+      ? Playlists.renderErrorFetchingPlaylists()
+      : this.renderPlaylists();
 
     setAttributes(loader, { hidden: '' });
 
@@ -185,7 +185,7 @@ class Playlists extends Component<PlaylistsRef, PlaylistsState> {
   }
 
   mount(): void {
-    const [loader] = this.ref.playlistLoader;
+    const [loader] = this.ref.playlistLoader ?? [];
 
     loader.addEventListener('animationend', this.renderFetchOutcome.bind(this));
 

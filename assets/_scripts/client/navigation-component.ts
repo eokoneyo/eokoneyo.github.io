@@ -11,8 +11,6 @@ export default class NavigationComponent extends Component<NavigationRefs> {
   constructor(element: HTMLElement) {
     super(element);
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     this.ref = {};
   }
 
@@ -103,7 +101,7 @@ export default class NavigationComponent extends Component<NavigationRefs> {
   };
 
   mount(): void {
-    const [MOBILE_TOGGLE] = this.ref?.mobileMenuToggle;
+    const [MOBILE_TOGGLE] = this.ref?.mobileMenuToggle ?? [];
 
     this.animateLandingPageHeader();
 
