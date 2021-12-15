@@ -4,11 +4,16 @@
     "color": "yellow"
   },
   "setupFiles": [
-    "<rootDir>/assets/_scripts/__tests__/setup.js"
+    "<rootDir>/assets/_scripts/__tests__/setupTestEnv.ts"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/assets/_scripts/__tests__/setup.ts"
   ],
   "testURL": "http://localhost",
+  "testEnvironment": "jsdom",
   "testPathIgnorePatterns": [
-    "<rootDir>/assets/_scripts/__tests__/setup.js",
+    "<rootDir>/assets/_scripts/__tests__/setup.ts",
+    "<rootDir>/assets/_scripts/__tests__/setupTestEnv.ts",
     "<rootDir>/assets/_scripts/__tests__/__mocks__",
     "<rootDir>/assets/_scripts/__tests__/helpers"
   ],

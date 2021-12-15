@@ -4,10 +4,7 @@ module.exports = {
     es6: true,
     jest: true,
   },
-  extends: [
-    'airbnb-base',
-    'prettier',
-  ],
+  extends: ['airbnb-base', 'prettier'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -18,22 +15,22 @@ module.exports = {
   },
   plugins: ['jest'],
   settings: {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
-    }
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
   },
   rules: {
-    "import/extensions": [
-      "error",
-      "ignorePackages",
+    'import/extensions': [
+      'error',
+      'ignorePackages',
       {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
     ],
   },
   overrides: [
@@ -41,12 +38,10 @@ module.exports = {
       files: ['**/*.ts'],
       parser: '@typescript-eslint/parser',
       plugins: ['@typescript-eslint'],
-      extends: [
-        'plugin:@typescript-eslint/recommended',
-      ],
+      extends: ['plugin:@typescript-eslint/recommended'],
       rules: {
-        '@typescript-eslint/no-non-null-assertion': 'off'
-      }
-    }
-  ]
+        '@typescript-eslint/no-non-null-assertion': 'off',
+      },
+    },
+  ],
 };

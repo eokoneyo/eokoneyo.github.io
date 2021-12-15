@@ -74,27 +74,26 @@ export const sendWorkerMessage = <T>(message: {
   command: string;
   key: string;
 }): Promise<T> =>
-  // eslint-disable-next-line consistent-return
   new Promise((resolve, reject) => {
     if (!navigator.serviceWorker || !navigator.serviceWorker.controller) {
-      return reject(new Error('no service worker!!'));
+      reject(new Error('no service worker!!'));
     }
 
     const messageChannel = new MessageChannel();
 
     messageChannel.port1.onmessage = (event) => {
       if (event.data.error) {
-        return reject(event.data.error);
+        reject(event.data.error);
       }
 
-      return resolve(event.data);
+      resolve(event.data);
     };
 
     // This sends the message data as well as transferring messageChannel.port2 to the service worker.
     // The service worker can then use the transferred port to reply via postMessage(), which
     // will in turn trigger the onmessage handler on messageChannel.port1.
     // See https://html.spec.whatwg.org/multipage/workers.html#dom-worker-postmessage
-    navigator.serviceWorker.controller.postMessage(message, [
+    navigator.serviceWorker.controller?.postMessage(message, [
       messageChannel.port2,
     ]);
   });

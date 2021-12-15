@@ -1,11 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import { JSDOM } from 'jsdom';
 import { loadComponents, GiaComponentsRecord } from 'gia';
 import { findByRole, fireEvent } from '@testing-library/dom';
 import NavigationComponent from '../../client/navigation-component';
 
-let dom;
 let container: HTMLElement;
 
 const html = fs.readFileSync(
@@ -16,21 +14,22 @@ const html = fs.readFileSync(
 const renderComponent = (
   htmlString: string,
   components: GiaComponentsRecord
-) =>
-  new JSDOM(
-    `
-    ${htmlString}
-    <script>
-      ${loadComponents(components)}
-    </script>
-  `,
-    { runScripts: 'dangerously' }
-  );
+) => {
+  const sandboxed = document.createElement('div');
+  const script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.onload = function bootstrapComponents() {
+    loadComponents(components);
+  };
+  sandboxed.innerHTML = htmlString;
+  sandboxed.appendChild(script);
+
+  return sandboxed;
+};
 
 describe('site navigation', () => {
   beforeEach(() => {
-    dom = renderComponent(html, { NavigationComponent });
-    container = dom.window.document.body;
+    container = renderComponent(html, { NavigationComponent });
   });
 
   it('renders the nav block', () => {
@@ -40,9 +39,7 @@ describe('site navigation', () => {
   it('clicking the search button sets the search-expanded attribute', async () => {
     const button = await findByRole(container, 'button');
 
-    expect(
-      container.querySelector('.ns-header[search-expanded]')
-    ).toBeNull();
+    expect(container.querySelector('.ns-header[search-expanded]')).toBeNull();
 
     fireEvent.click(button);
 

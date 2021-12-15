@@ -25,20 +25,19 @@ type SearchRef = {
 class SearchComponent extends Component<SearchRef, SearchState> {
   constructor(element: HTMLElement) {
     super(element);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+
     this.ref = {};
   }
 
   loadingIndicator: HTMLElement | undefined;
 
-  searchRequest = (searchText: string): Promise<SearchRequestResponse> =>
+  static searchRequest = (searchText: string): Promise<SearchRequestResponse> =>
     sendWorkerMessage<SearchRequestResponse>({
       command: SEARCH_REQ,
       key: searchText,
     });
 
-  renderSearchResultItem = (result: SearchResultItem): string => `
+  static renderSearchResultItem = (result: SearchResultItem): string => `
       <a href="${result.url}" class="search__results__item">
          <p class="search__results__item__title">${result.title}</p>
          <p class="search__results__item__category endnote_ts">${result.category}</p>
@@ -48,7 +47,7 @@ class SearchComponent extends Component<SearchRef, SearchState> {
   insertContentInSearchContainer = (
     content: HTMLElement | DocumentFragment
   ): void => {
-    const [searchResultsContainer] = this.ref.searchResultContainer;
+    const [searchResultsContainer] = this.ref.searchResultContainer ?? [];
     // replace existing content with new one if they exist
     if (searchResultsContainer.firstChild) {
       searchResultsContainer.replaceChild(
@@ -61,7 +60,7 @@ class SearchComponent extends Component<SearchRef, SearchState> {
   };
 
   setLoadingIndicator(): void {
-    const [searchResultsContainer] = this.ref.searchResultContainer;
+    const [searchResultsContainer] = this.ref.searchResultContainer ?? [];
 
     const loadingIndicator = document.createElement('div');
     loadingIndicator.className =
@@ -86,7 +85,7 @@ class SearchComponent extends Component<SearchRef, SearchState> {
 
     searchResult.reduce((wrapper, cur) => {
       const li = document.createElement('li');
-      li.innerHTML = this.renderSearchResultItem(cur);
+      li.innerHTML = SearchComponent.renderSearchResultItem(cur);
       wrapper.appendChild(li);
       return wrapper;
     }, searchItemsWrapper);
@@ -97,7 +96,7 @@ class SearchComponent extends Component<SearchRef, SearchState> {
     this.insertContentInSearchContainer(fragment);
   }
 
-  displaySearchError = (err: typeof Error): void => {
+  static displaySearchError = (err: typeof Error): void => {
     logger.warn(err);
   };
 
@@ -122,7 +121,7 @@ class SearchComponent extends Component<SearchRef, SearchState> {
       searchResultLoading: true,
     });
 
-    this.searchRequest(searchText)
+    SearchComponent.searchRequest(searchText)
       .then(({ data }) =>
         this.setState({
           done: true,
@@ -130,7 +129,7 @@ class SearchComponent extends Component<SearchRef, SearchState> {
           searchResultLoading: false,
         })
       )
-      .catch(this.displaySearchError);
+      .catch(SearchComponent.displaySearchError);
   }, 250);
 
   stateChange(stateChanges: Partial<SearchState>): void {
@@ -151,8 +150,8 @@ class SearchComponent extends Component<SearchRef, SearchState> {
   }
 
   mount(): void {
-    const [searchForm] = this.ref.searchForm;
-    const [searchResultsContainer] = this.ref.searchResultContainer;
+    const [searchForm] = this.ref.searchForm ?? [];
+    const [searchResultsContainer] = this.ref.searchResultContainer ?? [];
 
     const searchInputField = searchForm.elements.namedItem(
       'searchInput'
