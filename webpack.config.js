@@ -43,10 +43,8 @@ try {
   process.exit(1);
 }
 
-const {
-  webpack: jekyllWebpackConfig,
-  search_data: searchData,
-} = jekyllConfigFileContents;
+const { webpack: jekyllWebpackConfig, search_data: searchData } =
+  jekyllConfigFileContents;
 
 module.exports = {
   mode: process.env.JEKYLL_ENV === 'production' ? 'production' : 'development',
@@ -65,6 +63,7 @@ module.exports = {
     rules: [
       {
         test: /\.(sa|sc|c)ss$/,
+        type: 'javascript/auto',
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -75,25 +74,20 @@ module.exports = {
       },
       {
         test: /\.((sv|pn|jpe?)g|gif)$/i,
-        loader: 'file-loader',
-        options: {
+        type: 'asset/resource',
+        generator: {
           // special config to ensure img assets are process as the original path
           // since jekyll handles copying files in our assets directory already
-          name: '[folder]/[name].[ext]',
-          emitFile: false,
+          filename: '[folder]/[name].[ext]',
+          emit: false,
         },
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/',
-            },
-          },
-        ],
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name].[ext]',
+        },
       },
       {
         test: /\.(t|(m?j))s$/,
@@ -136,7 +130,7 @@ module.exports = {
   },
   plugins: [
     new Dotenv({
-      systemvars: process.env.JEKYLL_ENV === 'production'
+      systemvars: process.env.JEKYLL_ENV === 'production',
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
@@ -157,7 +151,9 @@ module.exports = {
       __SEARCH_DATA_PATH__: JSON.stringify(
         path.join('/', searchData.output_path, searchData.filename)
       ),
-      'process.env.NODE_ENV': JSON.stringify(process.env.JEKYLL_ENV || 'development'),
+      'process.env.NODE_ENV': JSON.stringify(
+        process.env.JEKYLL_ENV || 'development'
+      ),
     }),
     function provideMetaForJekyll() {
       this.hooks.done.tap(
