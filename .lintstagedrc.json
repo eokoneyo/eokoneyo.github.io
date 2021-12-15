@@ -1,0 +1,5 @@
+{
+  "assets/**/*.{js,ts}": "eslint --cache --fix --max-warnings 0",
+  "assets/**/*.{js,ts,css,scss,md}": "prettier --write",
+  "_plugins/*.rb": "prettier --write"
+}

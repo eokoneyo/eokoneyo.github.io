@@ -8,7 +8,8 @@
     "lint": "eslint .",
     "test": "jest --config jest.json",
     "build": "webpack && bundle exec jekyll build",
-    "start:dev": "webpack && webpack --watch | bundle exec jekyll serve --livereload --trace"
+    "start:dev": "webpack && webpack --watch | bundle exec jekyll serve --livereload --trace",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -86,15 +87,5 @@
   "browserslist": [
     "last 2 versions",
     "ie >= 9"
-  ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "assets/**/*.{js,ts}": "eslint --cache --fix --max-warnings 0",
-    "assets/**/*.{js,ts,css,scss,md}": "prettier --write",
-    "_plugins/*.rb": "prettier --write"
-  }
+  ]
 }
