@@ -1,5 +1,6 @@
 @import '~sass-mq';
 @import '~modularscale-sass';
+@import '~@fontsource/ovo/scss/mixins';
 @import '../utils/fibonacci';
 
 // Font weights
@@ -37,15 +38,23 @@ $headings: 6;
 $modularScaleToCountDownFrom: fibonacci($headings);
 
 // Font-faces
-@font-face {
-  font-family: 'Ovo';
-  font-style: normal;
-  font-weight: 500;
-  src: local('Ovo'), url('../_fonts/ovo/Ovo-Regular.ttf') format('truetype');
-  font-display: swap;
-}
+@include fontFace(
+  $weight: 400,
+  $fontId: 'ovo',
+  $fontName: 'Ovo',
+  $fontDir: '~@fontsource/ovo/files'
+);
 
-$primary-font: 'Ovo', Georgia, "Times New Roman", Times, serif;
+@include fontFace(
+  $weight: 400,
+  $fontId: 'jetbrains-mono',
+  $fontName: 'JetBrains MonoVariable',
+  $fontDir: '~@fontsource/jetbrains-mono/files'
+);
+
+$jetbrains-mono: 'JetBrains MonoVariable';
+$mono-font: $jetbrains-mono, monospace, sans-serif, serif;
+$primary-font: 'Ovo', Georgia, 'Times New Roman', Times, serif;
 $secondary-font: $primary-font;
 
 html {
