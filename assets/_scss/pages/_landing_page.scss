@@ -1,4 +1,3 @@
-//@import '~sass-mq';
 @import '../mixins/parallax';
 
 .ns-landing-screen {
@@ -22,9 +21,9 @@
       justify-content: center;
       height: 100%;
 
-       > * {
-         align-self: center;
-       }
+      > * {
+        align-self: center;
+      }
     }
 
     &__title {
@@ -107,7 +106,7 @@
     .selected-categories {
       margin-bottom: mq-px2em(50px);
 
-      .page-heading--with-action{
+      .page-heading--with-action {
         display: flex;
         justify-content: space-between;
 
@@ -125,13 +124,13 @@
     .selected-category {
       &--blog {
         &__item {
-          .display-heading__subtitle{
+          .display-heading__subtitle {
             font-style: normal;
             letter-spacing: mq-px2em(3px);
             font-weight: $bold-font-weight;
 
             > * {
-              color: rgba(map_get($gray-pallet, mid), 0.9)
+              color: rgba(map_get($gray-pallet, mid), 0.9);
             }
           }
         }
@@ -144,17 +143,6 @@
           padding-left: 0;
           padding-right: 0;
         }
-
-        @include mq($until: medium) {
-          &__item {
-            padding: 0;
-          }
-        }
-        @include mq($from: medium) {
-          &__item:first-of-type {
-            padding-left: 0;
-          }
-        }
       }
     }
   }
@@ -163,7 +151,8 @@
     &--link {
       padding: 0 mq-px2em(10px);
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         text-decoration: underline;
       }
     }

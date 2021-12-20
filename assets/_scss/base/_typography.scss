@@ -1,5 +1,5 @@
-@import '~modularscale-sass';
 @import '~sass-mq';
+@import '~modularscale-sass';
 @import '../utils/fibonacci';
 
 // Font weights
@@ -19,16 +19,16 @@ $vspace-3: calc(#{0.5 * $space} * 1rem);
 
 // set type scale here
 $modularscale: (
-        base: 16px,
-        map_get($grid-breakpoints, small) : (
-                ratio: 1.1,
-        ),
-        map_get($grid-breakpoints, medium) : (
-                ratio: 1.15,
-        ),
-        map_get($grid-breakpoints, xlarge) : (
-                ratio: 1.25,
-        )
+  base: 16px,
+  map_get($grid-breakpoints, small): (
+    ratio: 1.1,
+  ),
+  map_get($grid-breakpoints, medium): (
+    ratio: 1.15,
+  ),
+  map_get($grid-breakpoints, xlarge): (
+    ratio: 1.25,
+  ),
 );
 
 $headings: 6;
@@ -57,18 +57,26 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  vertical-align: baseline;
 }
 
 @for $i from 1 through $headings {
   h#{$i} {
-    @include ms-respond(font-size, nth($modularScaleToCountDownFrom, length($modularScaleToCountDownFrom) - $i));
+    @include ms-respond(
+      font-size,
+      nth(
+        $modularScaleToCountDownFrom,
+        length($modularScaleToCountDownFrom) - $i
+      )
+    );
     font-family: $secondary-font;
     font-weight: $medium-font-weight;
     letter-spacing: mq-px2em(1px);
   }
 }
 
-body, p {
+body,
+p {
   @include ms-respond(font-size, 0);
 }
 
@@ -87,7 +95,9 @@ h3 {
   line-height: 1em;
 }
 
-h4, h5, h6 {
+h4,
+h5,
+h6 {
   margin: $vspace-2 0 $vspace-3 0;
   line-height: $vspace;
 }
