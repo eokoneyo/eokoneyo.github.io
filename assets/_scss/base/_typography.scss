@@ -1,5 +1,6 @@
-@import '~modularscale-sass';
 @import '~sass-mq';
+@import '~modularscale-sass';
+@import '~@fontsource/ovo/scss/mixins';
 @import '../utils/fibonacci';
 
 // Font weights
@@ -19,16 +20,16 @@ $vspace-3: calc(#{0.5 * $space} * 1rem);
 
 // set type scale here
 $modularscale: (
-        base: 16px,
-        map_get($grid-breakpoints, small) : (
-                ratio: 1.1,
-        ),
-        map_get($grid-breakpoints, medium) : (
-                ratio: 1.15,
-        ),
-        map_get($grid-breakpoints, xlarge) : (
-                ratio: 1.25,
-        )
+  base: 16px,
+  map_get($grid-breakpoints, small): (
+    ratio: 1.1,
+  ),
+  map_get($grid-breakpoints, medium): (
+    ratio: 1.15,
+  ),
+  map_get($grid-breakpoints, xlarge): (
+    ratio: 1.25,
+  ),
 );
 
 $headings: 6;
@@ -37,15 +38,23 @@ $headings: 6;
 $modularScaleToCountDownFrom: fibonacci($headings);
 
 // Font-faces
-@font-face {
-  font-family: 'Ovo';
-  font-style: normal;
-  font-weight: 500;
-  src: local('Ovo'), url('../_fonts/ovo/Ovo-Regular.ttf') format('truetype');
-  font-display: swap;
-}
+@include fontFace(
+  $weight: 400,
+  $fontId: 'ovo',
+  $fontName: 'Ovo',
+  $fontDir: '~@fontsource/ovo/files'
+);
 
-$primary-font: 'Ovo', Georgia, "Times New Roman", Times, serif;
+@include fontFace(
+  $weight: 400,
+  $fontId: 'jetbrains-mono',
+  $fontName: 'JetBrains MonoVariable',
+  $fontDir: '~@fontsource/jetbrains-mono/files'
+);
+
+$jetbrains-mono: 'JetBrains MonoVariable';
+$mono-font: $jetbrains-mono, monospace, sans-serif, serif;
+$primary-font: 'Ovo', Georgia, 'Times New Roman', Times, serif;
 $secondary-font: $primary-font;
 
 html {
@@ -57,18 +66,26 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  vertical-align: baseline;
 }
 
 @for $i from 1 through $headings {
   h#{$i} {
-    @include ms-respond(font-size, nth($modularScaleToCountDownFrom, length($modularScaleToCountDownFrom) - $i));
+    @include ms-respond(
+      font-size,
+      nth(
+        $modularScaleToCountDownFrom,
+        length($modularScaleToCountDownFrom) - $i
+      )
+    );
     font-family: $secondary-font;
     font-weight: $medium-font-weight;
     letter-spacing: mq-px2em(1px);
   }
 }
 
-body, p {
+body,
+p {
   @include ms-respond(font-size, 0);
 }
 
@@ -87,7 +104,9 @@ h3 {
   line-height: 1em;
 }
 
-h4, h5, h6 {
+h4,
+h5,
+h6 {
   margin: $vspace-2 0 $vspace-3 0;
   line-height: $vspace;
 }
@@ -106,6 +125,12 @@ blockquote {
   font-style: italic;
 }
 
+time,
+[datatime] {
+  color: map-get($gray-pallet, light);
+  //font-family: $mono-font;
+}
+
 .caption_ts {
   @include ms-respond(font-size, -1);
   font-style: italic;
@@ -117,4 +142,10 @@ blockquote {
 
 .footnote_ts {
   @include ms-respond(font-size, -2);
+}
+
+.footnote_ts,
+.caption_ts,
+.endnote_ts {
+  font-family: $mono-font;
 }

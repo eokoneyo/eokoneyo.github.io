@@ -10,6 +10,16 @@ layout: default
       <path stroke-width="3" d="M2.121 55.1l19.3-19.2M21.421 55.1l-19.3-19.2"></path>
     </g>
   </svg>
-  <h4>Error 404: Page Not Found</h4>
+  <h3>Error 404: Page Not Found</h3>
   <p class="endnote_ts text-center">The page you requested isn't available. Try checking the URL or visit a different page</p>
 </div>
+<script>
+  (function track404(global) {
+    if(global.ga) {
+      global.ga('send', 'event', {
+        eventCategory: '404',
+        eventValue: global.location.pathname
+      })
+    }
+  })(window)
+</script>

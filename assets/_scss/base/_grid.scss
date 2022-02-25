@@ -1,7 +1,8 @@
 @import '~sass-mq';
 
 .container {
-  &, &-fluid {
+  &,
+  &-fluid {
     margin: 0 auto;
     padding-left: mq-px2em(10px);
     padding-right: mq-px2em(10px);
@@ -26,10 +27,13 @@
   display: flex;
   flex-wrap: wrap;
 
- .container > & {
-   margin-right: -10px;
-   margin-left: -10px;
- }
+  .container > & {
+    margin: 0 -#{$grid-gutter-size};
+  }
+
+  .container-fluid > & {
+    margin: 0 -#{$grid-gutter-size};
+  }
 
   & + & {
     margin-top: 10px;

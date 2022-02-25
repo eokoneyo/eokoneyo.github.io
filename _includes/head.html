@@ -8,6 +8,8 @@
 <meta name="apple-mobile-web-app-title" content="{{site.data.setup.brandText}}" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>{% if page.title %}{{ page.title }} | {{ site.data.setup.title }}{% else %}{{ site.data.setup.title }}{% endif %}</title>
+{% if page.title %}<meta property="og:title" content="{{ page.title }}" />{% endif %}
+{% if page.author %}<meta property="article:author" content="{{ page.author }}" />{% endif %}
 <link rel="apple-touch-icon" sizes="76x76" href="/assets/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192"  href="/assets/favicon/android-chrome-512x512.png">
 <link rel="icon" type="image/png" sizes="192x192"  href="/assets/favicon/android-chrome-192x192.png">

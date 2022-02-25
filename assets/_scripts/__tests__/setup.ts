@@ -1,8 +1,13 @@
-// Add global mock for localStorage, it not defined in jsdom
-const localStorageMock = {
-  getItem: jest.fn(),
-  setItem: jest.fn(),
-  clear: jest.fn(),
-};
+import failOnConsole from 'jest-fail-on-console';
 
-global.localStorage = localStorageMock;
+failOnConsole();
+
+// Add global mock for localStorage, it not defined in jsdom
+Object.defineProperty(window, 'localStorage', {
+  writable: true,
+  value: {
+    getItem: jest.fn(),
+    setItem: jest.fn(),
+    clear: jest.fn(),
+  },
+});
