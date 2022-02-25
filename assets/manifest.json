@@ -1,8 +1,11 @@
 {
-  "main.css": "/assets/main.d1da2168.css",
-  "main.js": "/assets/main-bundle.21cafefd.js",
-  "runtime.js": "/assets/runtime-bundle.5265e433.js",
+  "main.css": "/assets/main.ddb915a2.css",
+  "main.js": "/assets/main-bundle.f93f9c2e.js",
+  "runtime.js": "/assets/runtime-bundle.94387c60.js",
   "vendors.js": "/assets/vendors-bundle.1dc72ee4.js",
   "sw.js": "/assets/sw.js",
-  "fonts/Ovo-Regular.ttf": "/assets/fonts/Ovo-Regular..ttf"
+  "fonts/jetbrains-mono-all-400-normal.woff": "/assets/fonts/jetbrains-mono-all-400-normal.woff",
+  "fonts/ovo-all-400-normal.woff": "/assets/fonts/ovo-all-400-normal.woff",
+  "fonts/jetbrains-mono-latin-400-normal.woff2": "/assets/fonts/jetbrains-mono-latin-400-normal.woff2",
+  "fonts/ovo-latin-400-normal.woff2": "/assets/fonts/ovo-latin-400-normal.woff2"
 }
