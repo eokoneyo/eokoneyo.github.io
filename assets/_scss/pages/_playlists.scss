@@ -1,7 +1,6 @@
 .ns-playlists {
-
   #Playlists {
-    .loader{
+    .loader {
       display: flex;
       margin: mq-px2em(20px) 0;
       min-height: mq-px2em(200px);
@@ -23,26 +22,44 @@
       opacity: 0;
 
       .playlist {
-        &-wrapper {}
+        &-wrapper {
+          flex-wrap: nowrap;
+          overflow: auto;
+        }
 
         &-item {
           margin-bottom: mq-px2em(20px);
+          flex-basis: 100%;
+          flex-shrink: 0;
 
-          figure{
-            position: relative;
+          figure {
             margin: 0;
+            height: mq-px2em(400px);
+            position: relative;
+            background: map-get($gray-pallet, light);
           }
 
           a {
+            height: 100%;
             width: inherit;
-            display: block;
-            position: initial;
-            padding: 0;
+            display: flex;
+            padding: 20px 25px;
+            flex-direction: column;
+            justify-content: space-between;
           }
 
-          picture, img {
+          picture,
+          img {
             width: 100%;
             height: auto;
+          }
+
+          figcaption {
+            font-family: $mono-font;
+          }
+
+          @include mq($from: medium) {
+            flex-basis: 50%;
           }
         }
       }

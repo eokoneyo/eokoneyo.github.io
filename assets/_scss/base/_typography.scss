@@ -125,6 +125,12 @@ blockquote {
   font-style: italic;
 }
 
+time,
+[datatime] {
+  color: map-get($gray-pallet, light);
+  //font-family: $mono-font;
+}
+
 .caption_ts {
   @include ms-respond(font-size, -1);
   font-style: italic;
@@ -136,4 +142,10 @@ blockquote {
 
 .footnote_ts {
   @include ms-respond(font-size, -2);
+}
+
+.footnote_ts,
+.caption_ts,
+.endnote_ts {
+  font-family: $mono-font;
 }

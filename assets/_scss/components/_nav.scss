@@ -1,6 +1,8 @@
-@use "sass:selector";
+@use 'sass:selector';
 
-$expandable-search-size-compact: mq-px2em(35px); // height and width - compact version
+$expandable-search-size-compact: mq-px2em(
+  35px
+); // height and width - compact version
 $search-animation-duration: 500ms;
 $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
 
@@ -34,7 +36,8 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
     display: flex;
     height: mq-px2em($header-height);
 
-    &__left, &__right {
+    &__left,
+    &__right {
       height: inherit;
     }
 
@@ -51,14 +54,15 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
         padding: 10px 0;
       }
 
-      &-image, &-text {
+      &-image,
+      &-text {
         height: inherit;
         display: inline-flex;
         justify-content: center;
         align-items: center;
       }
 
-      &-image{
+      &-image {
         color: $light;
         width: 60px;
       }
@@ -80,7 +84,7 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
       transition: 0.5s ease-in-out;
       cursor: pointer;
 
-      span{
+      span {
         display: block;
         position: absolute;
         height: 2px;
@@ -98,8 +102,7 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
         }
       }
 
-      @at-root .mobile-toggle--open  {
-
+      @at-root .mobile-toggle--open {
         //@at-root header
 
         .mobile-toggle__icon {
@@ -151,10 +154,13 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
       padding: 15px;
       margin: auto 5px;
       font-size: 15px;
+      font-family: $secondary-font;
       font-weight: $bold-font-weight;
       text-transform: capitalize;
 
-      &:focus, &:hover, &.active {
+      &:focus,
+      &:hover,
+      &.active {
         color: map_get($gray-pallet, dark);
       }
     }
@@ -174,9 +180,7 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
     padding: mq-px2em(12px) 0;
     margin: 0 mq-px2em(10px);
     flex: 0 0 $expandable-search-size-compact;
-    transition: flex .1s;
-
-
+    transition: flex 0.1s;
 
     &-form {
       width: 100%;
@@ -184,7 +188,7 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
       display: inline-block;
       user-select: none;
 
-      &__input{
+      &__input {
         width: 100%;
         height: $expandable-search-size-compact;
         padding: 0;
@@ -193,7 +197,9 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
         overflow: hidden;
         border-radius: 50em;
         border: 0;
-        transition: width $search-animation-duration $ease-out, box-shadow $search-animation-duration, background-color $search-animation-duration;
+        transition: width $search-animation-duration $ease-out,
+          box-shadow $search-animation-duration,
+          background-color $search-animation-duration;
 
         &::placeholder {
           opacity: 0;
@@ -269,17 +275,17 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
       }
 
       li {
-
         &:not(:last-of-type) {
           border-bottom: 1px solid rgba(map-get($gray-pallet, light), 0.8);
 
-          &:hover, &:focus {
-            border-bottom: 1px solid map-get($gray-pallet, light)
+          &:hover,
+          &:focus {
+            border-bottom: 1px solid map-get($gray-pallet, light);
           }
         }
 
         &:focus {
-          outline: none
+          outline: none;
         }
       }
 
@@ -287,12 +293,12 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
         display: block;
         padding: mq-px2em(10px);
 
-        &__title, &__category {
+        &__title,
+        &__category {
           margin: 0;
         }
 
         &__title {
-
         }
 
         &__category {
@@ -309,7 +315,8 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
   // handles the backdrop for the search modal
   @at-root #page-top {
     header {
-      & + [class^="ns-"][class$="layout"], & + [class="ns-landing-screen"] .main-content {
+      & + [class^='ns-'][class$='layout'],
+      & + [class='ns-landing-screen'] .main-content {
         &:before {
           content: '';
           position: fixed;
@@ -323,14 +330,16 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
           visibility: hidden;
           opacity: 0;
           z-index: #{$zindex-header - 1};
-          transition: visibility 0.3s linear, opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: visibility 0.3s linear,
+            opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
       }
 
       &[search-expanded] {
         background: $light;
 
-        & + [class^="ns-"][class$="layout"], & + [class="ns-landing-screen"] .main-content {
+        & + [class^='ns-'][class$='layout'],
+        & + [class='ns-landing-screen'] .main-content {
           &:before {
             opacity: 1;
             visibility: visible;
@@ -341,7 +350,7 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
   &[search-expanded] {
-    .menu-list{
+    .menu-list {
       display: none;
     }
 
@@ -350,13 +359,13 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
       justify-content: flex-end;
 
       &-form {
-
         &__input {
           padding: 0 mq-px2em(30px + 10px) 0 mq-px2em(10px);
           outline: none;
           border-radius: 0;
           background-color: map_get($gray-pallet, light);
-          box-shadow: $shadow-md, 0 0 0 1px rgba(map_get($gray-pallet, light), 0.2);
+          box-shadow: $shadow-md,
+            0 0 0 1px rgba(map_get($gray-pallet, light), 0.2);
           cursor: auto;
           user-select: auto;
 
@@ -364,7 +373,8 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
             border-radius: mq-px2em(5px) mq-px2em(5px) 0 0;
           }
 
-          &, &::placeholder {
+          &,
+          &::placeholder {
             color: map-get($gray-pallet, dark);
           }
 

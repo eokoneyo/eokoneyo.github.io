@@ -41,6 +41,10 @@
       }
     }
 
+    &__tagline {
+      color: map-get($gray-pallet, light);
+    }
+
     &__side-photo {
       @include mq($from: medium) {
         order: 2;

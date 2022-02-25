@@ -2,13 +2,13 @@
 layout: default
 ---
 
-<div class="container ns-posts">
+<div class="container ns-posts" itemscope itemtype="https://schema.org/Article">
     <div class="row">
         <div class="column-sm-12">
             <article class="article-wrapper">
                 <h2 class="page-heading article__meta">
-                    <span class="display-heading article__meta__title">{{page.title}}</span>
-                    <span class="article__meta__publish-date">{{ page.date | date: "%d.%m.%Y" }}</span>
+                    <span class="display-heading article__meta__title" itemprop="name">{{page.title}}</span>
+                    <span class="article__meta__publish-date" itemprop="datePublished">{{ page.date | date: "%d.%m.%Y" }}</span>
                 </h2>
                 {{content}}
             </article>
