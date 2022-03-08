@@ -1,5 +1,5 @@
 {
-  "main.css": "/assets/main.ddb915a2.css",
+  "main.css": "/assets/main.962c8ece.css",
   "main.js": "/assets/main-bundle.f93f9c2e.js",
   "runtime.js": "/assets/runtime-bundle.94387c60.js",
   "vendors.js": "/assets/vendors-bundle.1dc72ee4.js",
@@ -7,5 +7,10 @@
   "fonts/jetbrains-mono-all-400-normal.woff": "/assets/fonts/jetbrains-mono-all-400-normal.woff",
   "fonts/ovo-all-400-normal.woff": "/assets/fonts/ovo-all-400-normal.woff",
   "fonts/jetbrains-mono-latin-400-normal.woff2": "/assets/fonts/jetbrains-mono-latin-400-normal.woff2",
-  "fonts/ovo-latin-400-normal.woff2": "/assets/fonts/ovo-latin-400-normal.woff2"
+  "fonts/ovo-latin-400-normal.woff2": "/assets/fonts/ovo-latin-400-normal.woff2",
+  "fonts/jetbrains-mono-latin-ext-400-normal.woff2": "/assets/fonts/jetbrains-mono-latin-ext-400-normal.woff2",
+  "fonts/jetbrains-mono-cyrillic-400-normal.woff2": "/assets/fonts/jetbrains-mono-cyrillic-400-normal.woff2",
+  "fonts/jetbrains-mono-greek-400-normal.woff2": "/assets/fonts/jetbrains-mono-greek-400-normal.woff2",
+  "fonts/jetbrains-mono-vietnamese-400-normal.woff2": "/assets/fonts/jetbrains-mono-vietnamese-400-normal.woff2",
+  "fonts/jetbrains-mono-cyrillic-ext-400-normal.woff2": "/assets/fonts/jetbrains-mono-cyrillic-ext-400-normal.woff2"
 }
