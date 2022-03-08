@@ -1,3 +1,5 @@
+@use '@fontsource/ovo/scss/mixins' as Ovo;
+@use '@fontsource/jetbrains-mono/scss/mixins' as JetbrainsMono;
 @import '~sass-mq';
 @import '~modularscale-sass';
 @import '~@fontsource/ovo/scss/mixins';
@@ -38,19 +40,9 @@ $headings: 6;
 $modularScaleToCountDownFrom: fibonacci($headings);
 
 // Font-faces
-@include fontFace(
-  $weight: 400,
-  $fontId: 'ovo',
-  $fontName: 'Ovo',
-  $fontDir: '~@fontsource/ovo/files'
-);
+@include Ovo.fontFace($weight: $normal-font-weight);
 
-@include fontFace(
-  $weight: 400,
-  $fontId: 'jetbrains-mono',
-  $fontName: 'JetBrains MonoVariable',
-  $fontDir: '~@fontsource/jetbrains-mono/files'
-);
+@include JetbrainsMono.fontFace($weight: $normal-font-weight);
 
 $jetbrains-mono: 'JetBrains MonoVariable';
 $mono-font: $jetbrains-mono, monospace, sans-serif, serif;
