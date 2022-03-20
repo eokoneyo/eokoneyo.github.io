@@ -100,7 +100,7 @@ class Playlists extends Component<PlaylistsRef, PlaylistsState> {
     } catch (e) {
       logger.error(e);
       this.setState({
-        error: e.message,
+        error: (e as Error).message,
       });
     } finally {
       this.setState({
