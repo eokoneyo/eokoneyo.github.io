@@ -1,4 +1,5 @@
 import { Component } from 'gia';
+import clsx from 'clsx';
 import { setAttributes, addClass } from './utils';
 import logger from './utils/logger';
 import requestClient from './utils/requestClient';
@@ -121,11 +122,14 @@ class Playlists extends Component<PlaylistsRef, PlaylistsState> {
 
     const playlistsItemsWrapper = document.createElement('ul');
 
-    addClass(playlistsItemsWrapper, 'no-style-list playlist-wrapper row');
+    addClass(
+      playlistsItemsWrapper,
+      clsx('no-style-list', 'playlist-wrapper', 'row')
+    );
 
     playlists?.reduce((wrapper, playlist) => {
       const li = document.createElement('li');
-      addClass(li, 'playlist-item column-12 column-md-4');
+      addClass(li, clsx('playlist-item', 'column-12', 'column-md-4'));
       li.innerHTML = `
         <figure>
           <a href="${playlist.external_urls.spotify}" target="_blank">
@@ -168,6 +172,14 @@ class Playlists extends Component<PlaylistsRef, PlaylistsState> {
       : this.renderPlaylists();
 
     setAttributes(loader, { hidden: '' });
+
+    if (!error) {
+      const scrollIndicator = document.createElement('a');
+
+      addClass(scrollIndicator, clsx('view-more-link', 'scroll-indicator'));
+
+      fragment.appendChild(scrollIndicator);
+    }
 
     fragment.appendChild(fetchOutcome);
     playlistContainer.appendChild(fragment);
