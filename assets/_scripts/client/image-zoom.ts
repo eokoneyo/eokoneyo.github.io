@@ -1,4 +1,5 @@
 import { Component } from 'gia';
+import clsx from 'clsx';
 import * as Util from './utils/dom';
 
 /**
@@ -50,15 +51,17 @@ class ImageZoomComponent extends Component {
 
     const lightBox = document.createElement('div');
     Util.setAttributes(lightBox, {
-      class: 'image-zoom__lightbox js-image-zoom__lightbox',
+      class: clsx('image-zoom__lightbox', 'js-image-zoom__lightbox'),
       id: this.lightBoxId,
       'aria-hidden': 'true',
     });
     lightBox.innerHTML = `<img src="${url}" class="js-image-zoom__fw"/>`;
     document.body.appendChild(lightBox);
 
-    const keyboardInput =
-      '<input aria-hidden="true" type="checkbox" class="image-zoom__input js-image-zoom__input"/>';
+    const keyboardInput = `<input aria-hidden="true" type="checkbox" class=${clsx(
+      'image-zoom__input',
+      'js-image-zoom__input'
+    )}/>`;
     this.element.insertAdjacentHTML('afterbegin', keyboardInput);
   }
 

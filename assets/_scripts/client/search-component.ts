@@ -1,5 +1,6 @@
 import { Component, eventbus } from 'gia';
 import throttle from 'lodash.throttle';
+import clsx from 'clsx';
 import { sendWorkerMessage } from './utils/dom';
 import { SEARCH_REQ, SEARCH_UI_CLOSE, SEARCH_UI_OPEN } from '../constants';
 import logger from './utils/logger';
@@ -102,7 +103,11 @@ class SearchComponent extends Component<SearchRef, SearchState> {
 
   displayNoResultFound = (): void => {
     const noResult = document.createElement('div');
-    noResult.className = 'container loading-indicator js-loading-indicator';
+    noResult.className = clsx(
+      'container',
+      'loading-indicator',
+      'js-loading-indicator'
+    );
     noResult.innerHTML = `
     <div>
       <svg xmlns="http://www.w3.org/2000/svg" width="99.039" height="94.342" aria-hidden="true" fill="currentColor" stroke="currentColor">
