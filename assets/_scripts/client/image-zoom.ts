@@ -42,7 +42,7 @@ class ImageZoomComponent extends Component {
   }
 
   animationSupported =
-    window.requestAnimationFrame && !Util.osHasReducedMotion();
+    !!window.requestAnimationFrame && !Util.osHasReducedMotion();
 
   initImageZoomHtml(): void {
     // get zoomed image url
