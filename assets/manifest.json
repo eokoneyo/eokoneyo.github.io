@@ -1,8 +1,8 @@
 {
-  "main.css": "/assets/main.962c8ece.css",
-  "main.js": "/assets/main-bundle.f93f9c2e.js",
-  "runtime.js": "/assets/runtime-bundle.94387c60.js",
-  "vendors.js": "/assets/vendors-bundle.1dc72ee4.js",
+  "main.css": "/assets/main.b733d8c0.css",
+  "main.js": "/assets/main-bundle.b866bc62.js",
+  "runtime.js": "/assets/runtime-bundle.0bff9345.js",
+  "vendors.js": "/assets/vendors-bundle.c6e77bd1.js",
   "sw.js": "/assets/sw.js",
   "fonts/jetbrains-mono-all-400-normal.woff": "/assets/fonts/jetbrains-mono-all-400-normal.woff",
   "fonts/ovo-all-400-normal.woff": "/assets/fonts/ovo-all-400-normal.woff",
