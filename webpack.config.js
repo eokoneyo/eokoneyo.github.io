@@ -77,7 +77,7 @@ module.exports = {
         type: 'asset/resource',
         generator: {
           // special config to ensure img assets are process as the original path
-          // since jekyll handles copying files in our assets directory already
+          // since jekyll handles copying files in our assets' directory already
           filename: '[folder]/[name].[ext]',
           emit: false,
         },

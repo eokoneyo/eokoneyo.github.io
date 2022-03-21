@@ -21,6 +21,11 @@
     .content {
       opacity: 0;
 
+      .scroll-indicator {
+        display: block;
+        text-align: right;
+      }
+
       .playlist {
         &-wrapper {
           flex-wrap: nowrap;

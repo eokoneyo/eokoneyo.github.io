@@ -1,5 +1,6 @@
 import { Component } from 'gia';
-import * as Util from './utils';
+import clsx from 'clsx';
+import * as Util from './utils/dom';
 
 /**
  * @module imageZoom
@@ -41,7 +42,7 @@ class ImageZoomComponent extends Component {
   }
 
   animationSupported =
-    window.requestAnimationFrame && !Util.osHasReducedMotion();
+    !!window.requestAnimationFrame && !Util.osHasReducedMotion();
 
   initImageZoomHtml(): void {
     // get zoomed image url
@@ -50,15 +51,17 @@ class ImageZoomComponent extends Component {
 
     const lightBox = document.createElement('div');
     Util.setAttributes(lightBox, {
-      class: 'image-zoom__lightbox js-image-zoom__lightbox',
+      class: clsx('image-zoom__lightbox', 'js-image-zoom__lightbox'),
       id: this.lightBoxId,
       'aria-hidden': 'true',
     });
     lightBox.innerHTML = `<img src="${url}" class="js-image-zoom__fw"/>`;
     document.body.appendChild(lightBox);
 
-    const keyboardInput =
-      '<input aria-hidden="true" type="checkbox" class="image-zoom__input js-image-zoom__input"/>';
+    const keyboardInput = `<input aria-hidden="true" type="checkbox" class=${clsx(
+      'image-zoom__input',
+      'js-image-zoom__input'
+    )}/>`;
     this.element.insertAdjacentHTML('afterbegin', keyboardInput);
   }
 
@@ -117,12 +120,7 @@ class ImageZoomComponent extends Component {
   };
 
   static shouldToggle(instance: InstanceType<typeof ImageZoomComponent>): void {
-    if (
-      Util.hasClass(
-        instance.lightbox,
-        'image-zoom__lightbox--is-visible'
-      )
-    ) {
+    if (Util.hasClass(instance.lightbox, 'image-zoom__lightbox--is-visible')) {
       instance.toggleFullWidth(false);
     }
   }

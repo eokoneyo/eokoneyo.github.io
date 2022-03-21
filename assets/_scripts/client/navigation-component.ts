@@ -1,6 +1,6 @@
 import { Component, eventbus } from 'gia';
 import throttle from 'lodash.throttle';
-import { hasClass, toggleClass } from './utils';
+import { hasClass, toggleClass } from './utils/dom';
 import { SEARCH_UI_CLOSE, SEARCH_UI_OPEN } from '../constants';
 
 type NavigationRefs = {

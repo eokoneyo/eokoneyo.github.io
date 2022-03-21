@@ -1,4 +1,4 @@
-import { loadComponents, createInstance } from 'gia';
+import { loadComponents, createInstance, config as giaConfig } from 'gia';
 import initPreloader from './preloader';
 import NavigationComponent from './navigation-component';
 import SearchComponent from './search-component';
@@ -8,6 +8,10 @@ import SearchComponent from './search-component';
 
   document.addEventListener('DOMContentLoaded', () => {
     initPreloader(global);
+
+    if (process.env.NODE_ENV === 'production') {
+      giaConfig.set('log', false);
+    }
 
     loadComponents({
       NavigationComponent,

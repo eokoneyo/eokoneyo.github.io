@@ -54,6 +54,15 @@ declare module 'gia' {
     options?: Record<string, unknown>
   ): T;
 
+  interface Config<O = Record<'log', boolean>> {
+    _options: O;
+
+    set<T extends keyof O>(name: T, value: O[T]): void;
+    get<T extends keyof O>(name: T): O[T];
+  }
+
+  export const config: Config;
+
   interface EventBus {
     emit(evt: string, eventObject?: Record<string, unknown>): void;
 

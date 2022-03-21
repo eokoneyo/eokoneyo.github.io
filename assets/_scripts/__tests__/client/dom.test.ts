@@ -4,7 +4,7 @@ import {
   hasClass,
   addClass,
   removeClass,
-} from '../../client/utils';
+} from '../../client/utils/dom';
 
 describe('utils', () => {
   let container: HTMLElement;

@@ -2,10 +2,11 @@
 
 import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching';
 import { setCacheNameDetails, clientsClaim } from 'workbox-core';
-import { registerRoute, NavigationRoute } from 'workbox-routing';
-import { CacheFirst, NetworkOnly } from 'workbox-strategies';
+import { registerRoute } from 'workbox-routing';
+import { CacheFirst } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { ExpirationPlugin } from 'workbox-expiration';
+import offlineHandler from './offline-handler';
 import {
   setupListenerForSearchRequest,
   precacheSearchData,
@@ -51,29 +52,7 @@ declare const self: ServiceWorkerGlobalScope;
     })
   );
 
-  const networkOnly = new NetworkOnly();
-  registerRoute(
-    new NavigationRoute(async (params) => {
-      try {
-        return await networkOnly.handle(params);
-      } catch (err) {
-        return new Response(
-          new Blob(
-            [
-              `
-            <div style="height: 100vh;display: flex;flex-direction:column;justify-content:center;text-align:center;">
-              <img src="/assets/img/horse-rider.svg" alt="illustration of a horse rider">
-              <p>You are offline</p>
-            </div>
-          `,
-            ],
-            { type: 'text/html' }
-          ),
-          { status: 200 }
-        );
-      }
-    })
-  );
+  registerRoute(offlineHandler);
 
   global.addEventListener('message', async (event) => {
     let responseMessage = {};
