@@ -1,6 +1,6 @@
 import { Component, eventbus } from 'gia';
 import throttle from 'lodash.throttle';
-import { sendWorkerMessage } from './utils';
+import { sendWorkerMessage } from './utils/dom';
 import { SEARCH_REQ, SEARCH_UI_CLOSE, SEARCH_UI_OPEN } from '../constants';
 import logger from './utils/logger';
 

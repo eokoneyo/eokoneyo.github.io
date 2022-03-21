@@ -1,6 +1,6 @@
 import { Component } from 'gia';
 import clsx from 'clsx';
-import { setAttributes, addClass } from './utils';
+import { setAttributes, addClass } from './utils/dom';
 import logger from './utils/logger';
 import requestClient from './utils/requestClient';
 

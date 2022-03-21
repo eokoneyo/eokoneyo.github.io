@@ -1,5 +1,5 @@
 import { Component } from 'gia';
-import * as Util from './utils';
+import * as Util from './utils/dom';
 
 /**
  * @module imageZoom
@@ -117,12 +117,7 @@ class ImageZoomComponent extends Component {
   };
 
   static shouldToggle(instance: InstanceType<typeof ImageZoomComponent>): void {
-    if (
-      Util.hasClass(
-        instance.lightbox,
-        'image-zoom__lightbox--is-visible'
-      )
-    ) {
+    if (Util.hasClass(instance.lightbox, 'image-zoom__lightbox--is-visible')) {
       instance.toggleFullWidth(false);
     }
   }

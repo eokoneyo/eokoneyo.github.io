@@ -1,5 +1,5 @@
 import anime from 'animejs';
-import { setCookie, getCookieValue } from './utils';
+import { setCookie, getCookieValue } from './utils/dom';
 
 type Nullable<T> = { [P in keyof T]: T[P] | null };
 
