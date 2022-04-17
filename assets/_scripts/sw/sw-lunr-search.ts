@@ -10,43 +10,59 @@ type SearchResultItem = {
   title: string;
   content: string;
   category: string;
-}
+};
 
 /**
  * precaches the site json file, so we can use it to respond to search results
  */
-export const precacheSearchData = (versionNumber?: string): void =>
-  precacheAndRoute([{
-    url: __SEARCH_DATA_PATH__,
-    revision: versionNumber,
-  }]);
+const precacheSearchData = (versionNumber?: string): void =>
+  precacheAndRoute([
+    {
+      url: __SEARCH_DATA_PATH__,
+      revision: versionNumber,
+    },
+  ]);
 
 /**
  * handler for responding to search request
  */
-export const setupListenerForSearchRequest = async (searchText: string): Promise<SearchResultItem[]> => {
-  const response = await matchPrecache(__SEARCH_DATA_PATH__);
+export const configureSearchHelper = (versionNumber?: string) => {
+  let searchDataIndex: lunr.Index;
+  let searchData: SearchResultItem[];
 
-  if (response?.ok) {
-    const data = await response.json() as SearchResultItem[];
+  precacheSearchData(versionNumber);
 
-    const idxr = lunr(function configureLunr() {
-      this.field('id');
-      this.field('title', { boost: 10 });
-      this.field('category');
-      this.field('content');
+  return async function processSearchRequest(
+    searchText: string
+  ): Promise<SearchResultItem[]> {
+    if (!searchDataIndex) {
+      const response = await matchPrecache(__SEARCH_DATA_PATH__);
 
-      data.forEach((datum, index) => this.add({
-        id: index,
-        title: datum.title,
-        content: datum.content,
-        category: datum.category,
-      }));
-    });
+      if (response?.ok) {
+        searchData = (await response.json()) as SearchResultItem[];
 
-    return idxr.search(searchText).map((result) => data[Number(result.ref)]);
-  }
+        searchDataIndex = lunr(function configureLunr() {
+          this.field('id');
+          this.field('title', { boost: 10 });
+          this.field('category');
+          this.field('content');
 
-  return [];
+          searchData.forEach((datum, index) =>
+            this.add({
+              id: index,
+              title: datum.title,
+              content: datum.content,
+              category: datum.category,
+            })
+          );
+        });
+      }
+    }
+
+    return (searchDataIndex.search(searchText) ?? []).map(
+      (result) => searchData[Number(result.ref)]
+    );
+  };
 };
 
+export default configureSearchHelper;

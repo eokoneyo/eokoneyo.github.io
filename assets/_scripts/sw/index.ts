@@ -7,10 +7,7 @@ import { CacheFirst } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { ExpirationPlugin } from 'workbox-expiration';
 import offlineHandler from './offline-handler';
-import {
-  setupListenerForSearchRequest,
-  precacheSearchData,
-} from './sw-lunr-search';
+import configureSearchHelper from './sw-lunr-search';
 import { SEARCH_REQ } from '../constants';
 
 declare const self: ServiceWorkerGlobalScope;
@@ -30,12 +27,12 @@ declare const self: ServiceWorkerGlobalScope;
     prefix: 'eoe-website',
   });
 
-  precacheSearchData(swVersion ?? '');
+  cleanupOutdatedCaches();
 
   // eslint-disable-next-line no-restricted-globals,no-underscore-dangle
   precacheAndRoute(self.__WB_MANIFEST);
 
-  cleanupOutdatedCaches();
+  const processSearchRequest = configureSearchHelper(swVersion ?? '');
 
   registerRoute(
     /.*\/assets\/fonts\/.*\.(woff2|ttf)$/,
@@ -61,7 +58,7 @@ declare const self: ServiceWorkerGlobalScope;
       case SEARCH_REQ:
         responseMessage = {
           ...responseMessage,
-          data: await setupListenerForSearchRequest(event.data.key),
+          data: await processSearchRequest(event.data.key),
         };
         break;
       default:
