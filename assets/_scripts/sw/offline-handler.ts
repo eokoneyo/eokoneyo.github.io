@@ -25,10 +25,21 @@ const initOfflineHandler = (versionNumber?: string) => {
         new Blob(
           [
             `
-            <div style="height: 100vh;display: flex;flex-direction:column;justify-content:center;text-align:center;">
-              <img src="${offlineMediaAsset}" alt="illustration of a horse rider" style="height: 30%; width: 100%; object-fit: contain;">
-              <h2>You are currently offline</h2>
-            </div>
+            <html lang="en">
+              <head>
+                 <title>Offline | - </title>
+                 <style>
+                    .container { height: 100vh; display: flex; flex-direction:column; justify-content:center; text-align:center; }
+                    .offline-img { height: 30%; width: 100%; object-fit: contain; }
+                 </style>
+              </head>
+              <body>
+                <div class="container">
+                  <img src="${offlineMediaAsset}" alt="illustration of a horse rider" class="offline-img">
+                  <h2>You are currently offline</h2>
+                </div>
+              </body>
+            </html>
           `,
           ],
           { type: 'text/html' }
