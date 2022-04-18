@@ -12,7 +12,7 @@ export const setAttributes = (
 };
 
 export const addClass = (el: HTMLElement, className: string): void => {
-  const classList = className.split(' ');
+  const classList = className.split(/\s/);
   if (el.classList) el.classList.add(classList[0]);
   else if (!hasClass(el, classList[0])) {
     setAttributes(el, {
@@ -23,7 +23,7 @@ export const addClass = (el: HTMLElement, className: string): void => {
 };
 
 export const removeClass = (el: HTMLElement, className: string): void => {
-  const classList = className.split(' ');
+  const classList = className.split(/\s/);
   if (el.classList) el.classList.remove(classList[0]);
   else if (hasClass(el, classList[0])) {
     const reg = new RegExp(`(\\s|^)${classList[0]}(\\s|$)`);

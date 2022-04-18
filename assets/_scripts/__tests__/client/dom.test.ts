@@ -6,7 +6,7 @@ import {
   removeClass,
 } from '../../client/utils/dom';
 
-describe('utils', () => {
+describe('dom utils', () => {
   let container: HTMLElement;
 
   beforeEach(() => {
