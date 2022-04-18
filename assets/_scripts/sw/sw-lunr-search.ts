@@ -27,7 +27,7 @@ const precacheSearchData = (versionNumber?: string): void =>
  * handler for responding to search request
  */
 export const configureSearchHelper = (versionNumber?: string) => {
-  let searchDataIndex: lunr.Index;
+  let searchIdx: lunr.Index;
   let searchData: SearchResultItem[];
 
   precacheSearchData(versionNumber);
@@ -35,13 +35,13 @@ export const configureSearchHelper = (versionNumber?: string) => {
   return async function processSearchRequest(
     searchText: string
   ): Promise<SearchResultItem[]> {
-    if (!searchDataIndex) {
+    if (!searchIdx) {
       const response = await matchPrecache(__SEARCH_DATA_PATH__);
 
       if (response?.ok) {
         searchData = (await response.json()) as SearchResultItem[];
 
-        searchDataIndex = lunr(function configureLunr() {
+        searchIdx = lunr(function configureLunr() {
           this.field('id');
           this.field('title', { boost: 10 });
           this.field('category');
@@ -59,7 +59,7 @@ export const configureSearchHelper = (versionNumber?: string) => {
       }
     }
 
-    return (searchDataIndex.search(searchText) ?? []).map(
+    return (searchIdx.search(searchText) ?? []).map(
       (result) => searchData[Number(result.ref)]
     );
   };
