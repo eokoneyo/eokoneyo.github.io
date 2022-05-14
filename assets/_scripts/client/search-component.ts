@@ -24,13 +24,23 @@ type SearchRef = {
 };
 
 class SearchComponent extends Component<SearchRef, SearchState> {
+  loadingIndicator: HTMLElement | undefined;
+
   constructor(element: HTMLElement) {
     super(element);
 
     this.ref = {};
   }
 
-  loadingIndicator: HTMLElement | undefined;
+  static noSearchResultIcon = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="99.039" height="94.342" aria-hidden="true" fill="currentColor" stroke="currentColor">
+      <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M93.113 88.415a5.38 5.38 0 0 1-7.61 0L58.862 61.773a1.018 1.018 0 0 1 0-1.44l6.17-6.169a1.018 1.018 0 0 1 1.439 0l26.643 26.643a5.38 5.38 0 0 1 0 7.608z" stroke-width="2.99955"></path>
+        <path stroke-width="2" d="M59.969 59.838l-3.246-3.246M61.381 51.934l3.246 3.246M64.609 61.619l13.327 13.327"></path>
+        <path stroke-width="3" d="M13.311 47.447A28.87 28.87 0 1 0 36.589 1.5c-10.318 0-20.141 5.083-24.7 13.46M2.121 38.734l15.536-15.536M17.657 38.734L2.121 23.198"></path>
+      </g>
+    </svg>
+  `;
 
   static searchRequest = (searchText: string): Promise<SearchRequestResponse> =>
     sendWorkerMessage<SearchRequestResponse>({
@@ -64,8 +74,11 @@ class SearchComponent extends Component<SearchRef, SearchState> {
     const [searchResultsContainer] = this.ref.searchResultContainer ?? [];
 
     const loadingIndicator = document.createElement('div');
-    loadingIndicator.className =
-      'container loading-indicator js-loading-indicator';
+    loadingIndicator.className = clsx(
+      'container',
+      'loading-indicator',
+      'js-loading-indicator'
+    );
     loadingIndicator.textContent = `searching matches for ${this.state.searchText}...`;
 
     // replace search results with loader if they exist
@@ -81,8 +94,11 @@ class SearchComponent extends Component<SearchRef, SearchState> {
     // build search result
     const fragment = document.createDocumentFragment();
     const searchItemsWrapper = document.createElement('ul');
-    searchItemsWrapper.className =
-      'container js-search-result-list search-result-list';
+    searchItemsWrapper.className = clsx([
+      'container',
+      'js-search-result-list',
+      'search-result-list',
+    ]);
 
     searchResult.reduce((wrapper, cur) => {
       const li = document.createElement('li');
@@ -103,20 +119,14 @@ class SearchComponent extends Component<SearchRef, SearchState> {
 
   displayNoResultFound = (): void => {
     const noResult = document.createElement('div');
-    noResult.className = clsx(
+    noResult.className = clsx([
       'container',
       'loading-indicator',
-      'js-loading-indicator'
-    );
+      'js-loading-indicator',
+    ]);
     noResult.innerHTML = `
     <div>
-      <svg xmlns="http://www.w3.org/2000/svg" width="99.039" height="94.342" aria-hidden="true" fill="currentColor" stroke="currentColor">
-      <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M93.113 88.415a5.38 5.38 0 0 1-7.61 0L58.862 61.773a1.018 1.018 0 0 1 0-1.44l6.17-6.169a1.018 1.018 0 0 1 1.439 0l26.643 26.643a5.38 5.38 0 0 1 0 7.608z" stroke-width="2.99955"></path>
-        <path stroke-width="2" d="M59.969 59.838l-3.246-3.246M61.381 51.934l3.246 3.246M64.609 61.619l13.327 13.327"></path>
-        <path stroke-width="3" d="M13.311 47.447A28.87 28.87 0 1 0 36.589 1.5c-10.318 0-20.141 5.083-24.7 13.46M2.121 38.734l15.536-15.536M17.657 38.734L2.121 23.198"></path>
-      </g>
-    </svg>
+      ${SearchComponent.noSearchResultIcon}
     </div>
     <p>no results for the term ${this.state.searchText}</p>
     `;
