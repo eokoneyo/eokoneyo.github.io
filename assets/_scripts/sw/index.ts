@@ -6,7 +6,7 @@ import { registerRoute } from 'workbox-routing';
 import { CacheFirst } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { ExpirationPlugin } from 'workbox-expiration';
-import offlineHandler from './offline-handler';
+import initOfflineHandler from './offline-handler';
 import configureSearchHelper from './sw-lunr-search';
 import { SEARCH_REQ } from '../constants';
 
@@ -17,22 +17,24 @@ declare const self: ServiceWorkerGlobalScope;
  * @module sw
  */
 (async (global) => {
-  await self.skipWaiting();
+  await global.skipWaiting();
   clientsClaim();
 
+  cleanupOutdatedCaches();
+
   // get version from sw query string
-  const swVersion = new URL(global.location.href).searchParams.get('version');
+  const swVersion =
+    new URL(global.location.href).searchParams.get('version') ?? '';
 
   setCacheNameDetails({
     prefix: 'eoe-website',
   });
 
-  cleanupOutdatedCaches();
-
   // eslint-disable-next-line no-restricted-globals,no-underscore-dangle
   precacheAndRoute(self.__WB_MANIFEST);
 
-  const processSearchRequest = configureSearchHelper(swVersion ?? '');
+  const processSearchRequest = configureSearchHelper(swVersion);
+  const offlineHandler = initOfflineHandler(swVersion);
 
   registerRoute(
     /.*\/assets\/fonts\/.*\.(woff2|ttf)$/,
