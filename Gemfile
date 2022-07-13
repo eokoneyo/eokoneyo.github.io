@@ -7,6 +7,8 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 gem 'json'
 gem 'rmagick'
 gem 'jekyll'
+gem 'execjs'
+gem 'stitch-rb'
 
 group :jekyll_plugins do
     gem 'jekyll-paginate-v2'
@@ -14,3 +16,5 @@ group :jekyll_plugins do
     gem 'jekyll-cloudinary'
     gem 'octopress-minify-html'
 end
+
+gem "kramdown-syntax-coderay", "~> 1.0"
