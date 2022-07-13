@@ -16,5 +16,3 @@ group :jekyll_plugins do
     gem 'jekyll-cloudinary'
     gem 'octopress-minify-html'
 end
-
-gem "kramdown-syntax-coderay", "~> 1.0"
