@@ -9,6 +9,7 @@ GEM
       csspool-st (= 3.1.2)
       json
     csspool-st (3.1.2)
+    date (3.2.2)
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -71,6 +72,10 @@ GEM
       html_press (~> 0.8)
       jekyll (>= 2.0)
       octopress-hooks
+    open-uri (0.2.0)
+      stringio
+      time
+      uri
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
     public_suffix (4.0.6)
@@ -83,13 +88,16 @@ GEM
     safe_yaml (1.0.5)
     sassc (2.4.0)
       ffi (~> 1.9)
-    stitch-rb (0.0.8)
+    stringio (3.0.2)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
+    time (0.2.0)
+      date
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     unicode-display_width (1.7.0)
+    uri (0.11.0)
 
 PLATFORMS
   ruby
@@ -102,8 +110,8 @@ DEPENDENCIES
   jekyll-sitemap
   json
   octopress-minify-html
+  open-uri (~> 0.2.0)
   rmagick
-  stitch-rb
 
 BUNDLED WITH
    2.1.4

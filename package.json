@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "test": "jest --config jest.json",
     "build": "webpack && bundle exec jekyll build",
-    "start:dev": "webpack && webpack --watch | bundle exec jekyll serve --drafts --livereload --trace",
+    "start:dev": "webpack && webpack --watch | bundle exec jekyll serve --drafts -l --trace",
     "postinstall": "husky install"
   },
   "repository": {
@@ -80,7 +80,6 @@
     "sass": "^1.56.1",
     "sass-loader": "^13.2.0",
     "sass-mq": "^6.0.0",
-    "shiki": "^0.10.1",
     "terser-webpack-plugin": "^5.3.6",
     "typescript": "^4.9.3",
     "webpack": "^5.75.0",
