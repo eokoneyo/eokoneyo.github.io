@@ -19,6 +19,10 @@
 {% if jekyll.environment == 'production' %}
 <link rel="preconnect" href="https://res.cloudinary.com/{{site.cloudinary.cloud_name}}">
 {% endif %}
+{% if page.commentsAllowed == true %}
+<link rel="preconnect" href="https://utteranc.es">
+{% endif %}
+
 <!-- CSS -->
 {% for item in site.data.webpack-manifest %}
     {% assign assetLink = item[1] %}
