@@ -13,8 +13,6 @@ author: E. O. Eyo
 
  just testing jekyll, heard about jekyll two days ago.. and ive made up my mind to create my own jekyll website template :)
 
-{% highlight php linenos %}
-
+```php
 echo "Amma do it!";
-
-{% endhighlight %}
+```
