@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "test": "jest --config jest.json",
     "build": "webpack && bundle exec jekyll build",
-    "start:dev": "webpack && webpack --watch | bundle exec jekyll serve --livereload --trace",
+    "start:dev": "webpack && webpack --watch | bundle exec jekyll serve --drafts --livereload --trace",
     "prepare": "husky install"
   },
   "repository": {
