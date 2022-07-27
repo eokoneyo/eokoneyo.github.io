@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 .grid-bg-fx {
   z-index: -1;
   pointer-events: none;
@@ -12,10 +14,11 @@
   }
 
   &__container-fluid {
-    @extend .container-fluid
+    @extend .container-fluid;
   }
 
-  &__container, &__container-fluid {
+  &__container,
+  &__container-fluid {
     height: inherit;
   }
 }
@@ -27,8 +30,12 @@
 
   @for $i from 1 through $grid-columns {
     .column-#{$i} {
-      flex-basis: calc(#{100% / $grid-columns * $i} - #{$grid-gutter-size * 2});
-      max-width:  calc(#{100% / $grid-columns * $i} - #{$grid-gutter-size * 2});
+      flex-basis: calc(
+        #{math.div(100%, $grid-columns) * $i} - #{$grid-gutter-size * 2}
+      );
+      max-width: calc(
+        #{math.div(100%, $grid-columns) * $i} - #{$grid-gutter-size * 2}
+      );
 
       &:not(:first-of-type) {
         margin-left: $grid-gutter-size;
@@ -48,7 +55,8 @@
     margin-bottom: 0 !important;
   }
 
-  > *::before, *::after {
+  > *::before,
+  *::after {
     content: '';
     position: absolute;
     top: 0;
