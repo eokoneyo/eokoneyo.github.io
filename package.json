@@ -59,7 +59,7 @@
     "babel-jest": "^27.4.5",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
-    "cpy": "^8.1.2",
+    "cpy": "^9.0.1",
     "css-loader": "^6.5.1",
     "dotenv-webpack": "^7.0.3",
     "eslint": "^8.4.1",
