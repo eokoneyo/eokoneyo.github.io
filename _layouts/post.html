@@ -11,6 +11,14 @@ layout: default
                     <span class="article__meta__publish-date" itemprop="datePublished">{{ page.date | date: "%d.%m.%Y" }}</span>
                 </h2>
                 {{content}}
+              {% if page.commentsAllowed == true %}
+              <script src="https://utteranc.es/client.js"
+                repo="eokoneyo/eokoneyo.github.io"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous" async>
+              </script>
+              {% endif %}
             </article>
         </div>
     </div>

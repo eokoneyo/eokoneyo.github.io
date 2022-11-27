@@ -1,10 +1,11 @@
 //@link https://keithclark.co.uk/articles/pure-css-parallax-websites/
 //@link https://developers.google.com/web/updates/2016/12/performant-parallaxing
+@use 'sass:math';
 
 $parallax-perspective: 1;
 
 @function parallax-scale-factor($z-distance) {
-  @return 1 + ($z-distance * -1) / $parallax-perspective;
+  @return 1 + math.div($z-distance * -1, $parallax-perspective);
 }
 
 @mixin parallax-init($perspective: $parallax-perspective) {
@@ -34,5 +35,6 @@ $parallax-perspective: 1;
   position: sticky;
   position: -webkit-sticky;
   top: 0;
-  transform: translateZ(#{$z-distance}px) scale(parallax-scale-factor($z-distance));
+  transform: translateZ(#{$z-distance}px)
+    scale(parallax-scale-factor($z-distance));
 }

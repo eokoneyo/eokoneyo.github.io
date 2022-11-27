@@ -1,3 +1,4 @@
+@use 'sass:math';
 @import '~sass-mq';
 
 .container {
@@ -54,8 +55,8 @@
   @include mq($from: small) {
     @for $i from 1 through $grid-columns {
       &-sm-#{$i} {
-        flex: 0 0 100% / $grid-columns * $i;
-        max-width: 100% / $grid-columns * $i;
+        flex: 0 0 math.div(100%, $grid-columns) * $i;
+        max-width: math.div(100%, $grid-columns) * $i;
       }
     }
   }
@@ -63,8 +64,8 @@
   @include mq($from: medium) {
     @for $i from 1 through $grid-columns {
       &-md-#{$i} {
-        flex: 0 0 100% / $grid-columns * $i;
-        max-width: 100% / $grid-columns * $i;
+        flex: 0 0 math.div(100%, $grid-columns) * $i;
+        max-width: math.div(100%, $grid-columns) * $i;
       }
     }
   }
@@ -72,8 +73,8 @@
   @include mq($from: large) {
     @for $i from 1 through $grid-columns {
       &-lg-#{$i} {
-        flex: 0 0 100% / $grid-columns * $i;
-        max-width: 100% / $grid-columns * $i;
+        flex: 0 0 math.div(100%, $grid-columns) * $i;
+        max-width: math.div(100%, $grid-columns) * $i;
       }
     }
   }
@@ -81,8 +82,8 @@
   @include mq($from: xlarge) {
     @for $i from 1 through $grid-columns {
       &-xl-#{$i} {
-        flex: 0 0 100% / $grid-columns * $i;
-        max-width: 100% / $grid-columns * $i;
+        flex: 0 0 math.div(100%, $grid-columns) * $i;
+        max-width: math.div(100%, $grid-columns) * $i;
       }
     }
   }

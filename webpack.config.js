@@ -46,11 +46,16 @@ try {
 const { webpack: jekyllWebpackConfig, search_data: searchData } =
   jekyllConfigFileContents;
 
+/**
+ *
+ * @type {import('webpack').WebpackOptionsNormalized}
+ */
 module.exports = {
   mode: process.env.JEKYLL_ENV === 'production' ? 'production' : 'development',
   entry: jekyllWebpackConfig.entry.map((entryItem) =>
     path.join(__dirname, entryItem)
   ),
+  stats: process.env.JEKYLL_ENV === 'production' ? "errors-only" :  "normal",
   output: {
     filename: '[name]-bundle.[contenthash:8].js',
     path: path.resolve(__dirname, jekyllWebpackConfig.cache_directory),
@@ -76,7 +81,7 @@ module.exports = {
         test: /\.((sv|pn|jpe?)g|gif)$/i,
         type: 'asset/resource',
         generator: {
-          // special config to ensure img assets are process as the original path
+          // special config to ensure process img assets as the original path
           // since jekyll handles copying files in our assets' directory already
           filename: '[folder]/[name].[ext]',
           emit: false,
@@ -105,6 +110,7 @@ module.exports = {
     usedExports: true,
     splitChunks: {
       cacheGroups: {
+        default: false,
         defaultVendors: {
           // only create vendors for file that is not a stylesheet
           test: /node_modules\/(?!(.*\.(sa|sc|c)ss$))/,

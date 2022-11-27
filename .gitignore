@@ -49,3 +49,12 @@ _data/version.yml
 /.jekyll-cache/
 .env
 .eslintcache
+
+# Yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdksnode
+!.yarn/versions
