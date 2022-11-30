@@ -126,11 +126,17 @@ module.exports = {
     minimizer: [
       new TerserPlugin({
         terserOptions: {
-          output: {
+          compress: {},
+          format: {
             comments: false,
           },
+          safari10: true
         },
-        extractComments: false,
+        extractComments: {
+          condition: /@preserve|@license|@cc_on/i,
+          filename: (fileData) => `${path.basename(fileData.filename, '.js')}.LICENSE.txt`,
+          banner: (licenseFile) => `License information can be found in ${licenseFile}`,
+        },
       }),
     ],
   },
