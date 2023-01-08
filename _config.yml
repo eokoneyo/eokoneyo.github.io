@@ -17,6 +17,8 @@ exclude:
   - 'README.md'
   - 'coverage'
   - 'jest.json'
+  - '.yarn'
+  - 'yarn.lock'
 
 plugins:
   - jekyll-paginate-v2
