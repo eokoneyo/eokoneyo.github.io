@@ -30,13 +30,13 @@ module Kramdown
     module SyntaxHighlighter
       module Shiki
         def self.call(converter, text, lang, type, call_opts)
-          return nil unless converter.options[:enable_shiki]
+          return nil unless converter.options[:enable_shiki] and type == :block
 
           script = <<-JS
           // require shiki module installed in project
           const shiki = require('shiki');
 
-          async function generateCodeBlock(code, lang, theme = 'light-plus') {
+          async function generateCodeBlock(code, lang, theme = 'nord') {
             const highlighter = await shiki.getHighlighter({ theme });
             return highlighter.codeToHtml(code, { lang });
           }
