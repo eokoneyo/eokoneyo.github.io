@@ -1,5 +1,4 @@
-require 'execjs'
-require 'open-uri'
+require 'open3'
 require 'kramdown/options'
 require 'kramdown/converter'
 
@@ -33,38 +32,30 @@ module Kramdown
         def self.call(converter, text, lang, type, call_opts)
           return nil unless converter.options[:enable_shiki]
 
-          # enforce nodejs as runtime of choice for execjs
-          ExecJS.runtime = ExecJS::Runtimes::Node
-
-          # fetch source code for shiki from unpkg
-          source =
-            URI.open('https://unpkg.com/shiki@0.10.1/dist/index.unpkg.iife.js')
-              .read
-
-          context = ExecJS.compile(source)
-
           script = <<-JS
-            function (code, lang, theme) {
-              var output;
+          // require shiki module installed in project
+          const shiki = require('shiki');
 
-              shiki
-                .getHighlighter({ theme: theme })
-                .then(function (highlighter) {
-                    output = highlighter.codeToHtml(`${code}`, { lang: lang || "plaintext" });
-                })
-                .catch(function (err) { output = err.message });
+          async function generateCodeBlock(code, lang, theme = 'light-plus') {
+            const highlighter = await shiki.getHighlighter({ theme });
+            return highlighter.codeToHtml(code, { lang });
+          }
 
-              while (output === undefined) {/*do nothing till shiki is done*/}
-
-              return output;
-            }
+          void (async () => {
+            const [, ...args] = process.argv;
+            console.log(await generateCodeBlock.apply(null, args));
+          })();
           JS
 
-          return context.call(script, text, lang, 'nord')
-        rescue => error
-          puts error
-          converter.warning("There was an error using Shiki: #{$!.message}")
-          nil
+          command = ['node', '-e', script, text, lang || 'plaintext']
+
+          Open3.popen3(*command) do |stdin, stdout, stderr, wait_thr|
+            # read the output from the process
+            output = stdout.read
+
+            # handle the output
+            return output
+          end
         end
       end
     end
