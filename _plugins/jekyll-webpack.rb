@@ -20,7 +20,7 @@ class ProcessWebpackOutput
       else
         # place serviceworker file in root because of issues with scope,
         # especially since we can't set headers in Jekyll
-        if processServiceWorker && fileName.match(/sw|service_worker/)
+        if processServiceWorker && fileName.match(/(sw|service_worker).*.js/)
           fileDest = File.join(@site.dest, fileName)
         else
           fileDest = File.join(@site.dest, outputPath, sub_directory, fileName)
