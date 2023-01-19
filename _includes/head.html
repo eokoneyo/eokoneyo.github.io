@@ -7,25 +7,27 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="{{site.data.setup.brandText}}" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>{% if page.title %}{{ page.title }} | {{ site.data.setup.title }}{% else %}{{ site.data.setup.title }}{% endif %}</title>
 {% if page.title %}<meta property="og:title" content="{{ page.title }}" />{% endif %}
 {% if page.author %}<meta property="article:author" content="{{ page.author }}" />{% endif %}
+{% if jekyll.environment == 'production' %}
+{% assign sw_csp_nonce = site.data.version.hash | truncate: 8, "" -%}
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; script-src 'self' 'nonce-{{sw_csp_nonce}}' www.google-analytics.com ajax.googleapis.com utteranc.es; style-src 'self' 'unsafe-inline'; img-src 'self' *.scdn.co res.cloudinary.com; connect-src 'self' *.spotify.com">
+<link rel="preconnect" href="https://res.cloudinary.com/{{site.cloudinary.cloud_name}}">
+{% endif %}
+{% if page.commentsAllowed == true %}
+<link rel="preconnect" href="https://utteranc.es">
+{% endif %}
+<title>{% if page.title %}{{ page.title }} | {{ site.data.setup.title }}{% else %}{{ site.data.setup.title }}{% endif %}</title>
 <link rel="apple-touch-icon" sizes="76x76" href="/assets/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192"  href="/assets/favicon/android-chrome-512x512.png">
 <link rel="icon" type="image/png" sizes="192x192"  href="/assets/favicon/android-chrome-192x192.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
 <link rel="manifest" href="/assets/favicon/site.webmanifest">
-{% if jekyll.environment == 'production' %}
-<link rel="preconnect" href="https://res.cloudinary.com/{{site.cloudinary.cloud_name}}">
-{% endif %}
-{% if page.commentsAllowed == true %}
-<link rel="preconnect" href="https://utteranc.es">
-{% endif %}
 
 <!-- CSS -->
 {% for item in site.data.webpack-manifest %}
-    {% assign assetLink = item[1] %}
+    {% assign assetLink = item[1] -%}
     {% if assetLink contains ".css" %}
     {% unless assetLink contains ".map" %}
     <link href="{{assetLink}}" rel="stylesheet">
