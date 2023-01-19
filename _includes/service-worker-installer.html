@@ -1,4 +1,4 @@
-<script>
+<script nonce='{{ site.data.version.hash | truncate: 8, "" }}'>
   // Check that service workers are supported
   if ('serviceWorker' in navigator) {
     // Use the window load event to keep the page load performant
