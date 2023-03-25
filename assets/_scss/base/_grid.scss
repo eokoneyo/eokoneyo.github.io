@@ -39,6 +39,40 @@
   & + & {
     margin-top: 10px;
   }
+
+  .offset {
+    @include mq($from: small) {
+      @for $i from 1 through $grid-columns {
+        &-sm-#{$i} {
+          margin-left: math.div(100%, $grid-columns) * $i;
+        }
+      }
+    }
+
+    @include mq($from: medium) {
+      @for $i from 1 through $grid-columns {
+        &-md-#{$i} {
+          margin-left: math.div(100%, $grid-columns) * $i;
+        }
+      }
+    }
+
+    @include mq($from: large) {
+      @for $i from 1 through $grid-columns {
+        &-lg-#{$i} {
+          margin-left: math.div(100%, $grid-columns) * $i;
+        }
+      }
+    }
+
+    @include mq($from: xlarge) {
+      @for $i from 1 through $grid-columns {
+        &-xl-#{$i} {
+          margin-left: math.div(100%, $grid-columns) * $i;
+        }
+      }
+    }
+  }
 }
 
 .column {
