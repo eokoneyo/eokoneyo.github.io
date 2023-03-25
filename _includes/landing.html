@@ -42,6 +42,32 @@
                         </section>
                     {% endif %}
 
+                    {% assign contributions = site.data.contributions %}
+                    {% if contributions.size > 0 %}
+                    <section class="column-sm-12 selected-categories selected-category--projects">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="column-sm-12 column-md-4">
+                                    <h2 class="" style="display: flex;justify-content: space-between;">
+                                        <span class="display-heading display-heading--decorated">Open-Source Contributions</span>
+                                    </h2>
+                                </div>
+                                <div class="column-sm-12 column-md-8">
+                                    <ul class="no-style-list row">
+                                        {% for contribution in contributions limit:4 %}
+                                        <li class="column-sm-12">
+                                            <a data-disable-visual="true" href="{{contribution.repo-url}}" target="_blank">
+                                                <h5 class="title">{{contribution.name}}</h5>
+                                            </a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    {% endif %}
+
                     {% assign posts = site.posts | where: 'category', 'blog' %}
                     {% if posts.size > 0 %}
                         <section class="column-sm-12 selected-categories selected-category--blog">

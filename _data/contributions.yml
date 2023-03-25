@@ -1,0 +1,22 @@
+- name: webpack-contrib/webpack-hot-middleware
+  repo-url: https://github.com/webpack-contrib/webpack-hot-middleware
+  activity:
+    2022:
+      - https://github.com/webpack-contrib/webpack-hot-middleware/pull/429
+- name: IBM/openapi-to-graphql
+  repo-url: https://github.com/IBM/openapi-to-graphql
+  activity:
+    2022:
+      - https://github.com/IBM/openapi-to-graphql/pull/440
+    2021:
+      - https://github.com/IBM/openapi-to-graphql/pull/435
+- name: ant-design/ant-design
+  repo-url: https://github.com/ant-design/ant-design
+  activity:
+    2021:
+      -
+- name: altair-graphql/altair
+  repo-url: https://github.com/altair-graphql/altair
+  activity:
+    2020:
+      -
