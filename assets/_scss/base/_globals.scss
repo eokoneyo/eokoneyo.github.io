@@ -53,10 +53,9 @@ a {
   }
 
   // Styles for external links
-  &[target='_blank']:not([data-disable-visual='true']) {
+  &[target='_blank'] {
     position: relative;
     display: inline-block;
-    padding-right: mq-px2em(8px);
 
     @at-root [role='doc-endnote'] & {
       display: initial;
@@ -66,20 +65,24 @@ a {
       padding: 0 mq-px2em(8px);
     }
 
-    &:after {
-      content: '';
-      display: block;
-      width: 0;
-      height: 0;
-      position: absolute;
-      top: 0;
-      right: 0;
-      border-style: solid;
-      border-width: 0 mq-px2em(8px) mq-px2em(8px) 0;
-      border-color: transparent currentColor transparent transparent;
+    &:not([data-disable-visual='true']) {
+      padding-right: mq-px2em(8px);
 
-      @at-root [role='doc-endnote'] & {
-        content: none;
+      :after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-style: solid;
+        border-width: 0 mq-px2em(8px) mq-px2em(8px) 0;
+        border-color: transparent currentColor transparent transparent;
+
+        @at-root [role='doc-endnote'] & {
+          content: none;
+        }
       }
     }
 
