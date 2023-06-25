@@ -1,0 +1,59 @@
+---
+title: About
+layout: default
+---
+
+<div class="container ns-about">
+  <div class="row">
+    <div class="column-sm-12 column-md-8">
+      <h2 class="" style="display: flex;justify-content: space-between;">
+        <span class="display-heading display-heading--decorated">
+          Hey there! 🕳️ &nbsp;<br/><br/>I’m Eyo, a digital artist who focuses on building performant web experiences that scale.
+        </span>
+      </h2>
+    </div>
+    <div class="column-sm-12">
+      <div class="photo-block">
+        {% cloudinary profile_photo /assets/img/eokoneyo.jpg alt="Portrait of Eyo against a wall" %}
+        <span class="footnote_ts">Berlin Photo Week 2019, Photo Credit; <a href="https://github.com/kingsleyadio" target="_blank">Kingsley Adio</a></span>
+      </div>
+    </div>
+    <div class="column-sm-12 column-md-8 offset-md-4">
+      <div class="about-content">
+        <p>I am currently working at <a href="https://shopify.com" target="_blank" data-disable-visual="true">Shopify</a> as a front-end developer, building tools to make commerce better for everyone.</p>
+        <p>Previously I explored the construction software industry at <a href="https://en.tenera.io/" target="_blank" data-disable-visual="true">Tenera</a>, building software
+          that catered to tender and project bid management, also helped build tools and systems to help drive referrals at <a href="https://hellofresh.de" target="_blank" data-disable-visual="true">HelloFresh</a>. I am
+          based in Berlin but originally from Nigeria.</p>
+        <p>Check out my Spotify Playlist <a href="/playlists"><b>here</b></a></p>
+      </div>
+    </div>
+
+    {% assign contributions = site.data.contributions %}
+    {% if contributions.size > 0 %}
+    <section class="column-sm-12 selected-categories selected-category--projects">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="column-sm-12 column-md-4">
+            <h2 class="" style="display: flex;justify-content: space-between;">
+              <span class="display-heading display-heading--decorated">Open-Source Contributions</span>
+            </h2>
+          </div>
+          <div class="column-sm-12 column-md-8">
+            <div class="container-fluid">
+              <ul class="no-style-list row">
+                {% for contribution in contributions limit:4 %}
+                <li class="column-sm-12">
+                  <a data-disable-visual="true" href="{{contribution.repo-url}}" target="_blank">
+                    <h5 class="title">{{contribution.name}}</h5>
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+  </div>
+</div>
