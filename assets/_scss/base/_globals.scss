@@ -54,19 +54,21 @@ a {
 
   // Styles for external links
   &[target='_blank'] {
-    position: relative;
-    display: inline-block;
-
-    @at-root [role='doc-endnote'] & {
-      display: initial;
-    }
-
-    & ~ & {
-      padding: 0 mq-px2em(8px);
-    }
+    font-weight: bold;
 
     &:not([data-disable-visual='true']) {
+      font-weight: normal;
+      position: relative;
+      display: inline-block;
       padding-right: mq-px2em(8px);
+
+      @at-root [role='doc-endnote'] & {
+        display: initial;
+      }
+
+      & ~ & {
+        padding: 0 mq-px2em(8px);
+      }
 
       :after {
         content: '';

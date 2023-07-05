@@ -5,10 +5,13 @@
   &,
   &-fluid {
     margin: 0 auto;
-    padding-left: mq-px2em(10px);
-    padding-right: mq-px2em(10px);
     position: relative;
     width: 100%;
+  }
+
+  & {
+    padding-left: mq-px2em(10px);
+    padding-right: mq-px2em(10px);
   }
 
   @include mq($from: medium) {

@@ -8,33 +8,48 @@ layout: default
     <div class="column-sm-12 column-md-8">
       <h2 class="" style="display: flex;justify-content: space-between;">
         <span class="display-heading display-heading--decorated">
-          Hey there! 🕳️ &nbsp;<br/><br/>I’m Eyo, a digital artist who focuses on building performant web experiences that scale.
+          Hey there! 🕳️ &nbsp;<br/><br/>I’m Eyo, a digital artist that's passionate about building performant web experiences at scale.
         </span>
       </h2>
     </div>
+
     <div class="column-sm-12">
       <div class="photo-block">
-        {% cloudinary profile_photo /assets/img/eokoneyo.jpg alt="Portrait of Eyo against a wall" %}
+        {% cloudinary profile_photo /assets/img/eokoneyo.jpg alt="Portrait of Eyo against a mural that says #liveandcreate" %}
         <span class="footnote_ts">Berlin Photo Week 2019, Photo Credit; <a href="https://github.com/kingsleyadio" target="_blank">Kingsley Adio</a></span>
       </div>
     </div>
-    <div class="column-sm-12 column-md-8 offset-md-4">
-      <div class="about-content">
-        <p>I am currently working at <a href="https://shopify.com" target="_blank" data-disable-visual="true">Shopify</a> as a front-end developer, building tools to make commerce better for everyone.</p>
-        <p>Previously I explored the construction software industry at <a href="https://en.tenera.io/" target="_blank" data-disable-visual="true">Tenera</a>, building software
-          that catered to tender and project bid management, also helped build tools and systems to help drive referrals at <a href="https://hellofresh.de" target="_blank" data-disable-visual="true">HelloFresh</a>. I am
-          based in Berlin but originally from Nigeria.</p>
-        <p>Check out my Spotify Playlist <a href="/playlists"><b>here</b></a></p>
+
+    <div class="column-sm-12">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="column-sm-12 column-md-4">
+            <h2>
+              <span class="display-heading display-heading--decorated">Work Experience</span>
+            </h2>
+          </div>
+          <div class="column-sm-12 column-md-8">
+            <div class="about-content">
+              <p>
+                I am currently seeking for new opportunities. Previously, I worked at <a href="https://shopify.com" target="_blank" data-disable-visual="true">Shopify</a>,
+                building tools and experiences to "make commerce better for everyone". Before that,
+                I explored the construction software industry at <a href="https://en.tenera.io/" target="_blank" data-disable-visual="true">Tenera</a>, building software
+                that catered to tender and project bid management, I also helped build tools and systems to help drive referrals at <a href="https://hellofresh.de" target="_blank" data-disable-visual="true">HelloFresh</a>.
+                I am currently located in Berlin, but I am originally from Nigeria.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     {% assign contributions = site.data.contributions %}
     {% if contributions.size > 0 %}
-    <section class="column-sm-12 selected-categories selected-category--projects">
+    <section class="column-sm-12">
       <div class="container-fluid">
         <div class="row">
           <div class="column-sm-12 column-md-4">
-            <h2 class="" style="display: flex;justify-content: space-between;">
+            <h2 style="display: flex;justify-content: space-between;">
               <span class="display-heading display-heading--decorated">Open-Source Contributions</span>
             </h2>
           </div>

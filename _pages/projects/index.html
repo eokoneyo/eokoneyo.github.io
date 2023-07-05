@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: projects
 title: Projects
 subtitle: Curated selection of projects I've worked on over the years
 pagination:
@@ -8,22 +8,3 @@ pagination:
     sort_field: 'commission_year'
     sort_reverse: true
 ---
-
-<div class="container">
-    <div class="ns-projects">
-        <h1 class="page-heading">
-            <span class="display-heading display-heading--decorated">{{page.title}}</span>
-            <span class="display-heading__subtitle">{{page.subtitle}}</span>
-        </h1>
-        {% assign projectsByYear = paginator.posts %}
-        <ul class="no-style-list projects">
-            {% for project in projectsByYear %}
-            <li class="projects__item">
-                {% include project-tile-component.html project=project %}
-            </li>
-            {% endfor %}
-        </ul>
-
-        {% include paginator.html %}
-    </div>
-</div>

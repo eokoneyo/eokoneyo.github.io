@@ -138,24 +138,12 @@ class SearchComponent extends Component<SearchRef, SearchState> {
     evt.preventDefault();
     const searchText = (<HTMLInputElement>evt.target).value;
 
-    if (!searchText) return;
-
     // Set loading visual cue
     this.setState({
       done: false,
       searchText,
       searchResultLoading: true,
     });
-
-    SearchComponent.searchRequest(searchText)
-      .then(({ data }) =>
-        this.setState({
-          done: true,
-          searchResult: data,
-          searchResultLoading: false,
-        })
-      )
-      .catch(SearchComponent.displaySearchError);
   }, 250);
 
   stateChange(stateChanges: Partial<SearchState>): void {
@@ -164,6 +152,18 @@ class SearchComponent extends Component<SearchRef, SearchState> {
       Boolean(stateChanges.searchResultLoading)
     ) {
       this.setLoadingIndicator();
+    }
+
+    if (stateChanges.searchText) {
+      SearchComponent.searchRequest(stateChanges.searchText)
+        .then(({ data }) =>
+          this.setState({
+            done: true,
+            searchResult: data,
+            searchResultLoading: false,
+          })
+        )
+        .catch(SearchComponent.displaySearchError);
     }
 
     if (stateChanges.searchResult) {

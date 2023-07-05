@@ -50,20 +50,23 @@ cloudinary:
       attributes:
         class: 'photo-block__image'
 
+# config for generated data used to run search client side
 search_data:
   filename: "search-data.json"
   output_path: "assets/"
 
-permalink: /:categories/:title
-
+# config for jekyll-paginate-v2
 pagination:
   enabled: true
   per_page: 5
 
+# site-wide permalink configuration
+permalink: /:categories/:title
+
 defaults:
   -
     scope:
-      path: "_post" # an empty string here means all files in the project
+      path: "_posts" # an empty string here means all files in the project
       type: "posts"
     values:
       layout: "post"
