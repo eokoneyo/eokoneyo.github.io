@@ -31,13 +31,12 @@ jobs:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - name: Install dependencies and build
         env:
-          JEKYLL_ENV: production
           SPOTIFY_USERNAME: ${{ secrets.SPOTIFY_USERNAME }}
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{secrets.SPOTIFY_CLIENT_SECRET}}
         run: |
            yarn install --immutable
-           yarn webpack && bundle exec jekyll build --destination site
+           JEKYLL_ENV=production yarn webpack && bundle exec jekyll build --destination site
       - name: Handoff
         uses: peaceiris/actions-gh-pages@v3
         with:
