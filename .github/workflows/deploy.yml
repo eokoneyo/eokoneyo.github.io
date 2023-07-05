@@ -1,6 +1,6 @@
 name: Build and deploy
 
-run-name: Build initiated by @${{ github.actor }}
+run-name: Pages build and deployment initiated by @${{ github.actor }}
 
 on:
   workflow_run:
@@ -25,13 +25,12 @@ jobs:
         with:
           cache: 'yarn'
           node-version: '18.x'
-      - uses: actions/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '2.6'
-          bundler-cache: true
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - name: Install dependencies and build
         run: |
-           bundle install --jobs=3 --retry=3
            yarn install --immutable
            JEKYLL_ENV=production ./node_modules/webpack-cli/bin/cli.js && bundle exec jekyll build --destination site
       - name: Deploy
