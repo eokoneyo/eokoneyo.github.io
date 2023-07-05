@@ -1,0 +1,45 @@
+name: Build and deploy
+
+run-name: Build initiated by @${{ github.actor }}
+
+on:
+  workflow_run:
+    workflows: ['Code Health Check']
+    branches: ['source']
+    types:
+      - completed
+
+jobs:
+  on-code-check-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - run: echo 'The triggering workflow failed'
+
+  on-code-check-success:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: 'yarn'
+          node-version: '18.x'
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6'
+          bundler-cache: true
+      - name: Install dependencies and build
+        run: |
+           bundle install --jobs=3 --retry=3
+           yarn install --immutable
+           JEKYLL_ENV=production ./node_modules/webpack-cli/bin/cli.js && bundle exec jekyll build --destination site
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          publish_branch: master
+          commit_message: ${{ github.event.head_commit.message }}
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
