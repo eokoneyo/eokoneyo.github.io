@@ -3,6 +3,7 @@ layout: post
 title: First real post on jekyll
 category: blog
 author: E. O. Eyo
+excerpt: Ramblings of a budding software engineer
 ---
 
  its weird that i started learning web development backwards than most people ever did

@@ -251,10 +251,10 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
     }
 
     &__results {
-      width: 100vw;
+      width: 100%;
       min-height: mq-px2em(200px);
       position: absolute;
-      left: calc(-50vw + 50%);
+      left: 0;
       top: 100%;
       border: 1px solid rgba(map_get($gray-pallet, mid), 0.2);
       background: $light;
@@ -309,6 +309,11 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
 
     @include mq($from: medium) {
       order: initial;
+
+      &__results {
+        width: 100vw;
+        left: calc(-50vw + 50%);
+      }
     }
   }
 
@@ -349,6 +354,9 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
     }
   }
 
+  /**
+   * Styles specific to the search when it's expanded
+   */
   &[search-expanded] {
     .menu-list {
       display: none;
@@ -363,11 +371,9 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
           padding: 0 mq-px2em(30px + 10px) 0 mq-px2em(10px);
           outline: none;
           border-radius: 0;
-          background-color: map_get($gray-pallet, light);
-          box-shadow: $shadow-md,
-            0 0 0 1px rgba(map_get($gray-pallet, light), 0.2);
           cursor: auto;
           user-select: auto;
+          transition: background-color 0.5s ease-in $search-animation-duration;
 
           &--suggestions-active {
             border-radius: mq-px2em(5px) mq-px2em(5px) 0 0;

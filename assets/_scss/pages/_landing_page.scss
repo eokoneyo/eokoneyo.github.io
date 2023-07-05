@@ -29,6 +29,15 @@
     &__title {
       position: relative;
 
+      &:before {
+        content: '';
+        width: 100%;
+        background: $yellow;
+        position: relative;
+        top: 0;
+        height: 100%;
+      }
+
       &:after {
         content: '';
         position: absolute;

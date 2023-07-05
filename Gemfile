@@ -11,6 +11,7 @@ gem 'jekyll'
 group :jekyll_plugins do
     gem 'jekyll-paginate-v2'
     gem 'jekyll-sitemap'
+    gem 'jekyll-pages-directory'
     gem 'jekyll-cloudinary'
     gem 'octopress-minify-html'
 end

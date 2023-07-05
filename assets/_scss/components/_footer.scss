@@ -7,7 +7,8 @@
   }
 
   & a {
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       color: unset;
     }
   }
@@ -34,7 +35,8 @@
       &--link {
         padding: 0 0 mq-px2em(10px) 0;
 
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
           text-decoration: underline;
         }
 
@@ -56,13 +58,14 @@
 
     .dev-details {
       > * {
-        margin: 0
+        margin: 0;
       }
     }
   }
 
   .page-scroll {
-    height: 100%; display: flex; align-items: flex-end;
+    display: flex;
+    align-items: flex-end;
 
     &--link {
       display: block;

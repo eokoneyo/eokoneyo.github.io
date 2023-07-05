@@ -54,32 +54,37 @@ a {
 
   // Styles for external links
   &[target='_blank'] {
-    position: relative;
-    display: inline-block;
-    padding-right: mq-px2em(8px);
+    font-weight: bold;
 
-    @at-root [role='doc-endnote'] & {
-      display: initial;
-    }
-
-    & ~ & {
-      padding: 0 mq-px2em(8px);
-    }
-
-    &:after {
-      content: '';
-      display: block;
-      width: 0;
-      height: 0;
-      position: absolute;
-      top: 0;
-      right: 0;
-      border-style: solid;
-      border-width: 0 mq-px2em(8px) mq-px2em(8px) 0;
-      border-color: transparent currentColor transparent transparent;
+    &:not([data-disable-visual='true']) {
+      font-weight: normal;
+      position: relative;
+      display: inline-block;
+      padding-right: mq-px2em(8px);
 
       @at-root [role='doc-endnote'] & {
-        content: none;
+        display: initial;
+      }
+
+      & ~ & {
+        padding: 0 mq-px2em(8px);
+      }
+
+      :after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-style: solid;
+        border-width: 0 mq-px2em(8px) mq-px2em(8px) 0;
+        border-color: transparent currentColor transparent transparent;
+
+        @at-root [role='doc-endnote'] & {
+          content: none;
+        }
       }
     }
 

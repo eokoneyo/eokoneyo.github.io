@@ -14,14 +14,14 @@ module Kramdown
       Used by: HTML converter
     EOF
 
-    define(:shiki_default_lang, Symbol, nil, <<~EOF)
+    define(:shiki_default_lang, String, "plaintext", <<~EOF)
       Sets the default language for highlighting code blocks
 
       If no language is set for a code block, the default language is used
       instead. The value has to be one of the languages supported by shiki
       or nil if no default language should be used.
 
-      Default: nil
+      Default: plaintext
       Used by: HTML converter
     EOF
   end
@@ -43,11 +43,12 @@ module Kramdown
 
           void (async () => {
             const [, ...args] = process.argv;
+            // return output with console.log, so we can read it's output in ruby land
             console.log(await generateCodeBlock.apply(null, args));
           })();
           JS
 
-          command = ['node', '-e', script, text, lang || 'plaintext']
+          command = ['node', '-e', script, text, lang || converter.options[:shiki_default_lang]]
 
           Open3.popen3(*command) do |stdin, stdout, stderr, wait_thr|
             # read the output from the process
