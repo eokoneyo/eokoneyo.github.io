@@ -1,6 +1,6 @@
-name: Build and deploy
+name: package website
 
-run-name: Pages build and deployment initiated by @${{ github.actor }}
+run-name: Package webiste for deployment
 
 on:
   workflow_run:
@@ -30,10 +30,15 @@ jobs:
           ruby-version: '2.6'
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - name: Install dependencies and build
+        env:
+          JEKYLL_ENV: production
+          SPOTIFY_USERNAME: ${{ secrets.SPOTIFY_USERNAME }}
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{secrets.SPOTIFY_CLIENT_SECRET}}
         run: |
            yarn install --immutable
-           JEKYLL_ENV=production ./node_modules/webpack-cli/bin/cli.js && bundle exec jekyll build --destination site
-      - name: Deploy
+           yarn webpack && bundle exec jekyll build --destination site
+      - name: Handoff
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
