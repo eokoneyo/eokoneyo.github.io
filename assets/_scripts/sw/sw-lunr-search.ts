@@ -43,9 +43,9 @@ export const configureSearchHelper = (versionNumber?: string) => {
 
         searchIdx = lunr(function configureLunr() {
           this.field('id');
-          this.field('title', { boost: 10 });
+          this.field('title', { boost: 8 });
           this.field('category');
-          this.field('content');
+          this.field('content', { boost: 10 });
 
           searchData.forEach((datum, index) =>
             this.add({
