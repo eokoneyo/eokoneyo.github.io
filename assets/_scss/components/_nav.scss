@@ -71,6 +71,12 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
         color: $primary;
       }
     }
+
+    @include mq($from: medium) {
+      &__right {
+        position: relative;
+      }
+    }
   }
 
   .mobile-toggle {
@@ -103,8 +109,6 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
       }
 
       @at-root .mobile-toggle--open {
-        //@at-root header
-
         .mobile-toggle__icon {
           span {
             &:nth-child(1) {
@@ -197,9 +201,7 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
         overflow: hidden;
         border-radius: 50em;
         border: 0;
-        transition: width $search-animation-duration $ease-out,
-          box-shadow $search-animation-duration,
-          background-color $search-animation-duration;
+        transition: width $search-animation-duration $ease-out;
 
         &::placeholder {
           opacity: 0;
@@ -252,20 +254,25 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
 
     &__results {
       width: 100%;
-      min-height: mq-px2em(200px);
+      min-height: mq-px2em(250px);
       position: absolute;
-      left: 0;
       top: 100%;
-      border: 1px solid rgba(map_get($gray-pallet, mid), 0.2);
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 1px 0;
+      border-style: solid;
+      border-color: rgba(map_get($gray-pallet, mid), 0.2);
       background: $light;
       display: none;
 
       @at-root [search-expanded] .search__results {
-        display: initial;
+        display: flex;
       }
 
       .loading-indicator {
+        align-self: center;
         text-align: center;
+        word-wrap: break-word;
         padding: mq-px2em(50px) 0;
       }
 
@@ -312,7 +319,8 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
 
       &__results {
         width: 100vw;
-        left: calc(-50vw + 50%);
+        // subtract padding from header on both sides
+        left: calc(50% - mq-px2em((10px * 2) + 1px));
       }
     }
   }
@@ -373,24 +381,33 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
           border-radius: 0;
           cursor: auto;
           user-select: auto;
-          transition: background-color 0.5s ease-in $search-animation-duration;
+          color: map-get($gray-pallet, dark);
+          transition: border-radius 0.5s ease-in $search-animation-duration;
 
           &--suggestions-active {
             border-radius: mq-px2em(5px) mq-px2em(5px) 0 0;
           }
 
-          &,
-          &::placeholder {
-            color: map-get($gray-pallet, dark);
-          }
-
           &::placeholder {
             opacity: 1;
+            color: map-get($gray-pallet, mid);
           }
 
           & + .search-form__btn {
             pointer-events: auto;
           }
+        }
+      }
+    }
+
+    @include mq($from: medium) {
+      .search {
+        flex-grow: initial;
+
+        &-form {
+          width: calc(100% - mq-px2em(10px * 2));
+          position: absolute;
+          left: mq-px2em(10px);
         }
       }
     }
