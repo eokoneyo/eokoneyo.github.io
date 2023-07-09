@@ -33,9 +33,6 @@ const initPreloader = (global: Window): void => {
     anime
       .timeline({
         duration: animationDuration,
-        // complete() {
-        //   changeStatusBarThemeColor('#ffffff');
-        // },
       })
       .add(
         {
