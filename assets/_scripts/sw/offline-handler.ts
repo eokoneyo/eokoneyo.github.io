@@ -27,7 +27,7 @@ const initOfflineHandler = (versionNumber?: string) => {
             `
             <html lang="en">
               <head>
-                 <title>Offline | - </title>
+                 <title>Offline | Eyo O. Eyo</title>
                  <style>
                     .container { height: 100vh; display: flex; flex-direction:column; justify-content:center; text-align:center; }
                     .offline-img { height: 30%; width: 100%; object-fit: contain; }
