@@ -97,3 +97,8 @@ export const sendWorkerMessage = <T>(message: {
       messageChannel.port2,
     ]);
   });
+
+export const changeStatusBarThemeColor = (color: string) => {
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  themeColor?.setAttribute('content', color);
+};
