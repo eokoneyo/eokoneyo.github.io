@@ -33,9 +33,9 @@ const initPreloader = (global: Window): void => {
     anime
       .timeline({
         duration: animationDuration,
-        complete() {
-          changeStatusBarThemeColor('#ffffff');
-        },
+        // complete() {
+        //   changeStatusBarThemeColor('#ffffff');
+        // },
       })
       .add(
         {
@@ -63,6 +63,11 @@ const initPreloader = (global: Window): void => {
           targets: preloaderDOM.path,
           easing: 'easeOutQuad',
           d: preloaderDOM.path?.getAttribute('pathdata:id'),
+          update(anim) {
+            if (Math.round(anim.progress) > 95) {
+              changeStatusBarThemeColor('#ffffff');
+            }
+          },
           complete: () => {
             document.body.style.overflow = 'auto';
             document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
@@ -78,6 +83,7 @@ const initPreloader = (global: Window): void => {
     preloaderDOM.preloader?.setAttribute('style', 'display: none');
     document.body.style.overflow = 'auto';
     document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
+    changeStatusBarThemeColor('#ffffff');
   } else {
     // Hide preloader .5s after so the effect is visible
     setTimeout(() => removePreloader(ANIMATION_DURATION), 500);
