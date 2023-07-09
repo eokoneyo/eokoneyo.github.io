@@ -1,5 +1,9 @@
 import anime from 'animejs';
-import { setCookie, getCookieValue } from './utils/dom';
+import {
+  setCookie,
+  getCookieValue,
+  changeStatusBarThemeColor,
+} from './utils/dom';
 
 type Nullable<T> = { [P in keyof T]: T[P] | null };
 
@@ -29,6 +33,9 @@ const initPreloader = (global: Window): void => {
     anime
       .timeline({
         duration: animationDuration,
+        complete() {
+          changeStatusBarThemeColor('#ffffff');
+        },
       })
       .add(
         {
