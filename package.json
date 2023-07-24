@@ -7,9 +7,9 @@
   "scripts": {
     "lint": "eslint .",
     "test": "jest --config jest.json",
-    "build": "webpack && bundle exec jekyll build",
-    "start:dev": "webpack && webpack --watch | bundle exec jekyll serve --drafts -l --trace",
-    "postinstall": "husky install"
+    "build": "webpack && bundle exec jekyll build --strict_front_matter",
+    "start:dev": "webpack && webpack --watch | bundle exec jekyll serve -l --drafts --trace --strict_front_matter",
+    "postinstall": "husky install && git update-index --skip-worktree _drafts/.gitkeep"
   },
   "repository": {
     "type": "git",
