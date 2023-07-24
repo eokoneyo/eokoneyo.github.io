@@ -47,6 +47,7 @@ Icon
 _data/webpack-manifest.json
 _data/version.yml
 /.jekyll-cache/
+/_drafts/*
 .env
 .eslintcache
 
