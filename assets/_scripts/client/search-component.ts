@@ -1,9 +1,9 @@
+import clsx from 'clsx';
 import { Component, eventbus } from 'gia';
 import throttle from 'lodash.throttle';
-import clsx from 'clsx';
+import logger from './utils/logger';
 import { sendWorkerMessage } from './utils/dom';
 import { SEARCH_REQ, SEARCH_UI_CLOSE, SEARCH_UI_OPEN } from '../constants';
-import logger from './utils/logger';
 
 type SearchResultItem = { url: string; title: string; category: string };
 
@@ -138,7 +138,7 @@ class SearchComponent extends Component<SearchRef, SearchState> {
 
   handleSearch = throttle<EventListener>((evt: Event) => {
     evt.preventDefault();
-    const searchText = (<HTMLInputElement>evt.target).value;
+    const searchText = (<HTMLInputElement>evt.target).value.trim();
 
     // Set loading visual cue
     this.setState({
@@ -170,11 +170,10 @@ class SearchComponent extends Component<SearchRef, SearchState> {
 
   mount(): void {
     const [searchForm] = this.ref.searchForm ?? [];
-    const [searchResultsContainer] = this.ref.searchResultContainer ?? [];
 
     const searchInputField = searchForm.elements.namedItem(
       'searchInput'
-    ) as Element;
+    ) as HTMLInputElement;
 
     searchForm.addEventListener('click', () => eventbus.emit(SEARCH_UI_OPEN));
 
@@ -183,7 +182,8 @@ class SearchComponent extends Component<SearchRef, SearchState> {
       // the click target is not a descendant of search form
       if (!searchForm.contains(evt?.target as Node)) {
         eventbus.emit(SEARCH_UI_CLOSE);
-        searchResultsContainer.textContent = '';
+        searchInputField.value = '';
+        this.setState({ searchText: searchInputField.value });
       }
     });
 
@@ -194,6 +194,8 @@ class SearchComponent extends Component<SearchRef, SearchState> {
 
       if (evt.key === 'Escape') {
         eventbus.emit(SEARCH_UI_CLOSE);
+        searchInputField.value = '';
+        this.setState({ searchText: searchInputField.value });
       }
     });
 

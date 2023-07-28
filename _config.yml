@@ -4,22 +4,22 @@ kramdown:
   syntax_highlighter: shiki
 
 exclude:
-  - 'Gemfile*'
-  - 'vendor'
   - '.idea'
+  - '.yarn'
   - '.vscode'
+  - '.bundle'
   - '.jekyll-cache'
-  - 'node_modules'
-  - 'package*'
-  - 'libs'
-  - 'webpack.config.js'
-  - 'babel.config.json'
-  - 'tsconfig.json'
-  - 'README.md'
+  - 'vendor'
   - 'coverage'
   - 'jest.json'
-  - '.yarn'
   - 'yarn.lock'
+  - 'README.md'
+  - 'Gemfile*'
+  - 'package*'
+  - 'node_modules'
+  - 'tsconfig.json'
+  - 'webpack.config.js'
+  - 'babel.config.json'
 
 plugins:
   - jekyll-paginate-v2

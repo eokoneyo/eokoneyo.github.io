@@ -56,7 +56,6 @@ export default class NavigationComponent extends Component<NavigationRefs> {
               !isOpacityClassNameSet &&
               pageScrollOffset > headerTransparencyBoundaryShift
             ) {
-              // document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]')?.setAttribute("content", "black");
               toggleClass(this.element, headerOpacityClassName, true);
             }
           });

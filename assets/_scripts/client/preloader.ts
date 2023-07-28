@@ -1,6 +1,7 @@
 import anime from 'animejs';
 import {
   setCookie,
+  removeClass,
   getCookieValue,
   changeStatusBarThemeColor,
 } from './utils/dom';
@@ -33,6 +34,17 @@ const initPreloader = (global: Window): void => {
     anime
       .timeline({
         duration: animationDuration,
+        update(anim) {
+          if (Math.round(anim.progress) > 90) {
+            changeStatusBarThemeColor('#ffffff');
+          }
+        },
+        complete: () => {
+          removeClass(document.body, 'no-scroll');
+          document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
+          // mark preloader as seen for the session
+          setCookie(HAS_SEEN_PRELOADER_COOKIE, true);
+        },
       })
       .add(
         {
@@ -47,7 +59,7 @@ const initPreloader = (global: Window): void => {
       )
       .add(
         {
-          delay: 1000,
+          delay: animationDuration / 2,
           targets: preloaderDOM.preloader,
           easing: 'easeInOutSine',
           translateY: '-200vh',
@@ -56,21 +68,10 @@ const initPreloader = (global: Window): void => {
       )
       .add(
         {
-          delay: 1000,
+          delay: animationDuration / 2,
           targets: preloaderDOM.path,
           easing: 'easeOutQuad',
           d: preloaderDOM.path?.getAttribute('pathdata:id'),
-          update(anim) {
-            if (Math.round(anim.progress) > 95) {
-              changeStatusBarThemeColor('#ffffff');
-            }
-          },
-          complete: () => {
-            document.body.style.overflow = 'auto';
-            document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
-            // mark preloader as seen for the session
-            setCookie(HAS_SEEN_PRELOADER_COOKIE, true);
-          },
         },
         0
       );
@@ -78,7 +79,7 @@ const initPreloader = (global: Window): void => {
 
   if (getCookieValue(HAS_SEEN_PRELOADER_COOKIE)) {
     preloaderDOM.preloader?.setAttribute('style', 'display: none');
-    document.body.style.overflow = 'auto';
+    removeClass(document.body, 'no-scroll');
     document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
     changeStatusBarThemeColor('#ffffff');
   } else {

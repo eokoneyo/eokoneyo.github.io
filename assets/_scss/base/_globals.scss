@@ -166,8 +166,8 @@ ol {
   &--decorated {
     background-repeat: no-repeat;
     background-image: linear-gradient(
-      transparent 55%,
-      rgba(map_get($gray-pallet, mid), 0.2) 45%
+      transparent 65%,
+      rgba(map_get($gray-pallet, mid), 0.2) 35%
     );
     background-size: 100% 100%;
 

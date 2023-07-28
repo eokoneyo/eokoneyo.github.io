@@ -25,13 +25,13 @@
                     <div class="column-sm-12 column-lg-6">
                         <div class="dev-details">
                             <p class="endnote_ts">Composed using <a data-disable-visual="true" href="https://jekyllrb.com/" target="_blank" rel="noopener"><b>Jekyll</b></a>.</p>
-                            <p class="endnote_ts">Build version: <span class="caption_ts">{{site.data.version.hash}}</span></p>
                             <p class="endnote_ts">Content &copy {{ 'now' | date: "%Y" }}, {{site.data.setup.title}}.</p>
+                            <p class="endnote_ts">Build version: <span class="caption_ts">{{site.data.version.hash}}</span></p>
                         </div>
                     </div>
                     <div class="column-sm-12 column-lg-6">
                         <div class="page-scroll">
-                            <a class="page-scroll--link" href="#page-top">Back to top</a>
+                            <a class="page-scroll--link" href="#{% if page.url == '/' %}landing-main{% else %}page-top{% endif %}">Back to top</a>
                         </div>
                     </div>
                 </div>
