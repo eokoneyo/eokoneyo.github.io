@@ -10,8 +10,8 @@
   }
 
   & {
-    padding-left: mq-px2em(10px);
-    padding-right: mq-px2em(10px);
+    padding-left: mq-px2em($grid-gutter-size);
+    padding-right: mq-px2em($grid-gutter-size);
   }
 
   @include mq($from: medium) {
@@ -32,15 +32,15 @@
   flex-wrap: wrap;
 
   .container > & {
-    margin: 0 -#{$grid-gutter-size};
+    margin: 0 -#{mq-px2em($grid-gutter-size)};
   }
 
   .container-fluid > & {
-    margin: 0 -#{$grid-gutter-size};
+    margin: 0 -#{mq-px2em($grid-gutter-size)};
   }
 
   & + & {
-    margin-top: 10px;
+    margin-top: mq-px2em(10px);
   }
 
   .offset {
@@ -83,8 +83,8 @@
   max-width: 100%;
 
   @at-root [class*='column-'] {
-    padding-left: $grid-gutter-size;
-    padding-right: $grid-gutter-size;
+    padding-left: mq-px2em($grid-gutter-size);
+    padding-right: mq-px2em($grid-gutter-size);
     width: 100%;
     min-height: 1px;
   }

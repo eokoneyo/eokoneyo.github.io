@@ -6,7 +6,7 @@ layout: default
 <div class="container ns-about">
   <div class="row">
     <div class="column-sm-12 column-md-8">
-      <h2 class="" style="display: flex;justify-content: space-between;">
+      <h2 class="block-text">
         <span class="display-heading display-heading--decorated">
           Hey there! 🕳️ &nbsp;<br/><br/>I’m Eyo, a digital artist that's passionate about building performant web experiences at scale.
         </span>
@@ -49,22 +49,20 @@ layout: default
       <div class="container-fluid">
         <div class="row">
           <div class="column-sm-12 column-md-4">
-            <h2 style="display: flex;justify-content: space-between;">
+            <h2>
               <span class="display-heading display-heading--decorated">Open-Source Contributions</span>
             </h2>
           </div>
           <div class="column-sm-12 column-md-8">
-            <div class="container-fluid">
-              <ul class="no-style-list row">
-                {% for contribution in contributions limit:4 %}
-                <li class="column-sm-12">
-                  <a data-disable-visual="true" href="{{contribution.repo-url}}" target="_blank">
-                    <h5 class="title">{{contribution.name}}</h5>
-                  </a>
-                </li>
-                {% endfor %}
-              </ul>
-            </div>
+            <ul class="no-style-list">
+              {% for contribution in contributions limit:4 %}
+              <li>
+                <a data-disable-visual="true" href="{{contribution.repo-url}}" target="_blank">
+                  <h5 class="title">{{contribution.name}}</h5>
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
           </div>
         </div>
       </div>
