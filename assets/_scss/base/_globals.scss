@@ -170,6 +170,11 @@ ol {
       rgba(map_get($gray-pallet, mid), 0.2) 45%
     );
     background-size: 100% 100%;
+
+    @at-root .block-text & {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
   &__subtitle {

@@ -27,7 +27,7 @@
 
   .about-content {
     @extend .article-width;
-    margin: mq-px2em(50px) 0;
+    margin: mq-px2em(50px) 0 0;
     overflow: auto;
   }
 }
