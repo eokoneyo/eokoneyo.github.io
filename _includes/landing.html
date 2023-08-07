@@ -33,7 +33,7 @@
                             <div class="container-fluid selected-category--projects__inner">
                                 <ul class="no-style-list row">
                                     {% for project in projects limit:3 %}
-                                    <li class="column-sm-12 {% if projects.size > 1 %}column-md-6{% endif %} selected-category--projects__item">
+                                    <li class="column-sm-12 column-md-{{ 12 | divided_by: forloop.length }} selected-category--projects__item">
                                         {% include project-tile-component.html project=project fixed-width=true %}
                                     </li>
                                     {% endfor %}
