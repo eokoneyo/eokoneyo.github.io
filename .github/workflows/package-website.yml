@@ -27,7 +27,6 @@ jobs:
           node-version: '18.x'
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '2.6'
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - name: Install dependencies and build
         env:

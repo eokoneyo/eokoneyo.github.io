@@ -7,7 +7,10 @@ class ProcessWebpackOutput
   end
 
   def recursive_copy(
-    dir_path, outputPath, processServiceWorker, sub_directory = ''
+    dir_path,
+    outputPath,
+    processServiceWorker,
+    sub_directory = ""
   )
     Dir.each_child(dir_path) do |fileName|
       if File.directory?(File.join(dir_path, fileName))
@@ -15,7 +18,7 @@ class ProcessWebpackOutput
           File.join(dir_path, fileName),
           outputPath,
           processServiceWorker,
-          fileName
+          fileName,
         )
       else
         # place serviceworker file in root because of issues with scope,
@@ -27,33 +30,32 @@ class ProcessWebpackOutput
         end
 
         Jekyll.logger.debug(
-          'Jekyll-webpack:',
-          "Processing #{fileName} -> #{fileDest} ..."
+          "Jekyll-webpack:",
+          "Processing #{fileName} -> #{fileDest} ...",
         )
 
         # use overridden method to place processed webpack files exactly where we want them :)
-        @site.static_files <<
-          Jekyll::ControlledStaticFile.new(
-            @site,
-            @site.source,
-            dir_path,
-            fileName,
-            fileDest
-          )
+        @site.static_files << Jekyll::ControlledStaticFile.new(
+          @site,
+          @site.source,
+          dir_path,
+          fileName,
+          fileDest,
+        )
       end
     end
   end
 
   def do_work
-    transpilerConfig = @site.config['webpack'] || {}
+    transpilerConfig = @site.config["webpack"] || {}
 
-    cacheDir = transpilerConfig['cache_directory']
+    cacheDir = transpilerConfig["cache_directory"]
 
-    unless File.exists?(cacheDir)
+    unless File.exist?(cacheDir)
       return(
         Jekyll.logger.info(
-          'Jekyll-webpack:',
-          "Cache Directory #{cacheDir} was not found ..."
+          "Jekyll-webpack:",
+          "Cache Directory #{cacheDir} was not found ...",
         )
       )
     end
@@ -62,7 +64,7 @@ class ProcessWebpackOutput
     @site.exclude << cacheDir
 
     outputPath, hasServiceWorker =
-      (transpilerConfig['output']).values_at('path', 'service_worker')
+      (transpilerConfig["output"]).values_at("path", "service_worker")
 
     self.recursive_copy(cacheDir, outputPath, hasServiceWorker)
   end
