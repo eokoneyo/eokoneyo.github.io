@@ -1,6 +1,6 @@
 name: package website
 
-run-name: Package webiste for deployment
+run-name: Package website for deployment
 
 on:
   workflow_run:
