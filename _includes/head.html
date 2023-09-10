@@ -11,7 +11,7 @@
 {% if page.author %}<meta property="article:author" content="{{ page.author }}" />{% endif %}
 {% if jekyll.environment == 'production' %}
 {% assign sw_csp_nonce = site.data.version.hash | truncate: 8, "" -%}
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; script-src 'self' 'nonce-{{sw_csp_nonce}}' www.google-analytics.com ajax.googleapis.com utteranc.es; style-src 'self' 'unsafe-inline'; img-src 'self' *.scdn.co res.cloudinary.com; connect-src 'self' *.spotify.com">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; script-src 'self' 'nonce-{{sw_csp_nonce}}' www.google-analytics.com ajax.googleapis.com utteranc.es; style-src 'self' 'nonce-{{sw_csp_nonce}}'; img-src 'self' *.scdn.co res.cloudinary.com; connect-src 'self' *.spotify.com">
 <link rel="preconnect" href="https://res.cloudinary.com/{{site.cloudinary.cloud_name}}">
 {% endif %}
 {% if page.commentsAllowed == true %}

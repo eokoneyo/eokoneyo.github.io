@@ -2,7 +2,6 @@
 @use '@fontsource/jetbrains-mono/scss/mixins' as JetbrainsMono;
 @import '~sass-mq';
 @import '~modularscale-sass';
-@import '~@fontsource/ovo/scss/mixins';
 @import '../utils/fibonacci';
 
 // Font weights
@@ -44,7 +43,7 @@ $modularScaleToCountDownFrom: fibonacci($headings);
 
 @include JetbrainsMono.fontFace($weight: $normal-font-weight);
 
-$jetbrains-mono: 'JetBrains MonoVariable';
+$jetbrains-mono: 'JetBrains Mono';
 $mono-font: $jetbrains-mono, monospace, sans-serif, serif;
 $primary-font: 'Ovo', Georgia, 'Times New Roman', Times, serif;
 $secondary-font: $primary-font;
