@@ -33,15 +33,15 @@
 
     .knot__svg .knot-progress--path {}
     .knot__svg .knot-progress--fill {
-         stroke-width: 6;
-         stroke-dasharray: 70;
-         stroke-dashoffset: 400;
+         stroke-width: 3;
+         stroke-dasharray: 280; /* length of path */
+         stroke-dashoffset: 280;
          animation: dash 3s linear infinite;
     }
 
     @keyframes dash {
         to {
-            stroke-dashoffset: 0;
+            stroke-dashoffset: 100;
         }
     }
 </style>
