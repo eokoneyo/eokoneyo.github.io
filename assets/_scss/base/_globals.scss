@@ -110,21 +110,34 @@ a {
   }
 }
 
-.footnotes[role='doc-endnotes'] {
+[role='doc-noteref'] {
+  @at-root sup#{&} {
+    font-family: $mono-font;
+  }
+}
+
+[role='doc-endnotes'] {
   ol,
   ul {
     padding: 0;
     list-style: decimal-leading-zero inside;
   }
 
-  li[role='doc-endnote'] {
-    margin-bottom: mq-px2em(10px);
-    > * {
-      display: inline;
+  li {
+    &::marker {
+      font-family: $mono-font;
     }
 
-    .reversefootnote {
-      visibility: hidden;
+    &[role='doc-endnote'] {
+      margin-bottom: mq-px2em(10px);
+
+      > * {
+        display: inline;
+      }
+
+      .reversefootnote {
+        visibility: hidden;
+      }
     }
   }
 }

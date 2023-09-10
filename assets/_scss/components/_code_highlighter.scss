@@ -1,4 +1,4 @@
-div[class|="language"] {
+div[class|='language'] {
   margin: 0;
 
   pre {
@@ -6,5 +6,14 @@ div[class|="language"] {
     overflow-y: scroll;
     padding: mq-px2em(20px);
     font-family: $mono-font;
+  }
+
+  @include mq($from: large) {
+    margin-right: calc(50% - 50vw);
+    max-width: mq-px2em($large-grid-max-width - ($grid-gutter-size * 2));
+  }
+
+  @include mq($from: xlarge) {
+    max-width: mq-px2em($xlarge-grid-max-width - ($grid-gutter-size * 2));
   }
 }

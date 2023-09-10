@@ -6,6 +6,9 @@
 @import 'base/accessibility';
 @import 'base/grid-bg';
 
+//mixins
+@import 'mixins/decorated_horizontal_divider';
+
 // layout
 @import 'layouts/default';
 @import 'layouts/404';

@@ -3,21 +3,15 @@
   display: flex;
   flex-direction: column;
 
-  // move page up
-  @at-root #page-top & {
-    position: relative;
-    margin-top: -#{mq-px2em($header-height)};
-  }
-
   .project-hero {
     display: flex;
     align-items: center;
-    height: mq-px2em(400px);
     position: relative;
-    background: currentColor;
 
-    &__content{
+    &__content {
       @extend .container;
+      background: var(--page-dominant-color);
+      @include decorated_horizontal_divider();
     }
 
     // make element below hero fill available space
@@ -30,7 +24,7 @@
     }
 
     @include mq($from: medium) {
-      height: mq-px2em(550px);
+      height: mq-px2em(400px);
 
       &__decoration {
         width: mq-px2em(300px);
@@ -39,7 +33,7 @@
     }
 
     @include mq($from: xxlarge) {
-      height: mq-px2em(650px);
+      height: mq-px2em(550px);
     }
   }
 
