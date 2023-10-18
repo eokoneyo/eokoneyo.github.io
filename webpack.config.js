@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
-const cpy = require('cpy');
 const webpack = require('webpack');
 const getLogger = require('webpack-log');
 const Dotenv = require('dotenv-webpack');
@@ -177,13 +176,16 @@ module.exports = {
             `hash: "${buildHash}"`
           );
 
+          const cpy = (await import('cpy')).default
+
           // This makes a list of the files webpack generated available to jekyll
           // and our jekyll plugin, so the assets might be copied
           await cpy(
             path.join(jekyllWebpackConfig.cache_directory, 'manifest.json'),
             path.join('_data'),
             {
-              rename: () => 'webpack-manifest.json',
+              flat: true,
+              rename: (basename) => `webpack-${basename}`,
             }
           );
 
