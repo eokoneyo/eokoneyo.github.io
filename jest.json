@@ -9,8 +9,10 @@
   "setupFilesAfterEnv": [
     "<rootDir>/assets/_scripts/__tests__/setup.ts"
   ],
-  "testURL": "http://localhost",
   "testEnvironment": "jsdom",
+  "testEnvironmentOptions": {
+    "url": "http://localhost"
+  },
   "testPathIgnorePatterns": [
     "<rootDir>/assets/_scripts/__tests__/setup.ts",
     "<rootDir>/assets/_scripts/__tests__/setupTestEnv.ts",
