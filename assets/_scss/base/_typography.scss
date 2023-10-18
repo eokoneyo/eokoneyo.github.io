@@ -39,9 +39,9 @@ $headings: 6;
 $modularScaleToCountDownFrom: fibonacci($headings);
 
 // Font-faces
-@include Ovo.fontFace($weight: $normal-font-weight);
+@include Ovo.faces($weights: $normal-font-weight);
 
-@include JetbrainsMono.fontFace($weight: $normal-font-weight);
+@include JetbrainsMono.faces($weights: $normal-font-weight);
 
 $jetbrains-mono: 'JetBrains Mono';
 $mono-font: $jetbrains-mono, monospace, sans-serif, serif;
