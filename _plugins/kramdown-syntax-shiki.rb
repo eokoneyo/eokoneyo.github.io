@@ -1,6 +1,6 @@
-require 'open3'
-require 'kramdown/options'
-require 'kramdown/converter'
+require "open3"
+require "kramdown/options"
+require "kramdown/converter"
 
 module Kramdown
   module Options
@@ -33,12 +33,12 @@ module Kramdown
           return nil unless converter.options[:enable_shiki] and type == :block
 
           script = <<-JS
-          // require shiki module installed in project
-          const shiki = require('shiki');
-
           async function generateCodeBlock(code, lang, theme = 'nord') {
-            const highlighter = await shiki.getHighlighter({ theme });
-            return highlighter.codeToHtml(code, { lang });
+            // require shiki module installed in project
+            const { getHighlighter } = await import('shiki');
+
+            const highlighter = await getHighlighter({ themes: [theme], langs: [lang]  });
+            return highlighter.codeToHtml(code, { lang, theme });
           }
 
           void (async () => {
@@ -48,14 +48,32 @@ module Kramdown
           })();
           JS
 
-          command = ['node', '-e', script, text, lang || converter.options[:shiki_default_lang]]
+          command = [
+            "node",
+            "-e",
+            script,
+            text,
+            lang || converter.options[:shiki_default_lang],
+          ]
 
           Open3.popen3(*command) do |stdin, stdout, stderr, wait_thr|
-            # read the output from the process
-            output = stdout.read
+            # Read the output from stdout and stderr
+            stdout_output = stdout.read
+            stderr_output = stderr.read
 
-            # handle the output
-            return output
+            # Close streams to prevent deadlocks
+            stdin.close
+            stdout.close
+            stderr.close
+
+            # Wait for the command to finish and get the exit status
+            exit_status = wait_thr.value
+
+            if exit_status.success?
+              stdout_output
+            else
+              Jekyll.logger.error("shiki:", stderr_output)
+            end
           end
         end
       end
