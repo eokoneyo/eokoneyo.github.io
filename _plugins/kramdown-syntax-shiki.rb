@@ -28,24 +28,34 @@ module Kramdown
 
   module Converter
     module SyntaxHighlighter
+      # Uses Shiki (https://shiki.style/) to highlight code blocks.
       module Shiki
         def self.call(converter, text, lang, type, call_opts)
           return nil unless converter.options[:enable_shiki] and type == :block
 
           script = <<-JS
-          async function generateCodeBlock(code, lang, theme = 'nord') {
-            // require shiki module installed in project
-            const { getHighlighter } = await import('shiki');
+            async function generateCodeBlock(code, lang, theme = 'vitesse-light') {
+                // require shiki module installed in project
+                const { getHighlighter } = await import('shiki');
+                const { rendererRich, transformerTwoslash } = await import('@shikijs/twoslash');
 
-            const highlighter = await getHighlighter({ themes: [theme], langs: [lang]  });
-            return highlighter.codeToHtml(code, { lang, theme });
-          }
+                const highlighter = await getHighlighter({ themes: [theme], langs: [lang]  });
+                return highlighter.codeToHtml(code, {
+                lang,
+                theme,
+                transformers: [
+                    transformerTwoslash({
+                        renderer: rendererRich()
+                    })
+                ]
+                });
+            }
 
-          void (async () => {
-            const [, ...args] = process.argv;
-            // return output with console.log, so we can read it's output in ruby land
-            console.log(await generateCodeBlock.apply(null, args));
-          })();
+            void (async () => {
+                const [, ...args] = process.argv;
+                // return output with console.log, so we can read it's output in ruby land
+                console.log(await generateCodeBlock.apply(null, args));
+            })();
           JS
 
           command = [
