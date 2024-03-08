@@ -48,6 +48,7 @@
     "@fontsource/jetbrains-mono": "^5.0.15",
     "@fontsource/ovo": "^5.0.8",
     "@prettier/plugin-ruby": "^4.0.2",
+    "@shikijs/twoslash": "^1.1.7",
     "@testing-library/dom": "^9.3.3",
     "@types/animejs": "^3.1.10",
     "@types/jest": "^29.5.6",

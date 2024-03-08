@@ -3101,6 +3101,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@shikijs/twoslash@npm:^1.1.7":
+  version: 1.1.7
+  resolution: "@shikijs/twoslash@npm:1.1.7"
+  dependencies:
+    "@shikijs/core": 1.1.7
+    twoslash: ^0.2.4
+  checksum: a7d5f944f5501c9050a3dc2e54ff6862aa45a4983d7713c92e147b78794768de1fceebf337a11dae34098488ab6e8bb5eecc7c62bd7edb907a3d4cc9a1e15c07
+  languageName: node
+  linkType: hard
+
 "@sinclair/typebox@npm:^0.27.8":
   version: 0.27.8
   resolution: "@sinclair/typebox@npm:0.27.8"
@@ -3633,6 +3643,15 @@ __metadata:
     "@typescript-eslint/types": 6.8.0
     eslint-visitor-keys: ^3.4.1
   checksum: 710d9067b85d7715a400ae625c083c41733abb891d7b35108de083913980f9642e79d27689599fa39915f0fecae16dbfc30367007fccc838ccd917943660de22
+  languageName: node
+  linkType: hard
+
+"@typescript/vfs@npm:1.5.0":
+  version: 1.5.0
+  resolution: "@typescript/vfs@npm:1.5.0"
+  dependencies:
+    debug: ^4.1.1
+  checksum: 09916e2fc567fe993fd81a34a48f72183b4c84d73a6bfdd8d4ca60ecd28de80fbb509b050f30513913b86270dc2abc759cffb4c0fd1068f7dd53104a1b0b7e27
   languageName: node
   linkType: hard
 
@@ -5451,6 +5470,7 @@ __metadata:
     "@fontsource/jetbrains-mono": ^5.0.15
     "@fontsource/ovo": ^5.0.8
     "@prettier/plugin-ruby": ^4.0.2
+    "@shikijs/twoslash": ^1.1.7
     "@testing-library/dom": ^9.3.3
     "@types/animejs": ^3.1.10
     "@types/jest": ^29.5.6
@@ -10516,6 +10536,25 @@ __metadata:
   peerDependencies:
     typescript: ">=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta"
   checksum: 1843f4c1b2e0f975e08c4c21caa4af4f7f65a12ac1b81b3b8489366826259323feb3fc7a243123453d2d1a02314205a7634e048d4a8009921da19f99755cdc48
+  languageName: node
+  linkType: hard
+
+"twoslash-protocol@npm:0.2.4":
+  version: 0.2.4
+  resolution: "twoslash-protocol@npm:0.2.4"
+  checksum: 429bdb8bcb38508993914e185c5d067f919fd1386cf311e70fdbeb8487ff37a980929f8798ee23fa442cef17dc374cc50fbdfd01c0dc56125d6499d871b3add1
+  languageName: node
+  linkType: hard
+
+"twoslash@npm:^0.2.4":
+  version: 0.2.4
+  resolution: "twoslash@npm:0.2.4"
+  dependencies:
+    "@typescript/vfs": 1.5.0
+    twoslash-protocol: 0.2.4
+  peerDependencies:
+    typescript: "*"
+  checksum: 019a12a7f059e95679f4ec0ae1409d023c860a4e76918a6389f1183cec6a63e36731b87330afdd1b877cd7281d1c9504f485340fd836ac0ff7f954b0404bb1c6
   languageName: node
   linkType: hard
 
