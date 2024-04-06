@@ -148,8 +148,10 @@ class Playlists extends Component<PlaylistsRef, PlaylistsState> {
                   )
                   .join('')}
               </picture>
-              <figcaption>${playlist.name}</figcaption>
-              <figcaption>Contains ${playlist.tracks.total} Tracks</figcaption>
+              <figcaption>
+                <span>${playlist.name}</span></br>
+                <span>Contains ${playlist.tracks.total} Tracks</span>
+              </figcaption>
           </a>
         </figure>
       `;
