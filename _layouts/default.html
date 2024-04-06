@@ -3,7 +3,7 @@ layout: base
 ---
 
 <div class="ns-default-layout">
-    <section class="ns-default-layout__content">
+    <section class="ns-default-layout__content"  {% if page.alignment %}style="align-content: {{page.alignment}}"{% endif %}>
         {{content}}
     </section>
     {%include footer.html%}
