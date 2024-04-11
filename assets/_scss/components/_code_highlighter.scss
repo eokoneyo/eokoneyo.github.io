@@ -4,7 +4,7 @@ div[class|='language'] {
   pre {
     display: block;
     overflow-y: scroll;
-    padding: mq-px2em(20px);
+    padding: mq-px2em(20px) 0;
     font-family: $mono-font;
   }
 
