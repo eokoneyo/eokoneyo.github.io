@@ -34,7 +34,7 @@ webpack:
     - 'node_modules/@shikijs/twoslash/style-rich.css'
   cache_directory: '.jekyll-webpack'
   output:
-    path: "assets/"
+    path: 'assets/'
     service_worker: true
 
 cloudinary:
@@ -53,8 +53,8 @@ cloudinary:
 
 # config for generated data used to run search client side
 search_data:
-  filename: "search-data.json"
-  output_path: "assets/"
+  filename: 'search-data.json'
+  output_path: 'assets/'
 
 # config for jekyll-paginate-v2
 pagination:
@@ -65,9 +65,8 @@ pagination:
 permalink: /:categories/:title
 
 defaults:
-  -
-    scope:
-      path: "_posts" # an empty string here means all files in the project
-      type: "posts"
+  - scope:
+      path: '_posts' # an empty string here means all files in the project
+      type: 'posts'
     values:
-      layout: "post"
+      layout: 'post'
