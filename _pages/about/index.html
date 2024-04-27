@@ -49,16 +49,22 @@ layout: default
         <div class="row">
           <div class="column-sm-12 column-md-4">
             <h2>
-              <span class="display-heading display-heading--decorated">Open-Source Contributions</span>
+              <span class="display-heading display-heading--decorated">Notable <br/> open source contributions</span>
             </h2>
           </div>
           <div class="column-sm-12 column-md-8">
             <ul class="no-style-list">
               {% for contribution in contributions limit:4 %}
               <li>
-                <a data-disable-visual="true" href="{{contribution.repo-url}}" target="_blank">
-                  <h5 class="title">{{contribution.name}}</h5>
-                </a>
+                <h5 class="title">
+                  <span>{{contribution.name}}</span>
+                  {% assign contribution_activity = contribution.activity %}
+                  {% if contribution_activity.size > 0 %}
+                    {% for activity_link in contribution_activity %}
+                      <a href="{{activity_link}}" data-disable-visual="true" target="_blank">*</a>
+                    {% endfor %}
+                  {% endif %}
+                </h5>
               </li>
               {% endfor %}
             </ul>
