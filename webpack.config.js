@@ -54,7 +54,7 @@ module.exports = {
   entry: jekyllWebpackConfig.entry.map((entryItem) =>
     path.join(__dirname, entryItem)
   ),
-  stats: process.env.JEKYLL_ENV === 'production' ? "errors-only" :  "normal",
+  stats: process.env.JEKYLL_ENV === 'production' ? 'errors-only' : 'normal',
   output: {
     filename: '[name]-bundle.[contenthash:8].js',
     path: path.resolve(__dirname, jekyllWebpackConfig.cache_directory),
@@ -129,12 +129,14 @@ module.exports = {
           format: {
             comments: false,
           },
-          safari10: true
+          safari10: true,
         },
         extractComments: {
           condition: /@preserve|@license|@cc_on/i,
-          filename: (fileData) => `${path.basename(fileData.filename, '.js')}.LICENSE.txt`,
-          banner: (licenseFile) => `License information can be found in ${licenseFile}`,
+          filename: (fileData) =>
+            `${path.basename(fileData.filename, '.js')}.LICENSE.txt`,
+          banner: (licenseFile) =>
+            `License information can be found in ${licenseFile}`,
         },
       }),
     ],
@@ -176,7 +178,7 @@ module.exports = {
             `hash: "${buildHash}"`
           );
 
-          const cpy = (await import('cpy')).default
+          const cpy = (await import('cpy')).default;
 
           // This makes a list of the files webpack generated available to jekyll
           // and our jekyll plugin, so the assets might be copied

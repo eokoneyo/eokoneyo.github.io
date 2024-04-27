@@ -1,17 +1,16 @@
 .ns-posts {
-
   .post {
-    &-list{
+    &-list {
       @extend .article-width;
     }
 
     &-list-item {
       &:not(:first-of-type) {
-        margin-top: mq-px2em(50px)
+        margin-top: mq-px2em(50px);
       }
 
       &:not(:last-of-type) {
-        border-bottom: mq-px2em(2px) solid map_get($gray-pallet, light)
+        border-bottom: mq-px2em(2px) solid map_get($gray-pallet, light);
       }
 
       &__publish-date {
@@ -21,7 +20,7 @@
     }
   }
 
-  .article{
+  .article {
     &-wrapper {
       @extend .article-width;
 
@@ -39,9 +38,10 @@
         list-style: disc inside;
       }
 
-      ol, ul {
-        li {
-          @extend p
+      ol,
+      ul {
+        li:not([role='doc-endnote']) {
+          @extend p;
         }
       }
     }
@@ -50,11 +50,11 @@
       display: flex;
       flex-direction: column;
 
-      &__publish-date{
+      &__publish-date {
+        @extend time;
         order: -1;
         font-size: mq-px2em(5px);
         text-transform: uppercase;
-        color: map-get($gray-pallet, light);
       }
     }
   }

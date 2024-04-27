@@ -1,5 +1,5 @@
 @use '@fontsource/ovo/scss/mixins' as Ovo;
-@use '@fontsource/jetbrains-mono/scss/mixins' as JetbrainsMono;
+@use '@fontsource/dm-mono/scss/mixins' as DMMono;
 @import '~sass-mq';
 @import '~modularscale-sass';
 @import '../utils/fibonacci';
@@ -41,10 +41,10 @@ $modularScaleToCountDownFrom: fibonacci($headings);
 // Font-faces
 @include Ovo.faces($weights: $normal-font-weight);
 
-@include JetbrainsMono.faces($weights: $normal-font-weight);
+@include DMMono.faces($weights: $normal-font-weight);
 
-$jetbrains-mono: 'JetBrains Mono';
-$mono-font: $jetbrains-mono, monospace, sans-serif, serif;
+$dm-mono: 'DM Mono';
+$mono-font: $dm-mono, monospace, sans-serif, serif;
 $primary-font: 'Ovo', Georgia, 'Times New Roman', Times, serif;
 $secondary-font: $primary-font;
 
@@ -117,9 +117,9 @@ blockquote {
 }
 
 time,
-[datatime] {
+[datetime] {
   color: map-get($gray-pallet, light);
-  //font-family: $mono-font;
+  font-family: $mono-font;
 }
 
 .caption_ts {

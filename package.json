@@ -45,7 +45,7 @@
     "@babel/plugin-transform-runtime": "^7.23.2",
     "@babel/preset-env": "^7.23.2",
     "@babel/preset-typescript": "^7.23.2",
-    "@fontsource/jetbrains-mono": "^5.0.15",
+    "@fontsource/dm-mono": "^5.0.20",
     "@fontsource/ovo": "^5.0.8",
     "@prettier/plugin-ruby": "^4.0.2",
     "@shikijs/twoslash": "^1.1.7",
