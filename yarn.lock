@@ -2564,10 +2564,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fontsource/jetbrains-mono@npm:^5.0.15":
-  version: 5.0.15
-  resolution: "@fontsource/jetbrains-mono@npm:5.0.15"
-  checksum: 296d668e27377bd8082eacac7fb01c98a799371d8fd394457ada1a4fd5a78405f9357d4ca0503bab477271d719178e12731bf2cc65b6dcfada29d69fc796988e
+"@fontsource/dm-mono@npm:^5.0.20":
+  version: 5.0.20
+  resolution: "@fontsource/dm-mono@npm:5.0.20"
+  checksum: 4c0bbb4a58e40e82aa56a442dad735d0b4b5ac4eb4ed12836248b0405d93b817bd6f73306b2f4a119d1f0050b1fa79b3f1b06d17ca396c65f5978fbd57ab0356
   languageName: node
   linkType: hard
 
@@ -5467,7 +5467,7 @@ __metadata:
     "@babel/preset-env": ^7.23.2
     "@babel/preset-typescript": ^7.23.2
     "@babel/runtime": ^7.23.2
-    "@fontsource/jetbrains-mono": ^5.0.15
+    "@fontsource/dm-mono": ^5.0.20
     "@fontsource/ovo": ^5.0.8
     "@prettier/plugin-ruby": ^4.0.2
     "@shikijs/twoslash": ^1.1.7

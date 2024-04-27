@@ -2,10 +2,13 @@ div[class|='language'] {
   margin: 0;
 
   pre {
-    display: block;
-    overflow-y: scroll;
     padding: mq-px2em(20px) 0;
-    font-family: $mono-font;
+
+    code {
+      display: block;
+      overflow-y: scroll;
+      font-family: $mono-font;
+    }
   }
 
   @include mq($from: large) {
