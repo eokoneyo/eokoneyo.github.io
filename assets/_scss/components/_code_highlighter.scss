@@ -8,6 +8,51 @@ div[class|='language'] {
       display: block;
       overflow-y: scroll;
       font-family: $mono-font;
+
+      .line {
+        line-height: 1.5;
+      }
+
+      .diff {
+        &.add {
+          &::before {
+            content: '+';
+            color: green;
+          }
+        }
+
+        &.remove {
+          &::before {
+            content: '-';
+            color: red;
+          }
+        }
+      }
+    }
+  }
+
+  .twoslash {
+    &-popup {
+      &-container {
+        display: flex;
+
+        @include mq($from: medium) {
+          max-width: $medium-grid-max-width;
+        }
+
+        @include mq($from: large) {
+          max-width: mq-px2em($large-grid-max-width);
+        }
+
+        @include mq($from: xlarge) {
+          max-width: mq-px2em($xlarge-grid-max-width);
+        }
+
+        > * {
+          text-wrap-mode: wrap;
+          flex-grow: 1;
+        }
+      }
     }
   }
 
