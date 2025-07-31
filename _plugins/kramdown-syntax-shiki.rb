@@ -36,16 +36,20 @@ module Kramdown
           script = <<-JS
             async function generateCodeBlock(code, lang, theme = 'vitesse-light') {
                 // require shiki module installed in project
-                const { getHighlighter } = await import('shiki');
+                const { createHighlighter } = await import('shiki');
                 const { rendererRich, transformerTwoslash } = await import('@shikijs/twoslash');
+                const { transformerNotationDiff } = await import('@shikijs/transformers');
 
-                const highlighter = await getHighlighter({ themes: [theme], langs: [lang]  });
+                const highlighter = await createHighlighter({ themes: [theme], langs: [lang]  });
                 return highlighter.codeToHtml(code, {
                 lang,
                 theme,
                 transformers: [
+                    transformerNotationDiff({
+                        matchAlgorithm: 'v3',
+                    }),
                     transformerTwoslash({
-                        renderer: rendererRich()
+                        renderer: rendererRich(),
                     })
                 ]
                 });
