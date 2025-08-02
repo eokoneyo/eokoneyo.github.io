@@ -20,11 +20,15 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
+      - name: Install Rmagick dependency
+        run: |
+          sudo apt update \
+          && sudo apt-get install libmagickwand-dev -y
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           cache: 'yarn'
-          node-version: '18.x'
+          node-version-file: '.tool-versions'
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
