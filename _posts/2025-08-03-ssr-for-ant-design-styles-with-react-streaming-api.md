@@ -3,6 +3,7 @@ title: Server-Side Rendering for Ant Design Styles with React's Streaming API
 excerpt: Implementing server-side rendering for Ant Design styles with React's streaming API
 layout: post
 category: blog
+published: true
 ---
 
 I recently had reasons to use the Ant design component library with a remix run project mostly because of the well-documented, practical
@@ -64,7 +65,7 @@ to be rendered into the response stream that will be sent to the user, below is 
 // @errors: 2307 2304 2552 1005 2345 2874 2686
 import React from 'react';
 import { renderToReadableStream } from 'react-dom/server';
-// @ts-expect-error -- this import returns an becuase @ant-design/cssinjs is not installed
+// @ts-expect-error -- this import returns an error becuase @ant-design/cssinjs is not installed
 import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs'; // [!code ++]
 
 export default async function handleRequest(
