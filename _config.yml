@@ -32,7 +32,6 @@ webpack:
   entry:
     - 'assets/_scripts/client/index.ts'
     - 'assets/_scss/styles.scss'
-    - 'node_modules/@shikijs/twoslash/style-rich.css'
   cache_directory: '.jekyll-webpack'
   output:
     path: 'assets/'
