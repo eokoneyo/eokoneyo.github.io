@@ -12,8 +12,12 @@
     "module": "es2020",
     "target": "esnext",
     "lib": ["DOM", "WebWorker"],
+    "typeRoots": [
+      "./assets/_ata/node_modules/@types",
+      "./assets/_ata/node_modules",
+      "./node_modules/@types",
+    ],
   },
   "exclude": ["node_modules", "_site"],
   "include": ["assets/_scripts/**/*.ts"],
-  "types": ["node"]
 }

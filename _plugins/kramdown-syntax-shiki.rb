@@ -5,7 +5,7 @@ require "kramdown/converter"
 module Kramdown
   module Options
     define(:enable_shiki, Boolean, true, <<~EOF)
-      Use shiki for syntax highlighting
+      Use shiki (https://shiki.style/) for syntax highlighting
 
       If this option is `true`, shiki is used by the HTML converter for
       syntax highlighting the content of code spans and code blocks.
@@ -28,13 +28,33 @@ module Kramdown
 
   module Converter
     module SyntaxHighlighter
-      # Uses Shiki (https://shiki.style/) to highlight code blocks.
       module Shiki
         def self.call(converter, text, lang, type, call_opts)
           return nil unless converter.options[:enable_shiki] and type == :block
 
           script = <<-JS
+            const { writeFileSync, mkdirSync } = require('node:fs');
+            const { join, dirname } = require('node:path');
+
             async function generateCodeBlock(code, lang, theme = 'vitesse-light') {
+                if (/typescript|(ts)x?/.test(lang)) {
+                    // setup type acquisition (https://github.com/microsoft/TypeScript-Website/tree/v2/packages/ata)
+                    const { setupTypeAcquisition } = await import('@typescript/ata');
+                    const ata = setupTypeAcquisition({
+                        projectName: 'kramdown-shiki',
+                        typescript: require('typescript'),
+                        delegate: {
+                            receivedFile: (code, path) => {
+                                const filePath = join(process.cwd(), 'assets/_ata', path);
+                                mkdirSync(dirname(filePath), { recursive: true });
+                                writeFileSync(filePath, code);
+                            }
+                        }
+                    });
+                    // acquire missing types for code snippet
+                    await ata(code)
+                }
+
                 // require shiki module installed in project
                 const { createHighlighter } = await import('shiki');
                 const { rendererRich, transformerTwoslash } = await import('@shikijs/twoslash');
@@ -42,16 +62,16 @@ module Kramdown
 
                 const highlighter = await createHighlighter({ themes: [theme], langs: [lang]  });
                 return highlighter.codeToHtml(code, {
-                lang,
-                theme,
-                transformers: [
-                    transformerNotationDiff({
-                        matchAlgorithm: 'v3',
-                    }),
-                    transformerTwoslash({
-                        renderer: rendererRich(),
-                    })
-                ]
+                    lang,
+                    theme,
+                    transformers: [
+                        transformerNotationDiff({
+                            matchAlgorithm: 'v3',
+                        }),
+                        transformerTwoslash({
+                            renderer: rendererRich(),
+                        })
+                    ]
                 });
             }
 

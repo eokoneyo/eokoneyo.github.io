@@ -6,7 +6,7 @@ div[class|='language'] {
 
     code {
       display: block;
-      overflow-y: scroll;
+      overflow: auto visible;
       font-family: $mono-font;
 
       .line {
@@ -18,6 +18,8 @@ div[class|='language'] {
           &::before {
             content: '+';
             color: green;
+            position: absolute;
+            left: 0;
           }
         }
 
@@ -25,6 +27,8 @@ div[class|='language'] {
           &::before {
             content: '-';
             color: red;
+            position: absolute;
+            left: 0;
           }
         }
       }
@@ -32,21 +36,14 @@ div[class|='language'] {
   }
 
   .twoslash {
+    &-hover {
+      position: unset;
+    }
+
     &-popup {
       &-container {
         display: flex;
-
-        @include mq($from: medium) {
-          max-width: $medium-grid-max-width;
-        }
-
-        @include mq($from: large) {
-          max-width: mq-px2em($large-grid-max-width);
-        }
-
-        @include mq($from: xlarge) {
-          max-width: mq-px2em($xlarge-grid-max-width);
-        }
+        max-width: 90%;
 
         > * {
           text-wrap-mode: wrap;

@@ -62,3 +62,7 @@ _data/version.yml
 
 # act
 payload.json
+
+# ata
+/assets/_ata/*
+!/assets/_ata/.gitkeep
