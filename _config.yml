@@ -20,6 +20,7 @@ exclude:
   - 'tsconfig.json'
   - 'webpack.config.js'
   - 'babel.config.json'
+  - 'assets/_ata'
 
 plugins:
   - jekyll-paginate-v2
