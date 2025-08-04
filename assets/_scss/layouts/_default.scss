@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
 
-  &:has([class|='language'] [class='twoslash']) {
+  &:has([class~='twoslash']) {
     overflow: hidden;
   }
 
