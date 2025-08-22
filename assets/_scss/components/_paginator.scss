@@ -1,14 +1,19 @@
+@use 'sass:map';
+@use 'sass-mq/mq';
+
+@import '../variables';
+
 .pagination {
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid map-get($gray-pallet, mid);
+  border-top: 1px solid map.get($gray-pallet, mid);
 
   &--next {
     margin-left: auto;
     .display-heading:after {
       content: '\002192';
       display: inline-block;
-      margin-left: mq-px2em(5px);
+      margin-left: mq.px2em(5px);
     }
   }
 
@@ -16,7 +21,7 @@
     .display-heading:before {
       content: '\002190';
       display: inline-block;
-      margin-right: mq-px2em(5px);
+      margin-right: mq.px2em(5px);
     }
   }
 }

@@ -1,4 +1,8 @@
+@use 'sass:map';
 @use 'sass:math';
+@use 'sass-mq/mq';
+
+@import '../variables';
 
 .grid-bg-fx {
   z-index: -1;
@@ -43,14 +47,14 @@
     }
   }
 
-  @include mq($until: medium) {
+  @include mq.mq($until: tablet) {
     .hide-md-down {
       display: none;
     }
   }
 
   > * {
-    color: lighten(map_get($gray-pallet, tint), 60%);
+    color: lighten(map.get($gray-pallet, tint), 60%);
     position: relative;
     margin-bottom: 0 !important;
   }

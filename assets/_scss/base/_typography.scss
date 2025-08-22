@@ -1,7 +1,11 @@
-@use '@fontsource/ovo/scss/mixins' as Ovo;
-@use '@fontsource/dm-mono/scss/mixins' as DMMono;
-@import '~sass-mq';
-@import '~modularscale-sass';
+@use 'sass:map';
+@use '@fontsource-utils/scss' as fontsource;
+@use '@fontsource/ovo/scss' as Ovo;
+@use '@fontsource/dm-mono/scss' as DMMono;
+@use 'sass-mq/mq';
+
+@import 'modularscale-sass';
+@import '../variables';
 @import '../utils/fibonacci';
 
 // Font weights
@@ -22,13 +26,13 @@ $vspace-3: calc(#{0.5 * $space} * 1rem);
 // set type scale here
 $modularscale: (
   base: 16px,
-  map_get($grid-breakpoints, small): (
+  map.get($grid-breakpoints, small): (
     ratio: 1.1,
   ),
-  map_get($grid-breakpoints, medium): (
+  map.get($grid-breakpoints, medium): (
     ratio: 1.15,
   ),
-  map_get($grid-breakpoints, xlarge): (
+  map.get($grid-breakpoints, xlarge): (
     ratio: 1.25,
   ),
 );
@@ -39,9 +43,16 @@ $headings: 6;
 $modularScaleToCountDownFrom: fibonacci($headings);
 
 // Font-faces
-@include Ovo.faces($weights: $normal-font-weight);
-
-@include DMMono.faces($weights: $normal-font-weight);
+@include fontsource.faces(
+  $metadata: Ovo.$metadata,
+  $subsets: latin,
+  $weights: $normal-font-weight
+);
+@include fontsource.faces(
+  $metadata: DMMono.$metadata,
+  $subsets: latin,
+  $weights: $normal-font-weight
+);
 
 $dm-mono: 'DM Mono';
 $mono-font: $dm-mono, monospace, sans-serif, serif;
@@ -69,9 +80,12 @@ body {
         length($modularScaleToCountDownFrom) - $i
       )
     );
-    font-family: $secondary-font;
-    font-weight: $medium-font-weight;
-    letter-spacing: mq-px2em(1px);
+
+    & {
+      font-family: $secondary-font;
+      font-weight: $medium-font-weight;
+      letter-spacing: mq.px2em(1px);
+    }
   }
 }
 
@@ -118,7 +132,7 @@ blockquote {
 
 time,
 [datetime] {
-  color: map-get($gray-pallet, light);
+  color: map.get($gray-pallet, light);
   font-family: $mono-font;
 }
 

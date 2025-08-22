@@ -2,6 +2,8 @@
 //@link https://developers.google.com/web/updates/2016/12/performant-parallaxing
 @use 'sass:math';
 
+@import '../variables';
+
 $parallax-perspective: 1;
 
 @function parallax-scale-factor($z-distance) {
@@ -33,7 +35,6 @@ $parallax-perspective: 1;
 @mixin parallax-child($z-distance: 0) {
   transform-origin: 100%;
   position: sticky;
-  position: -webkit-sticky;
   top: 0;
   transform: translateZ(#{$z-distance}px)
     scale(parallax-scale-factor($z-distance));

@@ -1,8 +1,12 @@
+@use 'sass-mq/mq';
+
+@import '../variables';
+
 div[class|='language'] {
   margin: 0;
 
   pre {
-    padding: mq-px2em(20px) 0;
+    padding: mq.px2em(20px) 0;
 
     code {
       display: block;
@@ -53,12 +57,12 @@ div[class|='language'] {
     }
   }
 
-  @include mq($from: large) {
+  @include mq.mq($from: desktop) {
     margin-right: calc(50% - 50vw);
-    max-width: mq-px2em($large-grid-max-width - ($grid-gutter-size * 2));
+    max-width: mq.px2em($large-grid-max-width - ($grid-gutter-size * 2));
   }
 
-  @include mq($from: xlarge) {
-    max-width: mq-px2em($xlarge-grid-max-width - ($grid-gutter-size * 2));
+  @include mq.mq($from: wide) {
+    max-width: mq.px2em($xlarge-grid-max-width - ($grid-gutter-size * 2));
   }
 }

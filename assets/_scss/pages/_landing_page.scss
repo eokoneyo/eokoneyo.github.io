@@ -1,3 +1,6 @@
+@use 'sass:map';
+@use 'sass-mq/mq';
+
 @import '../mixins/parallax';
 
 .ns-landing-screen {
@@ -6,7 +9,7 @@
   .jumbotron {
     @include parallax-child(0);
 
-    @include mq($from: medium) {
+    @include mq.mq($from: tablet) {
       @include parallax-child(-3);
     }
 
@@ -41,7 +44,7 @@
       &:after {
         content: '';
         position: absolute;
-        width: mq-px2em(14px);
+        width: mq.px2em(14px);
         height: 1px;
         background: currentColor;
         top: 100%;
@@ -51,26 +54,26 @@
     }
 
     &__tagline {
-      color: map-get($gray-pallet, light);
+      color: map.get($gray-pallet, light);
     }
 
     &__side-photo {
-      @include mq($from: medium) {
+      @include mq.mq($from: tablet) {
         order: 2;
       }
 
       &--inner {
         width: inherit;
-        height: mq-px2em(200px);
+        height: mq.px2em(200px);
 
-        @include mq($from: medium) {
-          height: mq-px2em(400px);
+        @include mq.mq($from: tablet) {
+          height: mq.px2em(400px);
         }
 
         #illustration {
           height: 100%;
 
-          @include mq($from: medium) {
+          @include mq.mq($from: tablet) {
             width: 100%;
           }
         }
@@ -82,7 +85,7 @@
       position: absolute;
       bottom: 2%;
       right: 1%;
-      padding: mq-px2em(5px) mq-px2em(10px);
+      padding: mq.px2em(5px) mq.px2em(10px);
       writing-mode: vertical-rl;
       animation-name: pulse;
       animation-timing-function: ease-in-out;
@@ -94,7 +97,7 @@
 
         &:after {
           content: '\002192';
-          padding-top: mq-px2em(5px);
+          padding-top: mq.px2em(5px);
         }
       }
 
@@ -112,7 +115,7 @@
         }
       }
 
-      @include mq($from: medium) {
+      @include mq.mq($from: tablet) {
         display: initial;
       }
     }
@@ -125,17 +128,17 @@
     display: flex;
     flex-direction: column;
 
-    @include mq($from: large) {
+    @include mq.mq($from: desktop) {
       min-height: 100vh;
     }
 
     &__inner {
       flex: 1 0 auto;
-      margin-top: mq-px2em($header-height);
+      margin-top: mq.px2em($header-height);
     }
 
     .selected-categories {
-      margin-bottom: mq-px2em(50px);
+      margin-bottom: mq.px2em(50px);
 
       .page-heading--with-action {
         display: flex;
@@ -148,7 +151,7 @@
       }
 
       &:last-of-type {
-        margin-bottom: mq-px2em(100px);
+        margin-bottom: mq.px2em(100px);
       }
     }
 
@@ -157,11 +160,11 @@
         &__item {
           .display-heading__subtitle {
             font-style: normal;
-            letter-spacing: mq-px2em(3px);
+            letter-spacing: mq.px2em(3px);
             font-weight: $bold-font-weight;
 
             > * {
-              color: rgba(map_get($gray-pallet, mid), 0.9);
+              color: rgba(map.get($gray-pallet, mid), 0.9);
             }
           }
         }
@@ -180,7 +183,7 @@
 
   .social-icon {
     &--link {
-      padding: 0 mq-px2em(10px);
+      padding: 0 mq.px2em(10px);
 
       &:hover,
       &:focus {
@@ -190,6 +193,6 @@
   }
 
   .article-width {
-    margin-bottom: mq-px2em(50px);
+    margin-bottom: mq.px2em(50px);
   }
 }

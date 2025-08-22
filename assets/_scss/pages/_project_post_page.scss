@@ -1,5 +1,9 @@
+@use 'sass-mq/mq';
+
+@import '../variables';
+
 .ns-project-post {
-  min-height: calc(100vh - #{mq-px2em($header-height)});
+  min-height: calc(100vh - #{mq.px2em($header-height)});
   display: flex;
   flex-direction: column;
 
@@ -23,25 +27,25 @@
       position: relative;
     }
 
-    @include mq($from: medium) {
-      height: mq-px2em(400px);
+    @include mq.mq($from: tablet) {
+      height: mq.px2em(400px);
 
       &__decoration {
-        width: mq-px2em(300px);
+        width: mq.px2em(300px);
         transform: translate(25%, 75%);
       }
     }
 
-    @include mq($from: xxlarge) {
-      height: mq-px2em(550px);
+    @include mq.mq($from: xxlarge) {
+      height: mq.px2em(550px);
     }
   }
 
   .post-wrapper {
     @extend .article-width;
-    padding-top: mq-px2em(50px);
+    padding-top: mq.px2em(50px);
 
-    @include mq($from: medium) {
+    @include mq($from: tablet) {
       p {
         text-align: justify;
       }

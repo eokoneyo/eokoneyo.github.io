@@ -6,22 +6,26 @@ Descr: A lightbox plugin to zoom on an image on click
 Usage: codyhouse.co/license
 
 -------------------------------- */
+@use 'sass:map';
+@use 'sass-mq/mq';
+
+@import '../variables';
 
 .image-zoom {
-  height: mq-px2em(500px);
-  margin: mq-px2em(50px) 0;
-  padding: mq-px2em(25px) mq-px2em(20px);
-  background: rgba(map-get($gray-pallet, light), 0.1);
+  height: mq.px2em(500px);
+  margin: mq.px2em(50px) 0;
+  padding: mq.px2em(25px) mq.px2em(20px);
+  background: rgba(map.get($gray-pallet, light), 0.1);
 
   .js & {
     position: relative;
   }
 
   figcaption {
-    padding: mq-px2em(5px) 0;
+    padding: mq.px2em(5px) 0;
     position: absolute;
     left: 0;
-    bottom: -#{mq-px2em(35px)};
+    bottom: -#{mq.px2em(35px)};
   }
 
   &__preview {
@@ -136,23 +140,23 @@ Usage: codyhouse.co/license
     }
   }
 
-  @include mq($from: medium) {
-    padding: mq-px2em(35px) mq-px2em(20px);
+  @include mq.mq($from: tablet) {
+    padding: mq.px2em(35px) mq.px2em(20px);
 
     figcaption {
       text-align: right;
-      padding: mq-px2em(10px) 0;
+      padding: mq.px2em(10px) 0;
       left: unset;
       right: 0;
     }
   }
 
-  @include mq($from: large) {
+  @include mq.mq($from: desktop) {
     margin-right: calc(50% - 50vw);
-    max-width: mq-px2em($large-grid-max-width - ($grid-gutter-size * 2));
+    max-width: mq.px2em($large-grid-max-width - ($grid-gutter-size * 2));
   }
 
-  @include mq($from: xlarge) {
-    max-width: mq-px2em($xlarge-grid-max-width - ($grid-gutter-size * 2));
+  @include mq.mq($from: wide) {
+    max-width: mq.px2em($xlarge-grid-max-width - ($grid-gutter-size * 2));
   }
 }

@@ -1,7 +1,12 @@
+@use 'sass-mq/mq';
+
+@import '../variables';
+@import '../mixins/decorated_horizontal_divider';
+
 .project-tile {
   position: relative;
   margin-bottom: 20px;
-  height: mq-px2em(300px);
+  height: mq.px2em(300px);
   width: 100%;
 
   @at-root .projects__item:nth-of-type(odd) {
@@ -14,7 +19,7 @@
     margin: 0;
     height: 100%;
     display: flex;
-    padding: mq-px2em(30px);
+    padding: mq.px2em(30px);
     flex-direction: column;
     justify-content: flex-end;
     overflow: hidden;
@@ -24,8 +29,8 @@
 
     .media {
       svg {
-        height: mq-px2em(50px);
-        width: mq-px2em(50px);
+        height: mq.px2em(50px);
+        width: mq.px2em(50px);
       }
     }
   }
@@ -42,7 +47,7 @@
       &:after {
         content: '';
         position: absolute;
-        width: mq-px2em(14px);
+        width: mq.px2em(14px);
         height: 1px;
         background: currentColor;
         top: 100%;
@@ -52,32 +57,32 @@
     }
   }
 
-  @include mq($from: medium) {
+  @include mq.mq($from: tablet) {
     margin-bottom: 0;
   }
 
-  @include mq($from: large) {
-    min-height: mq-px2em(400px);
+  @include mq.mq($from: desktop) {
+    min-height: mq.px2em(400px);
 
     &:not(.project-tile--fixed-width) {
-      min-width: mq-px2em(400px);
-      max-width: mq-px2em(700px);
+      min-width: mq.px2em(400px);
+      max-width: mq.px2em(700px);
     }
 
     figure {
       .media {
         img {
-          padding-right: mq-px2em(20px);
+          padding-right: mq.px2em(20px);
         }
       }
     }
 
     figcaption {
-      height: mq-px2em(200px);
+      height: mq.px2em(200px);
     }
   }
 
-  @include mq($from: xlarge) {
-    min-height: mq-px2em(500px);
+  @include mq($from: wide) {
+    min-height: mq.px2em(500px);
   }
 }

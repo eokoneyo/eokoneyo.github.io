@@ -1,31 +1,32 @@
+@use 'sass:map';
+
+@import '../variables';
+
 .article-preview {
   & + & {
-    border-bottom: 4px solid map-get($gray-pallet, mid);
+    border-bottom: 4px solid map.get($gray-pallet, mid);
   }
 
-  span[role="separator"] {
+  span[role='separator'] {
     display: inline-block;
     width: 5px;
     height: 5px;
     vertical-align: middle;
-    background-color: map_get($gray-pallet, tint);
+    background-color: map.get($gray-pallet, tint);
     border-radius: 50%;
     margin: 0 6px;
   }
 
   &__meta {
-    flex: 0 0 10%
+    flex: 0 0 10%;
   }
 
-  &__text{
-
+  &__text {
   }
 
   &__headline {
-
   }
 
-  &__excerpt{
-
+  &__excerpt {
   }
 }
