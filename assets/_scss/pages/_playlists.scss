@@ -1,16 +1,16 @@
-@use 'sass-mq/mq';
-
-@import '../variables';
+@use '../config/mq';
+@use '../variables';
+@use '../base/typography';
 @import '../mixins/decorated_horizontal_divider';
 
 .ns-playlists {
-  @include mq($from: tablet) {
+  @include mq.mq($from: tablet) {
     position: relative;
     padding: mq.px2em(100px) 0 mq.px2em(250px) 0;
 
     .page-heading {
       position: absolute;
-      z-index: $zindex-fixed-element;
+      z-index: variables.$zindex-fixed-element;
       bottom: 0;
       width: 100%;
     }
@@ -30,7 +30,7 @@
 
       .knot__svg {
         .knot-progress {
-          stroke: $dark;
+          stroke: variables.$dark;
         }
       }
     }
@@ -79,7 +79,7 @@
           }
 
           figcaption {
-            font-family: $mono-font;
+            font-family: typography.$mono-font;
             margin: mq.px2em(10px) 0;
             letter-spacing: mq.px2em(1px);
           }

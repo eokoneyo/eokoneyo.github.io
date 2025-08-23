@@ -1,7 +1,6 @@
 @use 'sass:map';
-@use 'sass-mq/mq';
-
-@import '../variables';
+@use '../config/mq';
+@use '../variables';
 
 .ns-posts {
   .post {
@@ -15,12 +14,13 @@
       }
 
       &:not(:last-of-type) {
-        border-bottom: mq.px2em(2px) solid map.get($gray-pallet, light);
+        border-bottom: mq.px2em(2px) solid
+          map.get(variables.$gray-pallet, light);
       }
 
       &__publish-date {
         text-transform: uppercase;
-        color: map.get($gray-pallet, light);
+        color: map.get(variables.$gray-pallet, light);
       }
     }
   }

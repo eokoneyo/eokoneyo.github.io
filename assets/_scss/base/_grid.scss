@@ -1,7 +1,6 @@
 @use 'sass:math';
-@use 'sass-mq/mq';
-
-@import '../variables';
+@use '../variables';
+@use '../config/mq';
 
 .container {
   &,
@@ -12,20 +11,20 @@
   }
 
   & {
-    padding-left: mq.px2em($grid-gutter-size);
-    padding-right: mq.px2em($grid-gutter-size);
+    padding-left: mq.px2em(variables.$grid-gutter-size);
+    padding-right: mq.px2em(variables.$grid-gutter-size);
   }
 
   @include mq.mq($from: tablet) {
-    max-width: $medium-grid-max-width;
+    max-width: variables.$medium-grid-max-width;
   }
 
   @include mq.mq($from: desktop) {
-    max-width: mq.px2em($large-grid-max-width);
+    max-width: mq.px2em(variables.$large-grid-max-width);
   }
 
   @include mq.mq($from: wide) {
-    max-width: mq.px2em($xlarge-grid-max-width);
+    max-width: mq.px2em(variables.$xlarge-grid-max-width);
   }
 }
 
@@ -34,11 +33,11 @@
   flex-wrap: wrap;
 
   .container > & {
-    margin: 0 -#{mq.px2em($grid-gutter-size)};
+    margin: 0 -#{mq.px2em(variables.$grid-gutter-size)};
   }
 
   .container-fluid > & {
-    margin: 0 -#{mq.px2em($grid-gutter-size)};
+    margin: 0 -#{mq.px2em(variables.$grid-gutter-size)};
   }
 
   & + & {
@@ -47,33 +46,33 @@
 
   .offset {
     @include mq.mq($from: mobile) {
-      @for $i from 1 through $grid-columns {
+      @for $i from 1 through variables.$grid-columns {
         &-sm-#{$i} {
-          margin-left: math.div(100%, $grid-columns) * $i;
+          margin-left: math.div(100%, variables.$grid-columns) * $i;
         }
       }
     }
 
     @include mq.mq($from: tablet) {
-      @for $i from 1 through $grid-columns {
+      @for $i from 1 through variables.$grid-columns {
         &-md-#{$i} {
-          margin-left: math.div(100%, $grid-columns) * $i;
+          margin-left: math.div(100%, variables.$grid-columns) * $i;
         }
       }
     }
 
     @include mq.mq($from: desktop) {
-      @for $i from 1 through $grid-columns {
+      @for $i from 1 through variables.$grid-columns {
         &-lg-#{$i} {
-          margin-left: math.div(100%, $grid-columns) * $i;
+          margin-left: math.div(100%, variables.$grid-columns) * $i;
         }
       }
     }
 
     @include mq.mq($from: wide) {
-      @for $i from 1 through $grid-columns {
+      @for $i from 1 through variables.$grid-columns {
         &-xl-#{$i} {
-          margin-left: math.div(100%, $grid-columns) * $i;
+          margin-left: math.div(100%, variables.$grid-columns) * $i;
         }
       }
     }
@@ -85,44 +84,44 @@
   max-width: 100%;
 
   @at-root [class*='column-'] {
-    padding-left: mq.px2em($grid-gutter-size);
-    padding-right: mq.px2em($grid-gutter-size);
+    padding-left: mq.px2em(variables.$grid-gutter-size);
+    padding-right: mq.px2em(variables.$grid-gutter-size);
     width: 100%;
     min-height: 1px;
   }
 
   @include mq.mq($from: mobile) {
-    @for $i from 1 through $grid-columns {
+    @for $i from 1 through variables.$grid-columns {
       &-sm-#{$i} {
-        flex: 0 0 math.div(100%, $grid-columns) * $i;
-        max-width: math.div(100%, $grid-columns) * $i;
+        flex: 0 0 math.div(100%, variables.$grid-columns) * $i;
+        max-width: math.div(100%, variables.$grid-columns) * $i;
       }
     }
   }
 
   @include mq.mq($from: tablet) {
-    @for $i from 1 through $grid-columns {
+    @for $i from 1 through variables.$grid-columns {
       &-md-#{$i} {
-        flex: 0 0 math.div(100%, $grid-columns) * $i;
-        max-width: math.div(100%, $grid-columns) * $i;
+        flex: 0 0 math.div(100%, variables.$grid-columns) * $i;
+        max-width: math.div(100%, variables.$grid-columns) * $i;
       }
     }
   }
 
   @include mq.mq($from: desktop) {
-    @for $i from 1 through $grid-columns {
+    @for $i from 1 through variables.$grid-columns {
       &-lg-#{$i} {
-        flex: 0 0 math.div(100%, $grid-columns) * $i;
-        max-width: math.div(100%, $grid-columns) * $i;
+        flex: 0 0 math.div(100%, variables.$grid-columns) * $i;
+        max-width: math.div(100%, variables.$grid-columns) * $i;
       }
     }
   }
 
   @include mq.mq($from: wide) {
-    @for $i from 1 through $grid-columns {
+    @for $i from 1 through variables.$grid-columns {
       &-xl-#{$i} {
-        flex: 0 0 math.div(100%, $grid-columns) * $i;
-        max-width: math.div(100%, $grid-columns) * $i;
+        flex: 0 0 math.div(100%, variables.$grid-columns) * $i;
+        max-width: math.div(100%, variables.$grid-columns) * $i;
       }
     }
   }

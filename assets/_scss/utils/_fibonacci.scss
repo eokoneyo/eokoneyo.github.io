@@ -1,3 +1,5 @@
+@use 'sass:list';
+
 /**
  * Similar to list functions, `fibonacci()` returns a list, containing fibonacci numbers for a given number N.
  *
@@ -7,8 +9,9 @@
 @function fibonacci($n) {
   $fib: 0 1;
   @for $i from 1 through $n {
-    $new: nth($fib, length($fib)) + nth($fib, length($fib) - 1);
-    $fib: append($fib, $new);
+    $new: list.nth($fib, list.length($fib)) +
+      list.nth($fib, list.length($fib) - 1);
+    $fib: list.append($fib, $new);
   }
   @return $fib;
 }

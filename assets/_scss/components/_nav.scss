@@ -1,8 +1,8 @@
 @use 'sass:map';
 @use 'sass:selector';
-@use 'sass-mq/mq';
-
-@import '../variables';
+@use '../config/mq';
+@use '../variables';
+@use '../base/typography';
 
 $expandable-search-size-compact: mq.px2em(
   35px
@@ -14,14 +14,14 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: $zindex-header;
+  z-index: variables.$zindex-header;
   opacity: 1;
   visibility: visible;
   pointer-events: all;
   transition:
     opacity 200ms,
     background 50ms;
-  background: rgba($light, 0);
+  background: rgba(variables.$light, 0);
   transform: translateZ(0);
 
   // styling specific for iPhones with notch
@@ -35,12 +35,12 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
   &--scrolled {
-    background: rgba($light, 0.9);
+    background: rgba(variables.$light, 0.9);
   }
 
   .header {
     display: flex;
-    height: mq.px2em($header-height);
+    height: mq.px2em(variables.$header-height);
 
     &__left,
     &__right {
@@ -69,12 +69,12 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
       }
 
       &-image {
-        color: $light;
+        color: variables.$light;
         width: 60px;
       }
 
       &-text {
-        color: $primary;
+        color: variables.$primary;
       }
     }
 
@@ -101,7 +101,7 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
         position: absolute;
         height: 2px;
         width: 100%;
-        background: $primary;
+        background: variables.$primary;
         opacity: 1;
         left: 0;
         transform: rotate(0deg);
@@ -157,21 +157,21 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
     padding: 0;
     margin: 0;
     justify-content: space-evenly;
-    background: $light;
+    background: variables.$light;
 
     &-item {
       list-style: none;
       padding: 15px;
       margin: auto 5px;
       font-size: 15px;
-      font-family: $secondary-font;
-      font-weight: $bold-font-weight;
+      font-family: typography.$secondary-font;
+      font-weight: typography.$bold-font-weight;
       text-transform: capitalize;
 
       &:focus,
       &:hover,
       &.active {
-        color: map.get($gray-pallet, dark);
+        color: map.get(variables.$gray-pallet, dark);
       }
     }
 
@@ -238,7 +238,7 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
         border-radius: 50%;
         border: 0;
         transition: background-color $search-animation-duration;
-        background-color: rgba(map.get($gray-pallet, mid), 0.2);
+        background-color: rgba(map.get(variables.$gray-pallet, mid), 0.2);
 
         .icon {
           display: block;
@@ -248,12 +248,12 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
         }
 
         &:hover {
-          background-color: rgba(map.get($gray-pallet, mid), 0.5);
+          background-color: rgba(map.get(variables.$gray-pallet, mid), 0.5);
         }
 
         &:focus {
           outline: none;
-          background-color: rgba(map.get($gray-pallet, mid), 0.5);
+          background-color: rgba(map.get(variables.$gray-pallet, mid), 0.5);
         }
       }
     }
@@ -267,8 +267,8 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
       transform: translateX(-50%);
       border-width: 1px 0;
       border-style: solid;
-      border-color: rgba(map.get($gray-pallet, mid), 0.2);
-      background: $light;
+      border-color: rgba(map.get(variables.$gray-pallet, mid), 0.2);
+      background: variables.$light;
       display: none;
 
       @at-root [search-expanded] .search__results {
@@ -289,11 +289,12 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
 
       li {
         &:not(:last-of-type) {
-          border-bottom: 1px solid rgba(map.get($gray-pallet, light), 0.8);
+          border-bottom: 1px solid
+            rgba(map.get(variables.$gray-pallet, light), 0.8);
 
           &:hover,
           &:focus {
-            border-bottom: 1px solid map.get($gray-pallet, light);
+            border-bottom: 1px solid map.get(variables.$gray-pallet, light);
           }
         }
 
@@ -343,12 +344,12 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
           left: 0;
           width: 100%;
           height: 100%;
-          background-color: rgba($primary, 0.75);
+          background-color: rgba(variables.$primary, 0.75);
           -webkit-backdrop-filter: blur(mq.px2em(10px));
           backdrop-filter: blur(mq.px2em(10px));
           visibility: hidden;
           opacity: 0;
-          z-index: #{$zindex-header - 1};
+          z-index: #{variables.$zindex-header - 1};
           transition:
             visibility 0.3s linear,
             opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -356,7 +357,7 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
       }
 
       &[search-expanded] {
-        background: $light;
+        background: variables.$light;
 
         & + [class^='ns-'][class$='layout'],
         & + [class='ns-landing-screen'] .main-content {
@@ -388,7 +389,7 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
           border-radius: 0;
           cursor: auto;
           user-select: auto;
-          color: map.get($gray-pallet, dark);
+          color: map.get(variables.$gray-pallet, dark);
           transition: border-radius 0.5s ease-in $search-animation-duration;
 
           &--suggestions-active {
@@ -397,7 +398,7 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
 
           &::placeholder {
             opacity: 1;
-            color: map.get($gray-pallet, mid);
+            color: map.get(variables.$gray-pallet, mid);
           }
 
           & + .search-form__btn {

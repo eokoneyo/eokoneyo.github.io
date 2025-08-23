@@ -1,4 +1,4 @@
-@use 'sass-mq/mq';
+@use '../config/mq';
 
 .ns-about {
   .photo-block {
@@ -19,7 +19,7 @@
       filter: grayscale(1);
     }
 
-    @include mq($from: desktop) {
+    @include mq.mq($from: desktop) {
       &__image {
         height: mq.px2em(500px);
         object-position: 0 25%;

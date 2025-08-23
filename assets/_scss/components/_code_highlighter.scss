@@ -1,6 +1,6 @@
-@use 'sass-mq/mq';
-
-@import '../variables';
+@use '../config/mq';
+@use '../variables';
+@use '../base/typography';
 
 div[class|='language'] {
   margin: 0;
@@ -11,7 +11,7 @@ div[class|='language'] {
     code {
       display: block;
       overflow: auto visible;
-      font-family: $mono-font;
+      font-family: typography.$mono-font;
 
       .line {
         line-height: 1.5;
@@ -59,10 +59,14 @@ div[class|='language'] {
 
   @include mq.mq($from: desktop) {
     margin-right: calc(50% - 50vw);
-    max-width: mq.px2em($large-grid-max-width - ($grid-gutter-size * 2));
+    max-width: mq.px2em(
+      variables.$large-grid-max-width - (variables.$grid-gutter-size * 2)
+    );
   }
 
   @include mq.mq($from: wide) {
-    max-width: mq.px2em($xlarge-grid-max-width - ($grid-gutter-size * 2));
+    max-width: mq.px2em(
+      variables.$xlarge-grid-max-width - (variables.$grid-gutter-size * 2)
+    );
   }
 }

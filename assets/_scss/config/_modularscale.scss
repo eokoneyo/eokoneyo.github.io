@@ -1,0 +1,22 @@
+@use 'sass:map';
+@use '../variables';
+
+// Set type scale here
+$modularscale: (
+  base: 16px,
+  map.get(variables.$grid-breakpoints, small): (
+    ratio: 1.1,
+  ),
+  map.get(variables.$grid-breakpoints, medium): (
+    ratio: 1.15,
+  ),
+  map.get(variables.$grid-breakpoints, xlarge): (
+    ratio: 1.25,
+  ),
+);
+
+@import 'modularscale-sass';
+
+@mixin respond($property, $value) {
+  @include ms-respond($property, $value);
+}

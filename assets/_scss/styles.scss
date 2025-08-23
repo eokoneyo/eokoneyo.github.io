@@ -1,14 +1,10 @@
 @import '~normalize.css/normalize.css';
 @import '~@shikijs/twoslash/style-rich.css';
-@import 'variables';
-@import 'base/typography';
+//@import 'base/typography';
 @import 'base/grid';
 @import 'base/grid-bg';
 @import 'base/globals';
 @import 'base/accessibility';
-
-//mixins
-@import 'mixins/decorated_horizontal_divider';
 
 // layout
 @import 'layouts/default';

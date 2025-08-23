@@ -1,5 +1,8 @@
 @use 'sass:map';
-@use 'sass-mq/mq';
+@use '../config/mq';
+@use '../config/modularscale';
+@use '../variables';
+@use '../base/typography';
 
 @import '../mixins/parallax';
 
@@ -35,7 +38,7 @@
       &:before {
         content: '';
         width: 100%;
-        background: $yellow;
+        background: variables.$yellow;
         position: relative;
         top: 0;
         height: 100%;
@@ -54,7 +57,7 @@
     }
 
     &__tagline {
-      color: map.get($gray-pallet, light);
+      color: map.get(variables.$gray-pallet, light);
     }
 
     &__side-photo {
@@ -123,8 +126,8 @@
 
   .main-content {
     @include parallax-child(0);
-    box-shadow: rgba($primary, 0.15) 0 0 100px 0;
-    background: $light;
+    box-shadow: rgba(variables.$primary, 0.15) 0 0 100px 0;
+    background: variables.$light;
     display: flex;
     flex-direction: column;
 
@@ -134,7 +137,7 @@
 
     &__inner {
       flex: 1 0 auto;
-      margin-top: mq.px2em($header-height);
+      margin-top: mq.px2em(variables.$header-height);
     }
 
     .selected-categories {
@@ -145,7 +148,7 @@
         justify-content: space-between;
 
         &__action-item {
-          @include ms-respond(font-size, 0);
+          @include modularscale.respond(font-size, 0);
           font-style: italic;
         }
       }
@@ -161,10 +164,10 @@
           .display-heading__subtitle {
             font-style: normal;
             letter-spacing: mq.px2em(3px);
-            font-weight: $bold-font-weight;
+            font-weight: typography.$bold-font-weight;
 
             > * {
-              color: rgba(map.get($gray-pallet, mid), 0.9);
+              color: rgba(map.get(variables.$gray-pallet, mid), 0.9);
             }
           }
         }

@@ -1,5 +1,4 @@
 @use 'sass:map';
-@use 'sass-mq/mq';
 
 // Colors
 $light: #ffffff;
@@ -27,16 +26,12 @@ $grid-breakpoints: (
   xxlarge: 1440px,
 );
 
-// Register Breakpoints with media query helper
 $mq-breakpoints: (
   mobile: map.get($grid-breakpoints, small),
   tablet: map.get($grid-breakpoints, medium),
   desktop: map.get($grid-breakpoints, large),
   wide: map.get($grid-breakpoints, xlarge),
-  xxlarge: map.get($grid-breakpoints, xxlarge),
 );
-
-@include mq.add-breakpoint(xxlarge, map.get($mq-breakpoints, xxlarge));
 
 $medium-grid-max-width: 95%;
 $large-grid-max-width: 960px;

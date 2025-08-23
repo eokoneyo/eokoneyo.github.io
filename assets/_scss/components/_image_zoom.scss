@@ -7,15 +7,14 @@ Usage: codyhouse.co/license
 
 -------------------------------- */
 @use 'sass:map';
-@use 'sass-mq/mq';
-
-@import '../variables';
+@use '../config/mq';
+@use '../variables';
 
 .image-zoom {
   height: mq.px2em(500px);
   margin: mq.px2em(50px) 0;
   padding: mq.px2em(25px) mq.px2em(20px);
-  background: rgba(map.get($gray-pallet, light), 0.1);
+  background: rgba(map.get(variables.$gray-pallet, light), 0.1);
 
   .js & {
     position: relative;
@@ -60,7 +59,7 @@ Usage: codyhouse.co/license
     width: 100%;
     height: 100%;
     overflow: auto;
-    z-index: $zindex-overlay;
+    z-index: variables.$zindex-overlay;
     overflow-x: hidden;
     cursor:
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Ctitle%3EArtboard 1icon-2%3C/title%3E%3Cg opacity='0.9'%3E%3Ccircle cx='24' cy='24' r='24'/%3E%3C/g%3E%3Crect x='23' y='14' width='2' height='20' transform='translate(48) rotate(90)' fill='%23fff'/%3E%3C/svg%3E")
@@ -136,7 +135,7 @@ Usage: codyhouse.co/license
     &:focus ~ .image-zoom__preview {
       box-shadow:
         0 0 0 2px hsl(0, 0%, 100%),
-        0 0 0 5px rgba($primary, 0.25);
+        0 0 0 5px rgba(variables.$primary, 0.25);
     }
   }
 
@@ -153,10 +152,14 @@ Usage: codyhouse.co/license
 
   @include mq.mq($from: desktop) {
     margin-right: calc(50% - 50vw);
-    max-width: mq.px2em($large-grid-max-width - ($grid-gutter-size * 2));
+    max-width: mq.px2em(
+      variables.$large-grid-max-width - (variables.$grid-gutter-size * 2)
+    );
   }
 
   @include mq.mq($from: wide) {
-    max-width: mq.px2em($xlarge-grid-max-width - ($grid-gutter-size * 2));
+    max-width: mq.px2em(
+      variables.$xlarge-grid-max-width - (variables.$grid-gutter-size * 2)
+    );
   }
 }

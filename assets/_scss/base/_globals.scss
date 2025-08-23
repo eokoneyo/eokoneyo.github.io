@@ -1,14 +1,14 @@
 @use 'sass:color';
 @use 'sass:map';
-@use 'sass-mq/mq';
-
-@import '../variables';
+@use '../config/mq';
+@use '../variables';
+@use '../base/typography';
 
 body {
   margin: 0;
 
   > main {
-    background: $light;
+    background: variables.$light;
   }
 
   &,
@@ -17,7 +17,7 @@ body {
 
     &::selection {
       text-shadow: none;
-      background: $yellow;
+      background: variables.$yellow;
     }
 
     &:target {
@@ -25,17 +25,17 @@ body {
     }
 
     &:not(code, pre) {
-      color: map.get($gray-pallet, dark);
+      color: map.get(variables.$gray-pallet, dark);
     }
   }
 
   @keyframes highlight {
     from {
-      background: $yellow;
+      background: variables.$yellow;
     }
 
     to {
-      background: $light;
+      background: variables.$light;
     }
   }
 
@@ -47,7 +47,7 @@ body {
 }
 
 a {
-  color: $primary;
+  color: variables.$primary;
   text-decoration: none;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
@@ -55,7 +55,7 @@ a {
 
   &:hover,
   &:focus {
-    color: darken($primary, 20%);
+    color: darken(variables.$primary, 20%);
   }
 
   // Styles for external links
@@ -95,7 +95,8 @@ a {
     }
 
     &:hover:after {
-      border-color: transparent darken($primary, 20%) transparent transparent;
+      border-color: transparent darken(variables.$primary, 20%) transparent
+        transparent;
     }
   }
 
@@ -118,7 +119,7 @@ a {
 
 [role='doc-noteref'] {
   @at-root sup#{&} {
-    font-family: $mono-font;
+    font-family: typography.$mono-font;
   }
 }
 
@@ -131,7 +132,7 @@ a {
 
   li {
     &::marker {
-      font-family: $mono-font;
+      font-family: typography.$mono-font;
     }
 
     &[role='doc-endnote'] {
@@ -149,7 +150,7 @@ a {
 }
 
 em {
-  font-weight: $bold-font-weight;
+  font-weight: typography.$bold-font-weight;
 }
 
 img::selection,
@@ -180,13 +181,13 @@ ol {
 }
 
 .display-heading {
-  color: map.get($gray-pallet, dark);
+  color: map.get(variables.$gray-pallet, dark);
 
   &--decorated {
     background-repeat: no-repeat;
     background-image: linear-gradient(
       transparent 65%,
-      rgba(map.get($gray-pallet, mid), 0.2) 35%
+      rgba(map.get(variables.$gray-pallet, mid), 0.2) 35%
     );
     background-size: 100% 100%;
 
@@ -208,7 +209,7 @@ ol {
 }
 
 .white-text {
-  color: $light;
+  color: variables.$light;
 }
 .no-margin {
   margin: 0;

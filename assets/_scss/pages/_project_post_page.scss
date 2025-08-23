@@ -1,9 +1,9 @@
-@use 'sass-mq/mq';
-
-@import '../variables';
+@use '../config/mq';
+@use '../variables';
+@import '../mixins/decorated_horizontal_divider';
 
 .ns-project-post {
-  min-height: calc(100vh - #{mq.px2em($header-height)});
+  min-height: calc(100vh - #{mq.px2em(variables.$header-height)});
   display: flex;
   flex-direction: column;
 
@@ -45,7 +45,7 @@
     @extend .article-width;
     padding-top: mq.px2em(50px);
 
-    @include mq($from: tablet) {
+    @include mq.mq($from: tablet) {
       p {
         text-align: justify;
       }

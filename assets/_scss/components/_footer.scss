@@ -1,14 +1,14 @@
 @use 'sass:map';
-@use 'sass-mq/mq';
-
-@import '../variables';
+@use '../config/mq';
+@use '../variables';
+@use '../base/typography';
 
 .ns-footer {
   margin-top: mq.px2em(50px);
-  background: map.get($gray-pallet, dark);
+  background: map.get(variables.$gray-pallet, dark);
 
   & * {
-    color: $light;
+    color: variables.$light;
   }
 
   & a {
@@ -20,8 +20,8 @@
 
   &:before {
     content: '';
-    border-top: 1px solid $light;
-    border-bottom: 3px solid $light;
+    border-top: 1px solid variables.$light;
+    border-bottom: 3px solid variables.$light;
     display: block;
     height: 1px;
     margin-top: 3px;
@@ -33,8 +33,8 @@
 
   .footer-socials {
     @extend .no-style-list;
-    margin: $vspace-3 0;
-    line-height: $vspace;
+    margin: typography.$vspace-3 0;
+    line-height: typography.$vspace;
 
     .social-icon {
       &--link {

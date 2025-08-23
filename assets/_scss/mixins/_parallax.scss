@@ -2,8 +2,6 @@
 //@link https://developers.google.com/web/updates/2016/12/performant-parallaxing
 @use 'sass:math';
 
-@import '../variables';
-
 $parallax-perspective: 1;
 
 @function parallax-scale-factor($z-distance) {

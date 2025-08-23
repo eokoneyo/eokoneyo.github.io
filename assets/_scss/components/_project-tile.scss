@@ -1,6 +1,5 @@
-@use 'sass-mq/mq';
-
-@import '../variables';
+@use '../config/mq';
+@use '../variables';
 @import '../mixins/decorated_horizontal_divider';
 
 .project-tile {
@@ -39,7 +38,7 @@
     position: relative;
 
     > * {
-      color: $dark;
+      color: variables.$dark;
     }
 
     .title {
@@ -82,7 +81,7 @@
     }
   }
 
-  @include mq($from: wide) {
+  @include mq.mq($from: wide) {
     min-height: mq.px2em(500px);
   }
 }
