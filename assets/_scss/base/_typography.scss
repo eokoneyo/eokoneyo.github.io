@@ -1,7 +1,12 @@
-@use '@fontsource/ovo/scss/mixins' as Ovo;
-@use '@fontsource/dm-mono/scss/mixins' as DMMono;
-@import '~sass-mq';
-@import '~modularscale-sass';
+@use 'sass:map';
+@use 'sass:list';
+@use '@fontsource-utils/scss' as fontsource;
+@use '@fontsource/ovo/scss' as Ovo;
+@use '@fontsource/dm-mono/scss' as DMMono;
+@use '../variables';
+@use '../config/mq';
+@use '../config/modularscale';
+
 @import '../utils/fibonacci';
 
 // Font weights
@@ -19,34 +24,28 @@ $vspace-1: calc(#{2 * $space} * 1rem);
 $vspace-2: calc(#{1.5 * $space} * 1rem);
 $vspace-3: calc(#{0.5 * $space} * 1rem);
 
-// set type scale here
-$modularscale: (
-  base: 16px,
-  map_get($grid-breakpoints, small): (
-    ratio: 1.1,
-  ),
-  map_get($grid-breakpoints, medium): (
-    ratio: 1.15,
-  ),
-  map_get($grid-breakpoints, xlarge): (
-    ratio: 1.25,
-  ),
+// Font-faces
+@include fontsource.faces(
+  $metadata: Ovo.$metadata,
+  $subsets: latin,
+  $weights: $normal-font-weight
 );
 
-$headings: 6;
-
-// used for typography scale, see https://www.layoutgridcalculator.com/typographic-scale/
-$modularScaleToCountDownFrom: fibonacci($headings);
-
-// Font-faces
-@include Ovo.faces($weights: $normal-font-weight);
-
-@include DMMono.faces($weights: $normal-font-weight);
+@include fontsource.faces(
+  $metadata: DMMono.$metadata,
+  $subsets: latin,
+  $weights: $normal-font-weight
+);
 
 $dm-mono: 'DM Mono';
 $mono-font: $dm-mono, monospace, sans-serif, serif;
 $primary-font: 'Ovo', Georgia, 'Times New Roman', Times, serif;
 $secondary-font: $primary-font;
+
+$headings: 6;
+
+// used to create typographic scale for our headings, see https://www.layoutgridcalculator.com/typographic-scale/
+$typographicScale: fibonacci($headings);
 
 html {
   font-size: 100%;
@@ -62,22 +61,22 @@ body {
 
 @for $i from 1 through $headings {
   h#{$i} {
-    @include ms-respond(
+    @include modularscale.respond(
       font-size,
-      nth(
-        $modularScaleToCountDownFrom,
-        length($modularScaleToCountDownFrom) - $i
-      )
+      list.nth($typographicScale, list.length($typographicScale) - $i)
     );
-    font-family: $secondary-font;
-    font-weight: $medium-font-weight;
-    letter-spacing: mq-px2em(1px);
+
+    & {
+      font-family: $secondary-font;
+      font-weight: $medium-font-weight;
+      letter-spacing: mq.px2em(1px);
+    }
   }
 }
 
 body,
 p {
-  @include ms-respond(font-size, 0);
+  @include modularscale.respond(font-size, 0);
 }
 
 h1 {
@@ -112,27 +111,29 @@ p {
 }
 
 blockquote {
-  @include ms-respond(font-size, 1);
   font-style: italic;
+  @include modularscale.respond(font-size, 1);
 }
 
 time,
 [datetime] {
-  color: map-get($gray-pallet, light);
-  font-family: $mono-font;
+  & {
+    color: map.get(variables.$gray-pallet, light);
+    font-family: $mono-font;
+  }
 }
 
 .caption_ts {
-  @include ms-respond(font-size, -1);
   font-style: italic;
+  @include modularscale.respond(font-size, -1);
 }
 
 .endnote_ts {
-  @include ms-respond(font-size, -1);
+  @include modularscale.respond(font-size, -1);
 }
 
 .footnote_ts {
-  @include ms-respond(font-size, -2);
+  @include modularscale.respond(font-size, -2);
 }
 
 .footnote_ts,

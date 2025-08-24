@@ -1,8 +1,17 @@
+@use 'sass:color';
+@use 'sass:map';
+@use '../config/mq';
+@use '../variables';
+@use '../base/typography';
+
+@import '~normalize.css/normalize.css';
+@import '~@shikijs/twoslash/style-rich.css';
+
 body {
   margin: 0;
 
   > main {
-    background: $light;
+    background: variables.$light;
   }
 
   &,
@@ -11,7 +20,7 @@ body {
 
     &::selection {
       text-shadow: none;
-      background: $yellow;
+      background: variables.$yellow;
     }
 
     &:target {
@@ -19,17 +28,17 @@ body {
     }
 
     &:not(code, pre) {
-      color: map_get($gray-pallet, dark);
+      color: map.get(variables.$gray-pallet, dark);
     }
   }
 
   @keyframes highlight {
     from {
-      background: $yellow;
+      background: variables.$yellow;
     }
 
     to {
-      background: $light;
+      background: variables.$light;
     }
   }
 
@@ -41,7 +50,7 @@ body {
 }
 
 a {
-  color: $primary;
+  color: variables.$primary;
   text-decoration: none;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
@@ -49,7 +58,7 @@ a {
 
   &:hover,
   &:focus {
-    color: darken($primary, 20%);
+    color: color.adjust(variables.$primary, $lightness: -20%);
   }
 
   // Styles for external links
@@ -60,14 +69,14 @@ a {
       font-weight: normal;
       position: relative;
       display: inline-block;
-      padding-right: mq-px2em(8px);
+      padding-right: mq.px2em(8px);
 
       @at-root [role='doc-endnote'] & {
         display: initial;
       }
 
       & ~ & {
-        padding: 0 mq-px2em(8px);
+        padding: 0 mq.px2em(8px);
       }
 
       :after {
@@ -79,7 +88,7 @@ a {
         top: 0;
         right: 0;
         border-style: solid;
-        border-width: 0 mq-px2em(8px) mq-px2em(8px) 0;
+        border-width: 0 mq.px2em(8px) mq.px2em(8px) 0;
         border-color: transparent currentColor transparent transparent;
 
         @at-root [role='doc-endnote'] & {
@@ -89,7 +98,9 @@ a {
     }
 
     &:hover:after {
-      border-color: transparent darken($primary, 20%) transparent transparent;
+      border-color: transparent
+        color.adjust(variables.$primary, $lightness: -20%) transparent
+        transparent;
     }
   }
 
@@ -105,14 +116,14 @@ a {
 
     &:after {
       content: '\002192';
-      padding-left: mq-px2em(5px);
+      padding-left: mq.px2em(5px);
     }
   }
 }
 
 [role='doc-noteref'] {
   @at-root sup#{&} {
-    font-family: $mono-font;
+    font-family: typography.$mono-font;
   }
 }
 
@@ -125,11 +136,11 @@ a {
 
   li {
     &::marker {
-      font-family: $mono-font;
+      font-family: typography.$mono-font;
     }
 
     &[role='doc-endnote'] {
-      margin-bottom: mq-px2em(10px);
+      margin-bottom: mq.px2em(10px);
 
       > * {
         display: inline;
@@ -143,7 +154,7 @@ a {
 }
 
 em {
-  font-weight: $bold-font-weight;
+  font-weight: typography.$bold-font-weight;
 }
 
 img::selection,
@@ -169,18 +180,18 @@ ol {
 }
 
 .page-heading {
-  margin-top: mq-px2em(20px);
-  margin-bottom: mq-px2em(20px);
+  margin-top: mq.px2em(20px);
+  margin-bottom: mq.px2em(20px);
 }
 
 .display-heading {
-  color: map_get($gray-pallet, dark);
+  color: map.get(variables.$gray-pallet, dark);
 
   &--decorated {
     background-repeat: no-repeat;
     background-image: linear-gradient(
       transparent 65%,
-      rgba(map_get($gray-pallet, mid), 0.2) 35%
+      rgba(map.get(variables.$gray-pallet, mid), 0.2) 35%
     );
     background-size: 100% 100%;
 
@@ -202,7 +213,7 @@ ol {
 }
 
 .white-text {
-  color: $light;
+  color: variables.$light;
 }
 .no-margin {
   margin: 0;
@@ -214,5 +225,5 @@ ol {
 }
 
 .utterances {
-  margin-top: mq-px2em(50px);
+  margin-top: mq.px2em(50px);
 }

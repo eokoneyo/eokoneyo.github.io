@@ -1,11 +1,16 @@
+@use '../config/mq';
+@use '../variables';
+@use '../base/typography';
+@use '../mixins/decorated_horizontal_divider' as *;
+
 .ns-playlists {
-  @include mq($from: medium) {
+  @include mq.mq($from: tablet) {
     position: relative;
-    padding: mq-px2em(100px) 0 mq-px2em(250px) 0;
+    padding: mq.px2em(100px) 0 mq.px2em(250px) 0;
 
     .page-heading {
       position: absolute;
-      z-index: $zindex-fixed-element;
+      z-index: variables.$zindex-fixed-element;
       bottom: 0;
       width: 100%;
     }
@@ -14,8 +19,8 @@
   #Playlists {
     .loader {
       display: flex;
-      margin: mq-px2em(50px) 0;
-      min-height: mq-px2em(200px);
+      margin: mq.px2em(50px) 0;
+      min-height: mq.px2em(200px);
       flex-direction: column;
       align-items: center;
 
@@ -25,7 +30,7 @@
 
       .knot__svg {
         .knot-progress {
-          stroke: $dark;
+          stroke: variables.$dark;
         }
       }
     }
@@ -45,8 +50,8 @@
         }
 
         &-item {
-          margin-bottom: mq-px2em(20px);
-          height: mq-px2em(400px);
+          margin-bottom: mq.px2em(20px);
+          height: mq.px2em(400px);
           width: 100%;
           flex-basis: 100%;
           flex-shrink: 0;
@@ -62,7 +67,7 @@
             height: 100%;
             width: inherit;
             display: flex;
-            padding: mq-px2em(20px) mq-px2em(25px);
+            padding: mq.px2em(20px) mq.px2em(25px);
             flex-direction: column;
             justify-content: space-evenly;
           }
@@ -74,12 +79,12 @@
           }
 
           figcaption {
-            font-family: $mono-font;
-            margin: mq-px2em(10px) 0;
-            letter-spacing: mq-px2em(1px);
+            font-family: typography.$mono-font;
+            margin: mq.px2em(10px) 0;
+            letter-spacing: mq.px2em(1px);
           }
 
-          @include mq($from: medium) {
+          @include mq.mq($from: tablet) {
             flex-basis: 50%;
           }
         }

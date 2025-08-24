@@ -1,4 +1,8 @@
+@use 'sass:map';
 @use 'sass:math';
+@use 'sass:color';
+@use '../variables';
+@use '../config/mq';
 
 .grid-bg-fx {
   z-index: -1;
@@ -28,29 +32,35 @@
   height: 100%;
   justify-content: space-evenly;
 
-  @for $i from 1 through $grid-columns {
+  @for $i from 1 through variables.$grid-columns {
     .column-#{$i} {
       flex-basis: calc(
-        #{math.div(100%, $grid-columns) * $i} - #{$grid-gutter-size * 2}
+        #{math.div(100%, variables.$grid-columns) *
+          $i} -
+          #{variables.$grid-gutter-size *
+          2}
       );
       max-width: calc(
-        #{math.div(100%, $grid-columns) * $i} - #{$grid-gutter-size * 2}
+        #{math.div(100%, variables.$grid-columns) *
+          $i} -
+          #{variables.$grid-gutter-size *
+          2}
       );
 
       &:not(:first-of-type) {
-        margin-left: $grid-gutter-size;
+        margin-left: variables.$grid-gutter-size;
       }
     }
   }
 
-  @include mq($until: medium) {
+  @include mq.mq($until: tablet) {
     .hide-md-down {
       display: none;
     }
   }
 
   > * {
-    color: lighten(map_get($gray-pallet, tint), 60%);
+    color: color.adjust(map.get(variables.$gray-pallet, tint), $lightness: 60%);
     position: relative;
     margin-bottom: 0 !important;
   }

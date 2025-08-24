@@ -1,3 +1,6 @@
+@use '../config/mq';
+@use '../variables';
+
 .ns-projects {
   .projects {
     display: flex;
@@ -23,19 +26,19 @@
           position: absolute;
           z-index: +1;
           font-size: 10rem;
-          color: $light;
+          color: variables.$light;
           bottom: calc(100% - 5rem);
           text-shadow:
-            -1px -1px 0 $dark,
-            1px -1px 0 $dark,
-            -1px 1px 0 $dark,
-            1px 1px 0 $dark;
+            -1px -1px 0 variables.$dark,
+            1px -1px 0 variables.$dark,
+            -1px 1px 0 variables.$dark,
+            1px 1px 0 variables.$dark;
           transition: color 0.2s;
           left: 5%;
         }
 
         .media {
-          @include mq($until: medium) {
+          @include mq.mq($until: tablet) {
             display: none;
           }
         }

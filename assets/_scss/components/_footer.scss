@@ -1,9 +1,14 @@
+@use 'sass:map';
+@use '../config/mq';
+@use '../variables';
+@use '../base/typography';
+
 .ns-footer {
-  margin-top: mq-px2em(50px);
-  background: map_get($gray-pallet, dark);
+  margin-top: mq.px2em(50px);
+  background: map.get(variables.$gray-pallet, dark);
 
   & * {
-    color: $light;
+    color: variables.$light;
   }
 
   & a {
@@ -15,8 +20,8 @@
 
   &:before {
     content: '';
-    border-top: 1px solid $light;
-    border-bottom: 3px solid $light;
+    border-top: 1px solid variables.$light;
+    border-bottom: 3px solid variables.$light;
     display: block;
     height: 1px;
     margin-top: 3px;
@@ -28,12 +33,12 @@
 
   .footer-socials {
     @extend .no-style-list;
-    margin: $vspace-3 0;
-    line-height: $vspace;
+    margin: typography.$vspace-3 0;
+    line-height: typography.$vspace;
 
     .social-icon {
       &--link {
-        padding: 0 0 mq-px2em(10px) 0;
+        padding: 0 0 mq.px2em(10px) 0;
 
         &:hover,
         &:focus {
@@ -44,8 +49,8 @@
           padding: 0 8px 0 0;
         }
 
-        @include mq($from: large) {
-          padding: 0 mq-px2em(10px) 0 0;
+        @include mq.mq($from: desktop) {
+          padding: 0 mq.px2em(10px) 0 0;
           display: inline-block;
           margin: 0 10px 0 0;
         }
@@ -54,7 +59,7 @@
   }
 
   .blog-footer {
-    padding: mq-px2em(20px) 0;
+    padding: mq.px2em(20px) 0;
 
     .dev-details {
       > * {
@@ -74,12 +79,12 @@
 
       &:after {
         content: '\00005E';
-        padding: mq-px2em(5px);
+        padding: mq.px2em(5px);
         font-size: inherit;
       }
     }
 
-    @include mq($from: large) {
+    @include mq.mq($from: desktop) {
       justify-content: flex-end;
     }
   }

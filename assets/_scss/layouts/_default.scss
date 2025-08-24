@@ -1,3 +1,6 @@
+@use '../config/mq';
+@use '../variables';
+
 .ns-default-layout {
   min-height: 100vh;
   display: flex;
@@ -10,6 +13,6 @@
   &__content {
     flex: 1 0 auto;
     position: relative;
-    padding-top: mq-px2em($header-height);
+    padding-top: mq.px2em(variables.$header-height);
   }
 }

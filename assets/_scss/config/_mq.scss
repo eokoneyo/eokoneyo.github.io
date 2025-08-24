@@ -1,0 +1,18 @@
+@use 'sass:map';
+@use '../variables';
+
+$mq-breakpoints: (
+  mobile: map.get(variables.$grid-breakpoints, small),
+  tablet: map.get(variables.$grid-breakpoints, medium),
+  desktop: map.get(variables.$grid-breakpoints, large),
+  wide: map.get(variables.$grid-breakpoints, xlarge),
+);
+
+@forward 'sass-mq/mq' with (
+  // Register Breakpoints with media query helper
+  $breakpoints: $mq-breakpoints
+);
+
+@use 'sass-mq/mq' as *;
+
+@include add-breakpoint(xxlarge, map.get(variables.$grid-breakpoints, xxlarge));

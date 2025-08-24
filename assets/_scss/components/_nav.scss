@@ -1,6 +1,10 @@
+@use 'sass:map';
 @use 'sass:selector';
+@use '../config/mq';
+@use '../variables';
+@use '../base/typography';
 
-$expandable-search-size-compact: mq-px2em(
+$expandable-search-size-compact: mq.px2em(
   35px
 ); // height and width - compact version
 $search-animation-duration: 500ms;
@@ -10,12 +14,14 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: $zindex-header;
+  z-index: variables.$zindex-header;
   opacity: 1;
   visibility: visible;
   pointer-events: all;
-  transition: opacity 200ms, background 50ms;
-  background: rgba($light, 0);
+  transition:
+    opacity 200ms,
+    background 50ms;
+  background: rgba(variables.$light, 0);
   transform: translateZ(0);
 
   // styling specific for iPhones with notch
@@ -29,12 +35,12 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
   &--scrolled {
-    background: rgba($light, 0.9);
+    background: rgba(variables.$light, 0.9);
   }
 
   .header {
     display: flex;
-    height: mq-px2em($header-height);
+    height: mq.px2em(variables.$header-height);
 
     &__left,
     &__right {
@@ -63,16 +69,16 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
       }
 
       &-image {
-        color: $light;
+        color: variables.$light;
         width: 60px;
       }
 
       &-text {
-        color: $primary;
+        color: variables.$primary;
       }
     }
 
-    @include mq($from: medium) {
+    @include mq.mq($from: tablet) {
       &__right {
         position: relative;
       }
@@ -95,7 +101,7 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
         position: absolute;
         height: 2px;
         width: 100%;
-        background: $primary;
+        background: variables.$primary;
         opacity: 1;
         left: 0;
         transform: rotate(0deg);
@@ -130,13 +136,13 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
       }
     }
 
-    @include mq($until: medium) {
+    @include mq.mq($until: tablet) {
       &:not(.mobile-toggle--open) ~ .menu-list {
         display: none;
       }
     }
 
-    @include mq($from: medium) {
+    @include mq.mq($from: tablet) {
       display: none;
     }
   }
@@ -151,25 +157,25 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
     padding: 0;
     margin: 0;
     justify-content: space-evenly;
-    background: $light;
+    background: variables.$light;
 
     &-item {
       list-style: none;
       padding: 15px;
       margin: auto 5px;
       font-size: 15px;
-      font-family: $secondary-font;
-      font-weight: $bold-font-weight;
+      font-family: typography.$secondary-font;
+      font-weight: typography.$bold-font-weight;
       text-transform: capitalize;
 
       &:focus,
       &:hover,
       &.active {
-        color: map_get($gray-pallet, dark);
+        color: map.get(variables.$gray-pallet, dark);
       }
     }
 
-    @include mq($from: medium) {
+    @include mq.mq($from: tablet) {
       margin: 0;
       height: 100%;
       width: auto;
@@ -181,8 +187,8 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
 
   .search {
     order: -1;
-    padding: mq-px2em(12px) 0;
-    margin: 0 mq-px2em(10px);
+    padding: mq.px2em(12px) 0;
+    margin: 0 mq.px2em(10px);
     flex: 0 0 $expandable-search-size-compact;
     transition: flex 0.1s;
 
@@ -224,45 +230,45 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
         display: flex;
         top: 2px;
         right: 2px;
-        padding: mq-px2em(5px);
-        width: mq-px2em(30px);
-        height: mq-px2em(30px);
+        padding: mq.px2em(5px);
+        width: mq.px2em(30px);
+        height: mq.px2em(30px);
         z-index: 1;
         pointer-events: none;
         border-radius: 50%;
         border: 0;
         transition: background-color $search-animation-duration;
-        background-color: rgba(map_get($gray-pallet, mid), 0.2);
+        background-color: rgba(map.get(variables.$gray-pallet, mid), 0.2);
 
         .icon {
           display: block;
           margin: auto;
-          height: mq-px2em(20px); // icon size
-          width: mq-px2em(20px); // icon size
+          height: mq.px2em(20px); // icon size
+          width: mq.px2em(20px); // icon size
         }
 
         &:hover {
-          background-color: rgba(map_get($gray-pallet, mid), 0.5);
+          background-color: rgba(map.get(variables.$gray-pallet, mid), 0.5);
         }
 
         &:focus {
           outline: none;
-          background-color: rgba(map_get($gray-pallet, mid), 0.5);
+          background-color: rgba(map.get(variables.$gray-pallet, mid), 0.5);
         }
       }
     }
 
     &__results {
       width: 100%;
-      min-height: mq-px2em(250px);
+      min-height: mq.px2em(250px);
       position: absolute;
       top: 100%;
       left: 50%;
       transform: translateX(-50%);
       border-width: 1px 0;
       border-style: solid;
-      border-color: rgba(map_get($gray-pallet, mid), 0.2);
-      background: $light;
+      border-color: rgba(map.get(variables.$gray-pallet, mid), 0.2);
+      background: variables.$light;
       display: none;
 
       @at-root [search-expanded] .search__results {
@@ -273,21 +279,22 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
         align-self: center;
         text-align: center;
         word-wrap: break-word;
-        padding: mq-px2em(50px) 0;
+        padding: mq.px2em(50px) 0;
       }
 
       .search-result-list {
         @extend .no-style-list;
-        margin-bottom: mq-px2em(20px);
+        margin-bottom: mq.px2em(20px);
       }
 
       li {
         &:not(:last-of-type) {
-          border-bottom: 1px solid rgba(map-get($gray-pallet, light), 0.8);
+          border-bottom: 1px solid
+            rgba(map.get(variables.$gray-pallet, light), 0.8);
 
           &:hover,
           &:focus {
-            border-bottom: 1px solid map-get($gray-pallet, light);
+            border-bottom: 1px solid map.get(variables.$gray-pallet, light);
           }
         }
 
@@ -298,7 +305,7 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
 
       &__item {
         display: block;
-        padding: mq-px2em(10px);
+        padding: mq.px2em(10px);
 
         &__title,
         &__category {
@@ -314,13 +321,13 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
       }
     }
 
-    @include mq($from: medium) {
+    @include mq.mq($from: tablet) {
       order: initial;
 
       &__results {
         width: 100vw;
         // subtract padding from header on both sides
-        left: calc(50% - mq-px2em((10px * 2) + 1px));
+        left: calc(50% - mq.px2em((10px * 2) + 1px));
       }
     }
   }
@@ -337,19 +344,20 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
           left: 0;
           width: 100%;
           height: 100%;
-          background-color: rgba($primary, 0.75);
-          -webkit-backdrop-filter: blur(mq-px2em(10px));
-          backdrop-filter: blur(mq-px2em(10px));
+          background-color: rgba(variables.$primary, 0.75);
+          -webkit-backdrop-filter: blur(mq.px2em(10px));
+          backdrop-filter: blur(mq.px2em(10px));
           visibility: hidden;
           opacity: 0;
-          z-index: #{$zindex-header - 1};
-          transition: visibility 0.3s linear,
+          z-index: #{variables.$zindex-header - 1};
+          transition:
+            visibility 0.3s linear,
             opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
       }
 
       &[search-expanded] {
-        background: $light;
+        background: variables.$light;
 
         & + [class^='ns-'][class$='layout'],
         & + [class='ns-landing-screen'] .main-content {
@@ -376,21 +384,21 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
 
       &-form {
         &__input {
-          padding: 0 mq-px2em(30px + 10px) 0 mq-px2em(10px);
+          padding: 0 mq.px2em(30px + 10px) 0 mq.px2em(10px);
           outline: none;
           border-radius: 0;
           cursor: auto;
           user-select: auto;
-          color: map-get($gray-pallet, dark);
+          color: map.get(variables.$gray-pallet, dark);
           transition: border-radius 0.5s ease-in $search-animation-duration;
 
           &--suggestions-active {
-            border-radius: mq-px2em(5px) mq-px2em(5px) 0 0;
+            border-radius: mq.px2em(5px) mq.px2em(5px) 0 0;
           }
 
           &::placeholder {
             opacity: 1;
-            color: map-get($gray-pallet, mid);
+            color: map.get(variables.$gray-pallet, mid);
           }
 
           & + .search-form__btn {
@@ -400,14 +408,14 @@ $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
       }
     }
 
-    @include mq($from: medium) {
+    @include mq.mq($from: tablet) {
       .search {
         flex-grow: initial;
 
         &-form {
-          width: calc(100% - mq-px2em(10px * 2));
+          width: calc(100% - mq.px2em(10px * 2));
           position: absolute;
-          left: mq-px2em(10px);
+          left: mq.px2em(10px);
         }
       }
     }

@@ -1,3 +1,7 @@
+@use 'sass:map';
+@use '../config/mq';
+@use '../variables';
+
 .ns-posts {
   .post {
     &-list {
@@ -6,16 +10,17 @@
 
     &-list-item {
       &:not(:first-of-type) {
-        margin-top: mq-px2em(50px);
+        margin-top: mq.px2em(50px);
       }
 
       &:not(:last-of-type) {
-        border-bottom: mq-px2em(2px) solid map_get($gray-pallet, light);
+        border-bottom: mq.px2em(2px) solid
+          map.get(variables.$gray-pallet, light);
       }
 
       &__publish-date {
         text-transform: uppercase;
-        color: map_get($gray-pallet, light);
+        color: map.get(variables.$gray-pallet, light);
       }
     }
   }
@@ -53,7 +58,7 @@
       &__publish-date {
         @extend time;
         order: -1;
-        font-size: mq-px2em(5px);
+        font-size: mq.px2em(5px);
         text-transform: uppercase;
       }
     }
