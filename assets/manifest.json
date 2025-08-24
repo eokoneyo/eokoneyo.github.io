@@ -1,13 +1,11 @@
 {
-  "main.css": "/assets/main.6fd7df7c.css",
-  "main.js": "/assets/main-bundle.ed9cf92e.js",
-  "runtime.js": "/assets/runtime-bundle.38bf5102.js",
-  "vendors.js": "/assets/vendors-bundle.b24c85bf.js",
+  "main.css": "/assets/main.6b565d2c.css",
+  "main.js": "/assets/main-bundle.ac0ffb2d.js",
+  "runtime.js": "/assets/runtime-bundle.347adc78.js",
+  "vendors.js": "/assets/vendors-bundle.a048d7c5.js",
   "sw.js": "/assets/sw.js",
   "fonts/ovo-latin-400-normal.woff": "/assets/fonts/ovo-latin-400-normal.woff",
   "fonts/ovo-latin-400-normal.woff2": "/assets/fonts/ovo-latin-400-normal.woff2",
   "fonts/dm-mono-latin-400-normal.woff2": "/assets/fonts/dm-mono-latin-400-normal.woff2",
-  "fonts/dm-mono-latin-400-normal.woff": "/assets/fonts/dm-mono-latin-400-normal.woff",
-  "fonts/dm-mono-latin-ext-400-normal.woff2": "/assets/fonts/dm-mono-latin-ext-400-normal.woff2",
-  "fonts/dm-mono-latin-ext-400-normal.woff": "/assets/fonts/dm-mono-latin-ext-400-normal.woff"
+  "fonts/dm-mono-latin-400-normal.woff": "/assets/fonts/dm-mono-latin-400-normal.woff"
 }
