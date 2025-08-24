@@ -4,6 +4,9 @@
 @use '../variables';
 @use '../base/typography';
 
+@import '~normalize.css/normalize.css';
+@import '~@shikijs/twoslash/style-rich.css';
+
 body {
   margin: 0;
 
@@ -55,7 +58,7 @@ a {
 
   &:hover,
   &:focus {
-    color: darken(variables.$primary, 20%);
+    color: color.adjust(variables.$primary, $lightness: -20%);
   }
 
   // Styles for external links
@@ -95,7 +98,8 @@ a {
     }
 
     &:hover:after {
-      border-color: transparent darken(variables.$primary, 20%) transparent
+      border-color: transparent
+        color.adjust(variables.$primary, $lightness: -20%) transparent
         transparent;
     }
   }

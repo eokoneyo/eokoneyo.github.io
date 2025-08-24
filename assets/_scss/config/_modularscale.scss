@@ -15,7 +15,11 @@ $modularscale: (
   ),
 );
 
-@import 'modularscale-sass';
+@import 'modularscale-sass/stylesheets/modularscale/vars';
+@import 'modularscale-sass/stylesheets/modularscale/settings';
+@import 'modularscale-sass/stylesheets/modularscale/pow';
+@import 'modularscale-sass/stylesheets/modularscale/function';
+@import 'modularscale-sass/stylesheets/modularscale/respond';
 
 @mixin respond($property, $value) {
   @include ms-respond($property, $value);

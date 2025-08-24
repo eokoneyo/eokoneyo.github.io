@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:list';
 @use '@fontsource-utils/scss' as fontsource;
 @use '@fontsource/ovo/scss' as Ovo;
 @use '@fontsource/dm-mono/scss' as DMMono;
@@ -62,7 +63,7 @@ body {
   h#{$i} {
     @include modularscale.respond(
       font-size,
-      nth($typographicScale, length($typographicScale) - $i)
+      list.nth($typographicScale, list.length($typographicScale) - $i)
     );
 
     & {
@@ -110,19 +111,21 @@ p {
 }
 
 blockquote {
-  @include modularscale.respond(font-size, 1);
   font-style: italic;
+  @include modularscale.respond(font-size, 1);
 }
 
 time,
 [datetime] {
-  color: map.get(variables.$gray-pallet, light);
-  font-family: $mono-font;
+  & {
+    color: map.get(variables.$gray-pallet, light);
+    font-family: $mono-font;
+  }
 }
 
 .caption_ts {
-  @include modularscale.respond(font-size, -1);
   font-style: italic;
+  @include modularscale.respond(font-size, -1);
 }
 
 .endnote_ts {

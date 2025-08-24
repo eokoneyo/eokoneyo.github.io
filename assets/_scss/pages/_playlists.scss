@@ -1,7 +1,7 @@
 @use '../config/mq';
 @use '../variables';
 @use '../base/typography';
-@import '../mixins/decorated_horizontal_divider';
+@use '../mixins/decorated_horizontal_divider' as *;
 
 .ns-playlists {
   @include mq.mq($from: tablet) {

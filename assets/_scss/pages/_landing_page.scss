@@ -3,17 +3,16 @@
 @use '../config/modularscale';
 @use '../variables';
 @use '../base/typography';
-
-@import '../mixins/parallax';
+@use '../mixins/parallax';
 
 .ns-landing-screen {
-  @include parallax-init();
+  @include parallax.parallax-init();
 
   .jumbotron {
-    @include parallax-child(0);
+    @include parallax.parallax-child(0);
 
     @include mq.mq($from: tablet) {
-      @include parallax-child(-3);
+      @include parallax.parallax-child(-3);
     }
 
     height: 100vh;
@@ -125,7 +124,7 @@
   }
 
   .main-content {
-    @include parallax-child(0);
+    @include parallax.parallax-child(0);
     box-shadow: rgba(variables.$primary, 0.15) 0 0 100px 0;
     background: variables.$light;
     display: flex;
@@ -148,8 +147,8 @@
         justify-content: space-between;
 
         &__action-item {
-          @include modularscale.respond(font-size, 0);
           font-style: italic;
+          @include modularscale.respond(font-size, 0);
         }
       }
 

@@ -1,6 +1,6 @@
 @use '../config/mq';
 @use '../variables';
-@import '../mixins/decorated_horizontal_divider';
+@use '../mixins/decorated_horizontal_divider' as *;
 
 .project-tile {
   position: relative;

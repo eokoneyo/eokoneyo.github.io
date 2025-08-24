@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use 'sass:math';
+@use 'sass:color';
 @use '../variables';
 @use '../config/mq';
 
@@ -59,7 +60,7 @@
   }
 
   > * {
-    color: lighten(map.get(variables.$gray-pallet, tint), 60%);
+    color: color.adjust(map.get(variables.$gray-pallet, tint), $lightness: 60%);
     position: relative;
     margin-bottom: 0 !important;
   }
