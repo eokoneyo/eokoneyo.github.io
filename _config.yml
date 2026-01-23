@@ -21,6 +21,7 @@ exclude:
   - 'webpack.config.js'
   - 'babel.config.json'
   - 'assets/_ata'
+  - 'payload.json' # used to test GitHub actions
 
 plugins:
   - jekyll-paginate-v2

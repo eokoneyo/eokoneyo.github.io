@@ -24,19 +24,19 @@ class ImageZoomComponent extends Component {
     super(element);
 
     this.lightBoxId = `img-zoom-lightbox--${this.options.key}`;
-    this.imgPreview = this.element.getElementsByClassName(
-      'js-image-zoom__preview'
-    )[0] as HTMLElement;
+    this.imgPreview = this.element.querySelector(
+      '.js-image-zoom__preview'
+    ) as HTMLElement;
 
     this.initImageZoomHtml(); // init markup
 
     this.lightbox = document.getElementById(this.lightBoxId) as HTMLElement;
-    this.imgEnlg = this.lightbox?.getElementsByClassName(
-      'js-image-zoom__fw'
-    )[0] as HTMLElement;
-    this.input = this.element.getElementsByClassName(
-      'js-image-zoom__input'
-    )[0] as HTMLInputElement;
+    this.imgEnlg = this.lightbox?.querySelector(
+      '.js-image-zoom__fw'
+    ) as HTMLElement;
+    this.input = this.element.querySelector(
+      '.js-image-zoom__input'
+    ) as HTMLInputElement;
 
     this.animate = this.element.getAttribute('data-morph') !== 'off';
   }
@@ -58,10 +58,12 @@ class ImageZoomComponent extends Component {
     lightBox.innerHTML = `<img src="${url}" class="js-image-zoom__fw"/>`;
     document.body.appendChild(lightBox);
 
-    const keyboardInput = `<input aria-hidden="true" type="checkbox" class=${clsx(
-      'image-zoom__input',
-      'js-image-zoom__input'
-    )}/>`;
+    const keyboardInput = `
+      <input id="zoom-input-${this.options.key}" aria-hidden="true" type="checkbox" class="${clsx(
+        'image-zoom__input',
+        'js-image-zoom__input'
+      )}"/>
+    `;
     this.element.insertAdjacentHTML('afterbegin', keyboardInput);
   }
 

@@ -1,11 +1,10 @@
 /* eslint no-useless-constructor: "off" */
 
 declare module 'gia' {
-  // eslint-disable-next-line @typescript-eslint/ban-types
   export abstract class Component<
     R = Record<string, unknown>,
     S = Record<string, unknown>,
-    O = Record<string, unknown>
+    O = Record<string, unknown>,
   > {
     readonly element: HTMLElement;
 
@@ -49,7 +48,7 @@ declare module 'gia' {
   export function createInstance<T>(
     element: HTMLElement,
     componentName: string,
-    // eslint-disable-next-line @typescript-eslint/ban-types
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
     component: T extends Component ? Function & { prototype: T } : never,
     options?: Record<string, unknown>
   ): T;
