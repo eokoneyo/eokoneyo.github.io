@@ -1,6 +1,6 @@
 describe('entry script', () => {
   let registeredEvents: Record<string, EventListener> = {};
-  let eventListenerSpy: jest.SpyInstance
+  let eventListenerSpy: jest.SpyInstance;
 
   beforeEach(() => {
     eventListenerSpy = jest.spyOn(document, 'addEventListener');
@@ -15,9 +15,8 @@ describe('entry script', () => {
     eventListenerSpy.mockReset();
   });
 
-  it('registers an event handler for DOMContentLoaded', () => {
-    // eslint-disable-next-line global-require
-    require('../../client');
+  it('registers an event handler for DOMContentLoaded', async () => {
+    await import('../../client');
 
     // eslint-disable-next-line dot-notation
     expect(registeredEvents['DOMContentLoaded']).toBeDefined();
