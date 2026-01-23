@@ -1,4 +1,4 @@
-import anime from 'animejs';
+import { createTimeline } from 'animejs';
 import {
   setCookie,
   removeClass,
@@ -31,50 +31,52 @@ const initPreloader = (global: Window): void => {
   preloaderDOM.path = preloaderDOM.shape?.querySelector('path') ?? null;
 
   const removePreloader = (animationDuration: number): void => {
-    anime
-      .timeline({
-        duration: animationDuration,
-        update(anim) {
-          if (Math.round(anim.progress) > 90) {
-            changeStatusBarThemeColor('#ffffff');
-          }
-        },
-        complete: () => {
-          removeClass(document.body, 'no-scroll');
-          document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
-          // mark preloader as seen for the session
-          setCookie(HAS_SEEN_PRELOADER_COOKIE, true);
-        },
-      })
-      .add(
+    const tl = createTimeline({
+      duration: animationDuration,
+      onUpdate(anim) {
+        if (Math.round(anim.progress) > 90) {
+          changeStatusBarThemeColor('#ffffff');
+        }
+      },
+      onComplete: () => {
+        removeClass(document.body, 'no-scroll');
+        document.body.setAttribute(HTML_PRELOADER_ATTRIBUTE, String(true));
+        // mark preloader as seen for the session
+        setCookie(HAS_SEEN_PRELOADER_COOKIE, true);
+      },
+    });
+
+    if (preloaderDOM.preloader && preloaderDOM.path) {
+      tl.add(
+        Array.prototype.slice.call(
+          preloaderDOM.preloader?.querySelector('.content-wrapper')?.children,
+          0
+        ),
         {
-          targets: Array.prototype.slice.call(
-            preloaderDOM.preloader?.querySelector('.content-wrapper')?.children,
-            0
-          ),
           opacity: '0',
           easing: 'easeInOutExpo',
         },
         0
       )
-      .add(
-        {
-          delay: animationDuration / 2,
-          targets: preloaderDOM.preloader,
-          easing: 'easeInOutSine',
-          translateY: '-200vh',
-        },
-        0
-      )
-      .add(
-        {
-          delay: animationDuration / 2,
-          targets: preloaderDOM.path,
-          easing: 'easeOutQuad',
-          d: preloaderDOM.path?.getAttribute('pathdata:id'),
-        },
-        0
-      );
+        .add(
+          preloaderDOM.preloader,
+          {
+            delay: animationDuration / 2,
+            easing: 'easeInOutSine',
+            translateY: '-200vh',
+          },
+          0
+        )
+        .add(
+          preloaderDOM.path,
+          {
+            delay: animationDuration / 2,
+            easing: 'easeOutQuad',
+            d: [preloaderDOM.path.getAttribute('pathdata:id') ?? ''],
+          },
+          0
+        );
+    }
   };
 
   if (getCookieValue(HAS_SEEN_PRELOADER_COOKIE)) {

@@ -20,7 +20,7 @@ const initOfflineHandler = (versionNumber?: string) => {
   return new NavigationRoute(async (params) => {
     try {
       return await networkOnly.handle(params);
-    } catch (err) {
+    } catch {
       return new Response(
         new Blob(
           [
