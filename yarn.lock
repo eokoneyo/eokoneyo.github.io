@@ -2668,24 +2668,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fontsource-utils/scss@npm:^0.2.2":
-  version: 0.2.2
-  resolution: "@fontsource-utils/scss@npm:0.2.2"
-  checksum: 10/d4092b7564a82806d83e6f2d9a3b5e2b7ee187e52d57a24ae26fe2d074ab4aea205ed729ce2f2ffa3ecd4dfae1089e4003b7ae4e92162c0ac6fa1ff9ad5e0adf
+"@fontsource-utils/scss@npm:^0.2.4":
+  version: 0.2.4
+  resolution: "@fontsource-utils/scss@npm:0.2.4"
+  checksum: 10/5a794e40fe7c6dd0bce423047051cbd670b3def867dff60c66c72a6fe0e3fff650149d2b6d85835fc4ef18051b93442ddfd6ff94b0a75e02eebc21ee85c8a738
   languageName: node
   linkType: hard
 
-"@fontsource/dm-mono@npm:^5.2.7":
-  version: 5.2.7
-  resolution: "@fontsource/dm-mono@npm:5.2.7"
-  checksum: 10/ac9a2f9f186e69639efe8459fe829c4d583d8dc1b8d705a505d48292c106165717933efff43ea622ecabf14884ecd41f16e6804b4d539546e5653ab8ea321953
+"@fontsource/dm-mono@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "@fontsource/dm-mono@npm:5.3.0"
+  checksum: 10/0873b64be8a10a2d45d55975a4b30f2d5d811b248f4a661c1a7b1c01a9f686de58728287fadbe0e451f84ab535bb68ad81da3195bc158e1f8a5f84553b24ca50
   languageName: node
   linkType: hard
 
-"@fontsource/ovo@npm:^5.2.8":
-  version: 5.2.8
-  resolution: "@fontsource/ovo@npm:5.2.8"
-  checksum: 10/ab2cc9255804a11320f3f78a9c91386ca63505dbcc0d00757d8b10c387aa33dfb98696c58c71a036557c97883f37d2c1f3cb39a73d1da07f68bb9a95345046cd
+"@fontsource/ovo@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "@fontsource/ovo@npm:5.3.0"
+  checksum: 10/18e133053613e507271ecf63eb3a66f676d93ee8e15e55670274cdcf1dcc1e6c2c1fe474f0837cdf47aeadafbddbec3af4d91ede4bc1a07275e8bdfa22f4d022
   languageName: node
   linkType: hard
 
@@ -6453,9 +6453,9 @@ __metadata:
     "@babel/preset-env": "npm:^7.28.6"
     "@babel/preset-typescript": "npm:^7.28.5"
     "@babel/runtime": "npm:^7.28.6"
-    "@fontsource-utils/scss": "npm:^0.2.2"
-    "@fontsource/dm-mono": "npm:^5.2.7"
-    "@fontsource/ovo": "npm:^5.2.8"
+    "@fontsource-utils/scss": "npm:^0.2.4"
+    "@fontsource/dm-mono": "npm:^5.3.0"
+    "@fontsource/ovo": "npm:^5.3.0"
     "@prettier/plugin-ruby": "npm:^4.0.4"
     "@shikijs/transformers": "npm:^3.21.0"
     "@shikijs/twoslash": "npm:^3.21.0"
