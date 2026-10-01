@@ -9,7 +9,8 @@
     "test": "jest --config jest.json",
     "build": "webpack && bundle exec jekyll build --strict_front_matter",
     "start:dev": "webpack && webpack --watch | bundle exec jekyll serve -l --drafts --trace --strict_front_matter",
-    "postinstall": "husky install && git update-index --skip-worktree _drafts/.gitkeep"
+    "postinstall": "husky install && git update-index --skip-worktree _drafts/.gitkeep",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -82,7 +83,7 @@
     "jest-fail-on-console": "^3.3.4",
     "js-yaml": "^4.1.1",
     "jsdom": "^27.4.0",
-    "lint-staged": "^16.2.7",
+    "lint-staged": "^17.6.0",
     "mini-css-extract-plugin": "^2.10.0",
     "modularscale-sass": "^3.0.10",
     "prettier": "^3.8.1",
