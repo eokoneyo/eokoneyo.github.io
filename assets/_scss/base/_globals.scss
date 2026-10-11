@@ -71,7 +71,7 @@ a {
       display: inline-block;
       padding-right: mq.px2em(8px);
 
-      @at-root [role='doc-endnote'] & {
+      @at-root [role='doc-endnotes'] li[id*='fn:'] & {
         display: initial;
       }
 
@@ -91,7 +91,7 @@ a {
         border-width: 0 mq.px2em(8px) mq.px2em(8px) 0;
         border-color: transparent currentColor transparent transparent;
 
-        @at-root [role='doc-endnote'] & {
+        @at-root [role='doc-endnotes'] li[id*='fn:'] & {
           content: none;
         }
       }
@@ -139,14 +139,16 @@ a {
       font-family: typography.$mono-font;
     }
 
-    margin-bottom: mq.px2em(10px);
+    &[id*='fn:'] {
+      margin-bottom: mq.px2em(10px);
 
-    > * {
-      display: inline;
-    }
+      > * {
+        display: inline;
+      }
 
-    .reversefootnote {
-      visibility: hidden;
+      .reversefootnote {
+        visibility: hidden;
+      }
     }
   }
 }
