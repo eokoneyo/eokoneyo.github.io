@@ -84,6 +84,8 @@
     "js-yaml": "^5.4.3",
     "jsdom": "^30.1.1",
     "lint-staged": "^17.6.0",
+    "mdast-util-from-markdown": "^2.1.0",
+    "mdast-util-to-hast": "^13.2.1",
     "mini-css-extract-plugin": "^2.10.0",
     "modularscale-sass": "^3.0.10",
     "prettier": "^3.9.9",

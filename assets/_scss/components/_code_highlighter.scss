@@ -40,6 +40,8 @@ div[class|='language'] {
   }
 
   .twoslash {
+    --twoslash-docs-font: typography.$mono-font;
+
     &-hover {
       position: unset;
     }
@@ -52,6 +54,23 @@ div[class|='language'] {
         > * {
           text-wrap-mode: wrap;
           flex-grow: 1;
+        }
+      }
+
+      &-docs {
+        > * {
+          margin: 0;
+          color: var(--twoslash-docs-color);
+        }
+
+        strong,
+        em {
+          font-weight: normal;
+        }
+
+        code {
+          display: inline-block;
+          vertical-align: bottom;
         }
       }
     }

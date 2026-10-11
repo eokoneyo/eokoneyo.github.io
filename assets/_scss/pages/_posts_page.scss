@@ -45,7 +45,7 @@
 
       ol,
       ul {
-        li:not([role='doc-endnote']) {
+        li:not([id*='fn:']) {
           @extend p;
         }
       }

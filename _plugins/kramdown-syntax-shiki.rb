@@ -37,7 +37,7 @@ module Kramdown
             const { join, dirname } = require('node:path');
 
             async function generateCodeBlock(code, lang, theme = 'vitesse-light') {
-                if (/typescript|(ts)x?/.test(lang)) {
+                if (/^(typescript|(ts)x?)$/.test(lang)) {
                     // setup type acquisition (https://github.com/microsoft/TypeScript-Website/tree/v2/packages/ata)
                     const { setupTypeAcquisition } = await import('@typescript/ata');
                     const ata = setupTypeAcquisition({
@@ -59,6 +59,8 @@ module Kramdown
                 const { createHighlighter } = await import('shiki');
                 const { rendererRich, transformerTwoslash } = await import('@shikijs/twoslash');
                 const { transformerNotationDiff } = await import('@shikijs/transformers');
+                const { fromMarkdown } = await import('mdast-util-from-markdown');
+                const { toHast } = await import('mdast-util-to-hast');
 
                 const highlighter = await createHighlighter({ themes: [theme], langs: [lang]  });
                 return highlighter.codeToHtml(code, {
@@ -69,7 +71,21 @@ module Kramdown
                             matchAlgorithm: 'v3',
                         }),
                         transformerTwoslash({
-                            renderer: rendererRich(),
+                            renderer: rendererRich({
+                                renderMarkdown(md) {
+                                    return toHast(fromMarkdown(md)).children;
+                                },
+                                renderMarkdownInline(md, context) {
+                                    if (context === 'tag:param') {
+                                        md = md.replace(/^([\\w$-]+)/, '`$1` ');
+                                    }
+                                    const mdast = fromMarkdown(md);
+                                    const first = mdast.children[0];
+                                    return toHast(
+                                        first && first.type === 'paragraph' ? { ...first, type: 'root' } : mdast
+                                    ).children;
+                                },
+                            }),
                         })
                     ]
                 });
