@@ -11,6 +11,7 @@ gem 'prettier_print'
 gem 'syntax_tree'
 gem 'syntax_tree-haml'
 gem 'syntax_tree-rbs'
+gem "racc", "~> 1.8"
 
 group :jekyll_plugins do
     gem 'jekyll-paginate-v2'
