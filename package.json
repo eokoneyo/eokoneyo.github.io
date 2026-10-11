@@ -24,7 +24,7 @@
   "homepage": "https://github.com/eokoneyo/eokoneyo.github.io#readme",
   "dependencies": {
     "@babel/runtime": "^7.28.6",
-    "animejs": "^4.3.3",
+    "animejs": "^4.5.0",
     "clsx": "^2.1.1",
     "core-js": "^3.48.0",
     "gia": "^1.0.1",
@@ -53,7 +53,7 @@
     "@shikijs/transformers": "^4.4.3",
     "@shikijs/twoslash": "^4.4.3",
     "@testing-library/dom": "^10.4.1",
-    "@types/animejs": "^3.1.13",
+    "@types/animejs": "^4.0.0",
     "@types/jest": "^30.0.0",
     "@types/jsdom": "^30.0.0",
     "@types/lodash.throttle": "^4.1.9",

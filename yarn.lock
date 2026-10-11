@@ -4135,10 +4135,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/animejs@npm:^3.1.13":
-  version: 3.1.13
-  resolution: "@types/animejs@npm:3.1.13"
-  checksum: 10/18481e2a6c829693fe7edfc7e3f3e6f5542c6d996a405d67acf595adbcfa15ba5c930aa416fe7ba563564220931eaba4ba8f8151c8358346719b0e72d5ef5e48
+"@types/animejs@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@types/animejs@npm:4.0.0"
+  dependencies:
+    animejs: "npm:*"
+  checksum: 10/a5a30780359fd416d2b456e664cc4e011513bfb643eef80038ac48acb61aadc8aa8df56828d186b51610a1277f555b20a90fbf6228ed89295a4c33aa5d7f5c7c
   languageName: node
   linkType: hard
 
@@ -5226,10 +5228,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"animejs@npm:^4.3.3":
-  version: 4.3.3
-  resolution: "animejs@npm:4.3.3"
-  checksum: 10/5bee8e172a581367f3ed867cffadcca76594f69d3cf1f7b4012099a34001222eb9303205fd144f13c2d59bdfed698ad8f72630b2cf0b4ad73053d3d2bbadc1b7
+"animejs@npm:*, animejs@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "animejs@npm:4.5.0"
+  peerDependencies:
+    "@types/three": ">=0.150.0"
+    three: ">=0.150.0"
+  peerDependenciesMeta:
+    "@types/three":
+      optional: true
+    three:
+      optional: true
+  checksum: 10/7403510837992245910c2d69d894fb9dc984d6dc5fde5c47e3ed13253c7dc8d7f9df2ad7bc4f280c3f4d656c37fe6a51d2afeaa2cbf84602fc933b1e38fe40f8
   languageName: node
   linkType: hard
 
@@ -6794,7 +6804,7 @@ __metadata:
     "@shikijs/transformers": "npm:^4.4.3"
     "@shikijs/twoslash": "npm:^4.4.3"
     "@testing-library/dom": "npm:^10.4.1"
-    "@types/animejs": "npm:^3.1.13"
+    "@types/animejs": "npm:^4.0.0"
     "@types/jest": "npm:^30.0.0"
     "@types/jsdom": "npm:^30.0.0"
     "@types/lodash.throttle": "npm:^4.1.9"
@@ -6806,7 +6816,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^8.53.1"
     "@typescript-eslint/parser": "npm:^8.53.1"
     "@typescript/ata": "npm:^0.9.8"
-    animejs: "npm:^4.3.3"
+    animejs: "npm:^4.5.0"
     babel-jest: "npm:^30.5.2"
     babel-loader: "npm:^9.2.1"
     clean-webpack-plugin: "npm:^4.0.0"
