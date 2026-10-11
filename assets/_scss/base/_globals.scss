@@ -139,16 +139,14 @@ a {
       font-family: typography.$mono-font;
     }
 
-    &[role='doc-endnote'] {
-      margin-bottom: mq.px2em(10px);
+    margin-bottom: mq.px2em(10px);
 
-      > * {
-        display: inline;
-      }
+    > * {
+      display: inline;
+    }
 
-      .reversefootnote {
-        visibility: hidden;
-      }
+    .reversefootnote {
+      visibility: hidden;
     }
   }
 }
