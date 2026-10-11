@@ -178,6 +178,7 @@ module.exports = {
             `hash: "${buildHash}"`
           );
 
+          // eslint-disable-next-line import/no-extraneous-dependencies -- We only use this in the webpack config, so it is a dev dependency
           const cpy = (await import('cpy')).default;
 
           // This makes a list of the files webpack generated available to jekyll
@@ -187,7 +188,10 @@ module.exports = {
             path.join('_data'),
             {
               flat: true,
-              rename: (basename) => `webpack-${basename}`,
+              rename: (source, destination) => {
+                // eslint-disable-next-line no-param-reassign -- this is expected pattern for cpy rename function
+                destination.name = `webpack-${source.name}`;
+              },
             }
           );
 
