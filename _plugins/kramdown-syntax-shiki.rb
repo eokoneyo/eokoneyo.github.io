@@ -62,6 +62,24 @@ module Kramdown
                 const { fromMarkdown } = await import('mdast-util-from-markdown');
                 const { toHast } = await import('mdast-util-to-hast');
 
+                // turn JSDoc {@link url text} into markdown links, non-URL targets become plain text
+                const convertLinks = (md) =>
+                    md.replace(/{@link(?:code|plain)?\\s+([^}|\\s]+)(?:[|\\s]+([^}]*))?}/g, (_, target, label) =>
+                        /^https?:\\/\\//.test(target) ? `[${label || target}](${target})` : label || target
+                    );
+
+                const openLinksInNewTab = (nodes) => {
+                    for (const node of nodes) {
+                        if (node.type === 'element') {
+                            if (node.tagName === 'a') {
+                                node.properties = { ...node.properties, target: '_blank', rel: 'noopener noreferrer' };
+                            }
+                            openLinksInNewTab(node.children);
+                        }
+                    }
+                    return nodes;
+                };
+
                 const highlighter = await createHighlighter({ themes: [theme], langs: [lang]  });
                 return highlighter.codeToHtml(code, {
                     lang,
@@ -73,17 +91,19 @@ module Kramdown
                         transformerTwoslash({
                             renderer: rendererRich({
                                 renderMarkdown(md) {
-                                    return toHast(fromMarkdown(md)).children;
+                                    return openLinksInNewTab(toHast(fromMarkdown(convertLinks(md))).children);
                                 },
                                 renderMarkdownInline(md, context) {
                                     if (context === 'tag:param') {
                                         md = md.replace(/^([\\w$-]+)/, '`$1` ');
                                     }
-                                    const mdast = fromMarkdown(md);
+                                    const mdast = fromMarkdown(convertLinks(md));
                                     const first = mdast.children[0];
-                                    return toHast(
-                                        first && first.type === 'paragraph' ? { ...first, type: 'root' } : mdast
-                                    ).children;
+                                    return openLinksInNewTab(
+                                        toHast(
+                                            first && first.type === 'paragraph' ? { ...first, type: 'root' } : mdast
+                                        ).children
+                                    );
                                 },
                             }),
                         })
