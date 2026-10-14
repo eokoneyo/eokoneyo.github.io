@@ -46,7 +46,7 @@
       .playlist {
         &-wrapper {
           flex-wrap: nowrap;
-          overflow: auto;
+          overflow-x: auto;
         }
 
         &-item {
