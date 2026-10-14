@@ -17,6 +17,7 @@ body {
   &,
   * {
     box-sizing: border-box;
+    scrollbar-width: thin;
 
     &::selection {
       text-shadow: none;
