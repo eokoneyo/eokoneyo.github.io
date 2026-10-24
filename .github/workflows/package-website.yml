@@ -9,6 +9,8 @@ on:
     types:
       - completed
 
+permissions: {}
+
 jobs:
   on-code-check-failure:
     runs-on: ubuntu-latest
@@ -19,10 +21,29 @@ jobs:
   on-code-check-success:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    permissions:
+      contents: read # Needed to clone the repo
+      artifact-metadata: read # Needed to download artifacts from the triggering workflow
     steps:
+      - name: Download Artifact
+        uses: dawidd6/action-download-artifact@27e4ae67c24b67d3b54bc6d6a45475be1e28031b # v26
+        with:
+          workflow: code-health-check.yml
+          name: original-refs
+      - name: add REF_BASE to env
+        id: "set-ref-base"
+        run: |
+          echo "BASE=$(cat base.txt)" >> $GITHUB_OUTPUTS
+          echo "CURRENT_BRANCH=$(cat current-branch.txt)" >> $GITHUB_OUTPUTS
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
+        with:
+          ref: ${{ steps.set-ref-base.outputs.CURRENT_BRANCH }}
+          persist-credentials: false
       - uses: dorny/paths-filter@9d7afb8d214ad99e78fbd4247752c4caed2b6e4c # v4.0.0
         id: changes
         with:
+          base: ${{ steps.set-ref-base.outputs.BASE }}
+          ref: ${{ steps.set-ref-base.outputs.CURRENT_BRANCH }}
           filters: |
             src:
               - './**'
@@ -30,7 +51,6 @@ jobs:
               - '!_drafts/**'
               - '!.github/workflows/actions-security-analysis.yml'
               - '!zizmor.yml'
-
     outputs:
       deploy-website: ${{ steps.changes.outputs.src }}
 
@@ -39,17 +59,22 @@ jobs:
     needs: on-code-check-success
     if: ${{needs.on-code-check-success.outputs.deploy-website == 'true'}}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read # Needed to clone the repo
+      pages: write # Needed to deploy to GitHub Pages
     steps:
       - name: Install Rmagick dependency
         run: |
           sudo apt update \
           && sudo apt-get install libmagickwand-dev -y
-      - uses: actions/checkout@v7.0.1
-      - uses: actions/setup-node@v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 #v7.0.0
         with:
           cache: 'yarn'
           node-version-file: '.tool-versions'
-      - uses: ruby/setup-ruby@v1.326.0
+      - uses: ruby/setup-ruby@762794c140bbeda0f1224786aa33b4b46783a6c1 #v1.326.0
         with:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - name: Install dependencies and build
@@ -61,7 +86,7 @@ jobs:
           yarn install --immutable
           JEKYLL_ENV=production yarn webpack && bundle exec jekyll build --destination site
       - name: Handoff
-        uses: peaceiris/actions-gh-pages@v4.1.0
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 #v4.1.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
