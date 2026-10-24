@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
+        with:
+          persist-credentials: false
       - name: Install Dependencies
         run: yarn install --immutable
       - name: Lint
@@ -24,21 +26,17 @@ jobs:
 
   # sets base and ref for tasks that depend on this workflow completing
   persist-base-ref-info:
+    name: "Persist base ref info"
     needs: code-health-check
     if: github.ref_name == 'source'
     runs-on: ubuntu-latest
+    env:
+      BASE: ${{ github.event_name == 'pull_request' && github.base_ref || github.event.before }}
+      CURRENT_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref  || github.ref }}
+      COMMIT_URL: ${{ github.event_name == 'pull_request' && github.pull_request.url || github.head_commit.url }}
     steps:
       - name: Save base ref info
         run: |
-          if [[ '${{ github.event_name }}' == 'push' ]]; then
-            BASE=${{ github.event.before }}
-            CURRENT_BRANCH=${{ github.ref }}
-            COMMIT_URL=${{github.head_commit.url}}
-          elif [[ '${{ github.event_name }}' == 'pull_request' ]]; then
-            BASE=${{ github.base_ref }}
-            CURRENT_BRANCH=${{ github.head_ref }}
-            COMMIT_URL=${{github.pull_request.url}}
-          fi
           echo $BASE > base.txt
           echo $CURRENT_BRANCH > current-branch.txt
           echo $COMMIT_URL > commit-url.txt
