@@ -9,6 +9,8 @@ on:
     types:
       - completed
 
+permissions: {}
+
 jobs:
   on-code-check-failure:
     runs-on: ubuntu-latest
@@ -19,6 +21,9 @@ jobs:
   on-code-check-success:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    permissions:
+      contents: read # Needed to clone the repo
+      artifact-metadata: read # Needed to download artifacts from the triggering workflow
     steps:
       - name: Download Artifact
         uses: dawidd6/action-download-artifact@27e4ae67c24b67d3b54bc6d6a45475be1e28031b # v26
@@ -54,6 +59,9 @@ jobs:
     needs: on-code-check-success
     if: ${{needs.on-code-check-success.outputs.deploy-website == 'true'}}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read # Needed to clone the repo
+      pages: write # Needed to deploy to GitHub Pages
     steps:
       - name: Install Rmagick dependency
         run: |

@@ -6,9 +6,14 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
+permissions: {}
+
 jobs:
   code-health-check:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read # Needed to clone the repo
+      code-quality: write # Needed to upload code scanning results
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
@@ -34,6 +39,9 @@ jobs:
     needs: code-health-check
     if: github.ref_name == 'source'
     runs-on: ubuntu-latest
+    permissions:
+      artifact-metadata: write # Needed to upload artifacts for the next workflow run
+      pull-requests: read # Needed to read pull request information
     env:
       BASE: ${{ github.event_name == 'pull_request' && github.base_ref || github.event.before }}
       CURRENT_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref  || github.ref }}
@@ -44,6 +52,7 @@ jobs:
           echo $BASE > base.txt
           echo $CURRENT_BRANCH > current-branch.txt
           echo $COMMIT_URL > commit-url.txt
+          # log file results to console for debugging
           cat base.txt
           cat current-branch.txt
           cat commit-url.txt
