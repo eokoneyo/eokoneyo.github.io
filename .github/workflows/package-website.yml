@@ -33,8 +33,8 @@ jobs:
       - name: add REF_BASE to env
         id: "set-ref-base"
         run: |
-          echo "BASE=$(cat base.txt)" >> $GITHUB_OUTPUTS
-          echo "CURRENT_BRANCH=$(cat current-branch.txt)" >> $GITHUB_OUTPUTS
+          echo "BASE=$(cat base.txt)" >> $GITHUB_OUTPUT
+          echo "CURRENT_BRANCH=$(cat current-branch.txt)" >> $GITHUB_OUTPUT
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
         with:
           ref: ${{ steps.set-ref-base.outputs.CURRENT_BRANCH }}
