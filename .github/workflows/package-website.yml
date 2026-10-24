@@ -26,18 +26,19 @@ jobs:
           workflow: code-health-check.yml
           name: original-refs
       - name: add REF_BASE to env
+        id: "set-ref-base"
         run: |
-          echo "BASE=$(cat base.txt)" >> $GITHUB_ENV
-          echo "CURRENT_BRANCH=$(cat current-branch.txt)" >> $GITHUB_ENV
+          echo "BASE=$(cat base.txt)" >> $GITHUB_OUTPUTS
+          echo "CURRENT_BRANCH=$(cat current-branch.txt)" >> $GITHUB_OUTPUTS
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
         with:
-          ref: ${{ env.CURRENT_BRANCH }}
+          ref: ${{ steps.set-ref-base.outputs.CURRENT_BRANCH }}
           persist-credentials: false
       - uses: dorny/paths-filter@9d7afb8d214ad99e78fbd4247752c4caed2b6e4c # v4.0.0
         id: changes
         with:
-          base: ${{ env.BASE }}
-          ref: ${{ env.CURRENT_BRANCH }}
+          base: ${{ steps.set-ref-base.outputs.BASE }}
+          ref: ${{ steps.set-ref-base.outputs.CURRENT_BRANCH }}
           filters: |
             src:
               - './**'
