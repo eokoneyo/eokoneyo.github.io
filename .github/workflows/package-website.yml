@@ -20,6 +20,26 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
+      - uses: dorny/paths-filter@9d7afb8d214ad99e78fbd4247752c4caed2b6e4c # v4.0.0
+        id: changes
+        with:
+          filters: |
+            src:
+              - './**'
+              - '!.husky/**'
+              - '!_drafts/**'
+              - '!.github/workflows/actions-security-analysis.yml'
+              - '!zizmor.yml'
+
+    outputs:
+      deploy-website: ${{ steps.changes.outputs.src }}
+
+  package-and-deploy-website:
+    name: 'Package website for deployment'
+    needs: on-code-check-success
+    if: ${{needs.on-code-check-success.outputs.deploy-website == 'true'}}
+    runs-on: ubuntu-latest
+    steps:
       - name: Install Rmagick dependency
         run: |
           sudo apt update \
@@ -38,8 +58,8 @@ jobs:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{secrets.SPOTIFY_CLIENT_SECRET}}
         run: |
-           yarn install --immutable
-           JEKYLL_ENV=production yarn webpack && bundle exec jekyll build --destination site
+          yarn install --immutable
+          JEKYLL_ENV=production yarn webpack && bundle exec jekyll build --destination site
       - name: Handoff
         uses: peaceiris/actions-gh-pages@v4.1.0
         with:
