@@ -9,7 +9,8 @@ concurrency:
 permissions: {}
 
 jobs:
-  code-health-check:
+  quality-checks:
+    name: "Code quality check"
     runs-on: ubuntu-latest
     permissions:
       contents: read # Needed to clone the repo
@@ -36,7 +37,7 @@ jobs:
   # sets base and ref for tasks that depend on this workflow completing
   persist-base-ref-info:
     name: "Persist base ref info"
-    needs: code-health-check
+    needs: quality-checks
     if: github.ref_name == 'source'
     runs-on: ubuntu-latest
     permissions:
