@@ -10,7 +10,7 @@ permissions: {}
 
 jobs:
   quality-checks:
-    name: "Code quality check"
+    name: "code quality check"
     runs-on: ubuntu-latest
     permissions:
       contents: read # Needed to clone the repo
@@ -36,7 +36,7 @@ jobs:
 
   # sets base and ref for tasks that depend on this workflow completing
   persist-base-ref-info:
-    name: "Persist base ref info"
+    name: "persist base ref info"
     needs: quality-checks
     if: github.ref_name == 'source'
     runs-on: ubuntu-latest
