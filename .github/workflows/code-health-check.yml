@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
       - name: Install Dependencies
         run: yarn install --immutable
       - name: Lint
@@ -21,3 +21,36 @@ jobs:
       - name: Test
         if: ${{ steps.changes.outputs.src == 'true' }}
         run: yarn test
+
+  # sets base and ref for tasks that depend on this workflow completing
+  persist-base-ref-info:
+    needs: code-health-check
+    if: github.ref_name == 'source'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Save base ref info
+        run: |
+          if [[ '${{ github.event_name }}' == 'push' ]]; then
+            BASE=${{ github.event.before }}
+            CURRENT_BRANCH=${{ github.ref }}
+            COMMIT_URL=${{github.head_commit.url}}
+          elif [[ '${{ github.event_name }}' == 'pull_request' ]]; then
+            BASE=${{ github.base_ref }}
+            CURRENT_BRANCH=${{ github.head_ref }}
+            COMMIT_URL=${{github.pull_request.url}}
+          fi
+          echo $BASE > base.txt
+          echo $CURRENT_BRANCH > current-branch.txt
+          echo $COMMIT_URL > commit-url.txt
+          cat base.txt
+          cat current-branch.txt
+          cat commit-url.txt
+      - name: Upload base ref info
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: original-refs
+          path: |
+            base.txt
+            current-branch.txt
+            commit-url.txt
+          retention-days: 1 # This artifact is only needed for the next workflow run, so we can delete it after 1 day.
