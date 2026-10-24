@@ -66,8 +66,7 @@ jobs:
     if: ${{needs.on-code-check-success.outputs.deploy-website == 'true'}}
     runs-on: ubuntu-latest
     permissions:
-      contents: read  # Needed to clone the repo
-      pages: write    # Needed to deploy to GitHub Pages
+      contents: write  # Needed to clone the repo and deploy to GitHub Pages
     steps:
       - name: Install Rmagick dependency
         run: |
