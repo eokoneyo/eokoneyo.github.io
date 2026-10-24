@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     permissions:
-      contents: read # Needed to clone the repo
+      contents: read          # Needed to clone the repo
       artifact-metadata: read # Needed to download artifacts from the triggering workflow
     steps:
       - name: Download Artifact
@@ -66,8 +66,8 @@ jobs:
     if: ${{needs.on-code-check-success.outputs.deploy-website == 'true'}}
     runs-on: ubuntu-latest
     permissions:
-      contents: read # Needed to clone the repo
-      pages: write # Needed to deploy to GitHub Pages
+      contents: read  # Needed to clone the repo
+      pages: write    # Needed to deploy to GitHub Pages
     steps:
       - name: Install Rmagick dependency
         run: |

@@ -13,7 +13,7 @@ jobs:
     name: "code quality check"
     runs-on: ubuntu-latest
     permissions:
-      contents: read # Needed to clone the repo
+      contents: read      # Needed to clone the repo
       code-quality: write # Needed to upload code scanning results
     steps:
       - name: Checkout
