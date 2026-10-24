@@ -12,5 +12,12 @@ jobs:
         run: yarn install --immutable
       - name: Lint
         run: yarn lint
+      - uses: dorny/paths-filter@v4
+        id: changes
+        with:
+          filters: |
+            src:
+              - './assets/_scripts/**'
       - name: Test
+        if: ${{ steps.changes.outputs.src == 'true' }}
         run: yarn test
