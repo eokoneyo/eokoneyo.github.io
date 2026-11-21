@@ -56,6 +56,7 @@ jobs:
               - '!.husky/**'
               - '!_drafts/**'
               - '!.github/workflows/actions-security-analysis.yml'
+              - '!.github/workflows/code-health-check.yml'
               - '!zizmor.yml'
     outputs:
       deploy-website: ${{ steps.changes.outputs.src }}

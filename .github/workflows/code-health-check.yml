@@ -52,10 +52,6 @@ jobs:
           echo $BASE > base.txt
           echo $CURRENT_BRANCH > current-branch.txt
           echo $COMMIT_URL > commit-url.txt
-          # log file results to console for debugging
-          cat base.txt
-          cat current-branch.txt
-          cat commit-url.txt
       - name: Upload base ref info
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
